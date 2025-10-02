@@ -1,6 +1,5 @@
-import React from 'react'
-import { data } from '../../assets/Assests'
-import { Button } from '@mui/material'
+import React, { useState } from 'react'
+import { Button, Tab, Tabs } from '@mui/material'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -10,11 +9,19 @@ import 'swiper/css/navigation';
 
 import { Navigation } from 'swiper/modules';
 import { Link } from 'react-router';
+import Box from '@mui/material/Box';
+import { data } from '../../assets/Assests';
 
 
 const ProductItem = () => {
+
+     const [value, setValue] = useState(0);
+
+  const handleChange = (event,newValue) => {
+    setValue(newValue);
+  };
     return (
-        <div className='my-container !mb-25'>
+        <section className='my-container !mb-25'>
             <div className='flex w-full py-10 items-center'>
                 <div className='col1 w-[40%] '>
                     <h1 className='text-2xl font-medium'>Popular Products</h1>
@@ -22,16 +29,22 @@ const ProductItem = () => {
                 </div>
 
                 <div className='col2 w-[60%]  flex items-center px-4 overflow-hidden'>
-                    {data.map((data, idx) => (
-                        <div key={idx} className=''>
-                            <Button className='!py-3 !px-5 !text-gray-700 font-medium'>{data}</Button>
-                        </div>
-                    ))}
+                    <Tabs
+                        value={value}
+                        onChange={handleChange}
+                        variant="scrollable"
+                        scrollButtons
+                        allowScrollButtonsMobile
+                    >
+                        {data.map((items,idx)=>(
+                            <Tab key={idx} label={items} />
+                        ))}
+                    </Tabs>
                 </div>
 
             </div>
 
-            <div className=''>
+            <div>
                 <Swiper
                     navigation={true}
                     slidesPerGroup={3}
@@ -51,7 +64,7 @@ const ProductItem = () => {
                     </div>
                 </Swiper>
             </div>
-        </div>
+        </section>
     )
 }
 
