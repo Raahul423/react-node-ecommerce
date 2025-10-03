@@ -12,7 +12,7 @@ const LatestProduct = () => {
     <section className='my-container '>
         <div className='flex justify-between py-6'>
             <h1 className='text-gray-900/90 text-2xl font-medium'>Latest Products</h1>
-            <button className='py-2 px-4 text-gray-900/90 items-center flex gap-2 bg-gray-500/20 rounded-md cursor-pointer hover:bg-gray-500/80 transition-all'>Veiw All <MdArrowRightAlt /></button>
+            <button className='py-2 px-4 text-gray-900/90 items-center flex gap-2 bg-gray-500/20 rounded-md cursor-pointer hover:bg-gray-500/50 transition-all'>Veiw All <MdArrowRightAlt /></button>
         </div>
 
         <div>

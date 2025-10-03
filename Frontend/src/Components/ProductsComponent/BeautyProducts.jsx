@@ -25,7 +25,7 @@ const BeautyProducts = () => {
                         {Array.from({ length: 15 }).map((_, i) => (
                             <SwiperSlide key={i} className='!gap-4'>
                                 <div className='min-h-80 w-52 rounded-md  shadow shadow-gray-500'>
-                                    hi
+                                    hello
                                 </div>
                             </SwiperSlide>
                         ))}
