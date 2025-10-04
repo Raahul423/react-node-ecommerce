@@ -1,4 +1,8 @@
 import logo from "./Logo.jpg";
+import carte_bleue from "./carte_bleue.png"
+import master_card from "./master_card.png"
+import paypal from "./paypal.png"
+import visa from "./visa.png"
 
 export const assest = {
   logo,
@@ -155,3 +159,34 @@ export const AddtwoImage = [
     Image:"https://serviceapi.spicezgold.com/download/1757183705017_1737020250515_New_Project_47.jpg"
   }
 ]
+
+
+export const footer =[
+"Prices drop",
+"New products",
+"Best sales",
+"Contact us",
+"Sitemap",
+"Stores",
+"Delivery",
+"Legal Notice",
+"Terms and conditions of use",
+"About us",
+"Secure payment",
+"Login",
+]
+
+export const FootertImage = [
+  {
+    image:carte_bleue
+  },
+  {
+    image:master_card
+  },
+  {
+    image:paypal
+  },
+  {
+    image:visa
+  }
+] 
