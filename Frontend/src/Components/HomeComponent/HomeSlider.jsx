@@ -13,7 +13,9 @@ const HomeSlider = () => {
       <div className='my-container'>
         <Swiper
           spaceBetween={30}
+          centeredSlides={true}
           loop={true}
+          slidesPerView={1}
           pagination={{
             dynamicBullets: true,
           }}
@@ -21,7 +23,7 @@ const HomeSlider = () => {
             delay: 2500,
             disableOnInteraction: false,
           }}
-          modules={[Pagination, Autoplay]}
+          modules={[Pagination,Autoplay]}
           className="mySwiper"
         >
           {Images.map((img, idx) => (

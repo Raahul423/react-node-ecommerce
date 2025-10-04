@@ -11,6 +11,12 @@ body{
   overflow-x: hidden;
 }
 
+.my-container{
+  width: 90%;
+  margin: auto;
+  overflow: visible;
+}
+
 h1{
   font-size: 1.5em;
 }
@@ -77,8 +83,8 @@ p{
   transition: all 0.3s ease;
 }
 
-.mySwiper{
-  overflow: inherit !important;
+.mySwiper,.swiper-wrapper,.swiper-slide{
+  overflow: visible !important;
 }
 
 .swiper-button-prev, .swiper-button-next{

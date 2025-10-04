@@ -56,10 +56,10 @@ const Footer = () => {
                         <p className='py-6 '>Classyshop - Mega Super Store
                             507-Union Trade Centre France</p>
                         <a href="mailto:rp3976558@gmail.com">rp3976558@gmail.com</a>
-                        <p className='text-primary py-4 !text-2xl'>(91+)74580-15120</p>
+                        <p className='text-primary py-5 !text-2xl'>(91+)74580-15120</p>
                         <div className='flex items-center gap-2'>
                             <FiMessageSquare className='text-5xl text-primary' />
-                            <p className='!text-md'>Online Chat
+                            <p className='!text-md'>Online Chat <br />
                                 Get Expert Help</p>
                         </div>
                     </div>
