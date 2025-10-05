@@ -3,6 +3,10 @@ import carte_bleue from "./carte_bleue.png"
 import master_card from "./master_card.png"
 import paypal from "./paypal.png"
 import visa from "./visa.png"
+import mobile_banner from "./mobile_banner.webp"
+import lays_banner from "./lays_banner.webp"
+import fastion_banner from "./fastion_banner.webp"
+import iphone_banner from "./iphone_banner.webp"
 
 export const assest = {
   logo,
@@ -190,3 +194,20 @@ export const FootertImage = [
     image:visa
   }
 ] 
+
+export const addimage =
+  [
+    {
+      image:lays_banner
+    },
+    {
+      image:iphone_banner
+    },
+    {
+      image:fastion_banner
+    },
+    {
+      image:mobile_banner
+    }
+  ]
+
