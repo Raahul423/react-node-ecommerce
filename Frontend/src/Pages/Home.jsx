@@ -22,10 +22,6 @@ const Home = () => {
       <FeatureProduct />
       <SecondAdd/>
       <BeautyProducts/>
-
-      <br />
-      <br />
-      <br />
     </div>
   )
 }

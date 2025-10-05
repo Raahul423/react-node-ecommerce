@@ -11,11 +11,11 @@ const Shippingadd = () => {
                 </div>
 
                 <div>
-                    <p className='text-gray-800/90'>Free Delivery Now On Your First Order and over $200</p>
+                    <p className='text-gray-800/90 '>Free Delivery Now On Your First Order and over $200</p>
                 </div>
 
                 <div>
-                    <p className='text-3xl font-semibold text-gray-800/90'>- Only $200*</p>
+                    <p className='!text-3xl font-semibold text-gray-800/90'>- Only $200*</p>
                 </div>
             </div>
         </div>

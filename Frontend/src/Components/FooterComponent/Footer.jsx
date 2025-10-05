@@ -11,7 +11,7 @@ import { FaFacebook,FaGithub, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 const Footer = () => {
     return (
-        <section className='bg-[#fafafa]'>
+        <section className='bg-[#fafafa] mt-20'>
             <div className='my-container'>
 
                 {/* column 1 footer section */}
@@ -122,7 +122,7 @@ const Footer = () => {
                             <FaGithub className='text-2xl' />
                         </a>
 
-                         <a href="https://github.com/Raahul423">
+                         <a href="">
                             <FaFacebook className='text-2xl' />
                         </a>
 

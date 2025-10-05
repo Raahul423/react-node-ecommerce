@@ -18,7 +18,10 @@ const Addone = () => {
 
         <Swiper
           spaceBetween={30}
-          autoplay={true}
+          autoplay={{
+            delay:2500,
+            disableOnInteraction:false
+          }}
           effect={'fade'}
           loop={true}
           navigation={true}
