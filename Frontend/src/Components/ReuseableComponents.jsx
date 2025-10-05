@@ -6,10 +6,13 @@ import { SwiperSlide, Swiper } from 'swiper/react';
 
 import { Navigation } from 'swiper/modules';
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { MdOutlineZoomOutMap } from "react-icons/md";
+import { FaRegHeart } from "react-icons/fa";
 
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import { Button } from '@mui/material';
+import { Link } from 'react-router';
 
 
 const ReuseableComponents = () => {
@@ -25,16 +28,40 @@ const ReuseableComponents = () => {
                     navigation={true}
                     slidesPerGroup={3}
                     slidesPerView={6}
-                    spaceBetween={10}
+                    spaceBetween={12}
                     modules={[Navigation]}
                     className="mySwiper"
                 >
-                    <div className=''>
+                    <div className='w-fit overflow-hidden'>
                         {Array.from({ length: 15 }).map((_, i) => (
                             <SwiperSlide key={i} className=''>
-                                <div className='rounded-md  shadow shadow-gray-500 '>
-                                    <div className=''>
-                                        <img className='h-50 w-full object-cover' src="https://serviceapi.spicezgold.com/download/1753722939207_5107b7b1-ba6d-473c-9195-8576a6a0a9611749366193848-Flying-Machine-Women-Wide-Leg-High-Rise-Light-Fade-Stretchab-3.jpg" alt="error" />
+                                <div className='rounded-md shadow shadow-gray-500 '>
+                                    <div className='relative overflow-hidden group'>
+
+                                        <Link>
+                                            <img className='h-50 w-full object-cover' src="https://serviceapi.spicezgold.com/download/1742463096955_hbhb1.jpg" alt="error" />
+
+                                             <img className='h-50 w-full group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all duration-500 object-cover' src="https://serviceapi.spicezgold.com/download/1742463096956_hbhb2.jpg" alt="error" />
+
+                                             
+
+
+                                        </Link>
+
+                                        <div className='flex flex-col  justify-center items-center gap-1 absolute -top-50 transition-all duration-500 opacity-0 group-hover:opacity-100 right-3 group-hover:top-3'>
+                                            <div className='info'>
+                                                <MdOutlineZoomOutMap className='text-xl hover:!stroke-white hover:!fill-white' />
+                                            </div>
+
+                                            <div className='info'>
+                                                <FaRegHeart className='text-xl hover:!stroke-white hover:!fill-white' />
+                                            </div>
+                                        </div>
+
+
+
+
+
                                     </div>
 
                                     <div className='p-4 flex flex-col gap-1'>

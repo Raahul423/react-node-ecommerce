@@ -127,7 +127,19 @@ p{
 .swiper-slide-active .move{
   right: 0px !important;
   opacity: 1;
-  
+}
+
+.info{
+  transition: all;
+  padding: 8px;
+  border-radius: 100%;
+  background-color: #fff;
+  cursor: pointer;
+
+}
+
+.info:hover{
+background-color: #ff5252;
 }
 
 
