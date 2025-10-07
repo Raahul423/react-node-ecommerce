@@ -1,18 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router'
 import Badge from '@mui/material/Badge';
-import { assest } from '../assets/Assests'
-import Search from './Search'
+import { assest } from '../../assets/Assests'
 import {FaRegHeart} from 'react-icons/fa'
 import { ShoppingCartIcon } from 'lucide-react'
 import { IconButton, Tooltip } from '@mui/material'
 import { StyledEngineProvider } from '@mui/material/styles';
-import Navbar from './Navigation/Navbar';
-import Navdrawer from './Navigation/Navdrawer';
+import Navbar from '../Navigation/Navbar';
+import Navdrawer from '../Navigation/Navdrawer';
+import Search from './Search';
 
 const Header = () => {
     return (
-        <header className='bg-white shadow-xl'>
+        <header className='bg-white shadow-xl sticky top-0 z-50'>
             <div className='top-strip border-1 border-gray-300'>
                 <div className='my-container p-4'>
                     <div className='flex items-center justify-between '>
@@ -39,7 +39,7 @@ const Header = () => {
                 </div>
 
                 <div className='col2 w-[45%]'>
-                    <Search />
+                    <Search/>
                 </div>
 
                 <div className='col3 w-[30%] flex gap-2 justify-end  items-center'>
