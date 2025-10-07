@@ -41,7 +41,7 @@ const ReuseableComponents = () => {
                                         <Link>
                                             <img className='h-50 w-full object-cover' src="https://serviceapi.spicezgold.com/download/1742463096955_hbhb1.jpg" alt="error" />
 
-                                             <img className='h-50 w-full group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all duration-500 object-cover' src="https://serviceapi.spicezgold.com/download/1742463096956_hbhb2.jpg" alt="error" />
+                                             <img className='h-50 w-full group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-1000 ease-in-out object-cover' src="https://serviceapi.spicezgold.com/download/1742463096956_hbhb2.jpg" alt="error" />
 
                                              
 
