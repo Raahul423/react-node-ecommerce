@@ -97,6 +97,12 @@ export const data = [
   "Games"
 ]
 
+export const available = [
+  "Available",
+  "Not Stock",
+  "Not Available"
+]
+
 
 export const Images = [
   {
