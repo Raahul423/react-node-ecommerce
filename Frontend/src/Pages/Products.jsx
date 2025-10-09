@@ -5,7 +5,7 @@ import ProductItem from '../Components/ProductLists/ProductItem'
 
 const Products = () => {
   return (
-    <div className='my-container flex w-full  gap-8 '>
+    <div className='my-container flex w-full  gap-10'>
       <ProductSlider/>
       <ProductItem/>
     </div>

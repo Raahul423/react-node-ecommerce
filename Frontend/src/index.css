@@ -169,7 +169,19 @@ background-color: #ff5252;
 .ReactCollapse--collapse {
   transition: height 500ms;
 }
-
+.range-slider__thumb{
+  height: 15px !important;
+  width: 15px !important;
+  background-color: #ff5252 !important;
+}
+.range-slider__range{
+  height: 5px !important;
+  background-color: #ff5252 !important;
+}
+.range-slider{
+  width: 100% !important;
+  height: 5px !important;
+}
 
 
 
