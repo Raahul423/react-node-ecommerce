@@ -23,7 +23,10 @@ const ProductSlider = () => {
       </div>
 
       <div className='2/3 '>
-        <h1 className='!text-xl'>Filter By Price</h1>
+      <div className='flex py-3'>
+    <h1 className='!text-xl'>Filter By Price</h1>
+      </div>
+        
       </div>
 
       <div className='3/3'>
