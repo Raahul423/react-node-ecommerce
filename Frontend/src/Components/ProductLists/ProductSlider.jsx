@@ -23,7 +23,7 @@ const ProductSlider = () => {
 
 
   return (
-    <section className='col2 w-[25%] flex flex-col gap-5'>
+    <section className='col2 w-[20%] flex flex-col gap-5'>
       <div className='itemlist 1/3 '>
         <Category isopen={isopen} collapseisopen={collapseisopen} />
         <Avalibilty isopen={availableopen} availableisopen={availableisopen} />

@@ -14,7 +14,7 @@ const Category = ({ isopen, collapseisopen }) => {
     return (
         <div>
             <div className='flex justify-between items-center py-3'>
-                <h1 className='!text-xl'>Shop By Category</h1>
+                <h2 className='text-xl'>Shop By Category</h2>
                 <Button onClick={isopen} className='!rounded-full !w-5 !h-5 !text-primary'>
                     {collapseisopen === true ? <FaCaretUp className='text-2xl text-gray-900/80' /> : <TiArrowSortedDown className='text-2xl text-gray-900/80' />}
                 </Button>
