@@ -183,6 +183,14 @@ background-color: #ff5252;
   height: 5px !important;
 }
 
+.itemveiw button.active svg{
+  color: #ff5252 !important;
+}
+
+.itemveiw button.active{
+  background-color: rgb(166, 166, 166);
+}
+
 
 
 
