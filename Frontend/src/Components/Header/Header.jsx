@@ -1,4 +1,4 @@
-import React from 'react'
+import React  from 'react'
 import { Link } from 'react-router'
 import Badge from '@mui/material/Badge';
 import { assest } from '../../assets/Assests'
@@ -11,8 +11,11 @@ import Navdrawer from '../Navigation/Navdrawer';
 import Search from './Search';
 
 const Header = () => {
+    
+   
+
     return (
-        <header className='bg-white shadow-xl sticky top-0 z-50'>
+        <header className='bg-white shadow-xl sticky top-0 z-50 '>
             <div className='top-strip border-1 border-gray-300'>
                 <div className='my-container p-4'>
                     <div className='flex items-center justify-between '>

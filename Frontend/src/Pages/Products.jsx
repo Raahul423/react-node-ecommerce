@@ -3,11 +3,13 @@ import ProductSlider from '../Components/ProductLists/ProductSlider'
 import ProductItem from '../Components/ProductLists/ProductItem'
 
 
+
 const Products = () => {
+  
   return (
-    <div className='my-container flex w-full  gap-6'>
+    <div className='my-container flex w-full  gap-6 py-6'>
       <ProductSlider/>
-      <ProductItem/>
+      <ProductItem />
     </div>
   )
 }

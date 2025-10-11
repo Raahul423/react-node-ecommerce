@@ -12,9 +12,9 @@ const SelectedItems = () => {
     return (
         <section>
             <div className=''>
-                 <div className='flex flex-wrap items-center gap-4 justify-between'>
+                 <div className='flex flex-wrap items-center gap-4'>
                         {Array.from({ length: 15 }).map((_, i) => (
-                                <div key={i} className='rounded-md shadow shadow-gray-500 w-47'>
+                                <div key={i} className='rounded-md shadow shadow-gray-500 w-47 mx-auto'>
                                     <div className='relative overflow-hidden group '>
 
                                         <Link>

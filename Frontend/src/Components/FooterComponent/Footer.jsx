@@ -68,7 +68,7 @@ const Footer = () => {
                         <h1 className='mb-4'>Products</h1>
                         <ul >
                             {footer.slice(0, 6).map((items, idx) => (
-                                <li className='mb-1 cursor-pointer'>
+                                <li key={idx} className='mb-1 cursor-pointer'>
                                     <a className='hover:text-primary' key={idx}>
                                         {items}
                                     </a>
