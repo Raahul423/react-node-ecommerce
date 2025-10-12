@@ -11,9 +11,6 @@ const ProductItem = () => {
 
   const [itemveiw, setItemveiw] = useState('grid');
 
-  console.log(itemveiw);
-
-
   return (
     <section className='col1 w-[80%]'>
       <div className='1/2 bg-[#f2f2f2] p-1 flex justify-between rounded-md sticky z-50 top-53.5 mb-4'>
