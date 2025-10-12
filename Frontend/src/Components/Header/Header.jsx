@@ -15,7 +15,7 @@ const Header = () => {
    
 
     return (
-        <header className='bg-white shadow-xl sticky top-0 z-50 '>
+        <header className='bg-white shadow-xl sticky top-0 z-100 '>
             <div className='top-strip border-1 border-gray-300'>
                 <div className='my-container p-4'>
                     <div className='flex items-center justify-between '>

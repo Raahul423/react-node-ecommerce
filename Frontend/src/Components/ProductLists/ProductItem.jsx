@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import SelectedItems from './SubProductSlider/SelectedItems'
 import { HiOutlineBars3 } from "react-icons/hi2";
 import { IoGrid } from "react-icons/io5";
 import { Button } from '@mui/material';
+import SelectedGrid from './SubProductSlider/SelectedGrid';
+import SelectedList from './SubProductSlider/SelectedList';
 
 
 const ProductItem = () => {
@@ -14,8 +15,8 @@ const ProductItem = () => {
 
   return (
     <section className='col1 w-[80%]'>
-      <div className='1/2 bg-[#f2f2f2] p-3 flex justify-between rounded-md sticky z-100 top-0'>
-        <div className='flex items-center gap-2 itemveiw'>
+      <div className='1/2 bg-[#f2f2f2] p-3 flex justify-between rounded-md sticky z-50 top-53.5 mb-4'>
+        <div className='flex items-center gap-2 itemveiw '>
           <Button onClick={() => setItemveiw('list')} className={`!rounded-full !min-w-[35px] h-[35px] ${itemveiw === 'list' && 'active'}`}>
             <HiOutlineBars3  className='text-xl text-gray-900/80 active'/>
           </Button >
@@ -34,7 +35,7 @@ const ProductItem = () => {
       </div>
 
       <div className='2/2 w-full'>
-        {itemveiw === 'grid' ? <SelectedItems />:''}
+        {itemveiw === 'grid' ? <SelectedGrid/> : <SelectedList/>}
       </div>
     </section>
   )
