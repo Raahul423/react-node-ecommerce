@@ -191,6 +191,12 @@ background-color: #ff5252;
   background-color: rgb(201, 201, 201);
 }
 
+.MuiSelect-outlined{
+  padding: 8px !important;
+  text-align: center !important;
+}
+
+
 
 
 
