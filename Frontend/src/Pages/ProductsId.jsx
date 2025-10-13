@@ -1,10 +1,11 @@
 import React from 'react'
+import Productdetails from '../Components/ProductIdDetails/Productdetails'
 
 const ProductsId = () => {
   return (
-    <div>
-      hello
-    </div>
+    <section className='my-container'>
+      <Productdetails/>
+    </section>
   )
 }
 

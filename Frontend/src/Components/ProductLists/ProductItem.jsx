@@ -4,7 +4,10 @@ import { IoGrid } from "react-icons/io5";
 import { Button } from '@mui/material';
 import SelectedGrid from './SubProductSlider/SelectedGrid';
 import SelectedList from './SubProductSlider/SelectedList';
-import PricelowHigh from './PricelowHigh';
+import PricelowHigh from './SubProductSlider/PricelowHigh';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+
 
 
 const ProductItem = () => {
@@ -37,6 +40,11 @@ const ProductItem = () => {
       <div className='2/2 w-full'>
         {itemveiw === 'grid' ? <SelectedGrid/> : <SelectedList/>}
       </div>
+
+     <Stack className='py-6 !items-center ' spacing={2}>
+      <Pagination count={10} />
+    </Stack>
+
     </section>
   )
 }

@@ -196,6 +196,11 @@ background-color: #ff5252;
   text-align: center !important;
 }
 
+.css-1l5xwdx-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected{
+  background-color: #ff5252 !important;
+  color: #fff !important;
+}
+
 
 
 
