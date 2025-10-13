@@ -27,13 +27,13 @@ const Navbar = () => {
                 <ul className='flex gap-5 items-center w-[120%] justify-between'>
                     <li className='relative'>
                         <Button  className='!text-black  '>
-                            <Link className='hover:text-primary '>Home</Link>
+                            <Link to={'/'} className='hover:text-primary '>Home</Link>
                         </Button>
                     </li>
 
                     <li className='relative nav'>
                         <Button className='!text-black button '>
-                            <Link className='hover:text-primary '>Fastion</Link>
+                            <Link to={'/products'} className='hover:text-primary '>Fastion</Link>
                         </Button>
 
                         <div  className='submenunav absolute top-[120%] left-0 bg-white shadow-md'>
@@ -66,7 +66,7 @@ const Navbar = () => {
 
                     <li className='relative nav'>
                         <Button  className='!text-black  '>
-                            <Link className='hover:text-primary '>Electronics</Link>
+                            <Link to={'/products'} className='hover:text-primary '>Electronics</Link>
                         </Button>
 
                         <div  className='submenunav absolute top-[120%] left-0 bg-white shadow-md '>
@@ -106,8 +106,8 @@ const Navbar = () => {
                     </li>
 
                     <li className='relative nav'>
-                        <Button className='!text-black  '>
-                            <Link className='hover:text-primary '>Bags</Link>
+                        <Button  className='!text-black  '>
+                            <Link to={'/products'} className='hover:text-primary '>Bags</Link>
                         </Button>
 
                         <div className='submenunav absolute top-[120%] left-0 bg-white shadow-md 
@@ -137,7 +137,7 @@ const Navbar = () => {
 
                     <li className='relative nav'>
                         <Button  className='!text-black  '>
-                            <Link className='hover:text-primary '>Footwear</Link>
+                            <Link to={'/products'}  className='hover:text-primary '>Footwear</Link>
                         </Button>
 
                         <div className='submenunav absolute top-[120%] left-0 bg-white shadow-md 
@@ -166,21 +166,21 @@ const Navbar = () => {
 
                     <li className='relative'>
                         <Button className='!text-black  '>
-                            <Link className='hover:text-primary '>Beauty</Link>
+                            <Link to={'/products'}  className='hover:text-primary '>Beauty</Link>
                         </Button>
 
                     </li>
 
                     <li className='relative'>
                         <Button  className='!text-black  '>
-                            <Link className='hover:text-primary '>WELLNESS</Link>
+                            <Link to={'/products'}  className='hover:text-primary '>WELLNESS</Link>
                         </Button>
 
                     </li>
 
                     <li className='relative'>
                         <Button className='!text-black  '>
-                            <Link className='hover:text-primary '>JEWELLERY</Link>
+                            <Link to={'/products'}  className='hover:text-primary '>JEWELLERY</Link>
                         </Button>
                     </li>
 
