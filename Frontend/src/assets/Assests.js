@@ -217,3 +217,20 @@ export const addimage =
     }
   ]
 
+
+
+  export const Productidimage = [
+  {
+    Image:"https://serviceapi.spicezgold.com/download/1742463096955_hbhb1.jpg"
+  },
+   {
+    Image:"https://serviceapi.spicezgold.com/download/1742463096956_hbhb2.jpg"
+  },
+   {
+    Image:"https://serviceapi.spicezgold.com/download/1742463096960_hbhb3.jpg"
+  },
+   {
+    Image:"https://serviceapi.spicezgold.com/download/1742463096961_hbhb4.jpg"
+  }
+]
+

@@ -3,7 +3,7 @@ import Productdetails from '../Components/ProductIdDetails/Productdetails'
 
 const ProductsId = () => {
   return (
-    <section className='my-container'>
+    <section className='my-container py-6'>
       <Productdetails/>
     </section>
   )
