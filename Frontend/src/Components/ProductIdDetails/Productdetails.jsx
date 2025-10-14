@@ -1,5 +1,6 @@
 import React from 'react'
 import ProductImage from './SubProduct/ProductImage'
+import ProductItem from './SubProduct/ProductItem'
 
 const Productdetails = () => {
   return (
@@ -9,7 +10,7 @@ const Productdetails = () => {
       </div>
 
       <div className='col2 w-[60%] bg-yellow-700'>
-        rahul
+        <ProductItem/>
       </div>
     </section>
   )

@@ -2,8 +2,8 @@ import React from 'react'
 
 const ProductItem = () => {
   return (
-    <section className='w-full'>
-      
+    <section className='w-full cursor-pointer'>
+      hi
     </section>
   )
 }

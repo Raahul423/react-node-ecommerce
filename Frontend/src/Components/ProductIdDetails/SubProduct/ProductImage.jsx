@@ -1,7 +1,10 @@
 import React from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Productidimage } from '../../../assets/Assests';
+import ReactImageMagnify from 'react-image-magnify';
 
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 const ProductImage = () => {
     return (
         <section className='w-full flex gap-2 '>
@@ -14,11 +17,35 @@ const ProductImage = () => {
                 ))}
             </div>
 
-            <div className='part-2 w-[80%] overflow-hidden rounded-md'>
-                <Swiper className="mySwiper">
+            <div className="part-2  w-[80%] rounded-md overflow-visible">
+                <Swiper
+                    slidesPerView={1}
+                    spaceBetween={20}
+                    centeredSlides={true}
+                    className="w-full"
+                >
                     {Productidimage.map((img, idx) => (
-                        <SwiperSlide key={idx}>
-                            <img className='rounded-md' src={img.Image} alt="error" />
+                        <SwiperSlide key={idx} className="w-full max-w-md h-96">
+                            <ReactImageMagnify
+                                {...{
+                                    smallImage: {
+                                        alt: 'product',
+                                        isFluidWidth: true,
+                                        src: img.Image,
+                                    },
+                                    largeImage: {
+                                        src: img,Image,
+                                        width: 1500,
+                                        height: 1800,
+                                    },
+                                    lensStyle: { backgroundColor: 'rgba(0,0,0,0.2)' },
+                                    isHintEnabled: true,
+                                    enlargedImageContainerDimensions: {
+                                        width: '150%',
+                                        height: '150%',
+                                    },
+                                }}
+                            />
                         </SwiperSlide>
                     ))}
                 </Swiper>
@@ -29,3 +56,7 @@ const ProductImage = () => {
 }
 
 export default ProductImage
+
+
+
+//  <img className='rounded-md' src={img.Image} alt="error" />
