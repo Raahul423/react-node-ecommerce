@@ -4,16 +4,13 @@ import ProductItem from './SubProduct/ProductItem'
 
 const Productdetails = () => {
   return (
-    <section className='w-full flex gap-4 '>
+    <section className='w-full flex gap-4 h-[550px]'>
       <div className='col1 w-[40%]'>
         <ProductImage />
       </div>
 
-      <div className='col2 w-[60%] bg-yellow-700'>
-        <div className='w-[35%]'>
-          <ProductItem />
-        </div>
-
+      <div className='col2 w-[60%]'>
+        <ProductItem />
       </div>
     </section>
   )

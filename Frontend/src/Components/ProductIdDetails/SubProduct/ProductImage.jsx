@@ -9,10 +9,10 @@ import { Pagination } from 'swiper/modules';
 import "swiper/css/pagination";
 const ProductImage = () => {
 
-    const [isclick,setIsclick]= useState(0)
+    const [isclick, setIsclick] = useState(0)
     const swiperref = useRef(null)
 
-    const goto = (idx)=>{
+    const goto = (idx) => {
         setIsclick(idx)
         swiperref.current?.slideToLoop(idx)
     }
@@ -22,7 +22,7 @@ const ProductImage = () => {
 
             <div className='part-1 w-[20%] h-full flex flex-col gap-4 items-center '>
                 {Productidimage.map((img, idx) => (
-                    <div key={idx} onClick={()=>goto(idx)} className={`cursor-pointer h-23 w-20 overflow-hidden rounded-md opacity-50 ${isclick === idx ? 'opacity-100': ''} `}>
+                    <div key={idx} onClick={() => goto(idx)} className={`cursor-pointer h-23 w-20 overflow-hidden rounded-md opacity-50 ${isclick === idx ? 'opacity-100' : ''} `}>
                         <img className='object-cover' src={img.Image} alt="error" />
                     </div>
                 ))}
@@ -33,9 +33,9 @@ const ProductImage = () => {
             <div className="part-2  w-[80%] rounded-md overflow-visible">
                 <Swiper
                     onSwiper={(swiper) => (swiperref.current = swiper)}
-                    onSlideChange={(swiper)=>{
+                    onSlideChange={(swiper) => {
                         setIsclick(swiper.realIndex);
-                    }}  
+                    }}
                     pagination={{
                         dynamicBullets: true,
                     }}
@@ -47,7 +47,7 @@ const ProductImage = () => {
 
                 >
                     {Productidimage.map((img, idx) => (
-                        <SwiperSlide key={idx} className="w-full rounded-md !h-[550px] bg-amber-800">
+                        <SwiperSlide key={idx} className="w-full rounded-md !h-[550px]">
                             <InnerImageZoom className='rounded-md h-[550px]' src={img.Image} zoomType='hover' />
                         </SwiperSlide>
                     ))}
