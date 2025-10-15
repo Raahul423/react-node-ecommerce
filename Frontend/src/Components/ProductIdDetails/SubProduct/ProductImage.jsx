@@ -1,7 +1,9 @@
 import React from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Productidimage } from '../../../assets/Assests';
-import ReactImageMagnify from 'react-image-magnify';
+import InnerImageZoom from 'react-inner-image-zoom'
+import 'react-inner-image-zoom/lib/styles.min.css'
+
 
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -11,8 +13,8 @@ const ProductImage = () => {
 
             <div className='part-1 w-[20%] h-full flex flex-col gap-4 items-center '>
                 {Productidimage.map((img, idx) => (
-                    <div key={idx}>
-                        <img className='h-20 w-20 object-cover rounded-md' src={img.Image} alt="error" />
+                    <div key={idx} className='cursor-pointer h-23 w-20 overflow-hidden rounded-md'>
+                        <img className='object-cover' src={img.Image} alt="error" />
                     </div>
                 ))}
             </div>
@@ -20,32 +22,14 @@ const ProductImage = () => {
             <div className="part-2  w-[80%] rounded-md overflow-visible">
                 <Swiper
                     slidesPerView={1}
-                    spaceBetween={20}
+                    spaceBetween={10}
                     centeredSlides={true}
                     className="w-full"
+                    
                 >
                     {Productidimage.map((img, idx) => (
-                        <SwiperSlide key={idx} className="w-full max-w-md h-96">
-                            <ReactImageMagnify
-                                {...{
-                                    smallImage: {
-                                        alt: 'product',
-                                        isFluidWidth: true,
-                                        src: img.Image,
-                                    },
-                                    largeImage: {
-                                        src: img,Image,
-                                        width: 1500,
-                                        height: 1800,
-                                    },
-                                    lensStyle: { backgroundColor: 'rgba(0,0,0,0.2)' },
-                                    isHintEnabled: true,
-                                    enlargedImageContainerDimensions: {
-                                        width: '150%',
-                                        height: '150%',
-                                    },
-                                }}
-                            />
+                        <SwiperSlide key={idx} className="w-full rounded-md !h-[550px] bg-amber-800">
+                            <InnerImageZoom className='rounded-md h-[550px]' src={img.Image} zoomType='hover'/>
                         </SwiperSlide>
                     ))}
                 </Swiper>
@@ -57,6 +41,3 @@ const ProductImage = () => {
 
 export default ProductImage
 
-
-
-//  <img className='rounded-md' src={img.Image} alt="error" />

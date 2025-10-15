@@ -13,7 +13,7 @@ const SelectedItems = () => {
         <section className='grid'>
                  <div className='flex flex-col items-center gap-8 '>
                         {Array.from({ length: 20 }).map((_, i) => (
-                                <div key={i} className='rounded-md shadow shadow-gray-500 w-full mx-auto flex gap-2 p-6 bg-[#f2f2f2]'>
+                                <div key={i} className='rounded-md shadow shadow-gray-500 w-full mx-auto flex gap-2 p-6 bg-gray-200/30'>
                                     <div className='relative overflow-hidden group w-[25%]'>
 
                                         <Link>

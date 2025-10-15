@@ -10,7 +10,10 @@ const Productdetails = () => {
       </div>
 
       <div className='col2 w-[60%] bg-yellow-700'>
-        <ProductItem/>
+        <div className='w-[35%]'>
+          <ProductItem />
+        </div>
+
       </div>
     </section>
   )
