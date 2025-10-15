@@ -47,8 +47,8 @@ const ProductImage = () => {
 
                 >
                     {Productidimage.map((img, idx) => (
-                        <SwiperSlide key={idx} className="w-full rounded-md !h-[550px]">
-                            <InnerImageZoom className='rounded-md h-[550px]' src={img.Image} zoomType='hover' />
+                        <SwiperSlide key={idx} className="w-full rounded-md">
+                            <InnerImageZoom className='rounded-md h-[500px]' src={img.Image} zoomType='hover' />
                         </SwiperSlide>
                     ))}
                 </Swiper>

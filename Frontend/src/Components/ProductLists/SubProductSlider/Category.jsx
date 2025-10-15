@@ -12,7 +12,7 @@ import { data } from '../../../assets/Assests';
 const Category = ({ isopen, collapseisopen }) => {
 
     return (
-        <div>
+        <section>
             <div className='flex justify-between items-center py-3'>
                 <h2 className='text-xl'>Shop By Category</h2>
                 <Button onClick={isopen} className='!rounded-full !w-5 !h-5 !text-primary'>
@@ -35,7 +35,7 @@ const Category = ({ isopen, collapseisopen }) => {
                     ))}
                 </div>
             </Collapse>
-        </div>
+        </section>
     )
 }
 
