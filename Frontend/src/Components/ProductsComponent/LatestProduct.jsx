@@ -5,8 +5,8 @@ import ReuseableComponents from '../ReuseableComponents';
 
 const LatestProduct = () => {
   return (
-    <section>
-        <ReuseableComponents/>
+    <section className='my-container'>
+        <ReuseableComponents title={"Latest Products"}/>
     </section>
   )
 }

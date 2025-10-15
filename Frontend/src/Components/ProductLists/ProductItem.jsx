@@ -16,7 +16,7 @@ const ProductItem = () => {
 
   return (
     <section className='col1 w-[80%]'>
-      <div className='1/2 bg-gray-300 p-1 flex justify-between rounded-md sticky z-50 top-53.5 mb-4 shadow-gray-500 shadow-md'>
+      <div className='1/2 bg-[#e6e6e6] p-1 flex justify-between rounded-md sticky z-50 top-53.5 mb-4 shadow-gray-500 shadow'>
         <div className='flex items-center gap-2 itemveiw '>
           <Button onClick={() => setItemveiw('list')} className={`!rounded-full !min-w-[35px] h-[35px] ${itemveiw === 'list' && 'active'}`}>
             <HiOutlineBars3  className='text-xl text-gray-900/80 active'/>

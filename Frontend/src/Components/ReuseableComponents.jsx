@@ -14,12 +14,12 @@ import { Button } from '@mui/material';
 import { Link } from 'react-router';
 
 
-const ReuseableComponents = () => {
+const ReuseableComponents = ({title}) => {
 
     return (
-        <section className='my-container'>
+        <section>
             <div className='flex justify-between py-6'>
-                <h1 className='text-gray-900/90 text-2xl font-medium'>Latest Products</h1>
+                <h1 className='text-gray-900/90 text-2xl font-medium'>{title}</h1>
             </div>
 
             <div>

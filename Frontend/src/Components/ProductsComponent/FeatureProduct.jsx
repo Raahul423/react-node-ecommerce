@@ -10,8 +10,8 @@ import ReuseableComponents from '../ReuseableComponents';
 const FeatureProduct = () => {
 
     return (
-        <section>
-           <ReuseableComponents/>
+        <section className='my-container'>
+           <ReuseableComponents title={"Feature Products"}/>
         </section>
     )
 }
