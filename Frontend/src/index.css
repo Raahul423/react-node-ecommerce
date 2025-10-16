@@ -202,6 +202,13 @@ background-color: #ff5252;
   color: #fff !important;
 }
 
+.MuiFormControl-root{
+  width: 90% !important;
+}
+
+.MuiFormControl-root input{
+  height: 10em;
+}
 
 
 

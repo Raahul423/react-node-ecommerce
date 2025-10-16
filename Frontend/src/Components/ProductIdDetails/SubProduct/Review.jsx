@@ -1,5 +1,8 @@
-import { Checkbox, FormControlLabel, FormGroup, Rating } from '@mui/material'
+import { Button, Rating } from '@mui/material'
 import React from 'react'
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 const Review = () => {
   return (
@@ -38,9 +41,24 @@ const Review = () => {
 
 
 
-        <div>
-          <h1>Add a Review</h1>
-        </div>
+      <div className='flex flex-col gap-6 p-4 bg-gray-700/10 my-8 justify-center rounded-md'>
+        <h1>Add a Review</h1>
+        <Box
+          component="form"
+          sx={{ '& > :not(style)': { m: 1} }}
+          noValidate
+          autoComplete="off"
+        >
+          <TextField  id="outlined-basic" label="Outlined" variant="outlined" />
+        </Box>
+
+        <Rating name="half-rating-read" defaultValue={2} precision={1} />
+
+        <Button className='flex gap-4 !bg-primary items-center w-fit !border-1 !border-primary hover:!border-black hover:!bg-black'>
+          <p className='text-white text-sm'>Submit Review</p>
+        </Button>
+
+      </div>
 
 
     </section>
