@@ -20,8 +20,8 @@ const Home = () => {
       <FirstAdd />
       <LatestProduct />
       <FeatureProduct />
-      <SecondAdd/>
-      <BeautyProducts/>
+      <SecondAdd />
+      <BeautyProducts />
     </div>
   )
 }
