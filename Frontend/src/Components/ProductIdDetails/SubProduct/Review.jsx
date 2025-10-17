@@ -45,11 +45,21 @@ const Review = () => {
         <h1>Add a Review</h1>
         <Box
           component="form"
-          sx={{ '& > :not(style)': { m: 1} }}
+          sx={{ '& > :not(style)': { m: 1 } }}
           noValidate
           autoComplete="off"
         >
-          <TextField  id="outlined-basic" label="Outlined" variant="outlined" />
+          <TextField id="outlined-basic"
+           label="Outlined"
+            variant="outlined"
+            minRows={6}
+            multiline
+             InputProps={{
+            sx: {
+              alignItems: 'flex-start',
+              textAlign: 'start'
+            }
+          }} />
         </Box>
 
         <Rating name="half-rating-read" defaultValue={2} precision={1} />
