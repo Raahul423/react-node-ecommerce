@@ -47,9 +47,9 @@ const ProductItem = () => {
                     hii
                 </div>
 
-                <Button className='flex gap-4 items-center w-fit !border-1 !border-primary group hover:!border-black hover:!bg-black'>
-                    <AiOutlineShoppingCart className='text-primary text-xl group-hover:text-white ' />
-                    <p className='text-primary group-hover:text-white text-sm'>Add to Cart</p>
+                <Button className='flex gap-4 items-center w-fit !border-1 !border-primary hover:!border-black !bg-primary hover:!bg-black'>
+                    <AiOutlineShoppingCart className='text-white text-xl' />
+                    <p className='text-white text-sm'>Add to Cart</p>
                 </Button>
             </div>
 

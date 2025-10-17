@@ -4,7 +4,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 import { Navigation } from 'swiper/modules';
-import ReuseableComponents from '../ReuseableComponents';
+import ReuseableComponents from '../ReuseComponent/ReuseableComponents';
 
 const BeautyProducts = () => {
     return (

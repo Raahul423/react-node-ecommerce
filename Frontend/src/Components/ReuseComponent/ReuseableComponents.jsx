@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { SwiperSlide, Swiper } from 'swiper/react';
@@ -14,13 +14,21 @@ import { Button } from '@mui/material';
 import { Link } from 'react-router';
 
 
-const ReuseableComponents = ({title}) => {
+
+const ReuseableComponents = ({ title }) => {
+    const [ispop, setIspop] = useState(true)
+
+    const handleclick = () => {
+        setIspop(!ispop)
+    }
 
     return (
         <section>
             <div className='flex justify-between py-6'>
                 <h1 className='text-gray-900/90 text-2xl font-medium'>{title}</h1>
             </div>
+
+            
 
             <div>
                 <Swiper
@@ -32,6 +40,7 @@ const ReuseableComponents = ({title}) => {
                     className="mySwiper"
                 >
                     <div className='w-fit overflow-hidden'>
+
                         {Array.from({ length: 15 }).map((_, i) => (
                             <SwiperSlide key={i} className=''>
                                 <div className='rounded-md shadow shadow-gray-500 '>
@@ -40,14 +49,15 @@ const ReuseableComponents = ({title}) => {
                                         <Link>
                                             <img className='h-60 w-full object-cover' src="https://serviceapi.spicezgold.com/download/1742463096955_hbhb1.jpg" alt="error" />
 
-                                             <img className='h-60 w-full group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover' src="https://serviceapi.spicezgold.com/download/1742463096956_hbhb2.jpg" alt="error" />
+                                            <img className='h-60 w-full group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover' src="https://serviceapi.spicezgold.com/download/1742463096956_hbhb2.jpg" alt="error" />
 
                                         </Link>
 
                                         <div className='flex flex-col  justify-center items-center gap-1 absolute -top-50 transition-all duration-500 opacity-0 group-hover:opacity-100 right-3 group-hover:top-3'>
-                                            <div className='info'>
+                                            <div onClick={handleclick} className='info'>
                                                 <MdOutlineZoomOutMap className='text-xl hover:!stroke-white hover:!fill-white' />
                                             </div>
+
 
                                             <div className='info'>
                                                 <FaRegHeart className='text-xl hover:!stroke-white hover:!fill-white' />
@@ -79,6 +89,8 @@ const ReuseableComponents = ({title}) => {
                     </div>
                 </Swiper>
             </div>
+
+        
 
         </section>
     )

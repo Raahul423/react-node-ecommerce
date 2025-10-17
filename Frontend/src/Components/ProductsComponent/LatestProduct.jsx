@@ -1,6 +1,7 @@
 import React from 'react'
 import { MdArrowRightAlt } from "react-icons/md";
-import ReuseableComponents from '../ReuseableComponents';
+import ReuseableComponents from '../ReuseComponent/ReuseableComponents';
+
 
 
 const LatestProduct = () => {
