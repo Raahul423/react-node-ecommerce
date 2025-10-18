@@ -31,7 +31,7 @@ const ProductItem = () => {
         </div>
 
         <div className='flex gap-2 items-center'>
-          <p>Sort by</p>
+          <p className='w-20'>Sort by</p>
           <PricelowHigh/>
         </div>
 

@@ -22,6 +22,13 @@ const ReuseableComponents = ({ title }) => {
         setIspop(!ispop)
     }
 
+    const scroll = ()=>{
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        })
+    }
+
     return (
         <section>
             <div className='flex justify-between py-6'>
@@ -46,7 +53,7 @@ const ReuseableComponents = ({ title }) => {
                                 <div className='rounded-md shadow shadow-gray-500 '>
                                     <div className='relative overflow-hidden group h-60'>
 
-                                        <Link>
+                                        <Link onClick={scroll} to={'/product/786987'}>
                                             <img className='h-60 w-full object-cover' src="https://serviceapi.spicezgold.com/download/1742463096955_hbhb1.jpg" alt="error" />
 
                                             <img className='h-60 w-full group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover' src="https://serviceapi.spicezgold.com/download/1742463096956_hbhb2.jpg" alt="error" />
