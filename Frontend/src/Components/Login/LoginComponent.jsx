@@ -60,7 +60,7 @@ const LoginComponent = () => {
                           <p className=''>Login</p>
                       </Button>
       
-                      <div className='flex justify-center'>
+                      <div className='flex justify-center gap-1'>
                           <div>
                               <p>Not Registered?</p>
                           </div>
