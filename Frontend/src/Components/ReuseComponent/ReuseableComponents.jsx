@@ -7,18 +7,18 @@ import { Navigation } from 'swiper/modules';
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { MdOutlineZoomOutMap } from "react-icons/md";
 import { FaRegHeart } from "react-icons/fa";
-
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import { Button } from '@mui/material';
 import { Link } from 'react-router';
-import {Context} from '../../App';
+import { DialogContext } from '../Context/DialogComponent';
+
 
 
 
 const ReuseableComponents = ({ title }) => {
-    const context = useContext(Context)
-
+    
+    const {setIsopendialogbox} = useContext(DialogContext)
    
     const scroll = ()=>{
         window.scrollTo({
@@ -59,7 +59,7 @@ const ReuseableComponents = ({ title }) => {
                                         </Link>
 
                                         <div className='flex flex-col  justify-center items-center gap-1 absolute -top-50 transition-all duration-500 opacity-0 group-hover:opacity-100 right-3 group-hover:top-3'>
-                                            <div onClick={()=>context.setIsopendialogbox(true)} className='info'>
+                                            <div onClick={()=>setIsopendialogbox(true)} className='info'>
                                                 <MdOutlineZoomOutMap className='text-xl hover:!stroke-white hover:!fill-white' />
                                             </div>
 
