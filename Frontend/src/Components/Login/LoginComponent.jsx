@@ -7,8 +7,8 @@ import { Link } from 'react-router';
 const LoginComponent = () => {
     const [showPassword, setShowPassword] = useState(false);
   return (
-    <section className='w-[28%] px-6 py-10 border border-gray-500/30 rounded-md m-auto gap-4 flex flex-col shadow-xl bg-white'>
-      <h1>Login to your account</h1>
+    <section className='w-[28%] px-8 py-10 border border-gray-500/50 rounded-md m-auto gap-4 flex flex-col shadow-gray-950/30 shadow-xl bg-white'>
+      <h1 className='text-center'>Login to your account</h1>
                       <Box
                           component="form"
                           noValidate

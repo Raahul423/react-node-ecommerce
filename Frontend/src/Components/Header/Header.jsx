@@ -12,8 +12,6 @@ import Search from './Search';
 
 const Header = () => {
     
-   
-
     return (
         <header className='bg-white shadow-xl sticky top-0 z-100 '>
             <div className='top-strip border-1 border-gray-300'>
@@ -48,7 +46,7 @@ const Header = () => {
                 <div className='col3 w-[30%] flex gap-2 justify-end  items-center'>
                     <Link to={'/login'} className='text-xl hover:text-primary transition-all cursor-pointer'>Login</Link>
                     <span>|</span>
-                    <Link className='text-xl hover:text-primary transition-all cursor-pointer'>Register</Link>
+                    <Link to={'/register'} className='text-xl hover:text-primary transition-all cursor-pointer'>Register</Link>
 
                     <Tooltip title='Wishlist'>
                         <IconButton aria-label="cart">

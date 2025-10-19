@@ -14,6 +14,7 @@ import Productdetails from './Components/ProductIdDetails/Productdetails'
 import { IoClose } from 'react-icons/io5'
 import { createContext } from 'react'
 import Login from './Pages/Login'
+import Register from './Pages/Register'
 
 const Context = createContext();
 
@@ -37,6 +38,7 @@ function App() {
           <Route path='/products' element={<Products />} />
           <Route path='/product/:id' element={<ProductsId />} />
           <Route path='/login' element={<Login/>} />
+          <Route path='/register' element={<Register/>} />
           <Route path='*' element={<NotFound />} />
         </Routes>
         {location.pathname !== "*" && <Footer />}
