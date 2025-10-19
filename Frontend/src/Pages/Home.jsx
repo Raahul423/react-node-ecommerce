@@ -11,7 +11,7 @@ import BeautyProducts from '../Components/ProductsComponent/BeautyProducts'
 
 const Home = () => {
   return (
-    <div>
+    <section className='mb-16'>
       <div className='bg-[#f5f0f0] py-6'>
         <HomeSlider />
         <HomeItems />
@@ -22,7 +22,7 @@ const Home = () => {
       <FeatureProduct />
       <SecondAdd />
       <BeautyProducts />
-    </div>
+    </section>
   )
 }
 

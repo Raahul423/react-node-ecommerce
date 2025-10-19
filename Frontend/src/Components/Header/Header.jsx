@@ -46,7 +46,7 @@ const Header = () => {
                 </div>
 
                 <div className='col3 w-[30%] flex gap-2 justify-end  items-center'>
-                    <Link className='text-xl hover:text-primary transition-all cursor-pointer'>Login</Link>
+                    <Link to={'/login'} className='text-xl hover:text-primary transition-all cursor-pointer'>Login</Link>
                     <span>|</span>
                     <Link className='text-xl hover:text-primary transition-all cursor-pointer'>Register</Link>
 

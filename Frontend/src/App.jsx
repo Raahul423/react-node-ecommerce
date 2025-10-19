@@ -13,6 +13,7 @@ import DialogContent from '@mui/material/DialogContent';
 import Productdetails from './Components/ProductIdDetails/Productdetails'
 import { IoClose } from 'react-icons/io5'
 import { createContext } from 'react'
+import Login from './Pages/Login'
 
 const Context = createContext();
 
@@ -35,6 +36,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/products' element={<Products />} />
           <Route path='/product/:id' element={<ProductsId />} />
+          <Route path='/login' element={<Login/>} />
           <Route path='*' element={<NotFound />} />
         </Routes>
         {location.pathname !== "*" && <Footer />}
