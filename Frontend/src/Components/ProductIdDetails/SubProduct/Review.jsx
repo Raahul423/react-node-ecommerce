@@ -13,8 +13,8 @@ const Review = () => {
 
 
       <div className='scroll !max-h-[400px]'>
-        {Array.from({ length: 10 }).map(() => (
-          <div>
+        {Array.from({ length: 10 }).map((idx) => (
+          <div key={idx}>
             <div className='flex justify-between items-center'>
               <div className='flex gap-4 items-center'>
                 <div className=' h-20 w-20 bg-gray-700/80  rounded-full flex items-center justify-center overflow-hidden'>
@@ -50,7 +50,7 @@ const Review = () => {
           autoComplete="off"
         >
           <TextField id="outlined-basic"
-           label="Outlined"
+           label="Write a review "
             variant="outlined"
             minRows={6}
             multiline

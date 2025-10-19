@@ -12,15 +12,18 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import { Button } from '@mui/material';
 import { Link } from 'react-router';
+import Productdetails from '../ProductIdDetails/Productdetails';
 
 
 
 const ReuseableComponents = ({ title }) => {
-    const [ispop, setIspop] = useState(true)
+    const [ispop, setIspop] = useState(false)
 
     const handleclick = () => {
         setIspop(!ispop)
+        console.log(ispop);
     }
+
 
     const scroll = ()=>{
         window.scrollTo({
@@ -54,9 +57,9 @@ const ReuseableComponents = ({ title }) => {
                                     <div className='relative overflow-hidden group h-60'>
 
                                         <Link onClick={scroll} to={'/product/786987'}>
-                                            <img className='h-60 w-full object-cover' src="https://serviceapi.spicezgold.com/download/1742463096955_hbhb1.jpg" alt="error" />
+                                            <img className='h-60 w-full object-cover rounded-md' src="https://serviceapi.spicezgold.com/download/1742463096955_hbhb1.jpg" alt="error" />
 
-                                            <img className='h-60 w-full group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover' src="https://serviceapi.spicezgold.com/download/1742463096956_hbhb2.jpg" alt="error" />
+                                            <img className='h-60 w-full rounded-md group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover' src="https://serviceapi.spicezgold.com/download/1742463096956_hbhb2.jpg" alt="error" />
 
                                         </Link>
 

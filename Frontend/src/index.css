@@ -11,6 +11,12 @@ body{
   overflow-x: hidden;
 }
 
+.boxactive{
+  background-color: #ff5252;
+  color: white;
+  border: 1px solid #ff5252;
+}
+
 
 .my-container{
   width: 90%;
@@ -204,6 +210,12 @@ background-color: #ff5252;
 
 .MuiFormControl-root{
   width: 90% !important;
+}
+
+.count .btn{
+  padding: 1px !important;
+  min-width: 0 !important;
+  color: gray !important;
 }
 
 

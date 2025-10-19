@@ -66,7 +66,7 @@ const Footer = () => {
 
                     <div className='w-[20%] px-4'>
                         <h1 className='mb-4'>Products</h1>
-                        <ul >
+                        <ul>
                             {footer.slice(0, 6).map((items, idx) => (
                                 <li key={idx} className='mb-1 cursor-pointer'>
                                     <a className='hover:text-primary'>
