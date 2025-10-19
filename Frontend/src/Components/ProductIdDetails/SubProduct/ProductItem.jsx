@@ -48,7 +48,7 @@ const ProductItem = () => {
 
                 <div className='flex gap-2'>
                    {["S","M","L","XL"].map((size,idx)=>(
-                    <div onClick={()=>setIsactive(idx)} className={`px-2 border border-black rounded-sm ${isactive === idx ? 'boxactive':''}`} key={idx}>{size}</div>
+                    <div onClick={()=>setIsactive(idx)} className={`px-2 border border-black rounded-sm ${isactive === idx ? 'boxactive':'boxhover'}`} key={idx}>{size}</div>
                    ))}
                 </div>
             </div>

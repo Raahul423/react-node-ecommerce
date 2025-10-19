@@ -17,6 +17,11 @@ body{
   border: 1px solid #ff5252;
 }
 
+.boxhover:hover{
+  background-color: #ffd1d1;
+  border: 1px solid #ffd1d1;
+}
+
 
 .my-container{
   width: 90%;
@@ -217,6 +222,16 @@ background-color: #ff5252;
   min-width: 0 !important;
   color: gray !important;
 }
+
+.MuiDialog-container{
+  height: fit-content;
+}
+
+.MuiPaper-root{
+  max-width: 90% !important;
+}
+
+
 
 
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useContext} from 'react'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { SwiperSlide, Swiper } from 'swiper/react';
@@ -12,19 +12,14 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import { Button } from '@mui/material';
 import { Link } from 'react-router';
-import Productdetails from '../ProductIdDetails/Productdetails';
+import {Context} from '../../App';
 
 
 
 const ReuseableComponents = ({ title }) => {
-    const [ispop, setIspop] = useState(false)
+    const context = useContext(Context)
 
-    const handleclick = () => {
-        setIspop(!ispop)
-        console.log(ispop);
-    }
-
-
+   
     const scroll = ()=>{
         window.scrollTo({
             top:0,
@@ -64,7 +59,7 @@ const ReuseableComponents = ({ title }) => {
                                         </Link>
 
                                         <div className='flex flex-col  justify-center items-center gap-1 absolute -top-50 transition-all duration-500 opacity-0 group-hover:opacity-100 right-3 group-hover:top-3'>
-                                            <div onClick={handleclick} className='info'>
+                                            <div onClick={()=>context.setIsopendialogbox(true)} className='info'>
                                                 <MdOutlineZoomOutMap className='text-xl hover:!stroke-white hover:!fill-white' />
                                             </div>
 
