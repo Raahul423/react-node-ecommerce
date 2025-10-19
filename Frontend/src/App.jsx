@@ -46,9 +46,6 @@ function App() {
 
 
       <div>
-        <Button variant="outlined">
-          Open responsive dialog
-        </Button>
         <Dialog
           open={opendialogbox}
           onClose={handleClose}

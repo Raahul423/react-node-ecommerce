@@ -1,5 +1,5 @@
 import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
-
+import { FcGoogle } from "react-icons/fc";
 import React, { useState } from 'react'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { Link } from 'react-router';
@@ -17,7 +17,7 @@ const LoginComponent = () => {
                           <TextField
                               className="!w-full"
                               id="outlined-basic"
-                              label="Outlined"
+                              label="Login"
                               variant="outlined" />
                       </Box>
       
@@ -75,7 +75,8 @@ const LoginComponent = () => {
                           <p>Or Continue With Google</p>
                       </div>
       
-                      <Button className='w-full !bg-gray-700/20 !text-black !py-2.5'>
+                      <Button className='w-full !bg-gray-700/20 !text-black !py-2.5 flex gap-4'>
+                      <FcGoogle className='text-2xl'/>
                           <p className=''>LOGIN WITH GOOGLE</p>
                       </Button>
     </section>

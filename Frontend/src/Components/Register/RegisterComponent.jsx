@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
-
+import { FcGoogle } from "react-icons/fc";
 import { useState } from 'react'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { Link } from 'react-router';
@@ -84,7 +84,8 @@ const RegisterComponent = () => {
                 <p>Or Continue With Google</p>
             </div>
 
-            <Button className='w-full !bg-gray-700/20 !text-black !py-2.5'>
+            <Button className='w-full !bg-gray-700/20 !text-black !py-2.5 flex gap-4'>
+            <FcGoogle className='text-2xl'/>
                 <p className=''>SIGNUP WITH GOOGLE</p>
             </Button>
         </section>
