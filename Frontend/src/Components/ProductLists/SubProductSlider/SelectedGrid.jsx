@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FaRegHeart } from 'react-icons/fa'
 import { MdOutlineZoomOutMap } from 'react-icons/md'
 import { Link } from 'react-router'
@@ -6,9 +6,11 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import { Button } from '@mui/material';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { Context } from '../../../App';
 
 
 const SelectedItems = () => {
+    const context = useContext(Context);
     return (
         <section className='grid'>
                  <div className='flex flex-wrap items-center gap-4'>
@@ -24,7 +26,7 @@ const SelectedItems = () => {
                                         </Link>
 
                                         <div className='flex flex-col  justify-center items-center gap-1 absolute -top-50 transition-all duration-500 opacity-0 group-hover:opacity-100 right-3 group-hover:top-3'>
-                                            <div className='info'>
+                                            <div onClick={()=>context.setIsopendialogbox(true)} className='info'>
                                                 <MdOutlineZoomOutMap className='text-xl hover:!stroke-white hover:!fill-white' />
                                             </div>
 
