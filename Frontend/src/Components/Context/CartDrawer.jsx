@@ -1,14 +1,7 @@
 import React, { createContext, useState } from 'react'
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import { InboxIcon, MailIcon } from 'lucide-react';
+import CartDrawerItem from '../DrawerComponent/CartDrawerItem';
 
 
 const CartContext = createContext();
@@ -22,9 +15,8 @@ const CartDrawer = ({children}) => {
   };
 
   const DrawerList = (
-    <Box sx={{ width: 300 }} role="presentation" onClick={toggleDrawer(false)}>
-     
-      
+    <Box sx={{ width: 400 }} role="presentation" onClick={toggleDrawer(false)}>
+      <CartDrawerItem/>
     </Box>
   );
   return (

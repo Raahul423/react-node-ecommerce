@@ -7,7 +7,7 @@ import { ShoppingCartIcon } from 'lucide-react'
 import { IconButton, Tooltip } from '@mui/material'
 import { StyledEngineProvider } from '@mui/material/styles';
 import Navbar from '../Navigation/Navbar';
-import Navdrawer from '../Navigation/Navdrawer';
+import Navdrawer from '../DrawerComponent/Navdrawer';
 import Search from './Search';
 import { CartContext } from '../Context/CartDrawer';
 

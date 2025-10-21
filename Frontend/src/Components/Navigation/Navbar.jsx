@@ -3,7 +3,8 @@ import { useState } from 'react'
 import { AiOutlineMenuUnfold } from 'react-icons/ai'
 import { IoIosArrowDown } from 'react-icons/io'
 import { Link } from 'react-router'
-import Navdrawer from './Navdrawer'
+import Navdrawer from '../DrawerComponent/Navdrawer'
+
 
 const Navbar = () => {
 
