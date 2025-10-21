@@ -1,4 +1,4 @@
-import React  from 'react'
+import React, { useContext }  from 'react'
 import { Link } from 'react-router'
 import Badge from '@mui/material/Badge';
 import { assest } from '../../assets/Assests'
@@ -9,9 +9,11 @@ import { StyledEngineProvider } from '@mui/material/styles';
 import Navbar from '../Navigation/Navbar';
 import Navdrawer from '../Navigation/Navdrawer';
 import Search from './Search';
+import { CartContext } from '../Context/CartDrawer';
 
 const Header = () => {
-    
+    const {toggleDrawer} = useContext(CartContext);
+
     return (
         <header className='bg-white shadow-xl sticky top-0 z-100 '>
             <div className='top-strip border-1 border-gray-300'>
@@ -60,7 +62,7 @@ const Header = () => {
 
 
                     <Tooltip title='Cart'>
-                        <IconButton aria-label="cart">
+                        <IconButton aria-label="cart" onClick={toggleDrawer(true)}>
                             <StyledEngineProvider>
                                 <Badge color='secondary' badgeContent={4}>
                                     <ShoppingCartIcon />

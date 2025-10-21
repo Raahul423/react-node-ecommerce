@@ -1,4 +1,3 @@
-import React from 'react'
 import HomeSlider from '../Components/HomeComponent/HomeSlider'
 import HomeItems from '../Components/HomeComponent/HomeItems'
 import FirstAdd from '../Components/AddsComponent/FirstAdd'
@@ -11,6 +10,7 @@ import Popupmessage from '../Components/Popupmessage'
 
 const Home = () => {
 
+  
 
   return (
     <section className='mb-16'>
