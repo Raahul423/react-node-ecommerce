@@ -10,6 +10,9 @@ import Register from './Pages/Register'
 import DialogComponent from './Components/Context/DialogComponent'
 import CartDrawer from './Components/Context/CartDrawer'
 import Popupmessage from './Components/Popupmessage'
+import Checkout from './Pages/Checkout'
+import YourCart from './Pages/YourCart'
+import YourAccount from './Pages/YourAccount'
 
 function App() {
   const location = useLocation();
@@ -26,6 +29,9 @@ function App() {
             <Route path='/product/:id' element={<ProductsId />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/checkout' element={<Checkout />} />
+            <Route path='/cart' element={<YourCart />} />
+            <Route path='/myaccount' element={<YourAccount />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
           {location.pathname !== "*" && <Footer />}
