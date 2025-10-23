@@ -11,12 +11,7 @@ import { DialogContext } from '../../Context/DialogComponent';
 
 const SelectedItems = () => {
     const {setIsopendialogbox} = useContext(DialogContext)
-    const scroll = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        })
-    }
+   
     return (
         <section className='grid'>
             <div className='flex flex-col items-center gap-8 '>
@@ -24,7 +19,7 @@ const SelectedItems = () => {
                     <div key={i} className='rounded-md shadow shadow-gray-500 w-full mx-auto flex gap-2 p-6 bg-gray-200/30'>
                         <div className='relative overflow-hidden group w-[25%]'>
 
-                            <Link onClick={scroll} to={'/product/6437'}>
+                            <Link  to={'/product/6437'}>
                                 <img className='h-80 rounded-md object-cover' src="https://serviceapi.spicezgold.com/download/1742463096955_hbhb1.jpg" alt="error" />
 
                                 <img className='h-80 rounded-md group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover' src="https://serviceapi.spicezgold.com/download/1742463096956_hbhb2.jpg" alt="error" />

@@ -1,8 +1,7 @@
-import { useContext} from 'react'
+import { useContext } from 'react'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { SwiperSlide, Swiper } from 'swiper/react';
-
 import { Navigation } from 'swiper/modules';
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { MdOutlineZoomOutMap } from "react-icons/md";
@@ -13,19 +12,9 @@ import { Button } from '@mui/material';
 import { Link } from 'react-router';
 import { DialogContext } from '../Context/DialogComponent';
 
-
-
-
 const ReuseableComponents = ({ title }) => {
-    
-    const {setIsopendialogbox} = useContext(DialogContext)
-   
-    const scroll = ()=>{
-        window.scrollTo({
-            top:0,
-            behavior:"smooth"
-        })
-    }
+
+    const { setIsopendialogbox } = useContext(DialogContext)
 
     return (
         <section>
@@ -33,7 +22,6 @@ const ReuseableComponents = ({ title }) => {
                 <h1 className='text-gray-900/90 text-2xl font-medium'>{title}</h1>
             </div>
 
-            
 
             <div>
                 <Swiper
@@ -51,7 +39,7 @@ const ReuseableComponents = ({ title }) => {
                                 <div className='rounded-md shadow shadow-gray-500 '>
                                     <div className='relative overflow-hidden group h-60'>
 
-                                        <Link onClick={scroll} to={'/product/786987'}>
+                                        <Link to={'/product/786987'}>
                                             <img className='h-60 w-full object-cover rounded-md' src="https://serviceapi.spicezgold.com/download/1742463096955_hbhb1.jpg" alt="error" />
 
                                             <img className='h-60 w-full rounded-md group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover' src="https://serviceapi.spicezgold.com/download/1742463096956_hbhb2.jpg" alt="error" />
@@ -59,7 +47,7 @@ const ReuseableComponents = ({ title }) => {
                                         </Link>
 
                                         <div className='flex flex-col  justify-center items-center gap-1 absolute -top-50 transition-all duration-500 opacity-0 group-hover:opacity-100 right-3 group-hover:top-3'>
-                                            <div onClick={()=>setIsopendialogbox(true)} className='info'>
+                                            <div onClick={() => setIsopendialogbox(true)} className='info'>
                                                 <MdOutlineZoomOutMap className='text-xl hover:!stroke-white hover:!fill-white' />
                                             </div>
 
@@ -95,7 +83,7 @@ const ReuseableComponents = ({ title }) => {
                 </Swiper>
             </div>
 
-        
+
 
         </section>
     )

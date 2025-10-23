@@ -1,5 +1,6 @@
 import { Rating } from '@mui/material'
 import React from 'react'
+import { RxCross2 } from "react-icons/rx";
 
 const CartComponent = () => {
     return (
@@ -13,7 +14,7 @@ const CartComponent = () => {
                 <div>
                     {Array.from({ length: 4 }).map((idx) => (
                         <div key={idx} className='flex justify-between border-t-1 border-gray-800/40 border-b-1 p-4'>
-                            <div className='flex'>
+                            <div className='flex gap-4'>
                                 <div className='w-25 rounded-md overflow-hidden '>
                                     <img className='rounded-md hover:scale-110 transition-all ease-in-out cursor-pointer' src="https://serviceapi.spicezgold.com/download/1742462909156_gdgd1.jpg" alt="Error" />
                                 </div>
@@ -26,7 +27,7 @@ const CartComponent = () => {
                             </div>
 
                             <div>
-                                hii
+                                <RxCross2 className='text-2xl cursor-pointer'/>
                             </div>
                         </div>
                     ))}

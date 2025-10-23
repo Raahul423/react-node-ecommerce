@@ -13,6 +13,7 @@ import Popupmessage from './Components/Popupmessage'
 import Checkout from './Pages/Checkout'
 import YourCart from './Pages/YourCart'
 import YourAccount from './Pages/YourAccount'
+import ScrollComponent from './Components/ScrolltoTop/ScrollComponent'
 
 function App() {
   const location = useLocation();
@@ -20,9 +21,11 @@ function App() {
 
   return (
     <>
+    
       <CartDrawer>
         <DialogComponent>
           {location.pathname !== "*" && <Header />}
+          <ScrollComponent/>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/products' element={<Products />} />

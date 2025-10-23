@@ -6,7 +6,7 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 const Review = () => {
   return (
-    <section className='w-[80%] px-8 py-4 shadow shadow-gray-700/90'>
+    <section className='w-[80%] px-8 py-4 shadow shadow-gray-700/90 rounded-md'>
       <div className='py-4'>
         <h1>Customer questions & answers</h1>
       </div>
