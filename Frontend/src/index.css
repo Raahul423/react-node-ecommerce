@@ -246,6 +246,10 @@ background-color: #ff5252;
   gap: 16px;
 }
 
+.MuiButtonBase-root{
+  font-size: small !important;
+}
+
 
 
 
