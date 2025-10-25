@@ -6,8 +6,18 @@ import { FaRegHeart } from 'react-icons/fa';
 import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md';
 
 const ProductItem = () => {
-
+    const [count, setCount] = useState(1)
     const [isactive,setIsactive] = useState(null)
+
+    const increase = ()=>{
+        setCount(count+1);
+    }
+
+    const decrease = ()=>{
+        setCount((prev)=>prev>1? prev-1 : 1);
+    }
+
+
     return (
         <section className='w-full h-[550px] cursor-pointer  flex flex-col justify-center gap-5 px-10'>
             <h1>Men Opaque Casual Shirt</h1>
@@ -60,14 +70,14 @@ const ProductItem = () => {
             <div className='flex gap-6 items-center'>
                 <div className='rounded-md border border-b flex items-center p-1'>
                     <div className='px-4'>
-                        <p>1</p>
+                        <p>{count}</p>
                     </div>
                     <div className='flex flex-col count'>
-                        <Button className='btn'>
+                        <Button onClick={increase} className='btn'>
                             <MdOutlineKeyboardArrowUp />
                         </Button>
 
-                        <Button className='btn'>
+                        <Button onClick={decrease} className='btn'>
                             <MdOutlineKeyboardArrowDown />
                         </Button>
                     </div>

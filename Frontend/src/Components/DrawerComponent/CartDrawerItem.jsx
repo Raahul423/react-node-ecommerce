@@ -1,6 +1,5 @@
 import { Button } from '@mui/material';
 import React from 'react'
-import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { MdDelete } from "react-icons/md";
 import { Link } from 'react-router';
 

@@ -1,4 +1,4 @@
-import { Button} from '@mui/material'
+import { Button } from '@mui/material'
 import { Link } from 'react-router';
 import SizeComponent from './Size/SizeComponent';
 
@@ -16,10 +16,13 @@ const CartComponent = () => {
                 </div>
 
 
-                {/* data section of cart section using loop */}
+                {/* data section of cart section  */}
 
-                <SizeComponent productsize={"S"}/>
-                <SizeComponent productsize={"S"}/>
+                <div>
+                    <SizeComponent productsize={"S"} />
+                    <SizeComponent productsize={"S"} />
+                </div>
+
 
             </div>
 
