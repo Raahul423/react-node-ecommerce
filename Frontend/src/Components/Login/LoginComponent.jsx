@@ -20,11 +20,22 @@ const LoginComponent = () => {
             toast.error("Please enter e-mail");
         } else {
             toast.success("Redirecting to password reset page...")
-           setTimeout(() => {
-              navigate("/forgot-password")
-           }, 2000);
+            setTimeout(() => {
+                navigate("/forgot-password")
+            }, 2000);
         }
 
+    }
+
+    const login = () => {
+        if (verifyaccount.email.trim() == '') {
+            toast.error("Please Enter Your E-mail First")
+        } else if (verifyaccount.password.trim() == '') {
+            toast.error("Please Enter Your Password")
+        }
+        else {
+            toast.success("Logged in");
+        }
     }
 
 
@@ -45,8 +56,8 @@ const LoginComponent = () => {
                     variant="outlined"
                     name='email'
                     value={verifyaccount.email}
-                    onChange={(e)=>setVerifyaccount({...verifyaccount,email:e.target.value})} />
-                    
+                    onChange={(e) => setVerifyaccount({ ...verifyaccount, email: e.target.value })} />
+
             </Box>
 
             <Box
@@ -59,6 +70,8 @@ const LoginComponent = () => {
                 <FormControl variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                     <OutlinedInput
+                        value={verifyaccount.password}
+                        onChange={(e)=>setVerifyaccount({...verifyaccount,password:e.target.value})}
                         name='password'
                         id="outlined-adornment-password"
                         type={showPassword ? 'text' : 'password'}
@@ -82,7 +95,7 @@ const LoginComponent = () => {
                 <p className='hover:text-primary cursor-pointer'>Forget Password?</p>
             </div>
 
-            <Button className='w-full !bg-primary !text-white !py-2.5'>
+            <Button onClick={login} className='w-full !bg-primary !text-white !py-2.5'>
                 <p className=''>Login</p>
             </Button>
 
