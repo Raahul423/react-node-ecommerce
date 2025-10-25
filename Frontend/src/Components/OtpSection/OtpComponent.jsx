@@ -37,40 +37,43 @@ const OtpComponent = () => {
     };
 
     return (
-        <section className="flex flex-col items-center m-auto border w-fit px-6 py-2">
-            <img className="h-50 " src="/otp.png" alt="Error" />
-            <h2 className="text-xl font-semibold">Enter 6-Digit OTP</h2>
+        <section className="my-container">
+            <div className=" flex flex-col items-center gap-3 m-auto border border-gray-700/40 rounded-md w-fit px-12 py-2 shadow-gray-700/60 shadow-md bg-white">
+                <img className="h-50 " src="/verify.gif" alt="Error" />
+                <h2 className="text-xl font-semibold">Enter 6-Digit OTP</h2>
 
-            <Box className="flex gap-3">
-                {otp.map((digit, index) => (
-                    <TextField
-                        key={index}
-                        inputRef={(el) => (inputRefs.current[index] = el)}
-                        value={digit}
-                        onChange={(e) => handleChange(e, index)}
-                        onKeyDown={(e) => handleKeyDown(e, index)}
-                        inputProps={{
-                            maxLength: 1, 
-                            style: {
-                                textAlign: "center",
-                                fontSize: "20px",
-                                width: "25px",
-                                height: "25px",
-                            },
-                        }}
-                        variant="outlined"
-                    />
-                ))}
-            </Box>
+                <Box className="flex gap-3">
+                    {otp.map((digit, index) => (
+                        <TextField
+                            key={index}
+                            inputRef={(el) => (inputRefs.current[index] = el)}
+                            value={digit}
+                            onChange={(e) => handleChange(e, index)}
+                            onKeyDown={(e) => handleKeyDown(e, index)}
+                            inputProps={{
+                                maxLength: 1,
+                                style: {
+                                    textAlign: "center",
+                                    fontSize: "20px",
+                                    width: "25px",
+                                    height: "25px",
+                                },
+                            }}
+                            variant="outlined"
+                        />
+                    ))}
+                </Box>
 
-            <Button
-                onClick={handleSubmit}
-                variant="contained"
-                color="primary"
-                className=""
-            >
-                Verify OTP
-            </Button>
+                <Button
+                    onClick={handleSubmit}
+                    variant="contained"
+                    color="primary"
+                    className="w-full !py-3 !bg-primary hover:!bg-black !my-3"
+                >
+                    Verify OTP
+                </Button>
+
+            </div>
 
             <ToastContainer />
         </section>

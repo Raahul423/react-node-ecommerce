@@ -17,7 +17,7 @@ const LoginComponent = () => {
 
     const ForgotPassword = () => {
         if (verifyaccount.email.trim() === '') {
-            toast.error("Please enter e-mail");
+            toast.error("Please Enter E-mail");
         } else {
             toast.success("Redirecting to password reset page...")
             setTimeout(() => {
