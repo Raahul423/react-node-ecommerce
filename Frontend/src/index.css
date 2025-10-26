@@ -245,6 +245,10 @@ background-color: #ff5252;
   border-radius: 10px;
   gap: 16px;
 }
+.css-113d811-MuiFormLabel-root-MuiInputLabel-root.Mui-focused{
+  background-color: white !important;
+  padding: 0px 5px 0 0;
+}
 
 
 

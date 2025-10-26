@@ -9,14 +9,14 @@ const OtpComponent = () => {
 
 
     const handleChange = (e, index) => {
-        const value = e.target.value;
-        if (!/^[0-9]?$/.test(value)) return;
+        const val = e.target.value;
+        if (!/^[0-9]?$/.test(val)) return;
 
         const newOtp = [...otp];
-        newOtp[index] = value;
+        newOtp[index] = val;
         setOtp(newOtp);
 
-        if (value && index < 5) {
+        if (val && index < 5) {
             inputRefs.current[index + 1].focus();
         }
     };

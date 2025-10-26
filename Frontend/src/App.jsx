@@ -15,6 +15,7 @@ import YourCart from './Pages/YourCart'
 import YourAccount from './Pages/YourAccount'
 import ScrollComponent from './Components/ScrolltoTop/ScrollComponent'
 import ForgotPassword from './Pages/ForgotPassword'
+import Newpassword from './Pages/Newpassword'
 
 function App() {
   const location = useLocation();
@@ -37,6 +38,7 @@ function App() {
             <Route path='/cart' element={<YourCart />} />
             <Route path='/myaccount' element={<YourAccount />} />
             <Route path='/forgot-password' element={<ForgotPassword />} />
+            <Route path='/update-password' element={<Newpassword/>} />
             <Route path='*' element={<NotFound />} />
           </Routes>
           {location.pathname !== "*" && <Footer />}
