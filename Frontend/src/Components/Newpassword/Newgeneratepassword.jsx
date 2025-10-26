@@ -1,10 +1,39 @@
-import { Box, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
+import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
 import React, { useState } from 'react'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Newgeneratepassword = () => {
-    const [showPassword, setShowPassword] = useState();
-    const [ConfirmPassword, setConfirmPassword] = useState();
+    const [showPassword, setShowPassword] = useState("");
+    const [ShowConfirmPassword, setShowConfirmPassword] = useState("");
+
+    const [password, setPassword] = useState(false);
+    const [confirmPassword, setConfirmPassword] = useState(false);
+
+
+
+
+    const check = () => {
+        if (!showPassword || !ShowConfirmPassword) {
+            toast.error("Please Fill Both Of Them.")
+            return;
+        }
+
+
+        if (showPassword.length < 8) {
+            toast.error("password Should be 8 Character")
+            return;
+        }
+
+
+        if (showPassword === ShowConfirmPassword) {
+            toast.success("Password Sucessfully Updated")
+        }
+        else {
+            toast.error("Confirm Password not Match")
+        }
+    }
+
     return (
         <section className='w-[30%] m-auto py-8'>
             <div className='p-8 gap-6 flex flex-col border-1 border-gray-700/30 shadow-md rounded-md  bg-white my-container'>
@@ -13,26 +42,28 @@ const Newgeneratepassword = () => {
                     component="form"
                     noValidate
                     autoComplete="off"
-                    
+
 
                 >
                     <FormControl variant="outlined">
                         <InputLabel htmlFor="outlined-adornment-password">New-Password</InputLabel>
                         <OutlinedInput
+                            value={showPassword}
+                            onChange={(e) => setShowPassword(e.target.value)}
                             name='password'
                             id="outlined-adornment-password"
-                            type={showPassword ? 'text' : 'password'}
+                            type={password ? 'text' : 'password'}
                             endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton className='!text-xl'
-                                        onClick={() => setShowPassword(!showPassword)}
+                                        onClick={() => setPassword(!password)}
                                         edge="end"
                                     >
-                                        {showPassword ? <MdVisibilityOff /> : <MdVisibility />}
+                                        {password ? <MdVisibilityOff /> : <MdVisibility />}
                                     </IconButton>
                                 </InputAdornment>
                             }
-                            label="Password"
+                            label="New-Password"
                         />
                     </FormControl>
 
@@ -42,22 +73,24 @@ const Newgeneratepassword = () => {
                     component="form"
                     noValidate
                     autoComplete="off"
-                    
+
 
                 >
                     <FormControl variant="outlined">
                         <InputLabel htmlFor="outlined-adornment-password">Confirm-Password</InputLabel>
                         <OutlinedInput
+                            value={ShowConfirmPassword}
+                            onChange={(e) => setShowConfirmPassword(e.target.value)}
                             name='password'
                             id="outlined-adornment-password"
-                            type={ConfirmPassword ? 'text' : 'password'}
+                            type={confirmPassword ? 'text' : 'password'}
                             endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton className='!text-xl'
-                                        onClick={() => setConfirmPassword(!ConfirmPassword)}
+                                        onClick={() => setConfirmPassword(!confirmPassword)}
                                         edge="end"
                                     >
-                                        {ConfirmPassword ? <MdVisibilityOff /> : <MdVisibility />}
+                                        {confirmPassword ? <MdVisibilityOff /> : <MdVisibility />}
                                     </IconButton>
                                 </InputAdornment>
                             }
@@ -66,9 +99,19 @@ const Newgeneratepassword = () => {
                     </FormControl>
 
                 </Box>
+
+
+                <Button
+                    onClick={check}
+                    variant="contained"
+                    color="primary"
+                    className="w-full !py-3 !bg-primary hover:!bg-black !my-3"
+                >
+                    Change Password
+                </Button>
             </div>
 
-
+            <ToastContainer />
         </section>
     )
 }
