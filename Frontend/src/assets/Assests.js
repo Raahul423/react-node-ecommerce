@@ -1,15 +1,8 @@
-import logo from "./Logo.jpg";
-import carte_bleue from "./carte_bleue.png"
-import master_card from "./master_card.png"
-import paypal from "./paypal.png"
-import visa from "./visa.png"
-import mobile_banner from "./mobile_banner.webp"
-import lays_banner from "./lays_banner.webp"
-import fastion_banner from "./fastion_banner.webp"
-import iphone_banner from "./iphone_banner.webp"
+// Dummy Data File
+
 
 export const assest = {
-  logo,
+   logo: "/Logo.jpg"
 };
 
 export const Lists = [
@@ -188,32 +181,32 @@ export const footer =[
 
 export const FootertImage = [
   {
-    image:carte_bleue
+    image: "/carte_bleue.png"
   },
   {
-    image:master_card
+    image:"/master_card.png"
   },
   {
-    image:paypal
+    image:"/paypal.png"
   },
   {
-    image:visa
+    image:"/visa.png"
   }
 ] 
 
 export const addimage =
   [
     {
-      image:lays_banner
+      image:"/lays_banner.webp"
     },
     {
-      image:iphone_banner
+      image:"/iphone_banner.webp"
     },
     {
-      image:fastion_banner
+      image:"/fastion_banner.webp"
     },
     {
-      image:mobile_banner
+      image:"/mobile_banner.webp"
     }
   ]
 

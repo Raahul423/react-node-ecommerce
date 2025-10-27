@@ -6,7 +6,6 @@ import { BiSupport } from "react-icons/bi";
 import { FiMessageSquare } from "react-icons/fi";
 import { footer, FootertImage } from '../../assets/Assests';
 import { Button } from '@mui/material';
-import { Link } from 'react-router';
 import { FaFacebook,FaGithub, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 const Footer = () => {
