@@ -26,7 +26,7 @@ const Address = () => {
     };
 
     return (
-        <section className=''>
+        <section className='bg-white rounded-md'>
             {address.map((data, idx) => (
                 <div key={idx} >
                     <div className='py-4 border-b border-gray-700/50 flex justify-between'>
