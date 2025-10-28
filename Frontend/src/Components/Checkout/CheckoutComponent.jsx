@@ -4,8 +4,8 @@ import Delivery from './SubCheckout/Delivery'
 
 const CheckoutComponent = () => {
     return (
-        <section className='bg-red my-container h-80 flex w-full'>
-            <div className='col1 w-[75%]'>
+        <section className='bg-red my-container flex w-full'>
+            <div className='col1 w-[75%] flex flex-col gap-6'>
                 <Checklogin/>
                 <Delivery/>
             </div>
