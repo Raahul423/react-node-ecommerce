@@ -43,7 +43,7 @@ const Formaddress = () => {
 
                         <Box className='flex gap-6'>
                             <TextField label="Name" />
-                            <TextField label="10-digit mobile number" />
+                            <TextField label="10-digit mobile number" type='number'/>
                         </Box>
 
 
