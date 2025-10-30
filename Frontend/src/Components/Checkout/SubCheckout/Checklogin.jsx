@@ -1,8 +1,19 @@
 import { Button } from '@mui/material'
 import { Check } from 'lucide-react'
-import React from 'react'
+import React, { useContext } from 'react'
+import { MyContext } from '../../../Provider';
+import { useNavigate } from 'react-router';
 
 const Checklogin = () => {
+    const {setIsLogin} = useContext(MyContext);
+    const navigate = useNavigate();
+
+    const click = ()=>{
+        setIsLogin(false)
+        navigate("/")
+    }
+
+
     return (
         <section className='border border-gray-700/50 rounded-md px-6 py-4 justify-between flex bg-white shadow-md'>
             <div className='flex gap-4'>
@@ -23,7 +34,7 @@ const Checklogin = () => {
             </div>
 
             <div>
-                <Button className=' !px-6 !text-white !bg-primary hover:!bg-black'>
+                <Button onClick={click} className=' !px-6 !text-white !bg-primary hover:!bg-black'>
                     LOGOUT
                 </Button>
             </div>

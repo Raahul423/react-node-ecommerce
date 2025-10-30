@@ -1,12 +1,12 @@
 import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
 import { FcGoogle } from "react-icons/fc";
-import React, { useState } from 'react'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router';
 import { ToastContainer, toast } from 'react-toastify';
+import { MyContext } from '../../Provider';
+import { useState } from 'react';
 
 const LoginComponent = () => {
-
     const navigate = useNavigate();
 
     const [showPassword, setShowPassword] = useState(false);
@@ -41,6 +41,7 @@ const LoginComponent = () => {
 
 
     return (
+
         <section className='w-[28%] px-8 py-10 border border-gray-500/50 rounded-md m-auto gap-4 flex flex-col shadow-gray-950/30 shadow-xl bg-white'>
 
             <h1 className='text-center'>Login to your account</h1>
@@ -70,7 +71,7 @@ const LoginComponent = () => {
                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                     <OutlinedInput
                         value={verifyaccount.password}
-                        onChange={(e)=>setVerifyaccount({...verifyaccount,password:e.target.value})}
+                        onChange={(e) => setVerifyaccount({ ...verifyaccount, password: e.target.value })}
                         name='password'
                         id="outlined-adornment-password"
                         type={showPassword ? 'text' : 'password'}
