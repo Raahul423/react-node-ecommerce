@@ -8,12 +8,13 @@ import ScrollComponent from './Components/ScrolltoTop/ScrollComponent'
 const MyContext = createContext();
 
 const Provider = ({ children }) => {
-    const [isLogin, setIsLogin] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
 
     const value = {
         isLogin,
         setIsLogin
     }
+
 
     return (
         <MyContext.Provider value={value}>

@@ -50,16 +50,16 @@ const Review = () => {
           autoComplete="off"
         >
           <TextField id="outlined-basic"
-           label="Write a review "
+            label="Write a review "
             variant="outlined"
             minRows={6}
             multiline
-             InputProps={{
-            sx: {
-              alignItems: 'flex-start',
-              textAlign: 'start'
-            }
-          }} />
+            InputProps={{
+              sx: {
+                alignItems: 'flex-start',
+                textAlign: 'start'
+              }
+            }} />
         </Box>
 
         <Rating name="half-rating-read" defaultValue={2} precision={1} />

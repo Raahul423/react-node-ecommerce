@@ -4,13 +4,14 @@ import Badge from '@mui/material/Badge';
 import { assest } from '../../assets/Assests'
 import { FaRegHeart } from 'react-icons/fa'
 import { ShoppingCartIcon } from 'lucide-react'
-import { IconButton, Tooltip } from '@mui/material'
+import {IconButton, Tooltip } from '@mui/material'
 import { StyledEngineProvider } from '@mui/material/styles';
 import Navbar from '../Navigation/Navbar';
 import Navdrawer from '../DrawerComponent/Navdrawer';
-import Search from './Search';
 import { CartContext } from '../Context/CartDrawer';
 import { MyContext } from '../../Provider';
+import Search from './Subheader.jsx/Search';
+import LoginCheck from './Subheader.jsx/LoginCheck';
 
 const Header = () => {
     const { isLogin } = useContext(MyContext);
@@ -50,7 +51,7 @@ const Header = () => {
                     <div className='col3 w-[30%] flex gap-2 justify-end  items-center'>
 
                         {isLogin === true ?
-                            "Logged in Successfully"
+                            <LoginCheck />
                             :
                             <>
                                 <Link to={'/login'} className='text-xl hover:text-primary transition-all cursor-pointer'>Login</Link>

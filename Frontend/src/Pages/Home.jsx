@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <section className='mb-16'>
-      <Popupmessage/>
+      {/* <Popupmessage/> */}
       <div className='bg-[#f5f0f0] py-6'>
         <HomeSlider />
         <HomeItems />

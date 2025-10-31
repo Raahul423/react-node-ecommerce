@@ -254,6 +254,13 @@ background-color: #ff5252;
   padding: 0 10px !important;
   color: #ff5252 !important;
 }
+.MuiList-padding{
+  padding: 10px !important;
+}
+
+.MuiPaper-elevation{
+  width: 15vw !important;
+}
 
 
 
