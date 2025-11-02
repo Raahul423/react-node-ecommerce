@@ -12,6 +12,7 @@ const LoginCheck = () => {
 
     const [account, setAccount] = useState(null);
     const open = Boolean(account);
+
     const handleClick = (event) => {
         setAccount(event.currentTarget);
     };
@@ -24,7 +25,7 @@ const LoginCheck = () => {
     return (
         <>
             <div className='flex items-center gap-2'>
-                <Button onClick={handleClick} className='!w-12 !h-12 !rounded-full !min-w-0 !text-black'>
+                <Button onMouseOver={handleClick} className='!w-12 !h-12 !rounded-full !min-w-0 !text-black'>
                     <FaCircleUser className='h-7 w-7' />
                 </Button>
 
@@ -115,7 +116,6 @@ const LoginCheck = () => {
                                 <LogOut fontSize="small" />
                             </ListItemIcon>
                             Logout
-
                         </MenuItem>
                     </Link>
                 </Menu >

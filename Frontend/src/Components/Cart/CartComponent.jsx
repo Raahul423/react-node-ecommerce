@@ -10,8 +10,8 @@ const CartComponent = () => {
             id: 1,
             name: "Campus Sutra",
             title: "Men Comfort Cuban Collar Solid Polycotton Casual Shirt...",
-            price: 1350,
-            originalPrice: 1450,
+            price: "₹1350",
+            originalPrice: "₹1450",
             size: "S",
             img: "https://serviceapi.spicezgold.com/download/1742462909156_gdgd1.jpg",
         },
@@ -19,8 +19,26 @@ const CartComponent = () => {
             id: 2,
             name: "Levis",
             title: "Men Regular Fit Cotton Casual Shirt...",
-            price: 1750,
-            originalPrice: 1950,
+            price: "₹1750",
+            originalPrice: "₹1950",
+            size: "M",
+            img: "https://serviceapi.spicezgold.com/download/1742462909156_gdgd1.jpg",
+        },
+         {
+            id: 3,
+            name: "Levis",
+            title: "Men Regular Fit Cotton Casual Shirt...",
+            price: "₹1750",
+            originalPrice: "₹1950",
+            size: "M",
+            img: "https://serviceapi.spicezgold.com/download/1742462909156_gdgd1.jpg",
+        },
+         {
+            id: 4,
+            name: "Levis",
+            title: "Men Regular Fit Cotton Casual Shirt...",
+            price: "₹1750",
+            originalPrice: "₹1950",
             size: "M",
             img: "https://serviceapi.spicezgold.com/download/1742462909156_gdgd1.jpg",
         },
@@ -51,7 +69,7 @@ const CartComponent = () => {
                 {/* Heading Part of Cart section */}
                 <div className='p-4'>
                     <h1>Your Cart</h1>
-                    <p>There are <span className='text-red-600'>4</span> products in your cart</p>
+                    <p>There are <span className='text-red-600'>{cartItem.length}</span> products in your cart</p>
                 </div>
 
 

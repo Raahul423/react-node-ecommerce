@@ -24,13 +24,13 @@ const SizeComponent = ({ item, onsizeChange, onremove }) => {
             <div className='flex justify-between border-t-1 border-gray-700/50 p-4'>
                 <div className='flex gap-4'>
                     <div className='w-25 rounded-md overflow-hidden '>
-                        <img className='rounded-md hover:scale-110 transition-all ease-in-out cursor-pointer' src="https://serviceapi.spicezgold.com/download/1742462909156_gdgd1.jpg" alt="Error" />
+                        <img className='rounded-md hover:scale-110 transition-all ease-in-out cursor-pointer' src={item.img} alt="Error" />
                     </div>
 
                     <div className='flex flex-col gap-1 justify-center'>
-                        <p className='!text-sm'>Campus Sutra</p>
+                        <p className='!text-sm'>{item.name}</p>
 
-                        <h1 className='!text-xl'>Men Comfort Cuban Collar Solid Polycotton Casual Shirt...</h1>
+                        <h1 className='!text-xl'>{item.title}</h1>
 
                         <Rating name="half-rating-read" defaultValue={4} precision={1} />
 
@@ -53,8 +53,8 @@ const SizeComponent = ({ item, onsizeChange, onremove }) => {
                         </div>
 
                         <div className='flex gap-4'>
-                            <p>₹1350</p>
-                            <p className='line-through text-gray-600/70'>₹1450</p>
+                            <p>{item.price}</p>
+                            <p className='line-through text-gray-600/70'>{item.originalPrice}</p>
                             <p className='text-red-600'>
                                 19% OFF
                             </p>

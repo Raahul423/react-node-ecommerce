@@ -5,6 +5,10 @@ export const assest = {
    logo: "/Logo.jpg"
 };
 
+export const user = {
+  avatar:"/user.jpg"
+}
+
 export const Lists = [
   {
     Items: "Fastion",
