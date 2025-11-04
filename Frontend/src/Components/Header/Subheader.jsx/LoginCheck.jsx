@@ -66,7 +66,7 @@ const LoginCheck = () => {
                     transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                 >
-                    <Link to={"./myaccount"}>
+                    <Link to={"./myaccount/info"}>
                         <MenuItem onClick={handleClose} >
                             <ListItemIcon>
                                 <HiOutlineUserCircle className='h-7 w-7' />
@@ -75,7 +75,7 @@ const LoginCheck = () => {
                         </MenuItem>
                     </Link>
 
-                    <Link to={"./myaccount"}>
+                    <Link to={"./myaccount/address"}>
                         <MenuItem onClick={handleClose}>
 
                             <ListItemIcon>
@@ -86,7 +86,7 @@ const LoginCheck = () => {
                         </MenuItem>
                     </Link>
 
-                    <Link to={"./myaccount"}>
+                    <Link to={"./myaccount/myorder"}>
                         <MenuItem onClick={handleClose}>
 
                             <ListItemIcon>
@@ -97,7 +97,7 @@ const LoginCheck = () => {
                         </MenuItem>
                     </Link>
 
-                    <Link to={"./myaccount"}>
+                    <Link to={"./myaccount/mylist"}>
                         <MenuItem onClick={handleClose}>
 
                             <ListItemIcon>

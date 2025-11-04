@@ -11,12 +11,12 @@ import { user } from '../assets/Assests';
 
 const YourAccount = () => {
   return (
-    <section className=''>
+    <section className='bg-[#f5f0f0] py-8'>
       <div className='my-container flex gap-6 '>
 
-        <div className='w-[20%] border border-gray-700/40 shadow-gray-700/40 shadow-md rounded-md' >
+        <div className='w-[20%] border border-gray-700/40 shadow-gray-700/40 shadow-md rounded-md bg-white h-fit sticky top-60' >
 
-          <div className='flex flex-col justify-center items-center gap-1 py-5'>
+          <div className='flex flex-col justify-center items-center gap-1 py-5 '>
             <div className='p-4 h-30 w-30 bg-gray-400 rounded-full overflow-hidden'>
               <img className='h-27 w-27 object-cover' src={user.avatar} alt="Avatar" />
             </div>
@@ -81,7 +81,7 @@ const YourAccount = () => {
         </div>
 
         <div className='w-[80%]'>
-          <Outlet/>
+          <Outlet />
         </div>
       </div>
     </section>
