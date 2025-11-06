@@ -7,11 +7,10 @@ import { Link } from 'react-router';
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { Collapse } from 'react-collapse';
 
-const Formaddress = () => {
+const Formaddress = ({ collapseisopen, setCollapseisopen, formdata, setFormdata, address, setaddress, setEditIndex, editIndex }) => {
     const [selectedValue, setSelectedValue] = useState('false');
-    const [collapseisopen, setCollapseisopen] = useState(false);
 
-    const change = ()=>{
+    const change = () => {
         setCollapseisopen(!collapseisopen)
         setSelectedValue(!selectedValue)
     }
@@ -19,6 +18,34 @@ const Formaddress = () => {
     const handleChange = (event) => {
         setSelectedValue(event.target.value);
     };
+
+    const changeformvalue = (e) => {
+        setFormdata({
+            ...formdata,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    console.log(changeformvalue);
+    
+
+
+
+    const handleUpdate = () => {
+        const updated = [...address];
+        updated[editIndex] = { ...updated[editIndex], ...formdata };
+        setaddress(updated);
+        setEditIndex(null);
+        setFormdata({
+            name: "",
+            place: "",
+            phone: "",
+            address: "",
+            city: "",
+            state: "",
+            pincode: ""
+        })
+    }
 
     return (
         <section className='flex bg-white rounded-md py-5'>
@@ -33,8 +60,8 @@ const Formaddress = () => {
             <div className='w-[90%]'>
                 <div className='flex justify-between'>
                     <h1 className='!text-xl text-primary'>ADD A NEW ADDRESS</h1>
-                    <FiPlus  onClick={change} className={`text-2xl cursor-pointer ${collapseisopen === false ? '':'hidden'}`}/>
-                    <FiMinus onClick={change} className={`text-2xl cursor-pointer ${collapseisopen === true ? '' : 'hidden'}`}/>
+                    <FiPlus onClick={change} className={`text-2xl cursor-pointer ${collapseisopen === false ? '' : 'hidden'}`} />
+                    <FiMinus onClick={change} className={`text-2xl cursor-pointer ${collapseisopen === true ? '' : 'hidden'}`} />
                 </div>
 
                 <Collapse isOpened={collapseisopen}>
@@ -42,21 +69,40 @@ const Formaddress = () => {
                     <div className='flex flex-col gap-6 py-5 w-[75%]'>
 
                         <Box className='flex gap-6'>
-                            <TextField label="Name" />
-                            <TextField label="10-digit mobile number" type='number'/>
+                            <TextField
+                                name="name"
+                                value={formdata.name}
+                                onChange={changeformvalue}
+                                label="Name" />
+
+                            <TextField
+                                name='phone'
+                                value={formdata.phone}
+                                onChange={changeformvalue}
+                                label="10-digit mobile number" type='number' />
                         </Box>
 
 
 
                         <Box className='flex gap-6'>
-                            <TextField label="Pincode" />
-                            <TextField label="Locality" />
+                            <TextField
+                                name='pincode'
+                                value={formdata.pincode}
+                                onChange={changeformvalue}
+                                label="Pincode" />
+
+
+                            <TextField
+                                label="Locality" />
                         </Box>
 
 
 
                         <Box>
                             <TextField className='!w-full'
+                                name='address'
+                                value={formdata.address}
+                                onChange={changeformvalue}
                                 label="Address"
                                 minRows={6}
                                 multiline
@@ -66,8 +112,18 @@ const Formaddress = () => {
 
 
                         <Box className='flex gap-6'>
-                            <TextField label="City/District/Town" />
-                            <TextField label="State" />
+                            <TextField
+                                name='city'
+                                value={formdata.city}
+                                onChange={changeformvalue}
+                                label="City/District/Town" />
+
+
+                            <TextField
+                                name='state'
+                                value={formdata.state}
+                                onChange={changeformvalue}
+                                label="State" />
                         </Box>
 
                     </div>
@@ -102,11 +158,17 @@ const Formaddress = () => {
                             </div>
                         </div>
 
-                        <Link>
-                            <Button className='flex gap-4 items-center w-full !border-1 !border-primary hover:!border-black !bg-primary hover:!bg-black !px-10 !py-3 !mt-6'>
+                        {editIndex !== null ? (
+                            <Button onClick={handleUpdate} className='flex gap-4 items-center w-full !border-1 !border-primary hover:!border-black !bg-primary hover:!bg-black !px-10 !py-3 !mt-6'>
+                                <p className='text-white text-sm'>update Addesss</p>
+                            </Button>
+                        ) : (
+                            <Button onClick={() => setaddress([...address, formdata])} className='flex gap-4 items-center w-full !border-1 !border-primary hover:!border-black !bg-primary hover:!bg-black !px-10 !py-3 !mt-6'>
                                 <p className='text-white text-sm'>Save Addesss</p>
                             </Button>
-                        </Link>
+                        )}
+
+
                     </div>
                 </Collapse>
 

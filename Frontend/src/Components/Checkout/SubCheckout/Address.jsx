@@ -2,28 +2,23 @@ import React, { useState } from 'react'
 import Radio from '@mui/material/Radio';
 import { Button } from '@mui/material';
 
-const Address = () => {
+const Address = ({ setCollapseisopen, address,setFormdata,setEditIndex }) => {
     const [selectedValue, setSelectedValue] = useState('b');
-    const [address, setAddress] = useState([
-        {
-            name: "Rahul pal",
-            place: "Home",
-            phone: 7458015120,
-            address: "yiu yrwuiyuiyrw",
-            city: "Kanpur",
-            state: "Uttar pradesh",
-            pincode: 208007
-        }
-    ]);
-
-    // const handleclick = ()=>{
-    //     setAddress([...address,{...address[0],name:"roy"}])
-    // }
-
 
     const handleChange = (event) => {
         setSelectedValue(event.target.value);
     };
+
+    const handleedit = (index) => {
+        setFormdata(address[index]);
+        setEditIndex(index);
+    }
+
+    const click = (index)=>{
+        handleedit(index)
+        setCollapseisopen(true)
+    }
+
 
     return (
         <section className='bg-white rounded-md'>
@@ -54,7 +49,7 @@ const Address = () => {
                             </div>
                         </div>
 
-                        <Button  className='h-fit hover:!bg-gray-700/10'>
+                        <Button onClick={()=>click(idx)} className='h-fit hover:!bg-gray-700/10'>
                             <p>EDIT</p>
                         </Button>
 
