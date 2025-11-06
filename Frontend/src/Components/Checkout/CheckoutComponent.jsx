@@ -1,6 +1,6 @@
 import React from 'react'
 import Checklogin from './SubCheckout/Checklogin'
-import Delivery from './SubCheckout/Delivery'
+import Delivery from './Delivery'
 import Paymentsection from './SubCheckout/Paymentsection'
 
 const CheckoutComponent = () => {

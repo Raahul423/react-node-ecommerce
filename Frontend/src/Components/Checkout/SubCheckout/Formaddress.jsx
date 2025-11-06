@@ -8,11 +8,12 @@ import { FiMinus, FiPlus } from "react-icons/fi";
 import { Collapse } from 'react-collapse';
 
 const Formaddress = () => {
-    const [selectedValue, setSelectedValue] = useState('b');
+    const [selectedValue, setSelectedValue] = useState('false');
     const [collapseisopen, setCollapseisopen] = useState(false);
 
     const change = ()=>{
         setCollapseisopen(!collapseisopen)
+        setSelectedValue(!selectedValue)
     }
 
     const handleChange = (event) => {
@@ -23,11 +24,10 @@ const Formaddress = () => {
         <section className='flex bg-white rounded-md py-5'>
             <div>
                 <Radio
-                    checked={selectedValue === 'a'}
+                    checked={selectedValue === 'true'}
                     onChange={handleChange}
-                    value="a"
-                    name="radio-buttons"
-                    inputProps={{ 'aria-label': 'A' }}
+                    value='true'
+                    onClick={change}
                 />
             </div>
             <div className='w-[90%]'>

@@ -16,9 +16,9 @@ const Address = () => {
         }
     ]);
 
-    const handleclick = ()=>{
-        setAddress([...address,{...address[0],name:"roy"}])
-    }
+    // const handleclick = ()=>{
+    //     setAddress([...address,{...address[0],name:"roy"}])
+    // }
 
 
     const handleChange = (event) => {
@@ -54,7 +54,7 @@ const Address = () => {
                             </div>
                         </div>
 
-                        <Button onClick={handleclick} className='h-fit hover:!bg-gray-700/10'>
+                        <Button  className='h-fit hover:!bg-gray-700/10'>
                             <p>EDIT</p>
                         </Button>
 
