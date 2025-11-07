@@ -1,23 +1,21 @@
 import Radio from '@mui/material/Radio';
-import React, { useState } from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import { Link } from 'react-router';
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { Collapse } from 'react-collapse';
+import { toast, ToastContainer } from 'react-toastify';
 
-const Formaddress = ({ collapseisopen, setCollapseisopen, formdata, setFormdata, address, setaddress, setEditIndex, editIndex }) => {
-    const [selectedValue, setSelectedValue] = useState('false');
-
+const Formaddress = ({ collapseisopen, setCollapseisopen, formdata, setFormdata, address, setaddress, setEditIndex, editIndex,selectedValue,setSelectedValue }) => {
     const change = () => {
         setCollapseisopen(!collapseisopen)
         setSelectedValue(!selectedValue)
     }
 
-    const handleChange = (event) => {
-        setSelectedValue(event.target.value);
-    };
+    // const handleChange = (event) => {
+    //     setSelectedValue(event.target.value);
+    // };
 
     const changeformvalue = (e) => {
         setFormdata({
@@ -27,7 +25,7 @@ const Formaddress = ({ collapseisopen, setCollapseisopen, formdata, setFormdata,
     };
 
     console.log(changeformvalue);
-    
+
 
 
 
@@ -45,15 +43,15 @@ const Formaddress = ({ collapseisopen, setCollapseisopen, formdata, setFormdata,
             state: "",
             pincode: ""
         })
+        toast.success("Updated Address")
     }
 
     return (
         <section className='flex bg-white rounded-md py-5'>
             <div>
                 <Radio
-                    checked={selectedValue === 'true'}
-                    onChange={handleChange}
-                    value='true'
+                    checked={selectedValue === true}
+                    value = {true}
                     onClick={change}
                 />
             </div>
@@ -135,7 +133,7 @@ const Formaddress = ({ collapseisopen, setCollapseisopen, formdata, setFormdata,
                                 <Radio
                                     className='!p-0'
                                     checked={selectedValue === 'a'}
-                                    onChange={handleChange}
+                                    // onChange={handleChange}
                                     value="a"
                                     name="radio-buttons"
                                     inputProps={{ 'aria-label': 'A' }}
@@ -148,7 +146,7 @@ const Formaddress = ({ collapseisopen, setCollapseisopen, formdata, setFormdata,
                                 <Radio
                                     className='!p-0'
                                     checked={selectedValue === 'a'}
-                                    onChange={handleChange}
+                                    // onChange={handleChange}
                                     value="a"
                                     name="radio-buttons"
                                     inputProps={{ 'aria-label': 'A' }}
@@ -173,7 +171,7 @@ const Formaddress = ({ collapseisopen, setCollapseisopen, formdata, setFormdata,
                 </Collapse>
 
 
-
+<ToastContainer/>
             </div>
         </section>
     )

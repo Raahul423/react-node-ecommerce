@@ -68,7 +68,7 @@ const YourAccount = () => {
               </MenuItem >
             </Link >
 
-            <Link>
+            <Link to={"/"}>
               <MenuItem>
 
                 <ListItemIcon>

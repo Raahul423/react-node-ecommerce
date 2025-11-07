@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+// import React, { useState } from 'react'
 import Radio from '@mui/material/Radio';
 import { Button } from '@mui/material';
 
-const Address = ({ setCollapseisopen, address,setFormdata,setEditIndex }) => {
-    const [selectedValue, setSelectedValue] = useState('b');
+const Address = ({ setCollapseisopen, address,setFormdata,setEditIndex,selectedValue,setSelectedValue }) => {
+    // const [selectedValue, setSelectedValue] = useState('b');
 
     const handleChange = (event) => {
         setSelectedValue(event.target.value);
@@ -17,6 +17,7 @@ const Address = ({ setCollapseisopen, address,setFormdata,setEditIndex }) => {
     const click = (index)=>{
         handleedit(index)
         setCollapseisopen(true)
+        setSelectedValue(true)
     }
 
 

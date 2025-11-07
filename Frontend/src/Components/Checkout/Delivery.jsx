@@ -5,6 +5,7 @@ import Formaddress from './SubCheckout/Formaddress'
 const Delivery = () => {
     const [collapseisopen, setCollapseisopen] = useState(false);
     const [editIndex,setEditIndex]=useState(null);
+     const [selectedValue, setSelectedValue] = useState(false);
     const [address, setAddress] = useState([
         {
             name: "Rahul pal",
@@ -36,11 +37,11 @@ const Delivery = () => {
                     <p className='px-2  !bg-white rounded-sm !text-primary'>2</p>
                     <h1 className='!text-xl text-white'>Delivery Address</h1>
                 </div>
-                <Address setCollapseisopen={setCollapseisopen} address={address} setFormdata={setFormdata} setEditIndex={setEditIndex}/>
+                <Address setCollapseisopen={setCollapseisopen} address={address} setFormdata={setFormdata} setEditIndex={setEditIndex} selectedValue={selectedValue} setSelectedValue={setSelectedValue}/>
             </div>
 
             <div className='Form-Address w-full'>
-                <Formaddress collapseisopen={collapseisopen} setCollapseisopen={setCollapseisopen} formdata={formdata} setFormdata={setFormdata} address={address} setEditIndex={setEditIndex} editIndex={editIndex} setaddress={setAddress}/>
+                <Formaddress collapseisopen={collapseisopen} setCollapseisopen={setCollapseisopen} formdata={formdata} setFormdata={setFormdata} address={address} setEditIndex={setEditIndex} editIndex={editIndex} setaddress={setAddress} selectedValue={selectedValue} setSelectedValue={setSelectedValue}/>
             </div>
         </section>
     )
