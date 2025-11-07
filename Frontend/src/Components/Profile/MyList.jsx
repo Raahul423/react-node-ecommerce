@@ -38,7 +38,7 @@ const MyList = () => {
 
         {/* Heading Part of Cart section */}
         <div className='p-4'>
-          <h1>Your Cart</h1>
+          <h1>My List</h1>
           <p>There are <span className='text-red-600'>{cartItem.length}</span> products in your cart</p>
         </div>
       

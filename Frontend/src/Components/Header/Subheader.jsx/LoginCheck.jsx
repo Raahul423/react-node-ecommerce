@@ -75,16 +75,6 @@ const LoginCheck = () => {
                         </MenuItem>
                     </Link>
 
-                    <Link to={"./myaccount/address"}>
-                        <MenuItem onClick={handleClose}>
-
-                            <ListItemIcon>
-                                <MdOutlineLocationOn className='h-7 w-7' />
-                            </ListItemIcon>
-                            Address
-
-                        </MenuItem>
-                    </Link>
 
                     <Link to={"./myaccount/myorder"}>
                         <MenuItem onClick={handleClose}>

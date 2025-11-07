@@ -35,16 +35,7 @@ const YourAccount = () => {
               </MenuItem>
             </Link>
 
-            <Link to="address">
-              <MenuItem>
-                <ListItemIcon>
-                  <MdOutlineLocationOn className='h-7 w-7' />
-                </ListItemIcon>
-                Address
-
-              </MenuItem>
-            </Link>
-
+         
             <Link to="myorder">
               <MenuItem>
 
@@ -55,6 +46,7 @@ const YourAccount = () => {
 
               </MenuItem>
             </Link>
+
 
             <Link to={"mylist"}>
               <MenuItem>
@@ -67,6 +59,7 @@ const YourAccount = () => {
 
               </MenuItem >
             </Link >
+
 
             <Link to={"/"}>
               <MenuItem>

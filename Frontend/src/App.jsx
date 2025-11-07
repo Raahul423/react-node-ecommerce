@@ -12,7 +12,6 @@ import ForgotPassword from './Pages/ForgotPassword'
 import Newpassword from './Pages/Newpassword'
 import Provider from './Provider'
 import YourInfo from './Components/Profile/YourInfo'
-import Addressinfo from './Components/Profile/Addressinfo'
 import MyList from './Components/Profile/MyList'
 import Myorder from './Components/Profile/Myorder'
 
@@ -37,7 +36,6 @@ function App() {
 
         <Route path='/myaccount' element={<YourAccount />}>
           <Route path='info' element={<YourInfo />} />
-          <Route path='address' element={<Addressinfo />} />
           <Route path='mylist' element={<MyList />} />
           <Route path='myorder' element={<Myorder />} />
         </Route>
