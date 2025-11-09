@@ -7,16 +7,14 @@ const Popupmessage = () => {
     const [popmeassage, setPopmessage] = useState(false);
 
     useEffect(() => {
-        // const showpop = sessionStorage.getItem("popupshown");
+        const showpop = sessionStorage.getItem("popupshown");
 
-        // if(!showpop){
-        //     setPopmessage(true);
-        //     sessionStorage.setItem("popupshown","true")
-        // }
-        setTimeout(() => {
-            setPopmessage(true)
-        }, 1500)
-
+        if(!showpop){
+            setTimeout(() => {
+                 setPopmessage(true);
+            sessionStorage.setItem("popupshown","true")
+            }, 2000);
+        }
     }, [])
 
     if (!popmeassage) return null
