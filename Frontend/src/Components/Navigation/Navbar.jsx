@@ -27,162 +27,176 @@ const Navbar = () => {
             <div className='col1 w-[75%] flex items-center'>
                 <ul className='flex gap-5 items-center w-[120%] justify-between'>
                     <li className='relative'>
-                        <Button  className='!text-black  '>
-                            <Link to={'/'} className='hover:text-primary '>Home</Link>
-                        </Button>
+
+                        <Link to={'/'} className='hover:text-primary '>
+
+                            <Button className='!text-black  '>Home</Button>
+                        </Link>
+
                     </li>
 
                     <li className='relative nav'>
-                        <Button className='!text-black button '>
-                            <Link to={'/products'} className='hover:text-primary '>Fastion</Link>
-                        </Button>
 
-                        <div  className='submenunav absolute top-[120%] left-0 bg-white shadow-md'>
-                                <ul className='min-w-[200px]'>
-                                    <li>
-                                        <Link>
-                                            <Button className='w-full !text-black !justify-start !normal-case' >
-                                                Mens
-                                            </Button>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link>
-                                            <Button className='w-full !text-black !justify-start !normal-case' >
-                                                Women
-                                            </Button>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link>
-                                            <Button className='w-full !text-black !justify-start !normal-case' >
-                                                Kids
-                                            </Button>
-                                        </Link>
-                                    </li>
+                        <Link to={'/products'} className='hover:text-primary '>
+                            <Button className='!text-black button '>Fation</Button>
+                        </Link>
 
-                                </ul>
+
+                        <div className='submenunav absolute top-[120%] left-0 bg-white shadow-md'>
+                            <ul className='min-w-[200px]'>
+                                <li>
+                                    <Link>
+                                        <Button className='w-full !text-black !justify-start !normal-case' >
+                                            Mens
+                                        </Button>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link>
+                                        <Button className='w-full !text-black !justify-start !normal-case' >
+                                            Women
+                                        </Button>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link>
+                                        <Button className='w-full !text-black !justify-start !normal-case' >
+                                            Kids
+                                        </Button>
+                                    </Link>
+                                </li>
+
+                            </ul>
                         </div>
                     </li>
 
                     <li className='relative nav'>
-                        <Button  className='!text-black  '>
-                            <Link to={'/products'} className='hover:text-primary '>Electronics</Link>
-                        </Button>
 
-                        <div  className='submenunav absolute top-[120%] left-0 bg-white shadow-md '>
-                                <ul className='min-w-[200px]'>
-                                    <li>
-                                        <Link>
-                                            <Button className='w-full !text-black !justify-start !normal-case' >
-                                                Mobile
-                                            </Button>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link>
-                                            <Button className='w-full !text-black !justify-start !normal-case' >
-                                                Laptops
-                                            </Button>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link>
-                                            <Button className='w-full !text-black !justify-start !normal-case' >
-                                                Smart-Watch
-                                            </Button>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link>
-                                            <Button className='w-full !text-black !justify-start !normal-case' >
-                                                Chargers
-                                            </Button>
-                                        </Link>
-                                    </li>
+                        <Link to={'/products'} className='hover:text-primary '>
+                            <Button className='!text-black  '>Electronics</Button>
+                        </Link>
 
-                                </ul>
-                         
+
+                        <div className='submenunav absolute top-[120%] left-0 bg-white shadow-md '>
+                            <ul className='min-w-[200px]'>
+                                <li>
+                                    <Link>
+                                        <Button className='w-full !text-black !justify-start !normal-case' >
+                                            Mobile
+                                        </Button>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link>
+                                        <Button className='w-full !text-black !justify-start !normal-case' >
+                                            Laptops
+                                        </Button>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link>
+                                        <Button className='w-full !text-black !justify-start !normal-case' >
+                                            Smart-Watch
+                                        </Button>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link>
+                                        <Button className='w-full !text-black !justify-start !normal-case' >
+                                            Chargers
+                                        </Button>
+                                    </Link>
+                                </li>
+
+                            </ul>
+
                         </div>
                     </li>
 
                     <li className='relative nav'>
-                        <Button  className='!text-black  '>
-                            <Link to={'/products'} className='hover:text-primary '>Bags</Link>
-                        </Button>
+
+                        <Link to={'/products'} className='hover:text-primary '>
+                            <Button className='!text-black  '>Bags</Button></Link>
+
 
                         <div className='submenunav absolute top-[120%] left-0 bg-white shadow-md 
                         '>
-                            
-                                <ul className='min-w-[200px]'>
-                                    <li>
-                                        <Link>
-                                            <Button className='w-full !text-black !justify-start !normal-case' >
-                                                Mens-Bages
-                                            </Button>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link>
-                                            <Button className='w-full !text-black !justify-start !normal-case' >
-                                                Women-Bages
-                                            </Button>
-                                        </Link>
-                                    </li>
-                            
 
-                                </ul>
-                        
+                            <ul className='min-w-[200px]'>
+                                <li>
+                                    <Link>
+                                        <Button className='w-full !text-black !justify-start !normal-case' >
+                                            Mens-Bages
+                                        </Button>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link>
+                                        <Button className='w-full !text-black !justify-start !normal-case' >
+                                            Women-Bages
+                                        </Button>
+                                    </Link>
+                                </li>
+
+
+                            </ul>
+
                         </div>
                     </li>
 
                     <li className='relative nav'>
-                        <Button  className='!text-black  '>
-                            <Link to={'/products'}  className='hover:text-primary '>Footwear</Link>
-                        </Button>
+
+                        <Link to={'/products'} className='hover:text-primary '>
+                            <Button className='!text-black  '>Footwear</Button></Link>
+
 
                         <div className='submenunav absolute top-[120%] left-0 bg-white shadow-md 
                         '>
-                            
-                                <ul className='min-w-[200px]'>
-                                    <li>
-                                        <Link>
-                                            <Button className='w-full !text-black !justify-start !normal-case' >
-                                                Mens-Footwear
-                                            </Button>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link>
-                                            <Button className='w-full !text-black !justify-start !normal-case' >
-                                                Women-Footwear
-                                            </Button>
-                                        </Link>
-                                    </li>
-                                   
 
-                                </ul>
+                            <ul className='min-w-[200px]'>
+                                <li>
+                                    <Link>
+                                        <Button className='w-full !text-black !justify-start !normal-case' >
+                                            Mens-Footwear
+                                        </Button>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link>
+                                        <Button className='w-full !text-black !justify-start !normal-case' >
+                                            Women-Footwear
+                                        </Button>
+                                    </Link>
+                                </li>
+
+
+                            </ul>
                         </div>
                     </li>
 
                     <li className='relative'>
-                        <Button className='!text-black  '>
-                            <Link to={'/products'}  className='hover:text-primary '>Beauty</Link>
-                        </Button>
+
+                        <Link to={'/products'} className='hover:text-primary '>
+                            <Button className='!text-black  '>Beauty</Button></Link>
+
 
                     </li>
 
                     <li className='relative'>
-                        <Button  className='!text-black  '>
-                            <Link to={'/products'}  className='hover:text-primary '>WELLNESS</Link>
-                        </Button>
+
+                        <Link to={'/products'} className='hover:text-primary '>
+                            <Button className='!text-black  '>WELLNESS</Button>
+                        </Link>
+
 
                     </li>
 
                     <li className='relative'>
-                        <Button className='!text-black  '>
-                            <Link to={'/products'}  className='hover:text-primary '>JEWELLERY</Link>
-                        </Button>
+
+                        <Link to={'/products'} className='hover:text-primary '>
+                            <Button className='!text-black  '>JEWELLERY</Button>
+                        </Link>
+
                     </li>
 
                 </ul>
