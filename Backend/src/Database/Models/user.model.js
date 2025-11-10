@@ -40,7 +40,7 @@ const userSchema = new mongoose.Schema({
       ref: "Address",
     },
   ],
-  shopping: [
+  shoppingCart: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Cartproduct",
@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema({
   orderHistory: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "order",
+      ref: "Order",
     },
   ],
   forgot_password_otp: {
