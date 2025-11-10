@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import helmet from "helmet";
 import cors from "cors";
-import connectDB from "./src/database.js";
+import connectDB from "./src/Database/database.js";
 
 const app = express();
 app.use(cors("*"));
