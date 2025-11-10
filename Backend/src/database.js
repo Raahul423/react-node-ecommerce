@@ -1,4 +1,4 @@
-import dotenv from "dotenv"
+import dotenv from 'dotenv'
 dotenv.config();
 import mongoose from "mongoose";
 
@@ -13,7 +13,7 @@ const connectDB = async(req,res)=>{
         
         
     } catch (error) {
-        throw new Error("Connection Failed",error)
+        throw new Error("Connection Failed",error.message)
     }
 }
 
