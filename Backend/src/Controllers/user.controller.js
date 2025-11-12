@@ -1,5 +1,5 @@
-import User from "../Models/user.model";
-import { uploadOncloudinary } from "../Utils/cloudinary";
+import User from "../Models/user.model.js";
+import { uploadOncloudinary } from "../Utils/cloudinary.js";
 
 const registerUser = async (req, res) => {
   try {
@@ -10,7 +10,7 @@ const registerUser = async (req, res) => {
         .json({ success: false, message: "Provide required field" });
     }
 
-    const userExist = User.findOne({ email: email });
+    const userExist =await User.findOne({ email: email });
     if (userExist) {
       res.status(409).json({ success: false, message: "User already exist" });
     }
@@ -26,10 +26,13 @@ const registerUser = async (req, res) => {
         avatar:avatar?.url || ""
     })
 
-    return res.status(200).json({success:true,message:"User Registered Sucessfully"})
+    return res.status(200).json({success:true,message:"User Registered Sucessfully",user})
 
 
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
+
+
+export {registerUser}

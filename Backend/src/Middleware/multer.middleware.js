@@ -9,5 +9,5 @@ const localStorage = diskStorage({
     }
 })
 
-const multerUpload = multer ({storage}) 
+const multerUpload = multer ({storage:localStorage}) 
 export {multerUpload}

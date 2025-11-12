@@ -6,6 +6,7 @@ import morgan from "morgan";
 import helmet from "helmet";
 import cors from "cors";
 import connectDB from "./src/Database/database.js";
+import { router } from "./src/Route/user.route.js";
 
 const app = express();
 app.use(cors("*"));
@@ -19,17 +20,9 @@ app.use(
   })
 );
 
-app.get("/",async(req,res)=>{
-    try {
-        res.json(
-            {
-                message:"hello server"
-            }
-        )
-    } catch (error) {
-        throw new Error("Something wrong",error)
-    }
-})
+
+//route
+app.use('/api/users',router)
 
 connectDB().then(() => {
   app.listen(process.env.PORT,() => {
