@@ -56,6 +56,7 @@ const userSchema = new mongoose.Schema(
     ],
     otp: {
       type: String,
+      default:""
     },
     otp_expire: {
       type: String,
