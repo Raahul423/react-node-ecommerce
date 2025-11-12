@@ -1,72 +1,91 @@
+import { hash } from "bcryptjs";
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  avatar: {
-    type: String,
-    default: "",
-  },
-  mobile: {
-    type: Number,
-    default: null,
-  },
-  refreshToken: {
-    type: String,
-    default: "",
-  },
-  verify_email: {
-    type: Boolean,
-    default: false,
-  },
-  last_login_date: {
-    type: Date,
-    default: "",
-  },
-  address: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Address",
+const userSchema = new mongoose.Schema(
+  {
+    fullName: {
+      type: String,
+      required: true,
     },
-  ],
-  shoppingCart: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Cartproduct",
+    email: {
+      type: String,
+      required: true,
+      unique: true,
     },
-  ],
-  orderHistory: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Order",
+    password: {
+      type: String,
+      required: true,
     },
-  ],
-  otp:{
-    type:String
+    avatar: {
+      type: String,
+      default: "",
+    },
+    mobile: {
+      type: Number,
+      default: null,
+    },
+    refreshToken: {
+      type: String,
+      default: "",
+    },
+    verify_email: {
+      type: Boolean,
+      default: false,
+    },
+    last_login_date: {
+      type: Date,
+      default: "",
+    },
+    address: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Address",
+      },
+    ],
+    shoppingCart: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Cartproduct",
+      },
+    ],
+    orderHistory: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Order",
+      },
+    ],
+    otp: {
+      type: String,
+    },
+    otp_expire: {
+      type: String,
+    },
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user",
+    },
   },
-  otp_expire:{
-    type:String
-  },
-  role: {
-    type: String,
-    enum: ["user", "admin"],
-    default: "user",
-  },
-},
-{
-    timestamps:true
+  {
+    timestamps: true,
+  }
+);
+
+userSchema.pre("save", async function (req, res, next) {
+  if (!this.isModified(password)) {
+    return next();
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  const hashPassword = await bcrypt.hash(this.password, salt);
+  next();
 });
 
-const User = mongoose.model("User",userSchema);
-export default User
+userSchema.method.isPasswordCorrect = async function(password) {
+ return await bcrypt.compare(password,this.password);  
+}
+
+
+
+const User = mongoose.model("User", userSchema);
+export default User;
