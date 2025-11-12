@@ -1,4 +1,5 @@
 import User from "../Models/user.model";
+import { uploadOncloudinary } from "../Utils/cloudinary";
 
 const registerUser = async (req, res) => {
   try {
@@ -9,13 +10,23 @@ const registerUser = async (req, res) => {
         .json({ success: false, message: "Provide required field" });
     }
 
-    const user = User.findOne({ email: email });
-    if (user) {
+    const userExist = User.findOne({ email: email });
+    if (userExist) {
       res.status(409).json({ success: false, message: "User already exist" });
     }
 
+    const localAvater = req.files?.avatar[0]?.path || "";
     
+    const avatar = await uploadOncloudinary(localAvater);
 
+    const user = await User.create({
+        email,
+        fullName,
+        password,
+        avatar:avatar?.url || ""
+    })
+
+    return res.status(200).json({success:true,message:"User Registered Sucessfully"})
 
 
   } catch (error) {
