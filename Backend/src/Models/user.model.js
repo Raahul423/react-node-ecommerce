@@ -54,12 +54,12 @@ const userSchema = new mongoose.Schema(
         ref: "Order",
       },
     ],
-    otp: {
+    emailVerificationToken: {
       type: String,
       default:""
     },
-    otp_expire: {
-      type: String,
+    emailVerificationExpires: {
+      type: Date,
     },
     role: {
       type: String,
