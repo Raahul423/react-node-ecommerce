@@ -8,7 +8,6 @@ const sendVerificationEmail = async({ to, token, name, userId })=>{
 
   const html = `
     <div style="font-family: Arial, sans-serif; line-height:1.6; color:#333;">
-      <h2>Verify your email</h2>
       <p>Hi ${name || 'there'},</p>
       <p>Thanks for signing up. Click the button below to verify your email address.</p>
       <p style="text-align:center;">

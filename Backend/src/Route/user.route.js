@@ -13,7 +13,6 @@ router.route('/register').post(multerUpload.fields([
     }
 ]),registerUser)
 router.route('/verify-email').get(verifyEmail)
-
 router.route('/test').get(testcode) // only testing purpose code here
 
 
