@@ -36,14 +36,14 @@ const registerUser = async (req, res) => {
 
     const {hashed,token} = generateVerificationToken();
     user.emailVerificationToken = hashed;
-    user.emailVerificationExpires = Date.now() + 1000 * 60 * 60 * 24;
+    user.emailVerificationExpires = Date.now() + 1000 * 60 * 5; // valid 5 min only
 
     await user.save();
 
     await sendVerificationEmail({to:user.email,token,name:user.fullName,userId:user._id})
 
 
-    return res.status(200).json({success:true,message:"User Registered Sucessfully",user})
+    return res.status(200).json({success:true,message:"User Registered Sucessfully Please verify your email",user})
 
 
   } catch (error) {
@@ -52,4 +52,41 @@ const registerUser = async (req, res) => {
 };
 
 
-export {registerUser}
+// verify email 
+
+const verifyEmail = async (req,res)=>{
+  try {
+    const {token,id} = req.query
+    if(!token || !id){
+      return res.status(401).json({success:false,message:"Invalid email link"});
+    }
+
+    const compare = crypto.createHash('sha256').update(token).digest('hex')
+
+    const user = await User.findOne({
+      _id:id,
+      emailVerificationToken:compare,
+      emailVerificationExpires:{ $gt: Date.now() }
+    })
+
+    if(!user){
+      return res.status(400).json("Invalid or Expired Token")
+    }
+
+    user.verify_email = true;
+    user.emailVerificationToken = undefined;
+    user.emailVerificationExpires = undefined;
+
+    await user.save();
+
+    return res.status(200).json({success:true,message:"Email verified You can now login"});
+  } catch (error) {
+    return res.status(500).json({success:false,message:error.message})
+  }
+}
+
+
+export {
+  registerUser,
+  verifyEmail
+}

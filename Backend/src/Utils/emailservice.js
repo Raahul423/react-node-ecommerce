@@ -1,4 +1,3 @@
-// services/emailService.js
 import dotenv from 'dotenv'
 dotenv.config();
 import { transporter } from "../Config/mailer.js";

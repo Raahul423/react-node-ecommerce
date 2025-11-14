@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { registerUser } from "../Controllers/user.controller.js";
+import { registerUser, verifyEmail } from "../Controllers/user.controller.js";
 import { multerUpload } from "../Middleware/multer.middleware.js";
 import { testcode } from "../Controllers/test.js";
 
@@ -12,6 +12,7 @@ router.route('/register').post(multerUpload.fields([
         maxCount:1
     }
 ]),registerUser)
+router.route('/verify-email').get(verifyEmail)
 
 router.route('/test').get(testcode) // only testing purpose code here
 
