@@ -74,8 +74,8 @@ const verifyEmail = async (req,res)=>{
     }
 
     user.verify_email = true;
-    user.emailVerificationToken = undefined;
-    user.emailVerificationExpires = undefined;
+    user.emailVerificationToken = null;
+    user.emailVerificationExpires = null;
 
     await user.save();
 
