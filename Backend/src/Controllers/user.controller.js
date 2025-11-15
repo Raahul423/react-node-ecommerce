@@ -135,6 +135,8 @@ const loginUser = async (req, res) => {
       return res.status(500).json({ message: "Your Password is incorrect" });
     }
 
+    user.last_login_date = Date.now();
+
     const { AccessToken, RefreshToken } = await generateAccessandRefreshToken(
       user._id
     );
@@ -144,7 +146,6 @@ const loginUser = async (req, res) => {
       secure: true,
     };
 
-
     return res
       .status(200)
       .cookie("AccessToken", AccessToken, options)
@@ -152,8 +153,10 @@ const loginUser = async (req, res) => {
       .json({
         success: true,
         user,
-        AccessToken,
-        RefreshToken,
+        data: {
+          AccessToken,
+          RefreshToken,
+        },
         message: "User Logged In Sucessfully",
       });
   } catch (error) {
@@ -161,4 +164,29 @@ const loginUser = async (req, res) => {
   }
 };
 
-export { registerUser, verifyEmail, loginUser };
+// logOutUser
+
+const logoutUser = async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.user?._id, {
+      $set: {
+        refreshToken: null,
+      },
+    });
+
+    const options = {
+      httpOnly: true,
+      secure: true,
+    };
+
+    return res
+      .status(200)
+      .clearCookie("AccessToken", options)
+      .clearCookie("RefreshToken", options)
+      .json({ message: "User Successfully LogOut" });
+  } catch (error) {
+    return res.status(500).status({ success: false, message: error.message });
+  }
+};
+
+export { registerUser, verifyEmail, loginUser, logoutUser };
