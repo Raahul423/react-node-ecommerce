@@ -11,13 +11,13 @@ function generateVerificationToken() {
 
 const generateAccessandRefreshToken = async (userId) => {
   const user = await User.findById(userId);
-  const AccessToken = user.generateAccessToken();
-  const RefreshToken = user.generateRefreshToken();
+  const accessToken = user.generateAccessToken();
+  const refreshToken = user.generateRefreshToken();
 
-  user.refreshToken = RefreshToken;
+  user.refreshToken = refreshToken;
   await user.save({ validateBeforeSave: false });
 
-  return { AccessToken, RefreshToken };
+  return { accessToken, refreshToken };
 };
 
 // register User && and after that send verify email link to User email
@@ -137,7 +137,7 @@ const loginUser = async (req, res) => {
 
     user.last_login_date = Date.now();
 
-    const { AccessToken, RefreshToken } = await generateAccessandRefreshToken(
+    const { accessToken, refreshToken } = await generateAccessandRefreshToken(
       user._id
     );
 
@@ -148,14 +148,14 @@ const loginUser = async (req, res) => {
 
     return res
       .status(200)
-      .cookie("AccessToken", AccessToken, options)
-      .cookie("RefreshToken", RefreshToken, options)
+      .cookie("AccessToken", accessToken, options)
+      .cookie("RefreshToken", refreshToken, options)
       .json({
         success: true,
         user,
         data: {
-          AccessToken,
-          RefreshToken,
+          accessToken,
+          refreshToken,
         },
         message: "User Logged In Sucessfully",
       });
