@@ -228,10 +228,44 @@ const updateAccountDetails = async (req, res) => {
   }
 };
 
+// change Password
+
+const changePassword = async (req, res) => {
+  try {
+    const { oldpassword, newpassword } = req.body;
+
+    const user = await User.findById(req.user?._id);
+
+    if (!user) {
+      return res.status(500).status({ success: false, message: "User Token Invalid"});
+    }
+
+    const checkOldPassword = await user.isPasswordCorrect(oldpassword);
+
+    if (!checkOldPassword) {
+      return res
+        .status(400)
+        .status({ success: false, message: "Please Enter Your Old Password Correctly" });
+    }
+
+    if(oldpassword === newpassword){
+       return res.status(500).status({ success: false, message: "New Password Can't be Same as Oldpassword"});
+    }
+
+    user.password = newpassword;
+    await user.save({validateBeforeSave:false})
+
+    res.status(200).json({sucess:true,user,message:"Password is Successfully Updated"})
+  } catch (error) {
+    return res.status(500).status({ success: false, message: error.message });
+  }
+};
+
 export {
   registerUser,
   verifyEmail,
   loginUser,
   logoutUser,
   updateAccountDetails,
+  changePassword,
 };
