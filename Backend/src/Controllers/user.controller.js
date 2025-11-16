@@ -1,3 +1,4 @@
+import { json } from "stream/consumers";
 import User from "../Models/user.model.js";
 import { uploadOncloudinary } from "../Utils/cloudinary.js";
 import { sendVerificationEmail } from "../Utils/emailservice.js";
@@ -148,8 +149,8 @@ const loginUser = async (req, res) => {
 
     return res
       .status(200)
-      .cookie("AccessToken", accessToken, options)
-      .cookie("RefreshToken", refreshToken, options)
+      .cookie("accessToken", accessToken, options)
+      .cookie("refreshToken", refreshToken, options)
       .json({
         success: true,
         user,
@@ -181,12 +182,56 @@ const logoutUser = async (req, res) => {
 
     return res
       .status(200)
-      .clearCookie("AccessToken", options)
-      .clearCookie("RefreshToken", options)
+      .clearCookie("accessToken", options)
+      .clearCookie("refreshToken", options)
       .json({ message: "User Successfully LogOut" });
   } catch (error) {
     return res.status(500).status({ success: false, message: error.message });
   }
 };
 
-export { registerUser, verifyEmail, loginUser, logoutUser };
+// Update Account Details
+
+const updateAccountDetails = async (req, res) => {
+  try {
+    const { fullName, mobile } = req.body;
+
+    if (!fullName && !mobile) {
+      return res
+        .status(400)
+        .json({ sucess: false, message: "Please Upadte Atleast one field" });
+    }
+
+    const user = await User.findByIdAndUpdate(
+      req.user?._id,
+      {
+        $set: { fullName, mobile },
+      },
+      {
+        new: true,
+      }
+    );
+
+    if (!user) {
+      return res
+        .status(400)
+        .json({ sucess: false, message: "Invalid User Token" });
+    }
+
+    user.save({ validateBeforeSave: false });
+
+    return res
+      .status(200)
+      .json({ success: true, user, message: "User Update Sucessfully" });
+  } catch (error) {
+    return res.status(500).status({ success: false, message: error.message });
+  }
+};
+
+export {
+  registerUser,
+  verifyEmail,
+  loginUser,
+  logoutUser,
+  updateAccountDetails,
+};
