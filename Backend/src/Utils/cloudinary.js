@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
+import { error } from "console";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -11,16 +12,26 @@ cloudinary.config({
 
 const uploadOncloudinary = async function (localfile) {
   try {
-    if(!localfile) return null;
+    if (!localfile) return null;
     const cloudinaryUpload = await cloudinary.uploader.upload(localfile, {
       resource_type: "auto",
     });
     fs.unlinkSync(localfile);
-    return cloudinaryUpload
+    return cloudinaryUpload;
   } catch (error) {
-    fs.unlinkSync(localfile)
+    fs.unlinkSync(localfile);
     return null;
   }
 };
 
-export {uploadOncloudinary}
+const removeFromcloudinary = async (publicId) => {
+  try {
+    const deleteImage = await cloudinary.uploader.destroy(publicId);
+    return deleteImage;
+  } catch (error) {
+    console.error("Delete Error:", err);
+    return null;
+  }
+};
+
+export { uploadOncloudinary,removeFromcloudinary };
