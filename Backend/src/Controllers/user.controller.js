@@ -1,4 +1,3 @@
-import { json } from "stream/consumers";
 import User from "../Models/user.model.js";
 import {
   removeFromcloudinary,
@@ -6,6 +5,7 @@ import {
 } from "../Utils/cloudinary.js";
 import { sendVerificationEmail } from "../Utils/emailservice.js";
 import crypto from "crypto";
+import jwt from "jsonwebtoken";
 
 function generateVerificationToken() {
   const token = crypto.randomBytes(32).toString("hex");
@@ -317,7 +317,52 @@ const uploadAvatar = async (req, res) => {
   }
 };
 
-//
+// after accessToken expire then generate new accesstoken with the help of refreshToken
+
+const accessandrefreshToken = async (req, res) => {
+  try {
+    const incomingToken = req.cookies?.refreshToken;
+
+    if (!incomingToken) {
+      return res.status(401).json({ message: "Unauthorize User" });
+    }
+
+    const verifyToken = jwt.verify(
+      incomingToken,
+      process.env.REFRESH_TOKEN_SECRET
+    );
+
+    const user = await User.findById(verifyToken?._id);
+
+    if (!user) {
+      return res.status(401).json({ message: "Invalid Token" });
+    }
+
+    if (incomingToken !== user.refreshToken) {
+      return res.status(409).json({ message: "refreshToken Mismatch or  Expired " });
+    }
+
+    const {accessToken,refreshToken} =await generateAccessandRefreshToken(user?._id)
+
+    if (!accessToken || !refreshToken) {
+      return res.status(500).json({ success: false, message: "Failed to generate tokens" });
+    }
+
+    const options = {
+      httpOnly:true,
+      secure:true
+    }
+
+    return res
+    .status(200)
+    .cookie("accessToken",accessToken,options)
+    .cookie("refreshToken",refreshToken,options)
+    .json({success:true,message:"refreshToken and accessToken are again generated"})
+
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
 
 export {
   registerUser,
@@ -327,4 +372,5 @@ export {
   updateAccountDetails,
   changePassword,
   uploadAvatar,
+  accessandrefreshToken
 };
