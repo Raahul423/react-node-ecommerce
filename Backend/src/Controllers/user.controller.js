@@ -1,6 +1,9 @@
 import { json } from "stream/consumers";
 import User from "../Models/user.model.js";
-import { removeFromcloudinary, uploadOncloudinary } from "../Utils/cloudinary.js";
+import {
+  removeFromcloudinary,
+  uploadOncloudinary,
+} from "../Utils/cloudinary.js";
 import { sendVerificationEmail } from "../Utils/emailservice.js";
 import crypto from "crypto";
 
@@ -273,15 +276,20 @@ const uploadAvatar = async (req, res) => {
     if (!user) {
       return res
         .status(401)
-        .json({ sucess: false, message: "Token not Found" });
+        .json({ success: false, message: "Token not Found" });
     }
 
-    const findImage = user.avatar.split("/");
-    const publicId = findImage[findImage.length-1].split(".")[0];
-    const removeImage = await removeFromcloudinary(publicId);
+    if (user.avatar && user.avatar !== "") {
+      const findImage = user.avatar?.split("/");
+      const publicId = findImage[findImage.length - 1].split(".")[0];
+      const removeImage = await removeFromcloudinary(publicId);
 
-    if(!removeImage){
-      return res.status(400).json({success:false,message:"Image remove From Cloudinary Failed"})
+      if (!removeImage) {
+        return res.status(400).json({
+          success: false,
+          message: "Image remove From Cloudinary Failed",
+        });
+      }
     }
 
     const localavatar = req.file?.path;
@@ -298,18 +306,16 @@ const uploadAvatar = async (req, res) => {
         .json({ sucess: false, message: "Image Can't Upload Cloudinary" });
     }
 
-    user.avatar = avatar.url;
+    user.avatar = avatar.secure_url;
     await user.save({ validateBeforeSave: false });
-
 
     return res
       .status(200)
       .json({ success: true, user, message: "Avatar Upload Successfully" });
   } catch (error) {
-    return res.status(500).status({ success: false, message: error.message });
+    return res.status(500).json({ success: false, message: error.message });
   }
 };
-
 
 //
 
@@ -320,5 +326,5 @@ export {
   logoutUser,
   updateAccountDetails,
   changePassword,
-  uploadAvatar
+  uploadAvatar,
 };

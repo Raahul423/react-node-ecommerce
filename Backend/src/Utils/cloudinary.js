@@ -1,8 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 import { v2 as cloudinary } from "cloudinary";
-import fs from "fs";
-import { error } from "console";
+import fs from "fs";;
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -29,7 +28,7 @@ const removeFromcloudinary = async (publicId) => {
     const deleteImage = await cloudinary.uploader.destroy(publicId);
     return deleteImage;
   } catch (error) {
-    console.error("Delete Error:", err);
+    console.error("Delete Error:", error);
     return null;
   }
 };
