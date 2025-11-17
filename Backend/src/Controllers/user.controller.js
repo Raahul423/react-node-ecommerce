@@ -37,15 +37,10 @@ const registerUser = async (req, res) => {
       res.status(409).json({ success: false, message: "User already exist" });
     }
 
-    const localAvater = req.files?.avatar[0]?.path || "";
-
-    const avatar = await uploadOncloudinary(localAvater);
-
     const user = await User.create({
       email,
       fullName,
       password,
-      avatar: avatar?.url || "",
     });
 
     const { hashed, token } = generateVerificationToken();
@@ -58,7 +53,7 @@ const registerUser = async (req, res) => {
       to: user.email,
       token,
       name: user.fullName,
-      userId: user._id,
+      userId: user?._id,
     });
 
     return res.status(200).json({
@@ -237,25 +232,70 @@ const changePassword = async (req, res) => {
     const user = await User.findById(req.user?._id);
 
     if (!user) {
-      return res.status(500).status({ success: false, message: "User Token Invalid"});
+      return res
+        .status(500)
+        .status({ success: false, message: "User Token Invalid" });
     }
 
     const checkOldPassword = await user.isPasswordCorrect(oldpassword);
 
     if (!checkOldPassword) {
-      return res
-        .status(400)
-        .status({ success: false, message: "Please Enter Your Old Password Correctly" });
+      return res.status(400).status({
+        success: false,
+        message: "Please Enter Your Old Password Correctly",
+      });
     }
 
-    if(oldpassword === newpassword){
-       return res.status(500).status({ success: false, message: "New Password Can't be Same as Oldpassword"});
+    if (oldpassword === newpassword) {
+      return res.status(500).status({
+        success: false,
+        message: "New Password Can't be Same as Oldpassword",
+      });
     }
 
     user.password = newpassword;
-    await user.save({validateBeforeSave:false})
+    await user.save({ validateBeforeSave: false });
 
-    res.status(200).json({sucess:true,user,message:"Password is Successfully Updated"})
+    res.status(200).json({
+      sucess: true,
+      user,
+      message: "Password is Successfully Updated",
+    });
+  } catch (error) {
+    return res.status(500).status({ success: false, message: error.message });
+  }
+};
+
+// upload avatar image
+const uploadAvatar = async (req, res) => {
+  try {
+    const user = await User.findById(req.user?._id);
+    if (!user) {
+      return res
+        .status(401)
+        .json({ sucess: false, message: "Token not Found" });
+    }
+
+    const localavatar = req.file?.path;
+    if (!localavatar) {
+      return res
+        .status(409)
+        .json({ sucess: false, message: "Upload Image Failed" });
+    }
+
+    const avatar = await uploadOncloudinary(localavatar);
+    if (!avatar) {
+      return res
+        .status(409)
+        .json({ sucess: false, message: "Image Can't Upload Cloudinary" });
+    }
+
+    user.avatar = avatar.url;
+    await user.save({ validateBeforeSave: false });
+
+    return res
+      .status(200)
+      .json({ success: true, user, message: "Avatar Upload Successfully" });
   } catch (error) {
     return res.status(500).status({ success: false, message: error.message });
   }
@@ -268,4 +308,5 @@ export {
   logoutUser,
   updateAccountDetails,
   changePassword,
+  uploadAvatar
 };
