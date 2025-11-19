@@ -3,6 +3,7 @@ import {
   removeFromcloudinary,
   uploadOncloudinary,
 } from "../Utils/cloudinary.js";
+import { sendresetPasswordemail } from "../Utils/emailotpService.js";
 import { sendVerificationEmail } from "../Utils/emailservice.js";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
@@ -48,7 +49,7 @@ const registerUser = async (req, res) => {
 
     const { hashed, token } = generateVerificationToken();
     user.emailVerificationToken = hashed;
-    user.emailVerificationExpires = Date.now() + 1000 * 60 * 5; // valid 5 min only
+    user.emailVerificationExpires = Date.now() + 1000 * 60 * 5; // valid 10 min only
 
     await user.save({ validateBeforeSave: false });
 
@@ -89,7 +90,8 @@ const verifyEmail = async (req, res) => {
     });
 
     if (!user) {
-      return res.status(400).json("Invalid or Expired Token");
+      await User.findByIdAndDelete(id);
+      return res.status(400).json({ message: "Invalid or Expired Token" });
     }
 
     user.verify_email = true;
@@ -339,26 +341,72 @@ const accessandrefreshToken = async (req, res) => {
     }
 
     if (incomingToken !== user.refreshToken) {
-      return res.status(409).json({ message: "refreshToken Mismatch or  Expired " });
+      return res
+        .status(409)
+        .json({ message: "refreshToken Mismatch or  Expired " });
     }
 
-    const {accessToken,refreshToken} =await generateAccessandRefreshToken(user?._id)
+    const { accessToken, refreshToken } = await generateAccessandRefreshToken(
+      user?._id
+    );
 
     if (!accessToken || !refreshToken) {
-      return res.status(500).json({ success: false, message: "Failed to generate tokens" });
+      return res
+        .status(500)
+        .json({ success: false, message: "Failed to generate tokens" });
     }
 
     const options = {
-      httpOnly:true,
-      secure:true
-    }
+      httpOnly: true,
+      secure: true,
+    };
 
     return res
-    .status(200)
-    .cookie("accessToken",accessToken,options)
-    .cookie("refreshToken",refreshToken,options)
-    .json({success:true,message:"refreshToken and accessToken are again generated"})
+      .status(200)
+      .cookie("accessToken", accessToken, options)
+      .cookie("refreshToken", refreshToken, options)
+      .json({
+        success: true,
+        message: "refreshToken and accessToken are again generated",
+      });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
 
+//send reset password OTP..
+const forgetPasswordOtp = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res
+        .status(500)
+        .json({ success: false, message: "please Provide Mail First" });
+    }
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res
+        .status(500)
+        .json({ success: false, message: "Email not Registered" });
+    }
+
+    const verifyCode = Math.floor(100000 + Math.random() * 900000);
+    user.otp = verifyCode;
+    user.otpExpire = Date.now() + 1000 * 60 * 5; // 5 min
+    user.save({ validateBeforeSave: false });
+
+    await sendresetPasswordemail({
+      to: email,
+      otp:verifyCode,
+      name: user.fullName,
+    });
+
+    return res
+      .status(200)
+      .json({ success: true, user, message: "Code Send Successfully" });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
@@ -372,5 +420,6 @@ export {
   updateAccountDetails,
   changePassword,
   uploadAvatar,
-  accessandrefreshToken
+  accessandrefreshToken,
+  forgetPasswordOtp,
 };
