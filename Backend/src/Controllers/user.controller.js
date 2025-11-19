@@ -25,6 +25,7 @@ const generateAccessandRefreshToken = async (userId) => {
   return { accessToken, refreshToken };
 };
 
+
 // register User && and after that send verify email link to User email
 const registerUser = async (req, res) => {
   try {
@@ -69,6 +70,8 @@ const registerUser = async (req, res) => {
   }
 };
 
+
+
 // verify email
 const verifyEmail = async (req, res) => {
   try {
@@ -106,8 +109,11 @@ const verifyEmail = async (req, res) => {
   }
 };
 
+
+
 // verify login
 const loginUser = async (req, res) => {
+
   try {
     const { email, password } = req.body;
 
@@ -164,6 +170,8 @@ const loginUser = async (req, res) => {
   }
 };
 
+
+
 // logOutUser
 const logoutUser = async (req, res) => {
   try {
@@ -187,6 +195,8 @@ const logoutUser = async (req, res) => {
     return res.status(500).status({ success: false, message: error.message });
   }
 };
+
+
 
 // Update Account Details
 const updateAccountDetails = async (req, res) => {
@@ -224,6 +234,8 @@ const updateAccountDetails = async (req, res) => {
     return res.status(500).status({ success: false, message: error.message });
   }
 };
+
+
 
 // change Password
 const changePassword = async (req, res) => {
@@ -266,6 +278,8 @@ const changePassword = async (req, res) => {
     return res.status(500).status({ success: false, message: error.message });
   }
 };
+
+
 
 // upload avatar image
 const uploadAvatar = async (req, res) => {
@@ -314,6 +328,8 @@ const uploadAvatar = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
+
+
 
 // after accessToken expire then generate new accesstoken with the help of refreshToken
 const accessandrefreshToken = async (req, res) => {
@@ -369,6 +385,9 @@ const accessandrefreshToken = async (req, res) => {
   }
 };
 
+
+
+
 //send reset password OTP..
 const forgetPasswordOtp = async (req, res) => {
   try {
@@ -409,6 +428,9 @@ const forgetPasswordOtp = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
+
+
+
 
 // verify forgot password Otp...
 const verifyforgetPasswordotp = async (req, res) => {
