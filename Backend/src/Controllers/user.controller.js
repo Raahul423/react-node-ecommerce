@@ -25,8 +25,10 @@ const generateAccessandRefreshToken = async (userId) => {
   return { accessToken, refreshToken };
 };
 
-// register User && and after that send verify email link to User email
 
+
+
+// register User && and after that send verify email link to User email
 const registerUser = async (req, res) => {
   try {
     const { email, password, fullName } = req.body;
@@ -70,8 +72,10 @@ const registerUser = async (req, res) => {
   }
 };
 
-// verify email
 
+
+
+// verify email
 const verifyEmail = async (req, res) => {
   try {
     const { token, id } = req.query;
@@ -108,8 +112,10 @@ const verifyEmail = async (req, res) => {
   }
 };
 
-// verify login
 
+
+
+// verify login
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -165,8 +171,10 @@ const loginUser = async (req, res) => {
   }
 };
 
-// logOutUser
 
+
+
+// logOutUser
 const logoutUser = async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(req.user?._id, {
@@ -190,8 +198,10 @@ const logoutUser = async (req, res) => {
   }
 };
 
-// Update Account Details
 
+
+
+// Update Account Details
 const updateAccountDetails = async (req, res) => {
   try {
     const { fullName, mobile } = req.body;
@@ -228,8 +238,10 @@ const updateAccountDetails = async (req, res) => {
   }
 };
 
-// change Password
 
+
+
+// change Password
 const changePassword = async (req, res) => {
   try {
     const { oldpassword, newpassword } = req.body;
@@ -270,6 +282,8 @@ const changePassword = async (req, res) => {
     return res.status(500).status({ success: false, message: error.message });
   }
 };
+
+
 
 // upload avatar image
 const uploadAvatar = async (req, res) => {
@@ -319,8 +333,10 @@ const uploadAvatar = async (req, res) => {
   }
 };
 
-// after accessToken expire then generate new accesstoken with the help of refreshToken
 
+
+
+// after accessToken expire then generate new accesstoken with the help of refreshToken
 const accessandrefreshToken = async (req, res) => {
   try {
     const incomingToken = req.cookies?.refreshToken;
@@ -374,6 +390,8 @@ const accessandrefreshToken = async (req, res) => {
   }
 };
 
+
+
 //send reset password OTP..
 const forgetPasswordOtp = async (req, res) => {
   try {
@@ -390,17 +408,17 @@ const forgetPasswordOtp = async (req, res) => {
     if (!user) {
       return res
         .status(500)
-        .json({ success: false, message: "Email not Registered" });
+        .json({ success: false, message: "Wrong e-mail please provide correct e-mail.." });
     }
 
     const verifyCode = Math.floor(100000 + Math.random() * 900000);
     user.otp = verifyCode;
     user.otpExpire = Date.now() + 1000 * 60 * 5; // 5 min
-    user.save({ validateBeforeSave: false });
+    await user.save({ validateBeforeSave: false });
 
     await sendresetPasswordemail({
       to: email,
-      otp:verifyCode,
+      otp: verifyCode,
       name: user.fullName,
     });
 
@@ -412,6 +430,38 @@ const forgetPasswordOtp = async (req, res) => {
   }
 };
 
+
+
+// verify forgot password Otp...
+const verifyforgetPasswordotp = async (req, res) => {
+  try {
+    const {email,code} = req.body;
+
+    const user = await User.findOne({email})
+
+    if(!user){
+      return res.status(400).json({message:"Please Provide Valid Email.."})
+    }
+
+    if(user.otp !== code || user.otpExpire < Date.now()){
+      return res.status(500).json({message:"Your Otp is Wrong or Expired Please try again"});
+    }
+
+    await User.findByIdAndUpdate(user?._id,{
+      $set:{otp:null,otpExpire:null}
+    })
+
+  
+    return res.status(200).json({success:true,message:"Otp verified Sucessfully you can forget your password"})
+
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+
+
+
 export {
   registerUser,
   verifyEmail,
@@ -422,4 +472,5 @@ export {
   uploadAvatar,
   accessandrefreshToken,
   forgetPasswordOtp,
+  verifyforgetPasswordotp,
 };
