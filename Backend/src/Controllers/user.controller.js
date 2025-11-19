@@ -133,11 +133,13 @@ const loginUser = async (req, res) => {
       return res.status(500).json({ message: "Your Password is incorrect" });
     }
 
-    user.last_login_date = Date.now();
 
     const { accessToken, refreshToken } = await generateAccessandRefreshToken(
       user._id
     );
+
+    user.last_login_date = Date.now();
+    
 
     const options = {
       httpOnly: true,
@@ -464,6 +466,19 @@ const resetPassword = async (req, res) => {
   }
 };
 
+
+
+//get User
+const getUser = async(req,res)=>{
+  try {
+    const user = await User.findById(req.user?._id).select('-password -refreshToken')
+
+    return res.status(200).json({success:true,user,message:"User Fetched Succesfully"});
+  } catch (error) {
+    return res.status(500).status({success:false,message:error.message})
+  }
+}
+
 export {
   registerUser,
   verifyEmail,
@@ -475,5 +490,6 @@ export {
   accessandrefreshToken,
   forgetPasswordOtp,
   verifyforgetPasswordotp,
-  resetPassword
+  resetPassword,
+  getUser
 };
