@@ -25,9 +25,6 @@ const generateAccessandRefreshToken = async (userId) => {
   return { accessToken, refreshToken };
 };
 
-
-
-
 // register User && and after that send verify email link to User email
 const registerUser = async (req, res) => {
   try {
@@ -72,9 +69,6 @@ const registerUser = async (req, res) => {
   }
 };
 
-
-
-
 // verify email
 const verifyEmail = async (req, res) => {
   try {
@@ -111,9 +105,6 @@ const verifyEmail = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
-
-
-
 
 // verify login
 const loginUser = async (req, res) => {
@@ -171,9 +162,6 @@ const loginUser = async (req, res) => {
   }
 };
 
-
-
-
 // logOutUser
 const logoutUser = async (req, res) => {
   try {
@@ -197,9 +185,6 @@ const logoutUser = async (req, res) => {
     return res.status(500).status({ success: false, message: error.message });
   }
 };
-
-
-
 
 // Update Account Details
 const updateAccountDetails = async (req, res) => {
@@ -237,9 +222,6 @@ const updateAccountDetails = async (req, res) => {
     return res.status(500).status({ success: false, message: error.message });
   }
 };
-
-
-
 
 // change Password
 const changePassword = async (req, res) => {
@@ -282,8 +264,6 @@ const changePassword = async (req, res) => {
     return res.status(500).status({ success: false, message: error.message });
   }
 };
-
-
 
 // upload avatar image
 const uploadAvatar = async (req, res) => {
@@ -332,9 +312,6 @@ const uploadAvatar = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
-
-
-
 
 // after accessToken expire then generate new accesstoken with the help of refreshToken
 const accessandrefreshToken = async (req, res) => {
@@ -390,8 +367,6 @@ const accessandrefreshToken = async (req, res) => {
   }
 };
 
-
-
 //send reset password OTP..
 const forgetPasswordOtp = async (req, res) => {
   try {
@@ -408,7 +383,10 @@ const forgetPasswordOtp = async (req, res) => {
     if (!user) {
       return res
         .status(500)
-        .json({ success: false, message: "Wrong e-mail please provide correct e-mail.." });
+        .json({
+          success: false,
+          message: "Wrong e-mail please provide correct e-mail..",
+        });
     }
 
     const verifyCode = Math.floor(100000 + Math.random() * 900000);
@@ -430,30 +408,33 @@ const forgetPasswordOtp = async (req, res) => {
   }
 };
 
-
-
 // verify forgot password Otp...
 const verifyforgetPasswordotp = async (req, res) => {
   try {
-    const {email,code} = req.body;
+    const { email, code } = req.body;
 
-    const user = await User.findOne({email})
+    const user = await User.findOne({ email });
 
-    if(!user){
-      return res.status(400).json({message:"Please Provide Valid Email.."})
+    if (!user) {
+      return res.status(400).json({ message: "Please Provide Valid Email.." });
     }
 
-    if(user.otp !== code || user.otpExpire < Date.now()){
-      return res.status(500).json({message:"Your Otp is Wrong or Expired Please try again"});
+    if (user.otp !== code || user.otpExpire < Date.now()) {
+      return res
+        .status(500)
+        .json({ message: "Your Otp is Wrong or Expired Please try again" });
     }
 
-    await User.findByIdAndUpdate(user?._id,{
-      $set:{otp:null,otpExpire:null}
-    })
+    await User.findByIdAndUpdate(user?._id, {
+      $set: { otp: null, otpExpire: null },
+    });
 
-  
-    return res.status(200).json({success:true,message:"Otp verified Sucessfully you can forget your password"})
-
+    return res
+      .status(200)
+      .json({
+        success: true,
+        message: "Otp verified Sucessfully you can forget your password",
+      });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
@@ -461,6 +442,27 @@ const verifyforgetPasswordotp = async (req, res) => {
 
 
 
+// reset password
+const resetPassword = async (req, res) => {
+  try {
+    const {email,newpassword} = req.body;
+
+    const user = await User.findOne({email})
+
+    if(!user){
+      return res.status(500).json({message:"Invalid User"});
+    }
+
+    user.password = newpassword
+    await user.save({validateBeforeSave:false});
+
+    res.status(200).json({success:true,message:"Password reset Successfully"});
+
+
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
 
 export {
   registerUser,
@@ -473,4 +475,5 @@ export {
   accessandrefreshToken,
   forgetPasswordOtp,
   verifyforgetPasswordotp,
+  resetPassword
 };
