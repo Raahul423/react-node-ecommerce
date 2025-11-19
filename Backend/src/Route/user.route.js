@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { accessandrefreshToken, changePassword, forgetPasswordOtp, getUser, loginUser, logoutUser, registerUser, resetPassword, updateAccountDetails, uploadAvatar, verifyEmail, verifyforgetPasswordotp } from "../Controllers/user.controller.js";
 import { multerUpload } from "../Middleware/multer.middleware.js";
-import { testcode } from "../Controllers/test.js";
 import { verifyJwt } from "../Middleware/auth.middleware.js";
 
 
@@ -19,7 +18,6 @@ router.route('/forget-password').post(forgetPasswordOtp)
 router.route('/verifyforgetpasswordotp').post(verifyforgetPasswordotp)
 router.route('/resetpassword').post(resetPassword)
 router.route('/userinfo').get(verifyJwt,getUser)
-router.route('/test').get(testcode) // only testing purpose code here
 
 
 export {router}
