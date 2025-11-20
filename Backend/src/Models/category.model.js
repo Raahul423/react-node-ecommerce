@@ -8,9 +8,15 @@ const categorySchema = new mongoose.Schema(
       trim: true,
       required: true,
     },
+    slug: {
+      type: String,
+      unique: true,
+      required: true,
+    },
     images: [
       {
-        type: String,
+        url: { type: String },
+        public_id: { type: String },
       },
     ],
     parentId: {
