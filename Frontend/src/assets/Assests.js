@@ -123,31 +123,31 @@ export const ListItem = [
   },
   {
     Image:'https://serviceapi.spicezgold.com/download/1741661061379_foot.png',
-    Title:'Fastion'
+    Title:'Electronics'
   },
   {
     Image:'https://serviceapi.spicezgold.com/download/1741661061379_foot.png',
-    Title:'Fastion'
+    Title:'Bags'
   },
   {
     Image:'https://serviceapi.spicezgold.com/download/1741661061379_foot.png',
-    Title:'Fastion'
+    Title:'Footwear'
   },
   {
     Image:'https://serviceapi.spicezgold.com/download/1741661061379_foot.png',
-    Title:'Fastion'
+    Title:'Groceries'
   },
   {
     Image:'https://serviceapi.spicezgold.com/download/1741661061379_foot.png',
-    Title:'Fastion'
+    Title:'Beauty'
   },
   {
     Image:'https://serviceapi.spicezgold.com/download/1741661061379_foot.png',
-    Title:'Fastion'
+    Title:'Wellness'
   },
   {
     Image:'https://serviceapi.spicezgold.com/download/1741661061379_foot.png',
-    Title:'Fastion'
+    Title:'Games'
   }
 ]
 
