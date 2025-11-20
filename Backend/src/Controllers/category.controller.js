@@ -11,13 +11,17 @@ const safeUnlink = async (path) => {
   if (!path) return;
   try {
     await fs.unlink(path);
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 // create Category
 const createCategory = async (req, res) => {
   let imageObj = null;
   let localfile = req.file?.path;
+  console.log("imagepath", localfile);
+
   try {
     const { name, parentId } = req.body;
 
@@ -56,8 +60,6 @@ const createCategory = async (req, res) => {
     // upload image in cloudinary
     if (localfile) {
       const uploadImage = await uploadOncloudinary(localfile);
-      await safeUnlink(localfile);
-
       if (!uploadImage) {
         return res
           .status(500)
@@ -75,8 +77,8 @@ const createCategory = async (req, res) => {
     const category = await Category.create({
       name: name.trim(),
       slug,
-      images: imageObj ? [imageObj] : [], // store as array
-      parentId: parentId || null,
+      images: imageObj || "", // store as array
+      parentId: parentId || "",
     });
 
     return res.status(201).json({
@@ -86,15 +88,8 @@ const createCategory = async (req, res) => {
     });
   } catch (error) {
     if (imageObj?.public_id) {
-      try {
-        await removeFromcloudinary(imageObj.public_id);
-      } catch (e) {
-        console.error("Failed to remove cloud image during rollback:", e);
-      }
+      await removeFromcloudinary(imageObj.public_id);
     }
-
-    await safeUnlink(localfile);
-    console.error(error);
     return res
       .status(500)
       .json({ success: false, message: error.message || "Server error" });
