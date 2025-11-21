@@ -77,8 +77,8 @@ const createCategory = async (req, res) => {
     const category = await Category.create({
       name: name.trim(),
       slug,
-      images: imageObj || "", // store as array
-      parentId: parentId || "",
+      images: imageObj || null, // store as array
+      parentId: parentId || null,
     });
 
     return res.status(201).json({
@@ -96,4 +96,33 @@ const createCategory = async (req, res) => {
   }
 };
 
-export { createCategory };
+// getcategories
+const getcategories = async (req, res) => {
+  try {
+    const categories = await Category.find();
+    const categoryMap = {};
+
+    categories.forEach((cat) => {
+      categoryMap[cat._id] = { ...cat._doc, children: [] };
+    });
+
+    const rootcategories = [];
+
+    categories.forEach((cat) => {
+      if (cat.parentId) {
+        categoryMap[cat.parentId].children.push(categoryMap[cat._id]);
+      } else {
+        rootcategories.push(categoryMap[cat._id]);
+      }
+    });
+
+    return res.status(201).json({success:true,rootcategories})
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export { createCategory,getcategories };
