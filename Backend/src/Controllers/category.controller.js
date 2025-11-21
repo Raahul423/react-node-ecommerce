@@ -125,4 +125,41 @@ const getcategories = async (req, res) => {
   }
 };
 
-export { createCategory,getcategories };
+
+//CountCategory
+const countCategory = async(req,res)=>{
+    try {
+        const Count = await Category.countDocuments({parentId:null});
+        if(!Count){
+            return res.status(500).json({success:false,message:"Can't Find any root category"})
+        }
+        res.status(200).json({success:true,Count});
+    } catch (error) {
+        return res.status(500).json({success:false,message:error.message})
+    }
+}
+
+
+//countSubCategories
+const subCategoriescount = async(req,res)=>{
+    try {
+        const subCategory = await Category.find();
+        if(!subCategory){
+            return res.status(500).json({success:false,message:"subCategories not found"})
+        }
+
+        const countSubCategory = [];
+        for (let cat of subCategory){
+            if(cat.parentId !== null){
+                countSubCategory.push(cat);
+            }
+        }
+
+
+        return res.status(200).json({success:true,message:countSubCategory.length})
+    } catch (error) {
+        
+    }
+}
+
+export { createCategory,getcategories,countCategory,subCategoriescount };
