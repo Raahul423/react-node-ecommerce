@@ -16,10 +16,10 @@ const safeUnlink = async (path) => {
   }
 };
 
-// create Category
+// create Category // Admin Work
 const createCategory = async (req, res) => {
-  let imageObj = null;
-  let localfile = req.file?.path;
+    let localfile = req.files || [];
+  let imageObj = [];
   console.log("imagepath", localfile);
 
   try {
@@ -34,7 +34,7 @@ const createCategory = async (req, res) => {
 
     const Exist = await Category.findOne({ name: name.trim() });
     if (Exist) {
-      await safeUnlink(localfile);
+      await safeUnlink(localfile.path);
       return res
         .status(500)
         .json({ success: false, message: "Category is Already Exist" });
@@ -42,7 +42,7 @@ const createCategory = async (req, res) => {
 
     if (parentId) {
       if (!mongoose.Types.ObjectId.isValid(parentId)) {
-        await safeUnlink(localfile);
+        await safeUnlink(localfile.path);
         return res
           .status(500)
           .json({ success: false, message: "Invalid ProductId" });
@@ -50,28 +50,35 @@ const createCategory = async (req, res) => {
 
       const product = await Category.findById(parentId);
       if (!product) {
-        await safeUnlink(localfile);
+        await safeUnlink(localfile.path);
         return res
           .status(500)
           .json({ success: false, message: "Parent Category not found" });
       }
     }
 
-    // upload image in cloudinary
-    if (localfile) {
-      const uploadImage = await uploadOncloudinary(localfile);
-      if (!uploadImage) {
-        return res
-          .status(500)
-          .json({ success: false, message: "File Upload Failed" });
-      }
+    // Upload Image on Cloudinary
 
-      imageObj = {
-        url: uploadImage.secure_url || uploadImage.url,
-        public_id: uploadImage.public_id,
-      };
+    if(localfile.length > 0){
+      for(const file of localfile){
+        if(!file?.path){
+          throw new Error(`Expected file.path for diskStorage ${file.originalname}`);
+        }
+
+        const uploadImage = await uploadOncloudinary(file.path);
+        if(!uploadImage.secure_url || !uploadImage.public_id){
+          throw new Error('File not Found');
+        }
+
+
+        imageObj.push({
+          url: uploadImage.secure_url || uploadImage.url,
+          public_id: uploadImage.public_id
+        })
+      }
     }
 
+   
     const slug = slugify(name.trim(), { lower: true, strict: true });
 
     const category = await Category.create({
@@ -96,7 +103,7 @@ const createCategory = async (req, res) => {
   }
 };
 
-// getcategories
+// getcategories show all categories with children // Public
 const getcategories = async (req, res) => {
   try {
     const categories = await Category.find();
@@ -116,7 +123,7 @@ const getcategories = async (req, res) => {
       }
     });
 
-    return res.status(201).json({success:true,rootcategories})
+    return res.status(201).json({ success: true, rootcategories });
   } catch (error) {
     return res.status(500).json({
       success: false,
@@ -125,41 +132,69 @@ const getcategories = async (req, res) => {
   }
 };
 
-
-//CountCategory
-const countCategory = async(req,res)=>{
-    try {
-        const Count = await Category.countDocuments({parentId:null});
-        if(!Count){
-            return res.status(500).json({success:false,message:"Can't Find any root category"})
-        }
-        res.status(200).json({success:true,Count});
-    } catch (error) {
-        return res.status(500).json({success:false,message:error.message})
+//CountCategory // Public
+const countCategory = async (req, res) => {
+  try {
+    const rootCategory = await Category.countDocuments({ parentId: null });
+    if (!rootCategory) {
+      return res.status(200).json({
+        success: false,
+        count: rootCategory,
+        message:
+          rootCategory === 0
+            ? "No root categories found"
+            : "Root categories found",
+      });
     }
-}
+    res.status(200).json({ success: true, rootCategory });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
 
-
-//countSubCategories
-const subCategoriescount = async(req,res)=>{
-    try {
-        const subCategory = await Category.find();
-        if(!subCategory){
-            return res.status(500).json({success:false,message:"subCategories not found"})
-        }
-
-        const countSubCategory = [];
-        for (let cat of subCategory){
-            if(cat.parentId !== null){
-                countSubCategory.push(cat);
-            }
-        }
-
-
-        return res.status(200).json({success:true,message:countSubCategory.length})
-    } catch (error) {
-        
+//countSubCategories from a specific Category // Public
+const countsubcategoryofCategory = async (req, res) => {
+  try {
+    const rootCategory = req.params.id;
+    const subCategory = await Category.countDocuments({
+      parentId: rootCategory,
+    });
+    if (!subCategory) {
+      return res
+        .status(500)
+        .json({ success: false, message: "subCategories not found" });
     }
-}
 
-export { createCategory,getcategories,countCategory,subCategoriescount };
+    return res.status(200).json({ success: true, message: subCategory });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// get category by ID // public
+const getCategoryByID = async (req, res) => {
+  try {
+    const category = await Category.findById(req.params.id);
+    if (!category) {
+      return res
+        .status(500)
+        .json({ success: false, message: "catergory not found by given ID" });
+    }
+
+    return res.status(200).json({
+      success: true,
+      category,
+      message: "category found successfully",
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+export {
+  createCategory,
+  getcategories,
+  countCategory,
+  countsubcategoryofCategory,
+  getCategoryByID,
+};
