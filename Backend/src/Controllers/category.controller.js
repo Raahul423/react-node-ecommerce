@@ -192,6 +192,32 @@ const getCategoryByID = async (req, res) => {
 };
 
 // Delete Image
+const removeImageCloudinary = async (req, res) => {
+  try {
+    const { categoryId, imageId } = req.params;
+
+    const category = await Category.findById(categoryId);
+    if (!category) {
+      throw new Error("Category not found...");
+    }
+
+    const Image = category?.images.id(imageId);
+    if (!Image) {
+      throw new Error("Image not Foundd .....");
+    }
+
+    await removeFromcloudinary(Image.public_id);
+
+    await Image.deleteOne();
+    await category.save({ validateBeforeSave: false });
+
+    return res
+      .status(200)
+      .json({ success: true, category, message: "Image remove Successfully" });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
 
 
 export {
@@ -200,4 +226,5 @@ export {
   countCategory,
   countsubcategoryofCategory,
   getCategoryByID,
+  removeImageCloudinary,
 };

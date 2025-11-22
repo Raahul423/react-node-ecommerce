@@ -17,7 +17,7 @@ category.route('/:id').get(getCategoryByID) // get one category by ID
 
 //Admin Protected route
 category.route('/').post(verifyJwt,multerUpload.array('images'),createCategory);
-
+category.route('/:categoryId/image/:imageId').delete(verifyJwt,removeImageCloudinary)
 
 export {category}
 
