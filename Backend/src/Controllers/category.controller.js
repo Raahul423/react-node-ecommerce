@@ -18,7 +18,7 @@ const safeUnlink = async (path) => {
 
 // create Category // Admin Work
 const createCategory = async (req, res) => {
-    let localfile = req.files || [];
+  let localfile = req.files || [];
   let imageObj = [];
   console.log("imagepath", localfile);
 
@@ -59,26 +59,26 @@ const createCategory = async (req, res) => {
 
     // Upload Image on Cloudinary
 
-    if(localfile.length > 0){
-      for(const file of localfile){
-        if(!file?.path){
-          throw new Error(`Expected file.path for diskStorage ${file.originalname}`);
+    if (localfile.length > 0) {
+      for (const file of localfile) {
+        if (!file?.path) {
+          throw new Error(
+            `Expected file.path for diskStorage ${file.originalname}`
+          );
         }
 
         const uploadImage = await uploadOncloudinary(file.path);
-        if(!uploadImage.secure_url || !uploadImage.public_id){
-          throw new Error('File not Found');
+        if (!uploadImage.secure_url || !uploadImage.public_id) {
+          throw new Error("File not Found");
         }
-
 
         imageObj.push({
           url: uploadImage.secure_url || uploadImage.url,
-          public_id: uploadImage.public_id
-        })
+          public_id: uploadImage.public_id,
+        });
       }
     }
 
-   
     const slug = slugify(name.trim(), { lower: true, strict: true });
 
     const category = await Category.create({
@@ -190,6 +190,9 @@ const getCategoryByID = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
+
+// Delete Image
+
 
 export {
   createCategory,

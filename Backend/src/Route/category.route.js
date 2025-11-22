@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { verifyJwt } from "../Middleware/auth.middleware.js";
 import { multerUpload } from "../Middleware/multer.middleware.js";
-import { countCategory, createCategory, getCategoryByID, getcategories, countsubcategoryofCategory } from "../Controllers/category.controller.js";
+import { countCategory, createCategory, getCategoryByID, getcategories, countsubcategoryofCategory, removeImageCloudinary } from "../Controllers/category.controller.js";
 
 const category = Router();
 
@@ -16,9 +16,7 @@ category.route('/:id').get(getCategoryByID) // get one category by ID
 
 
 //Admin Protected route
-category.route('/').post(verifyJwt,multerUpload.array('images'),createCategory)
-
-
+category.route('/').post(verifyJwt,multerUpload.array('images'),createCategory);
 
 
 export {category}
