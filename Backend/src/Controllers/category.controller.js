@@ -282,7 +282,7 @@ const deleteCategory = async (req, res) => {
 
 //Update Category details // admin work
 const updateCategory = async (req, res) => {
-  const localfiles = req.files || [];
+  const localfiles = req.files;
   const imageObj = [];
   try {
     const { name, parentId } = req.body;
@@ -305,11 +305,21 @@ const updateCategory = async (req, res) => {
       }
     }
 
-     const slug = slugify(name.trim(), { lower: true, strict: true });
+    const slug = slugify(name.trim(), { lower: true, strict: true });
+
+    const updateData = {
+      name,
+      slug,
+      parentId
+    };
+
+    if (imageObj.length > 0) {
+      updateData.images = imageObj;
+    }
 
     const updateCategory = await Category.findByIdAndUpdate(
       req.params.id,
-      { name, images: imageObj, parentId ,slug },
+      updateData,
       { new: true, runValidators: true }
     );
 
