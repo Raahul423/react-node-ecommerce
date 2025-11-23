@@ -22,10 +22,10 @@ category.route('/:id').get(getCategoryByID) // get one category by ID
 
 
 //Admin Protected route
-category.route('/').post(verifyJwt,multerUpload.array('images'),createCategory);
-category.route('/:categoryId/image/:imageId').delete(verifyJwt,removeImageCloudinary)
-category.route('/:categoryId').delete(verifyJwt,deleteCategory)
-category.route('/:id/update').put(verifyJwt,multerUpload.array('images'),updateCategory)
+category.route('/create').post(verifyJwt,multerUpload.array('images'),createCategory);// create Category
+category.route('/:categoryId/image/:imageId').delete(verifyJwt,removeImageCloudinary)// delete any image
+category.route('/:categoryId').delete(verifyJwt,deleteCategory)// delete Category with all subcategories
+category.route('/:id/update').put(verifyJwt,multerUpload.array('images'),updateCategory)// update category
 
 export {category}
 
