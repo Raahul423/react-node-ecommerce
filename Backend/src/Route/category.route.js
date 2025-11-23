@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { verifyJwt } from "../Middleware/auth.middleware.js";
 import { multerUpload } from "../Middleware/multer.middleware.js";
-import { countCategory, createCategory, getCategoryByID, getcategories, countsubcategoryofCategory, removeImageCloudinary, deleteCategory } from "../Controllers/category.controller.js";
+import { countCategory, createCategory, getCategoryByID, getcategories, countsubcategoryofCategory, removeImageCloudinary, deleteCategory, updateCategory } from "../Controllers/category.controller.js";
 import { test } from "../Controllers/test.js";
 
 const category = Router();
@@ -25,6 +25,7 @@ category.route('/:id').get(getCategoryByID) // get one category by ID
 category.route('/').post(verifyJwt,multerUpload.array('images'),createCategory);
 category.route('/:categoryId/image/:imageId').delete(verifyJwt,removeImageCloudinary)
 category.route('/:categoryId').delete(verifyJwt,deleteCategory)
+category.route('/:id/update').put(verifyJwt,multerUpload.array('images'),updateCategory)
 
 export {category}
 

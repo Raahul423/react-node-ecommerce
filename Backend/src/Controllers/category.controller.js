@@ -259,7 +259,6 @@ const deleteCategory = async (req, res) => {
       .map((img) => img.public_id) // from all images recevied publicId
       .filter(Boolean); // remove null/undefined images
 
-
     // now remove all images from cloudinary
     await Promise.all(
       imagepublicId.map((img) => {
@@ -267,27 +266,45 @@ const deleteCategory = async (req, res) => {
       })
     );
 
+    const allCategoryIds = allCategories.map((catId) => catId._id);
+    await Category.deleteMany({ _id: { $in: allCategoryIds } });
 
-    const allCategoryIds = allCategories.map((catId)=>catId._id)
-    await Category.deleteMany({_id: {$in: allCategoryIds}})
-
-
-     return res.status(200).json({
+    return res.status(200).json({
       success: true,
       deletedCategoriesCount: allCategoryIds.length,
       deletedImagesCount: imagepublicId.length,
       message: "Category, subcategories & images deleted successfully",
     });
-
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
 
+//Update Category details // admin work
+const updateCategory = async (req, res) => {
+  try {
+    const { name,parentId } = req.body;
+    const {images} = req.files
+    const updateCategory = await Category.findByIdAndUpdate(
+      req.params.id,
+      {name,images,parentId},{new:true,runValidators:true}
+    );
+
+    if(!updateCategory){
+      throw new Error("Category not updated")
+    }
 
 
-
-
+    return res 
+    .status(200)
+    .json({success:true,updateCategory,message:"category updated successfully"})
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 
 export {
   createCategory,
@@ -296,5 +313,6 @@ export {
   countsubcategoryofCategory,
   getCategoryByID,
   removeImageCloudinary,
-  deleteCategory
+  deleteCategory,
+  updateCategory
 };
