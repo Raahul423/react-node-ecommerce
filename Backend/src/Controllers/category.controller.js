@@ -282,22 +282,46 @@ const deleteCategory = async (req, res) => {
 
 //Update Category details // admin work
 const updateCategory = async (req, res) => {
+  const localfiles = req.files || [];
+  const imageObj = [];
   try {
-    const { name,parentId } = req.body;
-    const {images} = req.files
-    const updateCategory = await Category.findByIdAndUpdate(
-      req.params.id,
-      {name,images,parentId},{new:true,runValidators:true}
-    );
+    const { name, parentId } = req.body;
 
-    if(!updateCategory){
-      throw new Error("Category not updated")
+    if (localfiles.length > 0) {
+      for (const files of localfiles) {
+        if (!files.path) {
+          throw new Error("Image path nor found...");
+        }
+
+        const upload = await uploadOncloudinary(files.path);
+        if (!upload.secure_url || !upload.public_id) {
+          throw new Error("Image upload Failed....");
+        }
+
+        imageObj.push({
+          url: upload.secure_url || upload.url,
+          public_id: upload.public_id,
+        });
+      }
     }
 
+     const slug = slugify(name.trim(), { lower: true, strict: true });
 
-    return res 
-    .status(200)
-    .json({success:true,updateCategory,message:"category updated successfully"})
+    const updateCategory = await Category.findByIdAndUpdate(
+      req.params.id,
+      { name, images: imageObj, parentId ,slug },
+      { new: true, runValidators: true }
+    );
+
+    if (!updateCategory) {
+      throw new Error("Category not updated");
+    }
+
+    return res.status(200).json({
+      success: true,
+      updateCategory,
+      message: "category updated successfully",
+    });
   } catch (error) {
     return res.status(500).json({
       success: false,
@@ -314,5 +338,5 @@ export {
   getCategoryByID,
   removeImageCloudinary,
   deleteCategory,
-  updateCategory
+  updateCategory,
 };
