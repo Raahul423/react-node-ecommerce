@@ -241,7 +241,7 @@ const removeImageCloudinary = async (req, res) => {
   }
 };
 
-// Delete Category with subcategory // admin work
+// Delete Category with subcategory and all images from cloudinary // admin work
 const deleteCategory = async (req, res) => {
   try {
     const category = await Category.findById(req.params.categoryId);
@@ -283,6 +283,11 @@ const deleteCategory = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
+
+
+
+
+
 
 export {
   createCategory,
