@@ -16,11 +16,33 @@ const safeUnlink = async (path) => {
   }
 };
 
+const allsubCategories = async (categoryId) => {
+  try {
+    const result = [];
+    const stack = [categoryId];
+
+    while (stack.length > 0) {
+      const currentId = stack.pop();
+
+      const children = await Category.find({ parentId: currentId });
+      // console.log(children);
+
+      for (const child of children) {
+        result.push(child);
+        stack.push(child._id);
+      }
+    }
+
+    return result;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 // create Category // Admin Work
 const createCategory = async (req, res) => {
   let localfile = req.files || [];
   let imageObj = [];
-  console.log("imagepath", localfile);
 
   try {
     const { name, parentId } = req.body;
@@ -191,7 +213,7 @@ const getCategoryByID = async (req, res) => {
   }
 };
 
-// Delete Image
+// Delete Image //admin work
 const removeImageCloudinary = async (req, res) => {
   try {
     const { categoryId, imageId } = req.params;
@@ -219,6 +241,48 @@ const removeImageCloudinary = async (req, res) => {
   }
 };
 
+// Delete Category with subcategory // admin work
+const deleteCategory = async (req, res) => {
+  try {
+    const category = await Category.findById(req.params.categoryId);
+    if (!category) {
+      throw new Error("category not found ...");
+    }
+
+    const subcategories = await allsubCategories(category._id);
+
+    const allCategories = [category, ...subcategories];
+
+    // now select all images from allcategories
+    const imagepublicId = allCategories
+      .flatMap((cat) => cat.images) // sari images array recevied
+      .map((img) => img.public_id) // from all images recevied publicId
+      .filter(Boolean); // remove null/undefined images
+
+
+    // now remove all images from cloudinary
+    await Promise.all(
+      imagepublicId.map((img) => {
+        removeFromcloudinary(img);
+      })
+    );
+
+
+    const allCategoryIds = allCategories.map((catId)=>catId._id)
+    await Category.deleteMany({_id: {$in: allCategoryIds}})
+
+
+     return res.status(200).json({
+      success: true,
+      deletedCategoriesCount: allCategoryIds.length,
+      deletedImagesCount: imagepublicId.length,
+      message: "Category, subcategories & images deleted successfully",
+    });
+
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
 
 export {
   createCategory,
@@ -227,4 +291,5 @@ export {
   countsubcategoryofCategory,
   getCategoryByID,
   removeImageCloudinary,
+  deleteCategory
 };
