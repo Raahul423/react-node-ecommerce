@@ -12,9 +12,8 @@ const productSchema = new mongoose.Schema(
     },
     images: [
       {
-        url: { type: String },
-        publicId: { type: String },
-        required: true,
+        url: { type: String, required:true },
+        publicId: { type: String, required:true },
       },
     ],
     brand: {
@@ -32,15 +31,15 @@ const productSchema = new mongoose.Schema(
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
+      required: true,
     },
-    subcategory:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Category"
+    subcategory: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
     },
     countInstock: {
       type: Number,
       default: 0,
-      required: true,
     },
     rating: {
       type: Number,
@@ -52,7 +51,7 @@ const productSchema = new mongoose.Schema(
     },
     discount: {
       type: Number,
-      required: true,
+      default: 0,
     },
     productRam: [
       {
