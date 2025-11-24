@@ -3,9 +3,9 @@ import {
   removeFromcloudinary,
   uploadOncloudinary,
 } from "../Utils/cloudinary.js";
-import fs from 'fs'
+import fs from "fs";
 
-// create products
+// create products //admin work
 const createProduct = async (req, res) => {
   const localfiles = req.files || [];
   const allImages = [];
@@ -83,14 +83,38 @@ const createProduct = async (req, res) => {
       product: populatedProduct,
       message: "product created successfully",
     });
-  } catch (error) { 
+  } catch (error) {
     for (let img of allImages) {
-      if(img?.publicId){
-        await removeFromcloudinary(img.publicId)
+      if (img?.publicId) {
+        await removeFromcloudinary(img.publicId);
       }
     }
     return res.status(500).json({ success: false, message: error.message });
   }
 };
 
-export { createProduct };
+// get All Products // Public
+const allProducts = async (req, res) => {
+  try {
+    const product = await Product.find();
+    if (!product) {
+      throw new Error("Products not found...");
+    }
+
+    return res.status(200).json({
+      success: true,
+      product,
+      message: "Successfully Get All Products",
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+
+
+
+export { 
+  createProduct, 
+  allProducts 
+};
