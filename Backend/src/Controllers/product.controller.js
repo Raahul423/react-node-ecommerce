@@ -3,6 +3,7 @@ import {
   removeFromcloudinary,
   uploadOncloudinary,
 } from "../Utils/cloudinary.js";
+import fs from 'fs'
 
 // create products
 const createProduct = async (req, res) => {
@@ -82,9 +83,11 @@ const createProduct = async (req, res) => {
       product: populatedProduct,
       message: "product created successfully",
     });
-  } catch (error) {
+  } catch (error) { 
     for (let img of allImages) {
-      await removeFromcloudinary(img.publicId);
+      if(img?.publicId){
+        await removeFromcloudinary(img.publicId)
+      }
     }
     return res.status(500).json({ success: false, message: error.message });
   }
