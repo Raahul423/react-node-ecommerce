@@ -32,23 +32,10 @@ const productSchema = new mongoose.Schema(
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
-      required: true,
     },
-    categoryName: {
-      type: String,
-      default: "",
-    },
-    categoryId: {
-      type: string,
-      default: "",
-    },
-    subcategoryName: {
-      type: String,
-      default: "",
-    },
-    subcategoryId: {
-      type: string,
-      default: "",
+    subcategory:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Category"
     },
     countInstock: {
       type: Number,
