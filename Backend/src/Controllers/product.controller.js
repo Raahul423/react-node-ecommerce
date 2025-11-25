@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { Product } from "../Models/product.model.js";
 import {
   removeFromcloudinary,
@@ -106,7 +107,7 @@ const allProducts = async (req, res) => {
     }
 
     const product = await Product.find()
-      .populate("category","name _id")
+      .populate("category", "name _id")
       .skip((page - 1) * perPageItem)
       .limit(perPageItem)
       .exec();
@@ -125,27 +126,33 @@ const allProducts = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
-
 
 // get products by category ID
 const getProductbycatId = async (req, res) => {
   try {
+    const catId = req.params.id;
+    if (!catId || !mongoose.Types.ObjectId.isValid(catId)) {
+      throw new Error("wrong category Id");
+    }
+
+    const filter = { category: catId }; // yha se category model ke ander jab tumne create krte time id pass ki thi usi id ki help se tum all products get kar paa rahe ho 
+
     const page = parseInt(req.query.page || 1);
     const perPageItem = parseInt(req.query.perpageitem || 2);
-    const totalProducts = await Product.countDocuments();
-    const totalpages = Math.ceil(totalProducts / perPageItem);
+    const totalProducts = await Product.countDocuments(filter);
+    const totalpages =
+      totalProducts.length === 0 ? 1 : Math.ceil(totalProducts / perPageItem);
 
     if (page > totalpages) {
       throw new Error("Page not found....");
     }
-    
 
-    const product = await Product.find({category:req.params.id})
-      .populate("category","name _id")
+    const product = await Product.find(filter)
+      .populate("category", "name _id")
       .skip((page - 1) * perPageItem)
       .limit(perPageItem)
       .exec();
-    if (!product) {
+    if (product.length === 0) {
       throw new Error("Products not found...");
     }
 
@@ -160,5 +167,7 @@ const getProductbycatId = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
+
+
 
 export { createProduct, allProducts, getProductbycatId };
