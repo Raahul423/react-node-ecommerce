@@ -169,5 +169,47 @@ const getProductbycatId = async (req, res) => {
 };
 
 
+// get products by subcategory ID
+const getProductbysubcatId = async (req, res) => {
+  try {
+    const catId = req.params.id;
+    if (!catId || !mongoose.Types.ObjectId.isValid(catId)) {
+      throw new Error("wrong category Id");
+    }
 
-export { createProduct, allProducts, getProductbycatId };
+    const filter = { subcategory: catId }; // yha se category model ke ander jab tumne create krte time id pass ki thi usi id ki help se tum all products get kar paa rahe ho 
+
+    const page = parseInt(req.query.page || 1);
+    const perPageItem = parseInt(req.query.perpageitem || 2);
+    const totalProducts = await Product.countDocuments(filter);
+    const totalpages =
+      totalProducts.length === 0 ? 1 : Math.ceil(totalProducts / perPageItem);
+
+    if (page > totalpages) {
+      throw new Error("Page not found....");
+    }
+
+    const product = await Product.find(filter)
+      .populate("category", "name _id")
+      .skip((page - 1) * perPageItem)
+      .limit(perPageItem)
+      .exec();
+    if (product.length === 0) {
+      throw new Error("Products not found...");
+    }
+
+    return res.status(200).json({
+      success: true,
+      product,
+      page,
+      totalpages,
+      message: "Successfully Get All Products",
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+
+
+export { createProduct, allProducts, getProductbycatId, getProductbysubcatId };
