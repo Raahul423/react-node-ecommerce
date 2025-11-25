@@ -96,7 +96,20 @@ const createProduct = async (req, res) => {
 // get All Products // Public
 const allProducts = async (req, res) => {
   try {
-    const product = await Product.find();
+    const page = parseInt(req.query.page || 1);
+    const perPageItem = parseInt(req.query.perpageitem || 10);
+    const totalProducts = await Product.countDocuments();
+    const totalpages = Math.ceil(totalProducts / perPageItem);
+
+    if (page > totalpages) {
+      throw new Error("Page not found....");
+    }
+
+    const product = await Product.find()
+      .populate("category","name _id")
+      .skip((page - 1) * perPageItem)
+      .limit(perPageItem)
+      .exec();
     if (!product) {
       throw new Error("Products not found...");
     }
@@ -104,6 +117,8 @@ const allProducts = async (req, res) => {
     return res.status(200).json({
       success: true,
       product,
+      page,
+      totalpages,
       message: "Successfully Get All Products",
     });
   } catch (error) {
@@ -111,10 +126,4 @@ const allProducts = async (req, res) => {
   }
 };
 
-
-
-
-export { 
-  createProduct, 
-  allProducts 
-};
+export { createProduct, allProducts };
