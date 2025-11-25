@@ -97,7 +97,7 @@ const createProduct = async (req, res) => {
 const allProducts = async (req, res) => {
   try {
     const page = parseInt(req.query.page || 1);
-    const perPageItem = parseInt(req.query.perpageitem || 10);
+    const perPageItem = parseInt(req.query.perpageitem || 2);
     const totalProducts = await Product.countDocuments();
     const totalpages = Math.ceil(totalProducts / perPageItem);
 
@@ -126,4 +126,39 @@ const allProducts = async (req, res) => {
   }
 };
 
-export { createProduct, allProducts };
+
+// get products by category ID
+const getProductbycatId = async (req, res) => {
+  try {
+    const page = parseInt(req.query.page || 1);
+    const perPageItem = parseInt(req.query.perpageitem || 2);
+    const totalProducts = await Product.countDocuments();
+    const totalpages = Math.ceil(totalProducts / perPageItem);
+
+    if (page > totalpages) {
+      throw new Error("Page not found....");
+    }
+    
+
+    const product = await Product.find({category:req.params.id})
+      .populate("category","name _id")
+      .skip((page - 1) * perPageItem)
+      .limit(perPageItem)
+      .exec();
+    if (!product) {
+      throw new Error("Products not found...");
+    }
+
+    return res.status(200).json({
+      success: true,
+      product,
+      page,
+      totalpages,
+      message: "Successfully Get All Products",
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+export { createProduct, allProducts, getProductbycatId };
