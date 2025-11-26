@@ -7,9 +7,9 @@ import { allProducts, createProduct, getProductbycatId, getProductbycatName, get
 const product = Router();
 // Public Route
 product.route('/allproducts').get(allProducts)
-product.route('/getproductbyCatId/:id').get(getProductbycatId)
-product.route('/getproductbysubCatId/:id').get(getProductbysubcatId)
-product.route('/by-subcategory-name/:name').get(getProductbycatName)
+product.route('/get-productby-catid/:id').get(getProductbycatId)
+product.route('/get-productby-subcatid/:id').get(getProductbysubcatId)
+product.route('/by-category-name').get(getProductbycatName)
 
 
 

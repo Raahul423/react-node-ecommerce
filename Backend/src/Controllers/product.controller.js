@@ -171,10 +171,11 @@ const getProductbycatId = async (req, res) => {
   }
 };
 
+// get product by Category Name
 const getProductbycatName = async (req, res) => {
   const escapeRegex = (s = "") => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // check safty where if any user pass any special charachter inside the soo this line will be check an remove
   try {
-    const rawName = req.params.name;
+    const rawName = req.query.name;
     if (!rawName) {
       throw new Error("Name should be required");
     }
@@ -266,6 +267,15 @@ const getProductbysubcatId = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
+
+//get products by subcategory Name
+const getProductbysubCatName = async(req,res)=>{
+  try {
+    const rawName = req.params.name
+  } catch (error) {
+    return res.status(500).json({success:false,message:error.message})
+  }
+}
 
 
 
