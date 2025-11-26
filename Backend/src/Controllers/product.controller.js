@@ -111,6 +111,7 @@ const allProducts = async (req, res) => {
 
     const product = await Product.find()
       .populate("category", "name _id")
+      .populate("subcategory", "name _id")
       .skip((page - 1) * perPageItem)
       .limit(perPageItem)
       .exec();
@@ -184,7 +185,6 @@ const getProductbycatName = async (req, res) => {
     if (name.length === 0) {
       throw new Error("name can't be Empty");
     }
-    
 
     const safe = escapeRegex(name);
 
@@ -248,7 +248,7 @@ const getProductbysubcatId = async (req, res) => {
     }
 
     const product = await Product.find(filter)
-      .populate("category", "name _id")
+      .populate("subcategory", "name _id")
       .skip((page - 1) * perPageItem)
       .limit(perPageItem)
       .exec();
@@ -269,17 +269,60 @@ const getProductbysubcatId = async (req, res) => {
 };
 
 //get products by subcategory Name
-const getProductbysubCatName = async(req,res)=>{
+const getProductbysubCatName = async (req, res) => {
+  const escapeRegex = (s = "") => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   try {
-    const rawName = req.params.name
+    const rawName = req.query.name;
+    if (!rawName) {
+      throw new Error("name should be required");
+    }
+
+    const name = rawName.trim();
+    if (name.length === 0) {
+      throw new Error("Name Can't be Empty");
+    }
+
+    const safe = escapeRegex(name);
+
+    const subCat = await Category.findOne({
+      name: new RegExp(`^${safe}$`, "i"),
+    });
+
+    if (!subCat) {
+      throw new Error("Subcategory name not found");
+    }
+
+    const filter = { subcategory: subCat._id };
+
+    const page = parseInt(req.query.page || 1);
+    const perPageItem = parseInt(req.query.perPageItem || 5);
+    const totalProducts = await Product.countDocuments(filter);
+    const totalPages =
+      totalProducts === 0 ? 1 : Math.ceil(totalProducts / perPageItem);
+
+    if (page > totalPages) {
+      throw new Error("Page Not Found ....");
+    }
+
+    const allProductbysubCatName = await Product.find(filter)
+      .populate("subcategory", "name _id")
+      .skip((page - 1) * perPageItem)
+      .limit(perPageItem)
+      .lean();
+
+    return res.status(200).json({
+      success: true,
+      allProductbysubCatName,
+      page,
+      perPageItem,
+      totalProducts,
+      totalPages,
+      message: "all product fetched sucessfully",
+    });
   } catch (error) {
-    return res.status(500).json({success:false,message:error.message})
+    return res.status(500).json({ success: false, message: error.message });
   }
-}
-
-
-
-
+};
 
 export {
   createProduct,
@@ -287,4 +330,5 @@ export {
   getProductbycatId,
   getProductbysubcatId,
   getProductbycatName,
+  getProductbysubCatName,
 };
