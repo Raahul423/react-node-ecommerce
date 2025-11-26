@@ -5,6 +5,9 @@ import {
   uploadOncloudinary,
 } from "../Utils/cloudinary.js";
 import fs from "fs";
+import { raw } from "express";
+import Category from "../Models/category.model.js";
+import { log } from "console";
 
 // create products //admin work
 const createProduct = async (req, res) => {
@@ -135,13 +138,13 @@ const getProductbycatId = async (req, res) => {
       throw new Error("wrong category Id");
     }
 
-    const filter = { category: catId }; // yha se category model ke ander jab tumne create krte time id pass ki thi usi id ki help se tum all products get kar paa rahe ho 
+    const filter = { category: catId }; // yha se category model ke ander jab tumne create krte time id pass ki thi usi id ki help se tum all products get kar paa rahe ho
 
     const page = parseInt(req.query.page || 1);
     const perPageItem = parseInt(req.query.perpageitem || 2);
     const totalProducts = await Product.countDocuments(filter);
     const totalpages =
-      totalProducts.length === 0 ? 1 : Math.ceil(totalProducts / perPageItem);
+      totalProducts === 0 ? 0 : Math.ceil(totalProducts / perPageItem);
 
     if (page > totalpages) {
       throw new Error("Page not found....");
@@ -168,6 +171,60 @@ const getProductbycatId = async (req, res) => {
   }
 };
 
+const getProductbycatName = async (req, res) => {
+  const escapeRegex = (s = "") => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // check safty where if any user pass any special charachter inside the soo this line will be check an remove
+  try {
+    const rawName = req.params.name;
+    if (!rawName) {
+      throw new Error("Name should be required");
+    }
+
+    const name = rawName.trim();
+    if (name.length === 0) {
+      throw new Error("name can't be Empty");
+    }
+    
+
+    const safe = escapeRegex(name);
+
+    const catName = await Category.findOne({
+      name: new RegExp(safe, "i"),
+    });
+
+    if (!catName) {
+      throw new Error("category name can't be found");
+    }
+
+    const filter = { category: catName._id };
+
+    const page = parseInt(req.query.page || 1);
+    const perPageItem = parseInt(req.query.perPageItem || 5);
+    const totalProducts = await Product.countDocuments(filter);
+    const totalPages =
+      totalProducts === 0 ? 1 : Math.ceil(totalProducts / perPageItem);
+
+    if (page > totalPages) {
+      throw new Error("Page Not Found ....");
+    }
+    const allProductbycatName = await Product.find(filter)
+      .populate("category", "name  _id")
+      .skip((page - 1) * perPageItem)
+      .limit(perPageItem)
+      .lean();
+
+    return res.status(200).json({
+      success: true,
+      allProductbycatName,
+      page,
+      perPageItem,
+      totalProducts,
+      totalPages,
+      message: "Successfully fetched all Products",
+    });
+  } catch (error) {
+    return res.status(500).json({ success: true, message: error.message });
+  }
+};
 
 // get products by subcategory ID
 const getProductbysubcatId = async (req, res) => {
@@ -177,7 +234,7 @@ const getProductbysubcatId = async (req, res) => {
       throw new Error("wrong category Id");
     }
 
-    const filter = { subcategory: catId }; // yha se category model ke ander jab tumne create krte time id pass ki thi usi id ki help se tum all products get kar paa rahe ho 
+    const filter = { subcategory: catId }; // yha se category model ke ander jab tumne create krte time id pass ki thi usi id ki help se tum all products get kar paa rahe ho
 
     const page = parseInt(req.query.page || 1);
     const perPageItem = parseInt(req.query.perpageitem || 2);
@@ -212,4 +269,12 @@ const getProductbysubcatId = async (req, res) => {
 
 
 
-export { createProduct, allProducts, getProductbycatId, getProductbysubcatId };
+
+
+export {
+  createProduct,
+  allProducts,
+  getProductbycatId,
+  getProductbysubcatId,
+  getProductbycatName,
+};
