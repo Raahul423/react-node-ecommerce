@@ -324,6 +324,60 @@ const getProductbysubCatName = async (req, res) => {
   }
 };
 
+// filter products by price
+const filterbyPrice = async (req,res) => {
+  try {
+    const filter = {};
+
+    const { categoryId, subcatId, minprice, maxprice } = req.query;
+
+    if (categoryId) {
+      filter.category = categoryId;
+    }
+
+    if (subcatId) {
+      filter.subcategory = subcatId;
+    }
+
+    const price = {};
+
+    if (minprice) price.$gte = Number(minprice);
+    if (maxprice) price.$lte = Number(maxprice);
+    if (Object.keys(price).length) {
+      filter.price = price;
+    }
+
+    const page = parseInt(req.query.page || 1);
+    const perPageItem = parseInt(req.query.perPageItem || 5);
+    const totalProducts = await Product.countDocuments(filter);
+    const totalPages =
+      totalProducts === 0 ? 1 : Math.ceil(totalProducts / perPageItem);
+
+    if (page > totalPages) {
+      throw new Error("Page Not Found ....");
+    }
+
+    const filterProduct = await Product.find(filter)
+      .populate("category", "name _id")
+      .populate("subcategory", "name _id")
+      .skip((page - 1) * perPageItem)
+      .limit(perPageItem)
+      .lean();
+
+      return res.status(200).json({
+      success: true,
+      filterProduct,
+      page,
+      perPageItem,
+      totalProducts,
+      totalPages,
+      message: "all filter product fetched sucessfully",
+    });
+  } catch (error) {
+    return res.status(500).jaon({ success: true, message: error.message });
+  }
+};
+
 export {
   createProduct,
   allProducts,
@@ -331,4 +385,5 @@ export {
   getProductbysubcatId,
   getProductbycatName,
   getProductbysubCatName,
+  filterbyPrice
 };
