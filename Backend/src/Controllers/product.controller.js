@@ -132,207 +132,102 @@ const allProducts = async (req, res) => {
 };
 
 // get products by category ID
-const getProductbycatId = async (req, res) => {
-  try {
-    const catId = req.params.id;
-    if (!catId || !mongoose.Types.ObjectId.isValid(catId)) {
-      throw new Error("wrong category Id");
-    }
+// const getProductbycatId = async (req, res) => {
+//   try {
+//     const catId = req.params.id;
+//     if (!catId || !mongoose.Types.ObjectId.isValid(catId)) {
+//       throw new Error("wrong category Id");
+//     }
 
-    const filter = { category: catId }; // yha se category model ke ander jab tumne create krte time id pass ki thi usi id ki help se tum all products get kar paa rahe ho
+//     const filter = { category: catId }; // yha se category model ke ander jab tumne create krte time id pass ki thi usi id ki help se tum all products get kar paa rahe ho
 
-    const page = parseInt(req.query.page || 1);
-    const perPageItem = parseInt(req.query.perpageitem || 2);
-    const totalProducts = await Product.countDocuments(filter);
-    const totalpages =
-      totalProducts === 0 ? 0 : Math.ceil(totalProducts / perPageItem);
+//     const page = parseInt(req.query.page || 1);
+//     const perPageItem = parseInt(req.query.perpageitem || 2);
+//     const totalProducts = await Product.countDocuments(filter);
+//     const totalpages =
+//       totalProducts === 0 ? 0 : Math.ceil(totalProducts / perPageItem);
 
-    if (page > totalpages) {
-      throw new Error("Page not found....");
-    }
+//     if (page > totalpages) {
+//       throw new Error("Page not found....");
+//     }
 
-    const product = await Product.find(filter)
-      .populate("category", "name _id")
-      .skip((page - 1) * perPageItem)
-      .limit(perPageItem)
-      .exec();
-    if (product.length === 0) {
-      throw new Error("Products not found...");
-    }
+//     const product = await Product.find(filter)
+//       .populate("category", "name _id")
+//       .skip((page - 1) * perPageItem)
+//       .limit(perPageItem)
+//       .exec();
+//     if (product.length === 0) {
+//       throw new Error("Products not found...");
+//     }
 
-    return res.status(200).json({
-      success: true,
-      product,
-      page,
-      totalpages,
-      message: "Successfully Get All Products",
-    });
-  } catch (error) {
-    return res.status(500).json({ success: false, message: error.message });
-  }
-};
+//     return res.status(200).json({
+//       success: true,
+//       product,
+//       page,
+//       totalpages,
+//       message: "Successfully Get All Products",
+//     });
+//   } catch (error) {
+//     return res.status(500).json({ success: false, message: error.message });
+//   }
+// };   // for learning Purpose
 
 // get product by Category Name
-const getProductbycatName = async (req, res) => {
-  const escapeRegex = (s = "") => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // check safty where if any user pass any special charachter inside the soo this line will be check an remove
-  try {
-    const rawName = req.query.name;
-    if (!rawName) {
-      throw new Error("Name should be required");
-    }
 
-    const name = rawName.trim();
-    if (name.length === 0) {
-      throw new Error("name can't be Empty");
-    }
-
-    const safe = escapeRegex(name);
-
-    const catName = await Category.findOne({
-      name: new RegExp(safe, "i"),
-    });
-
-    if (!catName) {
-      throw new Error("category name can't be found");
-    }
-
-    const filter = { category: catName._id };
-
-    const page = parseInt(req.query.page || 1);
-    const perPageItem = parseInt(req.query.perPageItem || 5);
-    const totalProducts = await Product.countDocuments(filter);
-    const totalPages =
-      totalProducts === 0 ? 1 : Math.ceil(totalProducts / perPageItem);
-
-    if (page > totalPages) {
-      throw new Error("Page Not Found ....");
-    }
-    const allProductbycatName = await Product.find(filter)
-      .populate("category", "name  _id")
-      .skip((page - 1) * perPageItem)
-      .limit(perPageItem)
-      .lean();
-
-    return res.status(200).json({
-      success: true,
-      allProductbycatName,
-      page,
-      perPageItem,
-      totalProducts,
-      totalPages,
-      message: "Successfully fetched all Products",
-    });
-  } catch (error) {
-    return res.status(500).json({ success: true, message: error.message });
-  }
-};
 
 // get products by subcategory ID
-const getProductbysubcatId = async (req, res) => {
-  try {
-    const catId = req.params.id;
-    if (!catId || !mongoose.Types.ObjectId.isValid(catId)) {
-      throw new Error("wrong category Id");
-    }
+// const getProductbysubcatId = async (req, res) => {
+//   try {
+//     const catId = req.params.id;
+//     if (!catId || !mongoose.Types.ObjectId.isValid(catId)) {
+//       throw new Error("wrong category Id");
+//     }
 
-    const filter = { subcategory: catId }; // yha se category model ke ander jab tumne create krte time id pass ki thi usi id ki help se tum all products get kar paa rahe ho
+//     const filter = { subcategory: catId }; // yha se category model ke ander jab tumne create krte time id pass ki thi usi id ki help se tum all products get kar paa rahe ho
 
-    const page = parseInt(req.query.page || 1);
-    const perPageItem = parseInt(req.query.perpageitem || 2);
-    const totalProducts = await Product.countDocuments(filter);
-    const totalpages =
-      totalProducts.length === 0 ? 1 : Math.ceil(totalProducts / perPageItem);
+//     const page = parseInt(req.query.page || 1);
+//     const perPageItem = parseInt(req.query.perpageitem || 2);
+//     const totalProducts = await Product.countDocuments(filter);
+//     const totalpages =
+//       totalProducts.length === 0 ? 1 : Math.ceil(totalProducts / perPageItem);
 
-    if (page > totalpages) {
-      throw new Error("Page not found....");
-    }
+//     if (page > totalpages) {
+//       throw new Error("Page not found....");
+//     }
 
-    const product = await Product.find(filter)
-      .populate("subcategory", "name _id")
-      .skip((page - 1) * perPageItem)
-      .limit(perPageItem)
-      .exec();
-    if (product.length === 0) {
-      throw new Error("Products not found...");
-    }
+//     const product = await Product.find(filter)
+//       .populate("subcategory", "name _id")
+//       .skip((page - 1) * perPageItem)
+//       .limit(perPageItem)
+//       .exec();
+//     if (product.length === 0) {
+//       throw new Error("Products not found...");
+//     }
 
-    return res.status(200).json({
-      success: true,
-      product,
-      page,
-      totalpages,
-      message: "Successfully Get All Products",
-    });
-  } catch (error) {
-    return res.status(500).json({ success: false, message: error.message });
-  }
-};
+//     return res.status(200).json({
+//       success: true,
+//       product,
+//       page,
+//       totalpages,
+//       message: "Successfully Get All Products",
+//     });
+//   } catch (error) {
+//     return res.status(500).json({ success: false, message: error.message });
+//   }
+// }; // for learning Purpose
 
 //get products by subcategory Name
-const getProductbysubCatName = async (req, res) => {
-  const escapeRegex = (s = "") => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  try {
-    const rawName = req.query.name;
-    if (!rawName) {
-      throw new Error("name should be required");
-    }
 
-    const name = rawName.trim();
-    if (name.length === 0) {
-      throw new Error("Name Can't be Empty");
-    }
-
-    const safe = escapeRegex(name);
-
-    const subCat = await Category.findOne({
-      name: new RegExp(`^${safe}$`, "i"),
-    });
-
-    if (!subCat) {
-      throw new Error("Subcategory name not found");
-    }
-
-    const filter = { subcategory: subCat._id };
-
-    const page = parseInt(req.query.page || 1);
-    const perPageItem = parseInt(req.query.perPageItem || 5);
-    const totalProducts = await Product.countDocuments(filter);
-    const totalPages =
-      totalProducts === 0 ? 1 : Math.ceil(totalProducts / perPageItem);
-
-    if (page > totalPages) {
-      throw new Error("Page Not Found ....");
-    }
-
-    const allProductbysubCatName = await Product.find(filter)
-      .populate("subcategory", "name _id")
-      .skip((page - 1) * perPageItem)
-      .limit(perPageItem)
-      .lean();
-
-    return res.status(200).json({
-      success: true,
-      allProductbysubCatName,
-      page,
-      perPageItem,
-      totalProducts,
-      totalPages,
-      message: "all product fetched sucessfully",
-    });
-  } catch (error) {
-    return res.status(500).json({ success: false, message: error.message });
-  }
-};
 
 // filter products by price
-const filterbyPrice = async (req,res) => {
+const filterProducts = async (req,res) => {
   try {
     const filter = {};
 
-    const { categoryId, subcatId, minprice, maxprice } = req.query;
+    const { catId, subcatId, minprice, maxprice,rating } = req.query;
 
-    if (categoryId) {
-      filter.category = categoryId;
+    if (catId) {
+      filter.category = catId;
     }
 
     if (subcatId) {
@@ -346,6 +241,8 @@ const filterbyPrice = async (req,res) => {
     if (Object.keys(price).length) {
       filter.price = price;
     }
+
+    
 
     const page = parseInt(req.query.page || 1);
     const perPageItem = parseInt(req.query.perPageItem || 5);
@@ -385,9 +282,5 @@ const filterbyPrice = async (req,res) => {
 export {
   createProduct,
   allProducts,
-  getProductbycatId,
-  getProductbysubcatId,
-  getProductbycatName,
-  getProductbysubCatName,
-  filterbyPrice
+  filterProducts
 };
