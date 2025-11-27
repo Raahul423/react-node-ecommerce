@@ -174,7 +174,6 @@ const allProducts = async (req, res) => {
 
 // get product by Category Name
 
-
 // get products by subcategory ID
 // const getProductbysubcatId = async (req, res) => {
 //   try {
@@ -218,9 +217,8 @@ const allProducts = async (req, res) => {
 
 //get products by subcategory Name
 
-
 // filter products by price
-const filterProducts = async (req,res) => {
+const filterProducts = async (req, res) => {
   try {
     const filter = {};
 
@@ -242,12 +240,10 @@ const filterProducts = async (req,res) => {
       filter.price = price;
     }
 
-    if(rating != undefined){
+    if (rating != undefined) {
       const ratingval = Number(rating);
-      filter.rating = {$gte : ratingval}
+      filter.rating = { $gte: ratingval };
     }
-
-
 
     const page = parseInt(req.query.page || 1);
     const perPageItem = parseInt(req.query.perPageItem || 5);
@@ -266,7 +262,7 @@ const filterProducts = async (req,res) => {
       .limit(perPageItem)
       .lean();
 
-      return res.status(200).json({
+    return res.status(200).json({
       success: true,
       filterProduct,
       page,
@@ -280,43 +276,78 @@ const filterProducts = async (req,res) => {
   }
 };
 
-
 // get total product lists
-const totalProduct = async(req,res)=>{
+const totalProduct = async (req, res) => {
   try {
     const productCount = await Product.countDocuments();
 
-    if(!productCount){
+    if (!productCount) {
       throw new Error("Not any product fetched");
     }
 
-    return res.status(200).json({success:true,productCount,message:"All product count fetched successfully"})
+    return res.status(200).json({
+      success: true,
+      productCount,
+      message: "All product count fetched successfully",
+    });
   } catch (error) {
-    return res.status(500).json({success:false, message:error.message})
+    return res.status(500).json({ success: false, message: error.message });
   }
-}
+};
 
-
-const getallisFeaturedProduct = async (req,res) => {
+// get all featured Products
+const getallisFeaturedProduct = async (req, res) => {
   try {
-    const isFeatureProduct = await Product.find({isfeatured:true}).populate("category","name _id").populate("subcategory","name _id");
-    if(!isFeatureProduct){
+    const isFeatureProduct = await Product.find({ isfeatured: true })
+      .populate("category", "name _id")
+      .populate("subcategory", "name _id");
+    if (!isFeatureProduct) {
       throw new Error("Product not found");
     }
 
-    return res.status(200).json({success:true,isFeatureProduct,message:"All Products Fetched Successfully"})
+    return res.status(200).json({
+      success: true,
+      isFeatureProduct,
+      message: "All Products Fetched Successfully",
+    });
   } catch (error) {
-     return res.status(500).json({success:false, message:error.message})
+    return res.status(500).json({ success: false, message: error.message });
   }
-}
+};
+
+// delete Product
+const deleteProduct = async (req, res) => {
+  try {
+    const removeProduct = await Product.findById(req.params.id);
+    if (!removeProduct) {
+      throw new Error("Product not found...");
+    }
+
+    const publicIds = removeProduct.images.map((img) => img.publicId);
+    if (!publicIds) {
+      throw new Error("Images not Found ...");
+    }
+
+    for(const img of publicIds){
+      await removeFromcloudinary(img)
+    }
+
+    await Product.deleteOne({_id:removeProduct})
 
 
-
+    return res
+      .status(200)
+      .json({ success: true, message: "Product Successfully removed" });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
 
 export {
   createProduct,
   allProducts,
   filterProducts,
   totalProduct,
-  getallisFeaturedProduct
+  getallisFeaturedProduct,
+  deleteProduct,
 };
