@@ -281,11 +281,27 @@ const filterProducts = async (req,res) => {
 };
 
 
+// get total product lists
+const totalProduct = async(req,res)=>{
+  try {
+    const totalproduct = await Product.countDocuments();
+
+    if(!totalproduct){
+      throw new Error("Not any product fetched");
+    }
+
+    return res.status(200).json({success:true,totalproduct,message:"All product count fetched successfully"})
+  } catch (error) {
+    return res.status(500).json({success:false, message:error.message})
+  }
+}
+
 
 
 
 export {
   createProduct,
   allProducts,
-  filterProducts
+  filterProducts,
+  totalProduct
 };
