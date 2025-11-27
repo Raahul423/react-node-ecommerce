@@ -224,7 +224,7 @@ const filterProducts = async (req,res) => {
   try {
     const filter = {};
 
-    const { catId, subcatId, minprice, maxprice,rating } = req.query;
+    const { catId, subcatId, minprice, maxprice, rating } = req.query;
 
     if (catId) {
       filter.category = catId;
@@ -242,7 +242,12 @@ const filterProducts = async (req,res) => {
       filter.price = price;
     }
 
-    
+    if(rating != undefined){
+      const ratingval = Number(rating);
+      filter.rating = {$gte : ratingval}
+    }
+
+
 
     const page = parseInt(req.query.page || 1);
     const perPageItem = parseInt(req.query.perPageItem || 5);
