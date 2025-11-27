@@ -284,15 +284,29 @@ const filterProducts = async (req,res) => {
 // get total product lists
 const totalProduct = async(req,res)=>{
   try {
-    const totalproduct = await Product.countDocuments();
+    const productCount = await Product.countDocuments();
 
-    if(!totalproduct){
+    if(!productCount){
       throw new Error("Not any product fetched");
     }
 
-    return res.status(200).json({success:true,totalproduct,message:"All product count fetched successfully"})
+    return res.status(200).json({success:true,productCount,message:"All product count fetched successfully"})
   } catch (error) {
     return res.status(500).json({success:false, message:error.message})
+  }
+}
+
+
+const getallisFeaturedProduct = async (req,res) => {
+  try {
+    const isFeatureProduct = await Product.find({isfeatured:true}).populate("category","name _id").populate("subcategory","name _id");
+    if(!isFeatureProduct){
+      throw new Error("Product not found");
+    }
+
+    return res.status(200).json({success:true,isFeatureProduct,message:"All Products Fetched Successfully"})
+  } catch (error) {
+     return res.status(500).json({success:false, message:error.message})
   }
 }
 
@@ -303,5 +317,6 @@ export {
   createProduct,
   allProducts,
   filterProducts,
-  totalProduct
+  totalProduct,
+  getallisFeaturedProduct
 };

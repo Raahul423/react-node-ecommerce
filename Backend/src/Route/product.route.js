@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { verifyJwt } from "../Middleware/auth.middleware.js";
 import { multerUpload } from "../Middleware/multer.middleware.js";
-import { allProducts, createProduct, filterProducts, totalProduct } from "../Controllers/product.controller.js";
+import { allProducts, createProduct, filterProducts, getallisFeaturedProduct, totalProduct } from "../Controllers/product.controller.js";
 
 
 const product = Router();
@@ -13,6 +13,7 @@ const product = Router();
 product.route('/allproducts').get(allProducts)
 product.route('/filter-products').get(filterProducts)
 product.route('/total-product').get(totalProduct)
+product.route('/featured-product').get(getallisFeaturedProduct)
 
 
 
