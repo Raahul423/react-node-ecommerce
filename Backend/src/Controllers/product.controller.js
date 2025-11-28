@@ -410,6 +410,21 @@ const updateProduct = async (req, res) => {
   }
 };
 
+
+// get single Product by Id
+
+const singleProduct = async (req,res) => {
+  try {
+    const product = await Product.findById(req.params.productId);
+    if(!product){
+      throw new Error("Product not Found...");
+    }
+    return res.status(200).json({success:true,product,message:"Product fetched Successfully"});
+  } catch (error) {
+    return res.status(500).json({success:false,message:error.message})
+  }
+}
+
 export {
   createProduct,
   allProducts,
@@ -417,5 +432,6 @@ export {
   totalProduct,
   getallisFeaturedProduct,
   deleteProduct,
-  updateProduct
+  updateProduct,
+  singleProduct
 };
