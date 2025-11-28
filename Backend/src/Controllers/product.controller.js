@@ -395,7 +395,7 @@ const updateProduct = async (req, res) => {
       product.images = imageObj;
     }
 
-    const updatedProduct = await product.save({validateBeforeSave:false})
+    const updatedProduct = await product.save({ validateBeforeSave: false });
 
     return res.status(200).json({
       success: true,
@@ -410,20 +410,24 @@ const updateProduct = async (req, res) => {
   }
 };
 
-
 // get single Product by Id
-
-const singleProduct = async (req,res) => {
+const singleProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.params.productId);
-    if(!product){
+    if (!product) {
       throw new Error("Product not Found...");
     }
-    return res.status(200).json({success:true,product,message:"Product fetched Successfully"});
+    return res
+      .status(200)
+      .json({
+        success: true,
+        product,
+        message: "Product fetched Successfully",
+      });
   } catch (error) {
-    return res.status(500).json({success:false,message:error.message})
+    return res.status(500).json({ success: false, message: error.message });
   }
-}
+};
 
 export {
   createProduct,
@@ -433,5 +437,5 @@ export {
   getallisFeaturedProduct,
   deleteProduct,
   updateProduct,
-  singleProduct
+  singleProduct,
 };

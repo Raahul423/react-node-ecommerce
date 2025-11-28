@@ -6,7 +6,7 @@ const cartProductSchema = new mongoose.Schema({
         ref:"Product"
     },
     quantity:{
-        type:number,
+        type:Number,
         default:1
     },
     userId:{
@@ -17,5 +17,6 @@ const cartProductSchema = new mongoose.Schema({
     timestamps:true
 })
 
-export default CartProduct = mongoose.model("CartProduct",cartProductSchema);
+const CartProduct = mongoose.model("CartProduct",cartProductSchema);
+export {CartProduct}
  
