@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { verifyJwt } from "../Middleware/auth.middleware.js";
 import { multerUpload } from "../Middleware/multer.middleware.js";
-import { allProducts, createProduct, deleteProduct, filterProducts, getallisFeaturedProduct, totalProduct } from "../Controllers/product.controller.js";
+import { allProducts, createProduct, deleteProduct, filterProducts, getallisFeaturedProduct, totalProduct, updateProduct } from "../Controllers/product.controller.js";
 
 
 const product = Router();
@@ -21,6 +21,7 @@ product.route('/featured-product').get(getallisFeaturedProduct)
 // Admin Route
 product.route('/create').post(verifyJwt,multerUpload.array('images'),createProduct);
 product.route('/delete-product/:id').delete(verifyJwt,deleteProduct)
+product.route('/update-product/:id').put(verifyJwt,multerUpload.array('images'),updateProduct)
 
 
 export {product}

@@ -8,6 +8,7 @@ import fs from "fs";
 import { raw } from "express";
 import Category from "../Models/category.model.js";
 import { log } from "console";
+import { url } from "inspector";
 
 // create products //admin work
 const createProduct = async (req, res) => {
@@ -328,16 +329,82 @@ const deleteProduct = async (req, res) => {
       throw new Error("Images not Found ...");
     }
 
-    for(const img of publicIds){
-      await removeFromcloudinary(img)
+    for (const img of publicIds) {
+      await removeFromcloudinary(img);
     }
 
-    await Product.deleteOne({_id:removeProduct})
-
+    await Product.deleteOne({ _id: removeProduct });
 
     return res
       .status(200)
       .json({ success: true, message: "Product Successfully removed" });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// update product
+const updateProduct = async (req, res) => {
+  const localfiles = req.files || [];
+  const imageObj = [];
+  try {
+    const {
+      name,
+      desc,
+      price,
+      oldprice,
+      countInstock,
+      rating,
+      isfeatured,
+      discount,
+    } = req.body;
+
+    const product = await Product.findById(req.params.id);
+
+    if (!product) {
+      throw new Error("Product not foundd...");
+    }
+
+    if (name) product.name = name;
+    if (desc) product.desc = desc;
+    if (price) product.price = price;
+    if (oldprice) product.oldprice = oldprice;
+    if (countInstock) product.countInstock = countInstock;
+    if (rating) product.rating = rating;
+    if (discount) product.discount = discount;
+    if (isfeatured !== undefined) product.isfeatured = isfeatured;
+
+    if (localfiles.length > 0) {
+      for (const img of product.images) {
+        await removeFromcloudinary(img.publicId);
+      }
+
+      for (const img of localfiles) {
+        const upload = await uploadOncloudinary(img.path);
+
+        if (!upload.secure_url || !upload.public_id) {
+          throw new Error("Image Upload on Cloudinary failed");
+        }
+
+        imageObj.push({
+          url: upload.secure_url || upload.url,
+          publicId: upload.public_id,
+        });
+      }
+
+      product.images = imageObj;
+    }
+
+    const updatedProduct = await product.save({validateBeforeSave:false})
+
+    return res.status(200).json({
+      success: true,
+      product: updatedProduct,
+      message:
+        localfiles.length > 0
+          ? "Product & Images updated successfully"
+          : "Product updated successfully",
+    });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
@@ -350,4 +417,5 @@ export {
   totalProduct,
   getallisFeaturedProduct,
   deleteProduct,
+  updateProduct
 };
