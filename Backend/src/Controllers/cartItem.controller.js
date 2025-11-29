@@ -41,4 +41,21 @@ const cartItemcontroller = async (req, res) => {
 };
 
 
-export {cartItemcontroller}
+const getallProductsinCart = async (req,res) => {
+  try {
+    const userId = req.user
+
+    if(!userId){
+      throw new Error("unauthorize user");
+    }
+
+    const cartItems = await CartProduct.find({userId}).populate("product_id");
+    
+    return res.status(200).json({success:true,cartItems,message:"All products are fetched"})
+  } catch (error) {
+    return res.status(500).json({success:false,message:error.message})
+  }
+}
+
+
+export {cartItemcontroller, getallProductsinCart}
