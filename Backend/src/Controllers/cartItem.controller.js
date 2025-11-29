@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import { CartProduct } from "../Models/cartproduct.model.js";
 import User from "../Models/user.model.js";
 
+//adding item in cart
 const cartItemcontroller = async (req, res) => {
   try {
     const userId = req.user._id;
@@ -65,7 +66,7 @@ const getallProductsinCart = async (req, res) => {
   }
 };
 
-// update a single productItem in cart
+// update cart Items Quantity
 const updateItem = async (req, res) => {
   try {
     const userId = req.user._id;
@@ -88,4 +89,21 @@ const updateItem = async (req, res) => {
   }
 };
 
-export { cartItemcontroller, getallProductsinCart, updateItem };
+// delete cart item
+const deleteItem = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const { itemId } = req.body;
+
+    const removeItemfromCart = await CartProduct.deleteOne({
+      userId,
+      _id: itemId,
+    });
+
+    return res.status(200).json({success:true,message:"Deleted successfully"})
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+export { cartItemcontroller, getallProductsinCart, updateItem, deleteItem };
