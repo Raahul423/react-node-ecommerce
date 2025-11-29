@@ -95,12 +95,33 @@ const deleteItem = async (req, res) => {
     const userId = req.user._id;
     const { itemId } = req.body;
 
-    const removeItemfromCart = await CartProduct.deleteOne({
+    if (!itemId) {
+      throw new Error("please provide id...");
+    }
+
+    const removeItemfromCart = await CartProduct.findByIdAndDelete({
       userId,
       _id: itemId,
     });
 
-    return res.status(200).json({success:true,message:"Deleted successfully"})
+    if (!removeItemfromCart) {
+      throw new Error("Item not Found");
+    }
+
+    const Productitem = removeItemfromCart.productItems;
+
+    await User.updateOne(
+      {
+        _id: userId,
+      },
+      {
+        $pull: { shoppingCart: Productitem },
+      }
+    );
+
+    return res
+      .status(200)
+      .json({ success: true, message: "Deleted successfully" });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
