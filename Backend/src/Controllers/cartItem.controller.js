@@ -4,7 +4,7 @@ import User from "../Models/user.model.js";
 
 const cartItemcontroller = async (req, res) => {
   try {
-    const userId = req.user;
+    const userId = req.user._id;
     if (!userId) {
       throw new Error("Invalid User");
     }
@@ -16,7 +16,7 @@ const cartItemcontroller = async (req, res) => {
 
     const ExistProduct = await CartProduct.findOne({
       userId: userId,
-      product_id: productId,
+      productItems: productId,
     });
 
     if (ExistProduct) {
@@ -25,7 +25,7 @@ const cartItemcontroller = async (req, res) => {
 
     const createCartItem = await CartProduct.create({
       userId,
-      product_id:productId,
+      productItems: productId,
       quantity: 1,
     });
 
@@ -34,28 +34,58 @@ const cartItemcontroller = async (req, res) => {
       { $push: { shoppingCart: productId } }
     );
 
-    return res.status(200).json({success:true,createCartItem,message:"Item saved in Cart Successfully"})
+    return res.status(200).json({
+      success: true,
+      createCartItem,
+      message: "Item saved in Cart Successfully",
+    });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
 
-
-const getallProductsinCart = async (req,res) => {
+// get all Product Items inside the Cart
+const getallProductsinCart = async (req, res) => {
   try {
-    const userId = req.user
+    const userId = req.user._id;
 
-    if(!userId){
+    if (!userId) {
       throw new Error("unauthorize user");
     }
 
-    const cartItems = await CartProduct.find({userId}).populate("product_id");
-    
-    return res.status(200).json({success:true,cartItems,message:"All products are fetched"})
+    const cartItems = await CartProduct.find({ userId }).populate(
+      "productItems"
+    );
+
+    return res
+      .status(200)
+      .json({ success: true, cartItems, message: "All products are fetched" });
   } catch (error) {
-    return res.status(500).json({success:false,message:error.message})
+    return res.status(500).json({ success: false, message: error.message });
   }
-}
+};
 
+// update a single productItem in cart
+const updateItem = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const { qty, Itemid } = req.body;
 
-export {cartItemcontroller, getallProductsinCart}
+    if (!qty || !Itemid || Itemid == undefined) {
+      throw new Error("product and quantity not received...");
+    }
+
+    const updateProduct = await CartProduct.updateOne(
+      { userId, _id: Itemid },
+      { $set: { quantity: qty } }
+    );
+
+    return res
+      .status(200)
+      .json({ success: true, updateProduct, message: "Updated Successfully" });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+export { cartItemcontroller, getallProductsinCart, updateItem };
