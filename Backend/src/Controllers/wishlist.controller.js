@@ -66,10 +66,9 @@ const removeItem = async (req, res) => {
       throw new Error("please provide productId");
     }
 
-    const deleteItem = await Wishlist.findByIdAndDelete({
-      userId,
-      _id: productId,
-    });
+    const deleteItem = await Wishlist.findOneAndDelete({
+        userId,
+       _id: productId});
 
     if (!deleteItem) {
       throw new Error("Item not found....");
