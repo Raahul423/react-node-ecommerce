@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
 import { FcGoogle } from "react-icons/fc";
 import { useState } from 'react'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { Link } from 'react-router';
+import api from '../../Utils/api';
+import { MyContext } from '../../Provider';
 
 const RegisterComponent = () => {
+    const { toastMessage } = useContext(MyContext);
+
     const [showPassword, setShowPassword] = useState(false);
     const [field, setField] = useState({
-        name: "",
+        fullName: "",
         email: "",
         password: ""
     });
@@ -23,12 +27,28 @@ const RegisterComponent = () => {
         })
     }
 
-    console.log(field);
-    
+    const handleClick = async (event) => {
+        event.preventDefault();
+        console.log("data",field);
+        
+        if (!field.fullName || !field.email || !field.password) {
+            toastMessage("error", "Please fill all required field")
+        } else {
+            try {
+                const response = await api.post('/register', field)
+                toastMessage("success", "Please verify your mail.")
+                console.log("response", response.data);
+            } catch (error) {
+                console.log("Error Response:", error.response?.data);
+                toastMessage("error", "something wrong")
+            }
+        }
+    }
 
-    
 
-    
+
+
+
     return (
         <section className='w-[32%] px-8 py-10 border border-gray-500/50 rounded-md m-auto gap-4 flex flex-col shadow-gray-950/30 shadow-xl bg-white'>
             <h1 className='text-center'>Register To New Account</h1>
@@ -40,7 +60,7 @@ const RegisterComponent = () => {
                 <TextField
                     className="!w-full"
                     id="outlined-basic"
-                    name="name"
+                    name="fullName"
                     onChange={onChangeInput}
                     label="Full Name"
                     variant="outlined" />
@@ -90,7 +110,7 @@ const RegisterComponent = () => {
 
             </Box>
 
-            <Button className='w-full !bg-primary !text-white !py-2.5'>
+            <Button onClick={handleClick} className='w-full !bg-primary !text-white !py-2.5'>
                 <p className=''>Register</p>
             </Button>
 
