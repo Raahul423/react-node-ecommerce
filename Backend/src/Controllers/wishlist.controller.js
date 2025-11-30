@@ -30,5 +30,20 @@ const addItemWishlist = async (req,res) => {
     }
 }
 
+//get all wishlist
+const getwishListProduct = async (req,res) => {
+    try {
+        const userId = req.user?._id
+        const wishlistItems = await Wishlist.find({userId}).populate("productId")
+        if(!wishlistItems){
+            throw new Error("Item not found....");
+        }
 
-export {addItemWishlist}
+        return res.status(200).json({success:true,wishlistItems,message:"Successfully fetched all wishList Items"})
+    } catch (error) {
+        return res.status(500).json({success:false,message:error.message})
+    }
+}
+
+
+export {addItemWishlist,getwishListProduct}
