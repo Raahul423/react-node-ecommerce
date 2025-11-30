@@ -10,6 +10,8 @@ import { router } from "./src/Route/user.route.js";
 import { category } from "./src/Route/category.route.js";
 import { product } from "./src/Route/product.route.js";
 import { cartItem } from "./src/Route/cartItem.route.js";
+import { wishlistrouter } from "./src/Route/wishlist.route.js";
+
 
 const app = express();
 app.use(cors("*"));
@@ -29,6 +31,7 @@ app.use('/api/users',router)
 app.use('/api/categories',category)
 app.use('/api/products',product)
 app.use('/api/cartitems',cartItem)
+app.use('/api/wishlist',wishlistrouter)
 
 connectDB().then(() => {
   app.listen(process.env.PORT,() => {
