@@ -7,6 +7,28 @@ import { Link } from 'react-router';
 
 const RegisterComponent = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const [field, setField] = useState({
+        name: "",
+        email: "",
+        password: ""
+    });
+
+    const onChangeInput = (e) => {
+        const { name, value } = e.target;
+        setField(() => {
+            return {
+                ...field,
+                [name]: value
+            }
+        })
+    }
+
+    console.log(field);
+    
+
+    
+
+    
     return (
         <section className='w-[32%] px-8 py-10 border border-gray-500/50 rounded-md m-auto gap-4 flex flex-col shadow-gray-950/30 shadow-xl bg-white'>
             <h1 className='text-center'>Register To New Account</h1>
@@ -18,6 +40,8 @@ const RegisterComponent = () => {
                 <TextField
                     className="!w-full"
                     id="outlined-basic"
+                    name="name"
+                    onChange={onChangeInput}
                     label="Full Name"
                     variant="outlined" />
             </Box>
@@ -31,6 +55,8 @@ const RegisterComponent = () => {
                     className="!w-full"
                     id="outlined-basic"
                     label="E-mail"
+                    name="email"
+                    onChange={onChangeInput}
                     variant="outlined" />
             </Box>
 
@@ -42,16 +68,13 @@ const RegisterComponent = () => {
             >
 
                 <FormControl variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                    <InputLabel>Password</InputLabel>
                     <OutlinedInput
                         id="outlined-adornment-password"
                         type={showPassword ? 'text' : 'password'}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton
-                                    aria-label={
-                                        showPassword ? 'hide the password' : 'display the password'
-                                    }
                                     onClick={() => setShowPassword(!showPassword)}
                                     edge="end"
                                 >
@@ -60,6 +83,8 @@ const RegisterComponent = () => {
                             </InputAdornment>
                         }
                         label="Password"
+                        name='password'
+                        onChange={onChangeInput}
                     />
                 </FormControl>
 
@@ -85,7 +110,7 @@ const RegisterComponent = () => {
             </div>
 
             <Button className='w-full !bg-gray-700/20 !text-black !py-2.5 flex gap-4'>
-            <FcGoogle className='text-2xl'/>
+                <FcGoogle className='text-2xl' />
                 <p className=''>SIGNUP WITH GOOGLE</p>
             </Button>
         </section>
