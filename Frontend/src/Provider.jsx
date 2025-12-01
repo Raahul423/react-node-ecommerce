@@ -1,11 +1,8 @@
 import React, { createContext, useState } from 'react'
 import CartDrawer from './Components/Context/CartDrawer'
 import DialogComponent from './Components/Context/DialogComponent'
-import Header from './Components/Header/Header'
-import Footer from './Components/FooterComponent/Footer'
 import ScrollComponent from './Components/ScrolltoTop/ScrollComponent'
 import { toast, ToastContainer } from 'react-toastify'
-
 const MyContext = createContext();
 
 const Provider = ({ children }) => {
@@ -33,13 +30,10 @@ const Provider = ({ children }) => {
 
     return (
         <MyContext.Provider value={value}>
-            <ToastContainer position="bottom-center" toastStyle={{background:"#1e1e1e",color:"#fff"}} autoClose={2000} />
+            <ToastContainer position="bottom-center" toastStyle={{ background: "#1e1e1e", color: "#fff" }} autoClose={2000} />
             <CartDrawer>
                 <DialogComponent>
-                    <Header />
-                    <ScrollComponent />
                     {children}
-                    <Footer />
                 </DialogComponent>
             </CartDrawer>
         </MyContext.Provider>

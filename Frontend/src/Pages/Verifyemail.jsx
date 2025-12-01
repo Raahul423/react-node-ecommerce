@@ -34,7 +34,7 @@ const Verifyemail = () => {
                 const res = await api.get(`/users/verify-email?token=${token}&id=${id}`);
 
 
-                setVerify("email verify successfully redirect to login...");
+                setVerify("Email verify successfully redirect to login...");
 
                 toastMessage("error",res.data.message || "Email verified please login")
 
@@ -52,9 +52,9 @@ const Verifyemail = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
     return (
-        <section className='bg-gray-400/20'>
+        <section>
             <div className='my-container flex justify-center items-center'>
-                <p className='!text-2xl'>{verify}</p>
+                <p className='!text-xl'>{verify}</p>
             </div>
         </section>
     )
