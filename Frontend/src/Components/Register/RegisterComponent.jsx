@@ -9,7 +9,6 @@ import { MyContext } from '../../Provider';
 
 const RegisterComponent = () => {
     const { toastMessage } = useContext(MyContext);
-
     const [showPassword, setShowPassword] = useState(false);
     const [field, setField] = useState({
         fullName: "",
@@ -29,28 +28,35 @@ const RegisterComponent = () => {
 
     const handleClick = async (event) => {
         event.preventDefault();
-        console.log("data",field);
-        
+        const emailRegex = /^\S+@\S+\.\S+$/; // for check Valid emailId
+
         if (!field.fullName || !field.email || !field.password) {
             toastMessage("error", "Please fill all required field")
-        } else {
-            try {
-                const response = await api.post('/register', field)
-                toastMessage("success", "Please verify your mail.")
-                console.log("response", response.data);
-            } catch (error) {
-                console.log("Error Response:", error.response?.data);
-                toastMessage("error", "something wrong")
+            return;
+        }
+        if (!emailRegex.test(field.email)) {
+            toastMessage("error", "Please enter valid email-Id")
+            return;
+        }
+
+
+        try {
+            const response = await api.post('/users/register', field)
+            toastMessage("success", response.data.message || "Please verify your mail.")
+            // console.log("response", response.data);
+        } catch (error) {
+            if (error.response) {
+                toastMessage("error", error.response.data.message);
+            } else {
+                toastMessage("error", "Server is currently not responding. Please try again later.")
             }
         }
+
     }
 
 
-
-
-
     return (
-        <section className='w-[32%] px-8 py-10 border border-gray-500/50 rounded-md m-auto gap-4 flex flex-col shadow-gray-950/30 shadow-xl bg-white'>
+        <section  className='w-[32%] px-8 py-10 border border-gray-500/50 rounded-md m-auto gap-4 flex flex-col shadow-gray-950/30 shadow-xl bg-white'>
             <h1 className='text-center'>Register To New Account</h1>
             <Box
                 component="form"

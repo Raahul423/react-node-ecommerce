@@ -14,6 +14,8 @@ import Provider from './Provider'
 import YourInfo from './Components/Profile/YourInfo'
 import MyList from './Components/Profile/MyList'
 import Myorder from './Components/Profile/Myorder'
+import Verifyemail from './Pages/verifyemail'
+
 
 function App() {
 
@@ -25,6 +27,7 @@ function App() {
         <Route path='/product/:id' element={<ProductsId />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/verify-email' element={<Verifyemail/>} />
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/cart' element={<YourCart />} />
         <Route path='/myaccount' element={<YourAccount />}>

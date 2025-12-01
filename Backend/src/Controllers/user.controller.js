@@ -62,7 +62,7 @@ const registerUser = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      message: "User Registered Sucessfully Please verify your email",
+      message: "Please Verify your Email...",
       user,
     });
   } catch (error) {

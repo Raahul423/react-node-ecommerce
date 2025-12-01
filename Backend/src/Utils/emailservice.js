@@ -4,7 +4,7 @@ import { transporter } from "../Config/mailer.js";
 
 const sendVerificationEmail = async({ to, token, name, userId })=>{
   const appUrl = process.env.APP_URL.replace(/\/$/, '');
-  const verifyUrl = `${appUrl}/auth/verify-email?token=${encodeURIComponent(token)}&id=${userId}`;
+  const verifyUrl = `${appUrl}/verify-email?token=${encodeURIComponent(token)}&id=${userId}`;
 
   const html = `
     <div style="font-family: Arial, sans-serif; line-height:1.6; color:#333;">
