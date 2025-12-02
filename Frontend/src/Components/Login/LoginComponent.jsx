@@ -2,11 +2,11 @@ import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, Outli
 import { FcGoogle } from "react-icons/fc";
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router';
-import { ToastContainer, toast } from 'react-toastify';
+import { useContext, useState } from 'react';
 import { MyContext } from '../../Provider';
-import { useState } from 'react';
 
 const LoginComponent = () => {
+    const {toastMessage} = useContext(MyContext)
     const navigate = useNavigate();
 
     const [showPassword, setShowPassword] = useState(false);
@@ -17,9 +17,9 @@ const LoginComponent = () => {
 
     const ForgotPassword = () => {
         if (verifyaccount.email.trim() === '') {
-            toast.error("Please Enter E-mail");
+            toastMessage("error","Please Enter E-mail");
         } else {
-            toast.success("Redirecting to password reset page...")
+           toastMessage("success","Redirecting to password reset page...")
             setTimeout(() => {
                 navigate("/forgot-password")
             }, 2000);
@@ -29,19 +29,18 @@ const LoginComponent = () => {
 
     const login = () => {
         if (verifyaccount.email.trim() == '') {
-            toast.error("Please Enter Your E-mail First")
+           toastMessage("error","Please Enter Your E-mail First")
         } else if (verifyaccount.password.trim() == '') {
-            toast.error("Please Enter Your Password")
+          toastMessage("error","Please Enter Your Password")
         }
         else {
-            toast.success("Logged in");
+            toastMessage("success","Logged in");
         }
     }
 
 
 
     return (
-
         <section className='w-[28%] px-8 py-10 border border-gray-500/50 rounded-md m-auto gap-4 flex flex-col shadow-gray-950/30 shadow-xl bg-white'>
 
             <h1 className='text-center'>Login to your account</h1>
@@ -119,7 +118,6 @@ const LoginComponent = () => {
                 <p className=''>LOGIN WITH GOOGLE</p>
             </Button>
 
-            <ToastContainer />
         </section>
     )
 }

@@ -45,6 +45,11 @@ const RegisterComponent = () => {
             setLoading(true)
             const response = await api.post('/users/register', field)
             toastMessage("success", response.data.message || "Please verify your mail.")
+            setField({
+                fullName: "",
+                email: "",
+                password: ""
+            });
             // console.log("response", response.data);
         } catch (error) {
             if (error.response) {
@@ -62,7 +67,7 @@ const RegisterComponent = () => {
     return (
         <>
             {loading && (
-                <div div className="fixed inset-0 bg-black/85 flex items-center justify-center z-[9999]" >
+                <div className="fixed inset-0 bg-black/85 flex items-center justify-center z-[9999]" >
                     <div className="flex flex-col items-center gap-3">
                         <CircularProgress />
                         <p className="text-white text-sm">Processing your registration...</p>
@@ -81,6 +86,7 @@ const RegisterComponent = () => {
                         id="outlined-basic"
                         name="fullName"
                         onChange={onChangeInput}
+                        value={field.fullName}
                         label="Full Name"
                         variant="outlined" />
                 </Box>
@@ -95,6 +101,7 @@ const RegisterComponent = () => {
                         id="outlined-basic"
                         label="E-mail"
                         name="email"
+                        value={field.email}
                         onChange={onChangeInput}
                         variant="outlined" />
                 </Box>
@@ -124,6 +131,7 @@ const RegisterComponent = () => {
                             label="Password"
                             name='password'
                             onChange={onChangeInput}
+                            value={field.password}
                         />
                     </FormControl>
 

@@ -92,7 +92,7 @@ const verifyEmail = async (req, res) => {
 
     if (!user) {
       await User.findByIdAndDelete(id);
-      return res.status(400).json({ message: "Invalid or Expired Token" });
+      return res.status(400).json({ message: "Invalid or Expired Token..." });
     }
 
     user.verify_email = true;
