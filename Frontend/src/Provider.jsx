@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext,  useState } from 'react'
 import CartDrawer from './Components/Context/CartDrawer'
 import DialogComponent from './Components/Context/DialogComponent'
 import { toast, ToastContainer } from 'react-toastify'
@@ -6,22 +6,11 @@ const MyContext = createContext();
 
 const Provider = ({ children }) => {
     const [isLogin, setIsLogin] = useState(false);
-    const [user,setUser]=useState(null);
-    const [token,setToken] = useState(null);
+    const [user, setUser] = useState(null);
+    const [token, setToken] = useState(null);
 
 
-    useEffect(()=>{
-        const saveduser = localStorage.getItem("user")
-        const token = localStorage.getItem("token")
-
-        if(saveduser && token){
-            setUser(JSON.parse(saveduser));
-            setToken(token)
-            setIsLogin(true)
-        }
-    },[])
-
-     const toastMessage = (type, message) => {
+    const toastMessage = (type, message) => {
         switch (type) {
             case "success":
                 toast.success(message);
@@ -35,7 +24,7 @@ const Provider = ({ children }) => {
     }
 
 
-    const logout = ()=>{
+    const logout = () => {
         setToken(null)
         setUser(null)
         setIsLogin(false)
@@ -44,10 +33,10 @@ const Provider = ({ children }) => {
         localStorage.removeItem("token");
         localStorage.removeItem("user")
 
-        toastMessage("success","Logout Successfully")
+        toastMessage("success", "Logout Successfully")
     }
 
-   
+
 
     const value = {
         isLogin,

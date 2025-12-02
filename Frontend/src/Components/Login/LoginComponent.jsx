@@ -37,28 +37,42 @@ const LoginComponent = () => {
     }
 
     const login = async () => {
-        if (verifyaccount.email.trim() == '') {
-            toastMessage("error", "Please Enter Your E-mail First")
+          if (verifyaccount.email.trim() === '') {
+            toastMessage("error", "Please Enter E-mail");
+            return;
         }
-        if (verifyaccount.password.trim() == '') {
-            toastMessage("error", "Please Enter Your Password")
+        if (!emailRegex.test(verifyaccount.email)) {
+            toastMessage("error", "Please Enter Valid E-mail");
+            return;
         }
-
-        try {
+          if (verifyaccount.password.trim() === '') {
+            toastMessage("error", "Please Enter Password");
+            return;
+        }
+        
+        try { 
             setLoding(true);
             const response = await api.post('/users/login', verifyaccount);
+            console.log(response.data);
 
-            setToken(response.data.token)
-            setUser(response.data.user)
+            const { createdUser, token, message } = response.data
+
+            setToken(token)
+            setUser(createdUser)
             setIsLogin(true)
 
-             setVerifyaccount({
+            setVerifyaccount({
                 fullName: "",
                 email: "",
                 password: ""
             });
 
-            toastMessage("success", response.data.message || "Login Successfully")
+
+
+
+
+
+            toastMessage("success", message || "Login Successfully")
 
             setTimeout(() => {
                 navigate('/')
@@ -68,7 +82,7 @@ const LoginComponent = () => {
             if (error.response) {
                 toastMessage("error", error.response?.data?.message)
             } else {
-                toastMessage("error", "Something Wrong Please try again...")
+                toastMessage("error", "Something Wrong Please try again...");
             }
         } finally {
             setLoding(false)

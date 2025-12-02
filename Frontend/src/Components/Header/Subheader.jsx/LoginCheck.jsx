@@ -111,9 +111,9 @@ const LoginCheck = () => {
                     </Link>
                 </Menu >
 
-                <div className='cursor-pointer'>
-                    <p>{user.fullName}</p>
-                    <p>{user.email}</p>
+                <div className='flex'>
+                    <span>{user?.fullName}</span>
+                    <span>{user?.email}</span>
                 </div>
             </div >
         </>

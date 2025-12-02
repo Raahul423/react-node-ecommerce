@@ -47,23 +47,25 @@ const registerUser = async (req, res) => {
       password,
     });
 
-    const { hashed, token } = generateVerificationToken();
-    user.emailVerificationToken = hashed;
-    user.emailVerificationExpires = Date.now() + 1000 * 60 * 5; // valid 10 min only
+    const createdUser = await User.findById(user?._id).select("-refreshToken -password");
 
-    await user.save({ validateBeforeSave: false });
+    const { hashed, token } = generateVerificationToken();
+    createdUser.emailVerificationToken = hashed;
+    createdUser.emailVerificationExpires = Date.now() + 1000 * 60 * 5; // valid 10 min only
+
+    await createdUser.save({ validateBeforeSave: false });
 
     await sendVerificationEmail({
-      to: user.email,
+      to: createdUser.email,
       token,
-      name: user.fullName,
-      userId: user?._id,
+      name: createdUser.fullName,
+      userId: createdUser?._id,
     });
 
     return res.status(200).json({
       success: true,
       message: "Please Verify your Email...",
-      user,
+      createdUser,
     });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
@@ -125,6 +127,8 @@ const loginUser = async (req, res) => {
 
     const user = await User.findOne({ email });
 
+   
+
     if (!user) {
       return res.status(500).json({ message: "User not registered..." });
     }
@@ -152,17 +156,16 @@ const loginUser = async (req, res) => {
       secure: true,
     };
 
+    const createdUser = await User.findById(user?._id).select("-refreshToken -password")
+
     return res
       .status(200)
       .cookie("accessToken", accessToken, options)
       .cookie("refreshToken", refreshToken, options)
       .json({
         success: true,
-        user,
-        data: {
-          accessToken,
-          refreshToken,
-        },
+        token:accessToken,
+        createdUser,
         message: "User Logged In Sucessfully",
       });
   } catch (error) {
