@@ -126,17 +126,17 @@ const loginUser = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(500).json({ message: "User not registered" });
+      return res.status(500).json({ message: "User not registered..." });
     }
 
     if (user.verify_email === false) {
-      return res.status(500).json({ message: "E-mail not Verified" });
+      return res.status(500).json({ message: "Please verify your email..." });
     }
 
     const checkPassword = await user.isPasswordCorrect(password);
 
     if (!checkPassword) {
-      return res.status(500).json({ message: "Your Password is incorrect" });
+      return res.status(500).json({ message: "Your Password is incorrect..." });
     }
 
 

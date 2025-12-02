@@ -1,15 +1,16 @@
 import { Avatar, Button, ListItemIcon, Menu, MenuItem } from '@mui/material'
 import { LogOut, Settings } from 'lucide-react';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { FaRegHeart, FaRegUser } from 'react-icons/fa';
 import { FaCircleUser } from 'react-icons/fa6'
 import { HiOutlineUserCircle } from 'react-icons/hi2';
 import { LiaShoppingBagSolid } from 'react-icons/lia';
 import { MdOutlineLocationOn } from 'react-icons/md';
 import { Link } from 'react-router';
+import { MyContext } from '../../../Provider';
 
 const LoginCheck = () => {
-
+    const {user} = useContext(MyContext)
     const [account, setAccount] = useState(null);
     const open = Boolean(account);
 
@@ -111,8 +112,8 @@ const LoginCheck = () => {
                 </Menu >
 
                 <div className='cursor-pointer'>
-                    <p>Rahul Pal</p>
-                    <span>Rpal78624480@gmail.com</span>
+                    <p>{user.fullName}</p>
+                    <p>{user.email}</p>
                 </div>
             </div >
         </>
