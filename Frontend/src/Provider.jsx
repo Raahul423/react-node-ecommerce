@@ -10,6 +10,9 @@ const Provider = ({ children }) => {
     const [token, setToken] = useState(null);
 
 
+
+    localStorage.getItem(token);
+
     const toastMessage = (type, message) => {
         switch (type) {
             case "success":
@@ -31,7 +34,7 @@ const Provider = ({ children }) => {
 
 
         localStorage.removeItem("token");
-        localStorage.removeItem("user")
+        // localStorage.removeItem("user")
 
         toastMessage("success", "Logout Successfully")
     }
