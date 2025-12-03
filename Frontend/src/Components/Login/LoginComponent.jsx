@@ -7,7 +7,7 @@ import { MyContext } from '../../Provider';
 import api from '../../Utils/api'
 
 const LoginComponent = () => {
-    const { toastMessage, setUser, setToken, setIsLogin } = useContext(MyContext)
+    const { toastMessage, setUser, setIsLogin } = useContext(MyContext)
     const navigate = useNavigate();
 
     const [loading, setLoding] = useState(false)
@@ -58,7 +58,6 @@ const LoginComponent = () => {
 
             const { createdUser, token, message } = response.data
 
-            setToken(token)
             setUser(createdUser)
             setIsLogin(true)
 
@@ -68,7 +67,14 @@ const LoginComponent = () => {
                 password: ""
             });
 
-            // localStorage.setItem(token);
+            localStorage.setItem("token", token);
+            localStorage.setItem("user", JSON.stringify(createdUser));
+            console.log(
+                localStorage.getItem("token", token));
+            console.log(
+                localStorage.getItem("user", (createdUser)));
+
+
 
             toastMessage("success", message || "Login Successfully")
 

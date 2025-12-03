@@ -1,4 +1,4 @@
-import React, { createContext,  useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import CartDrawer from './Components/Context/CartDrawer'
 import DialogComponent from './Components/Context/DialogComponent'
 import { toast, ToastContainer } from 'react-toastify'
@@ -7,11 +7,6 @@ const MyContext = createContext();
 const Provider = ({ children }) => {
     const [isLogin, setIsLogin] = useState(false);
     const [user, setUser] = useState(null);
-    const [token, setToken] = useState(null);
-
-
-
-    localStorage.getItem(token);
 
     const toastMessage = (type, message) => {
         switch (type) {
@@ -26,9 +21,28 @@ const Provider = ({ children }) => {
         }
     }
 
+    useEffect(() => {
+        try {
+            const token = localStorage.getItem("token")
+            const saveduser = localStorage.getItem("user")
+            console.log(token);
+            console.log(saveduser);
+            
+            
+
+            if (token && saveduser) {
+                setUser(JSON.parse(saveduser));
+                setIsLogin(true)
+            }
+        } catch (error) {
+            toastMessage("error", error)
+        }
+    }, [])
+
+
+
 
     const logout = () => {
-        setToken(null)
         setUser(null)
         setIsLogin(false)
 
@@ -48,8 +62,6 @@ const Provider = ({ children }) => {
         logout,
         user,
         setUser,
-        token,
-        setToken
     }
 
 
