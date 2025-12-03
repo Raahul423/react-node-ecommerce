@@ -25,11 +25,7 @@ const Provider = ({ children }) => {
         try {
             const token = localStorage.getItem("token")
             const saveduser = localStorage.getItem("user")
-            console.log(token);
-            console.log(saveduser);
             
-            
-
             if (token && saveduser) {
                 setUser(JSON.parse(saveduser));
                 setIsLogin(true)
@@ -46,9 +42,8 @@ const Provider = ({ children }) => {
         setUser(null)
         setIsLogin(false)
 
-
         localStorage.removeItem("token");
-        // localStorage.removeItem("user")
+        localStorage.removeItem("user") 
 
         toastMessage("success", "Logout Successfully")
     }

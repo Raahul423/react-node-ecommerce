@@ -1,16 +1,15 @@
-import { Avatar, Button, ListItemIcon, Menu, MenuItem } from '@mui/material'
+import { Button, ListItemIcon, Menu, MenuItem, Tooltip } from '@mui/material'
 import { LogOut, Settings } from 'lucide-react';
-import React, { useContext, useState } from 'react'
-import { FaRegHeart, FaRegUser } from 'react-icons/fa';
+import { useContext, useState } from 'react'
+import { FaRegHeart } from 'react-icons/fa';
 import { FaCircleUser } from 'react-icons/fa6'
 import { HiOutlineUserCircle } from 'react-icons/hi2';
 import { LiaShoppingBagSolid } from 'react-icons/lia';
-import { MdOutlineLocationOn } from 'react-icons/md';
 import { Link } from 'react-router';
 import { MyContext } from '../../../Provider';
 
 const LoginCheck = () => {
-    const {user} = useContext(MyContext)
+    const { user, logout } = useContext(MyContext)
     const [account, setAccount] = useState(null);
     const open = Boolean(account);
 
@@ -25,10 +24,13 @@ const LoginCheck = () => {
 
     return (
         <>
-            <div className='flex items-center gap-2'>
-                <Button onMouseOver={handleClick} className='!w-12 !h-12 !rounded-full !min-w-0 !text-black'>
-                    <FaCircleUser className='h-7 w-7' />
-                </Button>
+            <div className='flex items-center'>
+                <Tooltip title="tap to open">
+                    <Button onClick={handleClick} className='!w-15 !h-15 !rounded-full !min-w-0 !text-black'>
+                        <FaCircleUser className='h-10 w-10' />
+                    </Button>
+                </Tooltip>
+
 
                 <Menu
                     anchorEl={account}
@@ -84,7 +86,7 @@ const LoginCheck = () => {
                                 <LiaShoppingBagSolid className='h-7 w-7' />
                             </ListItemIcon>
                             Orders
-                            
+
                         </MenuItem>
                     </Link>
 
@@ -100,7 +102,7 @@ const LoginCheck = () => {
                         </MenuItem >
                     </Link >
 
-                    <Link to={"./myaccount"}>
+                    <Link to={"/"} onClick={logout}>
                         <MenuItem onClick={handleClose}>
 
                             <ListItemIcon>
@@ -111,7 +113,7 @@ const LoginCheck = () => {
                     </Link>
                 </Menu >
 
-                <div className='flex'>
+                <div className='flex flex-col'>
                     <span>{user?.fullName}</span>
                     <span>{user?.email}</span>
                 </div>

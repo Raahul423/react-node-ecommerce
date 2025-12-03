@@ -69,12 +69,6 @@ const LoginComponent = () => {
 
             localStorage.setItem("token", token);
             localStorage.setItem("user", JSON.stringify(createdUser));
-            console.log(
-                localStorage.getItem("token", token));
-            console.log(
-                localStorage.getItem("user", (createdUser)));
-
-
 
             toastMessage("success", message || "Login Successfully")
 
