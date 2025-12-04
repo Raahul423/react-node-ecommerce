@@ -70,6 +70,8 @@ const LoginComponent = () => {
             localStorage.setItem("token", token);
             localStorage.setItem("user", JSON.stringify(createdUser));
 
+
+
             toastMessage("success", message || "Login Successfully")
 
             setTimeout(() => {
@@ -86,7 +88,6 @@ const LoginComponent = () => {
             setLoding(false)
         }
     }
-
 
 
     return (

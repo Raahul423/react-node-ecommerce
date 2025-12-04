@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from 'react'
 import CartDrawer from './Components/Context/CartDrawer'
 import DialogComponent from './Components/Context/DialogComponent'
 import { toast, ToastContainer } from 'react-toastify'
+import api from './Utils/api';
 const MyContext = createContext();
 
 const Provider = ({ children }) => {
@@ -30,6 +31,9 @@ const Provider = ({ children }) => {
                 setUser(JSON.parse(saveduser));
                 setIsLogin(true)
             }
+
+    
+            
         } catch (error) {
             toastMessage("error", error)
         }
@@ -38,14 +42,19 @@ const Provider = ({ children }) => {
 
 
 
-    const logout = () => {
-        setUser(null)
-        setIsLogin(false)
-
-        localStorage.removeItem("token");
-        localStorage.removeItem("user") 
-
-        toastMessage("success", "Logout Successfully")
+    const logout = async() => {
+       try {
+        await api.get("/users/logout")
+         setUser(null)
+         setIsLogin(false)
+ 
+         localStorage.removeItem("token");
+         localStorage.removeItem("user") 
+ 
+         toastMessage("success", "Logout Successfully")
+       } catch (error) {
+        toastMessage("error",error)
+       }
     }
 
 
