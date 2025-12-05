@@ -21,16 +21,18 @@ const LoginComponent = () => {
 
     const ForgotPassword = async() => {
         if (verifyaccount.email.trim() === '') {
-            toastMessage("error", "Please Enter E-mail");
+            toastMessage("error", "Please Enter E-mail...");
             return;
         }
         if (!emailRegex.test(verifyaccount.email)) {
-            toastMessage("error", "Please Enter Valid E-mail");
+            toastMessage("error", "Please Enter Valid E-mail...");
             return;
         }
 
         try {
             const res = await api.post('/users/forget-password',{email:verifyaccount.email})
+
+            localStorage.setItem("email",verifyaccount.email);
             toastMessage("success", res?.data.message)
             setTimeout(() => {
                 navigate("/forgot-password")
@@ -47,11 +49,11 @@ const LoginComponent = () => {
     const login = async (event) => {
         event.preventDefault()
         if (verifyaccount.email.trim() === '') {
-            toastMessage("error", "Please Enter E-mail");
+            toastMessage("error", "Please Enter E-mail..");
             return;
         }
         if (!emailRegex.test(verifyaccount.email)) {
-            toastMessage("error", "Please Enter Valid E-mail");
+            toastMessage("error", "Please Enter Valid E-mail...");
             return;
         }
         if (verifyaccount.password.trim() === '') {
@@ -90,7 +92,7 @@ const LoginComponent = () => {
             if (error.response) {
                 toastMessage("error", error.response?.data?.message)
             } else {
-                toastMessage("error", "Something Wrong Please try again...");
+                toastMessage("error", "Server not responding Please try again...");
             }
         } finally {
             setLoding(false)

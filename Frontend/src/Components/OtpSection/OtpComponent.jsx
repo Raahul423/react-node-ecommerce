@@ -2,13 +2,15 @@ import React, { useContext, useRef, useState } from "react";
 import { Box, TextField, Button } from "@mui/material";
 import { Link, useNavigate } from "react-router";
 import { MyContext } from "../../Provider";
+import api from "../../Utils/api";
 
 const OtpComponent = () => {
-    const {toastMessage} = useContext(MyContext)
+    const { toastMessage } = useContext(MyContext)
     const navigate = useNavigate();
 
     const [otp, setOtp] = useState(new Array(6).fill(""));
     const inputRefs = useRef([]);
+    const email = localStorage.getItem("email")
 
 
     const handleChange = (e, index) => {
@@ -30,13 +32,26 @@ const OtpComponent = () => {
         }
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const enteredOtp = otp.join("");
         if (enteredOtp.length < 6) {
-           toastMessage("error","Please enter full 6-digit OTP");
-        } else {
-           toastMessage("success",`OTP Submitted: ${enteredOtp}`);
+            toastMessage("error", "Please enter full 6-digit OTP")
+            return;
+        }
+        try {
+            const res = await api.post('/users/verifyforgetpasswordotp',
+                {
+                    code: enteredOtp,
+                    email: email
+                })
             navigate('/update-password')
+            toastMessage(res.message)
+        } catch (error) {
+            if (error.response) {
+                toastMessage("error", error.response?.data?.message)
+            } else {
+                toastMessage("error", "Server not respond please try again...")
+            }
         }
     };
 
@@ -68,16 +83,16 @@ const OtpComponent = () => {
                     ))}
                 </Box>
 
-            
-                    <Button
-                        onClick={handleSubmit}
-                        variant="contained"
-                        color="primary"
-                        className="w-full !py-3 !bg-primary hover:!bg-black !my-3"
-                    >
-                        Verify OTP
-                    </Button>
-                
+
+                <Button
+                    onClick={handleSubmit}
+                    variant="contained"
+                    color="primary"
+                    className="w-full !py-3 !bg-primary hover:!bg-black !my-3"
+                >
+                    Verify OTP
+                </Button>
+
 
 
             </div>
