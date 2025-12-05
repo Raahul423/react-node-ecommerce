@@ -12,7 +12,7 @@ const sendresetPasswordemail = async({ to, otp, name})=>{
       <p style="text-align:center;">
        <h1>${verifycode}</h1>
       </p>
-      <p> Use this code to reset your password...</p>
+      <p> Use this OTP to reset your password...</p>
       <hr>
       <p style="font-size:12px;color:#999">If you’ve already reset your password, kindly disregard this email..</p>
     </div>

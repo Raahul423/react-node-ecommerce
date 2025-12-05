@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Box, TextField, Button } from "@mui/material";
-import { toast, ToastContainer } from "react-toastify";
 import { Link, useNavigate } from "react-router";
+import { MyContext } from "../../Provider";
 
 const OtpComponent = () => {
-
+    const {toastMessage} = useContext(MyContext)
     const navigate = useNavigate();
 
     const [otp, setOtp] = useState(new Array(6).fill(""));
@@ -33,9 +33,9 @@ const OtpComponent = () => {
     const handleSubmit = () => {
         const enteredOtp = otp.join("");
         if (enteredOtp.length < 6) {
-            toast.error("Please enter full 6-digit OTP");
+           toastMessage("error","Please enter full 6-digit OTP");
         } else {
-            toast.success(`OTP Submitted: ${enteredOtp}`);
+           toastMessage("success",`OTP Submitted: ${enteredOtp}`);
             navigate('/update-password')
         }
     };
@@ -81,8 +81,6 @@ const OtpComponent = () => {
 
 
             </div>
-
-            <ToastContainer />
         </section>
     )
 }

@@ -19,7 +19,7 @@ const LoginComponent = () => {
 
     const emailRegex = /^\S+@\S+\.\S+$/;
 
-    const ForgotPassword = () => {
+    const ForgotPassword = async() => {
         if (verifyaccount.email.trim() === '') {
             toastMessage("error", "Please Enter E-mail");
             return;
@@ -29,11 +29,19 @@ const LoginComponent = () => {
             return;
         }
 
-        toastMessage("success", "Redirecting to password reset page...")
-        setTimeout(() => {
-            navigate("/forgot-password")
-        }, 2000);
-
+        try {
+            const res = await api.post('/users/forget-password',{email:verifyaccount.email})
+            toastMessage("success", res?.data.message)
+            setTimeout(() => {
+                navigate("/forgot-password")
+            }, 2000);
+        } catch (error) {
+            if (error?.response) {
+                toastMessage("error", error?.response?.data?.message)
+            } else {
+                toastMessage("error", "Server not respond please try again...")
+            }
+        }
     }
 
     const login = async (event) => {
