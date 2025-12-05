@@ -70,7 +70,6 @@ const LoginComponent = () => {
         try {
             setLoding(true);
             const response = await api.post('/users/login', verifyaccount);
-            console.log(response.data);
 
             const { createdUser, token, message } = response.data
 

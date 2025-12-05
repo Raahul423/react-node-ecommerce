@@ -238,22 +238,22 @@ const changePassword = async (req, res) => {
     if (!user) {
       return res
         .status(500)
-        .status({ success: false, message: "User Token Invalid" });
+        .json({ success: false, message: "User Token Invalid" });
     }
 
     const checkOldPassword = await user.isPasswordCorrect(oldpassword);
 
     if (!checkOldPassword) {
-      return res.status(400).status({
+      return res.status(400).json({
         success: false,
-        message: "Please Enter Your Old Password Correctly",
+        message: "Invalid OldPassword...",
       });
     }
 
     if (oldpassword === newpassword) {
-      return res.status(500).status({
+      return res.status(500).json({
         success: false,
-        message: "New Password Can't be Same as Oldpassword",
+        message: "New Password Can't be Same as Oldpassword..",
       });
     }
 
@@ -263,7 +263,7 @@ const changePassword = async (req, res) => {
     res.status(200).json({
       sucess: true,
       user,
-      message: "Password is Successfully Updated",
+      message: "Password is Successfully Updated..",
     });
   } catch (error) {
     return res.status(500).status({ success: false, message: error.message });

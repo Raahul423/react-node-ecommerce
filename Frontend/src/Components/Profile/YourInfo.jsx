@@ -20,7 +20,6 @@ const YourInfo = () => {
       ...prev, [name]: value
     })))
   }
-  console.log(user);
 
 
   useEffect(() => {
