@@ -36,7 +36,14 @@ const Changepassword = () => {
 
         try { 
             setLoading(true)
-            const response = await api.patch("/users/change-password", changePassword);            
+            const response = await api.patch("/users/change-password", changePassword);  
+            
+            setChangePassword({
+                oldpassword:"",
+                newpassword:""
+            })
+
+            setConfirmpassword("")
 
             toastMessage("success",response?.data?.message);
         } catch (error) {
