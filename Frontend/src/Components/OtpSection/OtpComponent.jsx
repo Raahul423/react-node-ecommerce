@@ -39,13 +39,16 @@ const OtpComponent = () => {
             return;
         }
         try {
-            const res = await api.post('/users/verifyforgetpasswordotp',
+            await api.post('/users/verifyforgetpasswordotp',
                 {
                     code: enteredOtp,
                     email: email
                 })
-            navigate('/update-password')
-            toastMessage(res.message)
+            toastMessage("success", "Verified your OTP You can reset your Password")
+            setTimeout(() => {
+                navigate('/update-password')
+            },1000)
+
         } catch (error) {
             if (error.response) {
                 toastMessage("error", error.response?.data?.message)

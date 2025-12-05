@@ -440,7 +440,7 @@ const verifyforgetPasswordotp = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      message: "Otp verified Sucessfully you can forget your password",
+      message: "OTP verified Sucessfully you can forget your password",
     });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });

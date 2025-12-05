@@ -114,7 +114,7 @@ const LoginComponent = () => {
 
                         <CircularProgress />
 
-                        {onclick === "ForgotPassword" ? <p className="text-white text-sm">Verify your details....</p> : <p className="text-white text-sm">Processing your Login deatils please wait...</p>}
+                        {onclick === "ForgotPassword" ? <p className="text-white text-sm">Please Wait..Verifying your details....</p> : <p className="text-white text-sm">Processing your Login deatils please wait...</p>}
 
                     </div>
                 </div >
