@@ -10,6 +10,7 @@ const LoginComponent = () => {
     const { toastMessage, setUser, setIsLogin } = useContext(MyContext)
     const navigate = useNavigate();
 
+    const [onclick, setOnclick] = useState("")
     const [loading, setLoding] = useState(false)
     const [showPassword, setShowPassword] = useState(false);
     const [verifyaccount, setVerifyaccount] = useState({
@@ -19,7 +20,8 @@ const LoginComponent = () => {
 
     const emailRegex = /^\S+@\S+\.\S+$/;
 
-    const ForgotPassword = async() => {
+    const ForgotPassword = async () => {
+        setOnclick("ForgotPassword")
         if (verifyaccount.email.trim() === '') {
             toastMessage("error", "Please Enter E-mail...");
             return;
@@ -30,9 +32,10 @@ const LoginComponent = () => {
         }
 
         try {
-            const res = await api.post('/users/forget-password',{email:verifyaccount.email})
+            setLoding(true)
+            const res = await api.post('/users/forget-password', { email: verifyaccount.email })
 
-            localStorage.setItem("email",verifyaccount.email);
+            localStorage.setItem("email", verifyaccount.email);
             toastMessage("success", res?.data.message)
             setTimeout(() => {
                 navigate("/forgot-password")
@@ -43,11 +46,14 @@ const LoginComponent = () => {
             } else {
                 toastMessage("error", "Server not respond please try again...")
             }
+        } finally {
+            setLoding(false)
         }
     }
 
     const login = async (event) => {
         event.preventDefault()
+        setOnclick("login")
         if (verifyaccount.email.trim() === '') {
             toastMessage("error", "Please Enter E-mail..");
             return;
@@ -105,8 +111,11 @@ const LoginComponent = () => {
             {loading && (
                 <div className="fixed inset-0 bg-black/85 flex items-center justify-center z-[9999]" >
                     <div className="flex flex-col items-center gap-3">
+
                         <CircularProgress />
-                        <p className="text-white text-sm">Processing your Login deatils please wait...</p>
+
+                        {onclick === "ForgotPassword" ? <p className="text-white text-sm">Verify your details....</p> : <p className="text-white text-sm">Processing your Login deatils please wait...</p>}
+
                     </div>
                 </div >
             )}
