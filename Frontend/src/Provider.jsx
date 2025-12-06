@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react'
-import CartDrawer from './Components/Context/CartDrawer'
-import DialogComponent from './Components/Context/DialogComponent'
+import CartDrawer from './Users/Components/Context/CartDrawer'
+import DialogComponent from './Users/Components/Context/DialogComponent'
 import { toast, ToastContainer } from 'react-toastify'
 import api from './Utils/api';
 import { useNavigate } from 'react-router';

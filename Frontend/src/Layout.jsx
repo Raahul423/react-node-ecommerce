@@ -1,8 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Header from "./Components/Header/Header";
-import Footer from "./Components/FooterComponent/Footer";
-import ScrollComponent from "./Components/ScrolltoTop/ScrollComponent";
+import Header from "./Users/Components/Header/Header";
+import Footer from "./Users/Components/FooterComponent/Footer";
+import ScrollComponent from "./Users/Components/ScrolltoTop/ScrollComponent";
 
 const Layout = () => {
   return (
