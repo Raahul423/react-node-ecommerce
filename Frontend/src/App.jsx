@@ -17,6 +17,8 @@ import Myorder from './Users/Components/Profile/Myorder'
 import Layout from './Layout'
 import Verifyemail from './Users/Pages/verifyemail'
 import Dashboard from './Admin/Pages/Dashboard'
+import Header from './Admin/Components/Header'
+import Sidebar from './Admin/Components/Sidebar'
 
 
 
@@ -24,6 +26,8 @@ function App() {
 
   return (
     <Provider>
+      <Header/>
+      <Sidebar/>
       <Routes>
         <Route path='/' element={<Dashboard />}></Route>
       </Routes>

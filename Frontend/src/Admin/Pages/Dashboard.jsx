@@ -5,7 +5,7 @@ import Header from '../Components/Header'
 const Dashboard = () => {
   return (
     <section>
-       <Header/>
+       hello
     </section>
   )
 }
