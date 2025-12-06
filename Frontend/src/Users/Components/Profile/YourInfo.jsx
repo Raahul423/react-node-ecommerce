@@ -6,21 +6,13 @@ import api from '../../../Utils/api';
 import { MyContext } from '../../../Provider';
 
 const YourInfo = () => {
-  const { user, toastMessage, setUser } = useContext(MyContext)
+  const { user, toastMessage, setUser} = useContext(MyContext)
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false)
   const [updatedetails, setUpdatedetails] = useState({
     fullName: "",
     mobile: ""
   })
-
-  const handlechnage = (e) => {
-    const { name, value } = e.target;
-    setUpdatedetails((prev => ({
-      ...prev, [name]: value
-    })))
-  }
-
 
   useEffect(() => {
     if (user) {
@@ -30,6 +22,15 @@ const YourInfo = () => {
       })
     }
   }, [user])
+  
+
+  const handlechnage = (e) => {
+    const { name, value } = e.target;
+    setUpdatedetails((prev => ({
+      ...prev, [name]: value
+    })))
+  }
+
 
 
   const UpdateUser = async (event) => {
@@ -63,6 +64,7 @@ const YourInfo = () => {
     }
   }
 
+  
   return (
     <>
       {loading && (

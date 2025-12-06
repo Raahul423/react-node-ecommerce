@@ -7,7 +7,7 @@ import api from '../../../Utils/api'
 import { MyContext } from '../../../Provider';
 
 const LoginComponent = () => {
-    const { toastMessage, setUser, setIsLogin } = useContext(MyContext)
+    const { toastMessage, setUser, setIsLogin} = useContext(MyContext)
     const navigate = useNavigate();
 
     const [onclick, setOnclick] = useState("")
@@ -91,7 +91,7 @@ const LoginComponent = () => {
 
             setTimeout(() => {
                 navigate('/')
-            }, 1000)
+            })
 
         } catch (error) {
             if (error.response) {

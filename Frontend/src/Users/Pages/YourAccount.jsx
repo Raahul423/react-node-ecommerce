@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, Outlet } from 'react-router'
 import { ListItemIcon, Menu, MenuItem } from '@mui/material';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
@@ -7,10 +7,49 @@ import { LiaShoppingBagSolid } from 'react-icons/lia';
 import { FaRegHeart } from 'react-icons/fa';
 import { LogOut } from 'lucide-react';
 import { MyContext } from '../../Provider';
+import api from '../../Utils/api';
 
 
 const YourAccount = () => {
-  const {user} = useContext(MyContext)
+  const { user, logout, setUser, toastMessage } = useContext(MyContext)
+  const [preview, setPreview] = useState(user?.avatar)
+
+
+  const handleAvatarChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const localUrl = URL.createObjectURL(file);
+    setPreview(localUrl)
+
+
+    try {
+      const formData = new FormData();
+      formData.append('avatar', file);
+
+      const res = await api.post("/users/upload-avatar", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      const data = res.data;;
+      if (!data.success) {
+        toastMessage("error", data.message || "Upload failed");
+      }
+
+      setUser(data.user);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      setPreview(data.user.avatar);
+
+    } catch (err) {
+      if (err?.res) {
+        toastMessage("error", err?.res?.data?.message)
+      } else {
+        toastMessage("error", "Server not responding please try again...")
+      }
+    }
+
+  }
   return (
     <section className='bg-[#f5f0f0] py-8'>
       <div className='my-container flex gap-6 '>
@@ -18,9 +57,28 @@ const YourAccount = () => {
         <div className='w-[20%] border border-gray-700/40 shadow-gray-700/40 shadow-md rounded-md bg-white h-fit sticky top-60' >
 
           <div className='flex flex-col justify-center items-center gap-1 py-5 '>
-            <div className='p-4 h-30 w-30 bg-gray-400 rounded-full overflow-hidden'>
-              <img  className='h-27 w-27 object-cover' src="" alt="Avatar" />
-            </div>
+            <label className='relative cursor-pointer'>
+              <div className='h-30 w-30 bg-gray-400 rounded-full overflow-hidden flex items-center justify-center'>
+                {preview || user?.avatar ? (
+                  <img
+                    className='h-30 w-30 object-cover'
+                    src={preview || user?.avatar}
+                    alt="Avatar"
+                  />
+                ) : (
+                  <HiOutlineUserCircle className='h-24 w-24 text-white' />
+                )}
+              </div>
+              <span className='absolute bottom-1 right-2 bg-black/70 text-white text-[10px] px-2 py-1 rounded-full'>
+                Change
+              </span>
+              <input
+                type="file"
+                accept="image/*"
+                className='hidden'
+                onChange={handleAvatarChange}
+              />
+            </label>
 
             <h3>{user?.fullName}</h3>
             <p>{user?.email}</p>
@@ -36,7 +94,7 @@ const YourAccount = () => {
               </MenuItem>
             </Link>
 
-         
+
             <Link to="myorder">
               <MenuItem>
 
@@ -62,7 +120,7 @@ const YourAccount = () => {
             </Link >
 
 
-            <Link to={"/"}>
+            <Link to={"/"} onClick={logout}>
               <MenuItem>
 
                 <ListItemIcon>
