@@ -62,7 +62,7 @@ const Header = () => {
 
 
                         <Tooltip title='Wishlist'>
-                            <IconButton aria-label="cart">
+                            <IconButton>
                                 <StyledEngineProvider>
                                     <Badge color='secondary' badgeContent={4}>
                                         <FaRegHeart />

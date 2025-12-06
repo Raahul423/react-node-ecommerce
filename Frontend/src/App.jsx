@@ -16,6 +16,7 @@ import MyList from './Users/Components/Profile/MyList'
 import Myorder from './Users/Components/Profile/Myorder'
 import Layout from './Layout'
 import Verifyemail from './Users/Pages/verifyemail'
+import Dashboard from './Admin/Pages/Dashboard'
 
 
 
@@ -24,7 +25,7 @@ function App() {
   return (
     <Provider>
       <Routes>
-        <Route path=''></Route>
+        <Route path='/' element={<Dashboard />}></Route>
       </Routes>
 
 
@@ -39,7 +40,7 @@ function App() {
       {/* {these for Users route} */}
       <Routes>
         <Route element={<Layout />} >
-          <Route path='/' element={<Home />} />
+          <Route path='/admin' element={<Home />} />
           <Route path='/products' element={<Products />} />
           <Route path='/product/:id' element={<ProductsId />} />
           <Route path='/login' element={<Login />} />
@@ -54,9 +55,9 @@ function App() {
           <Route path='/forgot-password' element={<ForgotPassword />} />
           <Route path='/update-password' element={<Newpassword />} />
         </Route>
-        <Route path='/verify-email' element={<Verifyemail/>}/>
-        <Route path='*' element={<NotFound />} />
+        <Route path='/verify-email' element={<Verifyemail />} />
       </Routes>
+      {/* <Route path='*' element={<NotFound />} /> */}
     </Provider>
   )
 }
