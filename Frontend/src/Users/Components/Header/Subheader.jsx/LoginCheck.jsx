@@ -26,8 +26,8 @@ const LoginCheck = () => {
         <>
             <div className='flex items-center'>
                 <Tooltip title="tap to open">
-                    <Button onClick={handleClick} className='!w-15 !h-15 !rounded-full !min-w-0 !text-black'>
-                        <FaCircleUser className='h-10 w-10' />
+                    <Button onClick={handleClick} className='!w-15 !h-15 !rounded-full !min-w-0 !text-black overflow-hidden'>
+                        {user?.avatar ? <img className='h-10 w-10 object-cover rounded-full' src={user.avatar} alt="avatar" /> : <FaCircleUser className='h-10 w-10' />}
                     </Button>
                 </Tooltip>
 

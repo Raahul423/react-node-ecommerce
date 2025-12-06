@@ -14,7 +14,7 @@ import { CartContext } from '../Context/CartDrawer';
 import { MyContext } from '../../../Provider';
 
 const Header = () => {
-    const { isLogin } = useContext(MyContext);
+    const { isLogin} = useContext(MyContext);
     const { toggleDrawer } = useContext(CartContext);
 
     return (
