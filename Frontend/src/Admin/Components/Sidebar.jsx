@@ -2,8 +2,16 @@ import { Button, Checkbox, FormControlLabel, FormGroup } from '@mui/material';
 import React, { useState } from 'react'
 import { GoDotFill } from "react-icons/go";
 import { MdOutlineDashboard } from "react-icons/md";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp, IoLogoBuffer, IoMdLogOut } from "react-icons/io";
 import { Collapse } from 'react-collapse';
+import { FaRegImage } from 'react-icons/fa';
+import { BiCategory } from 'react-icons/bi';
+import { FiUsers } from 'react-icons/fi';
+import { RiProductHuntLine } from 'react-icons/ri';
+import { BsCart2 } from "react-icons/bs";
+
+
+
 const Sidebar = () => {
 
     const [isopen, setIsopen] = useState(null)
@@ -15,7 +23,7 @@ const Sidebar = () => {
 
 
     return (
-        <section className='w-[20%] fixed top-0 left-0 bg-white border border-gray-500/60 shadow-md shadow-black z-[20] h-full flex flex-col gap-8 p-4'>
+        <section className='w-[20%] fixed top-0 left-0 bg-white border border-gray-500/50  z-[20] h-full flex flex-col gap-8 p-4'>
             <div className='part-1'>
                 <img src="https://serviceapi.spicezgold.com/download/1750047766437_logo.jpg" alt="Logoo" />
             </div>
@@ -32,7 +40,7 @@ const Sidebar = () => {
                     <li  onClick={()=>click(0)} className=''>
                         <Button className='hover:bg-[#f1f1f1] !text-gray-900 w-full !justify-between flex  !py-3 !rounded-md'>
                             <span className='flex items-center gap-3'>
-                                <MdOutlineDashboard className='!text-xl' />
+                                <FaRegImage  className='!text-xl' />
                                 <span className='!text-md normal-case font-semibold'>Home Slides</span>
                             </span>
 
@@ -58,7 +66,7 @@ const Sidebar = () => {
                     <li onClick={()=>click(1)} className=''>
                         <Button className='hover:bg-[#f1f1f1] !text-gray-900 w-full !justify-between flex  !py-3 !rounded-md'>
                             <span className='flex items-center gap-3'>
-                                <MdOutlineDashboard className='!text-xl' />
+                                <BiCategory className='!text-xl' />
                                 <span className='!text-md normal-case font-semibold'>Category</span>
                             </span>
 
@@ -88,7 +96,7 @@ const Sidebar = () => {
                     <li onClick={()=>click(2)} className=''>
                         <Button className='hover:bg-[#f1f1f1] !text-gray-900 w-full !justify-between flex  !py-3 !rounded-md'>
                             <span className='flex items-center gap-3'>
-                                <MdOutlineDashboard className='!text-xl' />
+                                <RiProductHuntLine  className='!text-xl' />
                                 <span className='!text-md normal-case font-semibold'>Product</span>
                             </span>
 
@@ -125,28 +133,28 @@ const Sidebar = () => {
 
                     <li className='hover:bg-[#f1f1f1]'>
                         <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
-                            <MdOutlineDashboard className='!text-xl' />
+                            <FiUsers  className='!text-xl' />
                             <span className='font-semibold !text-md normal-case'>Users</span>
                         </Button>
                     </li>
 
                     <li className='hover:bg-[#f1f1f1]'>
                         <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
-                            <MdOutlineDashboard className='!text-xl' />
+                            <BsCart2  className='!text-xl' />
                             <span className='font-semibold !text-md normal-case'>Orders</span>
                         </Button>
                     </li>
 
                     <li className='hover:bg-[#f1f1f1]'>
                         <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
-                            <MdOutlineDashboard className='!text-xl' />
+                            <IoLogoBuffer  className='!text-xl' />
                             <span className='font-semibold !text-md normal-case'>Manage Logo</span>
                         </Button>
                     </li>
 
                     <li className='hover:bg-[#f1f1f1]'>
                         <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
-                            <MdOutlineDashboard className='!text-xl' />
+                            <IoMdLogOut  className='!text-xl' />
                             <span className='font-semibold !text-md normal-case'>Logout</span>
                         </Button>
                     </li>

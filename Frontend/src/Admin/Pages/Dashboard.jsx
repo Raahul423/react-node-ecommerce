@@ -1,11 +1,12 @@
 import React from 'react'
 import Header from '../Components/Header'
+import { DashboardHeader } from '../Components/DashboardComponents/DashboardHeader'
 
 
 const Dashboard = () => {
   return (
-    <section>
-       hello
+    <section className='pl-75 pr-3 bg-[#f2f2f2] py-5'>
+      <DashboardHeader/>
     </section>
   )
 }
