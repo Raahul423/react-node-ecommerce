@@ -6,7 +6,11 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { Collapse } from 'react-collapse';
 const Sidebar = () => {
 
-    const [isopen, setIsopen] = useState(false)
+    const [isopen, setIsopen] = useState(null)
+    
+    const click = (index) =>{
+        setIsopen(isopen === index ? null : index)
+    }
 
 
 
@@ -25,7 +29,7 @@ const Sidebar = () => {
                         </Button>
                     </li>
 
-                    <li onClick={() => setIsopen(!isopen)} className=''>
+                    <li  onClick={()=>click(0)} className=''>
                         <Button className='hover:bg-[#f1f1f1] !text-gray-900 w-full !justify-between flex  !py-3 !rounded-md'>
                             <span className='flex items-center gap-3'>
                                 <MdOutlineDashboard className='!text-xl' />
@@ -36,8 +40,8 @@ const Sidebar = () => {
 
                         </Button>
 
-                        <Collapse isOpened={isopen}>
-                            <div className='pl-6 py-2'>
+                        <Collapse isOpened={isopen === 0}>
+                            <div className='pl-6'>
                                 <Button className='w-full !justify-start hover:!bg-slate-800/10'>
                                     <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill /> Home Banner List</p>
                                 </Button>
@@ -51,26 +55,72 @@ const Sidebar = () => {
                         </Collapse>
                     </li>
 
-                    <li className='hover:bg-[#f1f1f1]'>
-                        <Button className='!text-gray-900 w-full !justify-between flex gap-2 !py-3 !rounded-md'>
+                    <li onClick={()=>click(1)} className=''>
+                        <Button className='hover:bg-[#f1f1f1] !text-gray-900 w-full !justify-between flex  !py-3 !rounded-md'>
                             <span className='flex items-center gap-3'>
                                 <MdOutlineDashboard className='!text-xl' />
-                                <span className='font-semibold !text-md normal-case'>Category</span>
+                                <span className='!text-md normal-case font-semibold'>Category</span>
                             </span>
 
-                            <IoIosArrowDown className='text-xl' />
+                            {isopen == true ? <IoIosArrowUp className='text-xl' /> : <IoIosArrowDown className='text-xl' />}
+
                         </Button>
+
+                        <Collapse isOpened={isopen === 1}>
+                            <div className='pl-6 '>
+                                <Button className='w-full !justify-start hover:!bg-slate-800/10'>
+                                    <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill /> Category List</p>
+                                </Button>
+
+                                <Button className='w-full !justify-start hover:!bg-slate-800/10'>
+                                    <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Add A Category</p>
+                                </Button>
+
+                                <Button className='w-full !justify-start hover:!bg-slate-800/10'>
+                                    <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Sub Category List</p>
+                                </Button>
+
+                            </div>
+
+                        </Collapse>
                     </li>
 
-                    <li className='hover:bg-[#f1f1f1]'>
-                        <Button className='!text-gray-900 w-full !justify-between flex gap-2 !py-3 !rounded-md'>
+                    <li onClick={()=>click(2)} className=''>
+                        <Button className='hover:bg-[#f1f1f1] !text-gray-900 w-full !justify-between flex  !py-3 !rounded-md'>
                             <span className='flex items-center gap-3'>
                                 <MdOutlineDashboard className='!text-xl' />
-                                <span className='font-semibold !text-md normal-case'>Products</span>
+                                <span className='!text-md normal-case font-semibold'>Product</span>
                             </span>
 
-                            <IoIosArrowDown className='text-xl' />
+                            {isopen == true ? <IoIosArrowUp className='text-xl' /> : <IoIosArrowDown className='text-xl' />}
+
                         </Button>
+
+                        <Collapse isOpened={isopen === 2}>
+                            <div className='pl-6 '>
+                                <Button className='w-full !justify-start hover:!bg-slate-800/10'>
+                                    <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Product List</p>
+                                </Button>
+
+                                <Button className='w-full !justify-start hover:!bg-slate-800/10'>
+                                    <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Product Upload</p>
+                                </Button>
+
+                                <Button className='w-full !justify-start hover:!bg-slate-800/10'>
+                                    <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Add Product RAMS</p>
+                                </Button>
+                                <Button className='w-full !justify-start hover:!bg-slate-800/10'>
+                                    <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Add Product WEIGHT</p>
+                                </Button>
+                                <Button className='w-full !justify-start hover:!bg-slate-800/10'>
+                                    <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Add Product SIZE</p>
+                                </Button>
+
+
+
+                            </div>
+
+                        </Collapse>
                     </li>
 
                     <li className='hover:bg-[#f1f1f1]'>
