@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router-dom'
 import Home from './Users/Pages/Home'
 import Products from './Users/Pages/Products'
 import ProductsId from './Users/Pages/ProductsId'
-import NotFound from './Users/Pages/NotFound'
 import Login from './Users/Pages/Login'
 import Register from './Users/Pages/Register'
 import Checkout from './Users/Pages/Checkout'
@@ -17,8 +16,7 @@ import Myorder from './Users/Components/Profile/Myorder'
 import Layout from './Layout'
 import Verifyemail from './Users/Pages/verifyemail'
 import Dashboard from './Admin/Pages/Dashboard'
-import Header from './Admin/Components/Header'
-import Sidebar from './Admin/Components/Sidebar'
+import AdminLayout from './AdminLayout'
 
 
 
@@ -26,23 +24,18 @@ function App() {
 
   return (
     <Provider>
-      <Header/>
-      <Sidebar/>
+
+      {/* {admin route} */}
       <Routes>
-        <Route path='/' element={<Dashboard />}></Route>
-      </Routes>
+         <Route element={<AdminLayout />}>
+          <Route path="/" element={<Dashboard />} />
+        </Route>
 
 
 
 
 
-
-
-
-
-
-      {/* {these for Users route} */}
-      <Routes>
+        {/* {User Routes} */}
         <Route element={<Layout />} >
           <Route path='/admin' element={<Home />} />
           <Route path='/products' element={<Products />} />
