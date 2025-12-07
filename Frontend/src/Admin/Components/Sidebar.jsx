@@ -1,54 +1,111 @@
-import React from 'react'
-import { CiGrid41 } from "react-icons/ci";
-import { IoGridOutline } from 'react-icons/io5';
-
+import { Button, Checkbox, FormControlLabel, FormGroup } from '@mui/material';
+import React, { useState } from 'react'
+import { GoDotFill } from "react-icons/go";
+import { MdOutlineDashboard } from "react-icons/md";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { Collapse } from 'react-collapse';
 const Sidebar = () => {
-  return (
-    <section className='w-[20%] fixed top-0 left-0 bg-white border border-gray-500/60 shadow-md shadow-black z-[20] h-full flex flex-col gap-8 p-4'>
-        <div className='part-1'>
-            <img src="https://serviceapi.spicezgold.com/download/1750047766437_logo.jpg" alt="Logoo" />
-        </div>
 
-        <div className='part-2 flex flex-col gap-2'>
-            <ul className='hover:bg-gray-600/20 transition-all cursor-pointer'>
-                <li className='flex gap-2 p-2 items-center'>
-                    <IoGridOutline />
-                    <p>Dashboard</p>
-                </li>
-            </ul>
+    const [isopen, setIsopen] = useState(false)
 
-             <ul className='hover:bg-gray-600/20 transition-all cursor-pointer'>
-                <li className='flex gap-2 p-2 items-center'>
-                   <IoGridOutline />
-                    <p>Dashboard</p>
-                </li>
-            </ul>
 
-             <ul className='hover:bg-gray-600/20 transition-all cursor-pointer'>
-                <li className='flex gap-2 p-2 items-center'>
-                    <IoGridOutline />
-                    <p>Dashboard</p>
-                </li>
-            </ul>
 
-             <ul className='hover:bg-gray-600/20 transition-all cursor-pointer'>
-                <li className='flex gap-2 p-2 items-center'>
-                     <IoGridOutline />
-                    <p>Dashboard</p>
-                </li>
-            </ul>
+    return (
+        <section className='w-[20%] fixed top-0 left-0 bg-white border border-gray-500/60 shadow-md shadow-black z-[20] h-full flex flex-col gap-8 p-4'>
+            <div className='part-1'>
+                <img src="https://serviceapi.spicezgold.com/download/1750047766437_logo.jpg" alt="Logoo" />
+            </div>
 
-             <ul className='hover:bg-gray-600/20 transition-all cursor-pointer'>
-                <li className='flex gap-2 p-2 items-center'>
-                   <IoGridOutline />
-                    <p>Dashboard</p>
-                </li>
-            </ul>
-           
-        </div>
+            <div className='part-2 flex flex-col gap-2'>
+                <ul className='cursor-pointer gap-1 flex flex-col'>
+                    <li className='hover:bg-[#f1f1f1]'>
+                        <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
+                            <MdOutlineDashboard className='!text-xl' />
+                            <span className='!text-md normal-case font-semibold'>Dashboard</span>
+                        </Button>
+                    </li>
 
-    </section>
-  )
+                    <li onClick={() => setIsopen(!isopen)} className=''>
+                        <Button className='hover:bg-[#f1f1f1] !text-gray-900 w-full !justify-between flex  !py-3 !rounded-md'>
+                            <span className='flex items-center gap-3'>
+                                <MdOutlineDashboard className='!text-xl' />
+                                <span className='!text-md normal-case font-semibold'>Home Slides</span>
+                            </span>
+
+                            {isopen == true ? <IoIosArrowUp className='text-xl' /> : <IoIosArrowDown className='text-xl' />}
+
+                        </Button>
+
+                        <Collapse isOpened={isopen}>
+                            <div className='pl-6 py-2'>
+                                <Button className='w-full !justify-start hover:!bg-slate-800/10'>
+                                    <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill /> Home Banner List</p>
+                                </Button>
+
+                                <Button className='w-full !justify-start hover:!bg-slate-800/10'>
+                                    <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Add Home Banner Slide</p>
+                                </Button>
+
+                            </div>
+
+                        </Collapse>
+                    </li>
+
+                    <li className='hover:bg-[#f1f1f1]'>
+                        <Button className='!text-gray-900 w-full !justify-between flex gap-2 !py-3 !rounded-md'>
+                            <span className='flex items-center gap-3'>
+                                <MdOutlineDashboard className='!text-xl' />
+                                <span className='font-semibold !text-md normal-case'>Category</span>
+                            </span>
+
+                            <IoIosArrowDown className='text-xl' />
+                        </Button>
+                    </li>
+
+                    <li className='hover:bg-[#f1f1f1]'>
+                        <Button className='!text-gray-900 w-full !justify-between flex gap-2 !py-3 !rounded-md'>
+                            <span className='flex items-center gap-3'>
+                                <MdOutlineDashboard className='!text-xl' />
+                                <span className='font-semibold !text-md normal-case'>Products</span>
+                            </span>
+
+                            <IoIosArrowDown className='text-xl' />
+                        </Button>
+                    </li>
+
+                    <li className='hover:bg-[#f1f1f1]'>
+                        <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
+                            <MdOutlineDashboard className='!text-xl' />
+                            <span className='font-semibold !text-md normal-case'>Users</span>
+                        </Button>
+                    </li>
+
+                    <li className='hover:bg-[#f1f1f1]'>
+                        <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
+                            <MdOutlineDashboard className='!text-xl' />
+                            <span className='font-semibold !text-md normal-case'>Orders</span>
+                        </Button>
+                    </li>
+
+                    <li className='hover:bg-[#f1f1f1]'>
+                        <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
+                            <MdOutlineDashboard className='!text-xl' />
+                            <span className='font-semibold !text-md normal-case'>Manage Logo</span>
+                        </Button>
+                    </li>
+
+                    <li className='hover:bg-[#f1f1f1]'>
+                        <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
+                            <MdOutlineDashboard className='!text-xl' />
+                            <span className='font-semibold !text-md normal-case'>Logout</span>
+                        </Button>
+                    </li>
+                </ul>
+
+            </div>
+
+        </section>
+    )
 }
 
 export default Sidebar
