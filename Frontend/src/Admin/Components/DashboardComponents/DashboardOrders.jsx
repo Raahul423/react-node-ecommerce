@@ -1,5 +1,6 @@
+import { Button, Pagination, Stack } from '@mui/material';
 
-import { Button } from '@mui/material';
+
 
 
 
@@ -10,9 +11,9 @@ const DashboardOrders = () => {
 
 
     return (
-        <section>
-            <div className='flex justify-between items-center my-6'>
-                <h1 className='!text-2xl '>Products</h1>
+        <section className='border border-gray-600/30 shadow-md shadow-gray-600/90 rounded-md my-8'>
+            <div className='flex justify-between items-center my-6 px-5'>
+                <h1 className='!text-2xl '>Recent Orders</h1>
                 <Button className='!px-6 !py-2 !bg-blue-600/80 !text-white'>Add Product</Button>
             </div>
 
@@ -24,7 +25,7 @@ const DashboardOrders = () => {
                     <thead class="bg-slate-800/80 border-b border-default">
                         <tr>
                             <th scope="col" class="whitespace-nowrap px-6 py-3 font-medium">
-                                 ORDER ID
+                                ORDER ID
                             </th>
                             <th scope="col" class="whitespace-nowrap px-6 py-3 font-medium">
                                 PAYMENT ID
@@ -38,22 +39,22 @@ const DashboardOrders = () => {
                             <th scope="col" class="whitespace-nowrap px-6 py-3 font-medium">
                                 ADDRESS
                             </th>
-                             <th scope="col" class="whitespace-nowrap px-6 py-3 font-medium">
+                            <th scope="col" class="whitespace-nowrap px-6 py-3 font-medium">
                                 PINCODE
                             </th>
-                             <th scope="col" class="whitespace-nowrap px-6 py-3 font-medium">
+                            <th scope="col" class="whitespace-nowrap px-6 py-3 font-medium">
                                 TOTAL AMOUNT
                             </th>
-                             <th scope="col" class="whitespace-nowrap px-6 py-3 font-medium">
+                            <th scope="col" class="whitespace-nowrap px-6 py-3 font-medium">
                                 EMAIL ID
                             </th>
-                             <th scope="col" class="whitespace-nowrap px-6 py-3 font-medium">
+                            <th scope="col" class="whitespace-nowrap px-6 py-3 font-medium">
                                 USER ID
                             </th>
-                             <th scope="col" class="whitespace-nowrap px-6 py-3 font-medium">
+                            <th scope="col" class="whitespace-nowrap px-6 py-3 font-medium">
                                 ORDER STATUS
                             </th>
-                             <th scope="col" class="whitespace-nowrap px-6 py-3 font-medium">
+                            <th scope="col" class="whitespace-nowrap px-6 py-3 font-medium">
                                 DATE
                             </th>
                         </tr>
@@ -73,10 +74,10 @@ const DashboardOrders = () => {
                                 $2999
                             </td>
                             <td class="px-6 py-4 text-white">
-                               <p className='w-15 px-2 py-1 bg-white text-gray-600/80 text-center rounded-md' >Home</p>
-                               <p className='whitespace-nowrap'>Jaipur Jaipur JAIpur Rajsthan India 918947889124</p>
+                                <p className='w-15 px-2 py-1 bg-white text-gray-600/80 text-center rounded-md' >Home</p>
+                                <p className='whitespace-nowrap'>Jaipur Jaipur JAIpur Rajsthan India 918947889124</p>
                             </td>
-                             <td class="px-6 py-4 text-white">
+                            <td class="px-6 py-4 text-white">
                                 208007
                             </td>
                             <td class="px-6 py-4 text-white">
@@ -89,16 +90,16 @@ const DashboardOrders = () => {
                                 6932f5a5228db479bbbeaefb
                             </td>
                             <td class="px-6 py-4 text-white">
-                               <p className='px-4 py-1 rounded-full bg-green-600/90 text-white text-center'>Confirm</p>
+                                <p className='px-4 py-1 rounded-full bg-green-600/90 text-white text-center'>Confirm</p>
                             </td>
-                             <td class="px-6 py-4 text-white whitespace-nowrap">
+                            <td class="px-6 py-4 text-white whitespace-nowrap">
                                 2025-12-05
                             </td>
 
-                            
+
                         </tr>
 
-                          <tr class="bg-slate-800 even:bg-slate-800 border-b border-default">
+                        <tr class="bg-slate-800 even:bg-slate-800 border-b border-default">
                             <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap text-blue-600/80">
                                 6932f5a5228db479bbbeaefb
                             </th>
@@ -112,10 +113,10 @@ const DashboardOrders = () => {
                                 $2999
                             </td>
                             <td class="px-6 py-4 text-white">
-                               <p className='w-15 px-2 py-1 bg-white text-gray-600/80 text-center rounded-md' >Home</p>
-                               <p className='whitespace-nowrap'>Jaipur Jaipur JAIpur Rajsthan India 918947889124</p>
+                                <p className='w-15 px-2 py-1 bg-white text-gray-600/80 text-center rounded-md' >Home</p>
+                                <p className='whitespace-nowrap'>Jaipur Jaipur JAIpur Rajsthan India 918947889124</p>
                             </td>
-                             <td class="px-6 py-4 text-white">
+                            <td class="px-6 py-4 text-white">
                                 208007
                             </td>
                             <td class="px-6 py-4 text-white">
@@ -128,16 +129,16 @@ const DashboardOrders = () => {
                                 6932f5a5228db479bbbeaefb
                             </td>
                             <td class="px-6 py-4 text-white">
-                               <p className='px-4 py-1 rounded-full bg-green-600/90 text-white text-center'>Confirm</p>
+                                <p className='px-4 py-1 rounded-full bg-green-600/90 text-white text-center'>Confirm</p>
                             </td>
-                             <td class="px-6 py-4 text-white whitespace-nowrap">
+                            <td class="px-6 py-4 text-white whitespace-nowrap">
                                 2025-12-05
                             </td>
 
-                            
+
                         </tr>
 
-                          <tr class="bg-slate-800 even:bg-slate-800 border-b border-default">
+                        <tr class="bg-slate-800 even:bg-slate-800 border-b border-default">
                             <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap text-blue-600/80">
                                 6932f5a5228db479bbbeaefb
                             </th>
@@ -151,10 +152,10 @@ const DashboardOrders = () => {
                                 $2999
                             </td>
                             <td class="px-6 py-4 text-white">
-                               <p className='w-15 px-2 py-1 bg-white text-gray-600/80 text-center rounded-md' >Home</p>
-                               <p className='whitespace-nowrap'>Jaipur Jaipur JAIpur Rajsthan India 918947889124</p>
+                                <p className='w-15 px-2 py-1 bg-white text-gray-600/80 text-center rounded-md' >Home</p>
+                                <p className='whitespace-nowrap'>Jaipur Jaipur JAIpur Rajsthan India 918947889124</p>
                             </td>
-                             <td class="px-6 py-4 text-white">
+                            <td class="px-6 py-4 text-white">
                                 208007
                             </td>
                             <td class="px-6 py-4 text-white">
@@ -167,16 +168,16 @@ const DashboardOrders = () => {
                                 6932f5a5228db479bbbeaefb
                             </td>
                             <td class="px-6 py-4 text-white">
-                               <p className='px-4 py-1 rounded-full bg-green-600/90 text-white text-center'>Confirm</p>
+                                <p className='px-4 py-1 rounded-full bg-green-600/90 text-white text-center'>Confirm</p>
                             </td>
-                             <td class="px-6 py-4 text-white whitespace-nowrap">
+                            <td class="px-6 py-4 text-white whitespace-nowrap">
                                 2025-12-05
                             </td>
 
-                            
+
                         </tr>
 
-                          <tr class="bg-slate-800 even:bg-slate-800 border-b border-default">
+                        <tr class="bg-slate-800 even:bg-slate-800 border-b border-default">
                             <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap text-blue-600/80">
                                 6932f5a5228db479bbbeaefb
                             </th>
@@ -190,10 +191,10 @@ const DashboardOrders = () => {
                                 $2999
                             </td>
                             <td class="px-6 py-4 text-white">
-                               <p className='w-15 px-2 py-1 bg-white text-gray-600/80 text-center rounded-md' >Home</p>
-                               <p className='whitespace-nowrap'>Jaipur Jaipur JAIpur Rajsthan India 918947889124</p>
+                                <p className='w-15 px-2 py-1 bg-white text-gray-600/80 text-center rounded-md' >Home</p>
+                                <p className='whitespace-nowrap'>Jaipur Jaipur JAIpur Rajsthan India 918947889124</p>
                             </td>
-                             <td class="px-6 py-4 text-white">
+                            <td class="px-6 py-4 text-white">
                                 208007
                             </td>
                             <td class="px-6 py-4 text-white">
@@ -206,16 +207,16 @@ const DashboardOrders = () => {
                                 6932f5a5228db479bbbeaefb
                             </td>
                             <td class="px-6 py-4 text-white">
-                               <p className='px-4 py-1 rounded-full bg-green-600/90 text-white text-center'>Confirm</p>
+                                <p className='px-4 py-1 rounded-full bg-green-600/90 text-white text-center'>Confirm</p>
                             </td>
-                             <td class="px-6 py-4 text-white whitespace-nowrap">
+                            <td class="px-6 py-4 text-white whitespace-nowrap">
                                 2025-12-05
                             </td>
 
-                            
+
                         </tr>
 
-                          <tr class="bg-slate-800 even:bg-slate-800 border-b border-default">
+                        <tr class="bg-slate-800 even:bg-slate-800 border-b border-default">
                             <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap text-blue-600/80">
                                 6932f5a5228db479bbbeaefb
                             </th>
@@ -229,10 +230,10 @@ const DashboardOrders = () => {
                                 $2999
                             </td>
                             <td class="px-6 py-4 text-white">
-                               <p className='w-15 px-2 py-1 bg-white text-gray-600/80 text-center rounded-md' >Home</p>
-                               <p className='whitespace-nowrap'>Jaipur Jaipur JAIpur Rajsthan India 918947889124</p>
+                                <p className='w-15 px-2 py-1 bg-white text-gray-600/80 text-center rounded-md' >Home</p>
+                                <p className='whitespace-nowrap'>Jaipur Jaipur JAIpur Rajsthan India 918947889124</p>
                             </td>
-                             <td class="px-6 py-4 text-white">
+                            <td class="px-6 py-4 text-white">
                                 208007
                             </td>
                             <td class="px-6 py-4 text-white">
@@ -245,21 +246,20 @@ const DashboardOrders = () => {
                                 6932f5a5228db479bbbeaefb
                             </td>
                             <td class="px-6 py-4 text-white">
-                               <p className='px-4 py-1 rounded-full bg-green-600/90 text-white text-center'>Confirm</p>
+                                <p className='px-4 py-1 rounded-full bg-green-600/90 text-white text-center'>Confirm</p>
                             </td>
-                             <td class="px-6 py-4 text-white whitespace-nowrap">
+                            <td class="px-6 py-4 text-white whitespace-nowrap">
                                 2025-12-05
                             </td>
 
-                            
                         </tr>
-                       
-                       
-                       
-                        
+
                     </tbody>
                 </table>
             </div>
+            <Stack spacing={2} className='py-5 items-center'>
+                <Pagination count={10} shape="rounded" />
+            </Stack>
 
         </section>
     )
