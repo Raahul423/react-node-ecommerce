@@ -1,4 +1,4 @@
-import { Button, Checkbox, FormControl, InputLabel, MenuItem, Rating, Select, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import { Button, Checkbox, FormControl, InputLabel, MenuItem, Rating, Select, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material'
 import React, { useState } from 'react'
 import demoProducts from '../../../assets/Assests'
 import './Dashboard.css'
@@ -7,16 +7,29 @@ import { RiDeleteBin6Line } from 'react-icons/ri'
 const DashboardProducts = () => {
     const [rows, setRows] = useState(demoProducts)
     console.log(setRows);
+    const [page, setPage] = React.useState(2);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [value, setValue] = useState('');
     const [subcat, setSubcat] = useState('');
+
 
     const handleChange = (event) => {
         setValue(event.target.value);
     };
 
-    const subCategory = (event)=>{
+    const subCategory = (event) => {
         setSubcat(event.target.value)
     }
+
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
 
     return (
         <section >
@@ -25,13 +38,13 @@ const DashboardProducts = () => {
                 <Button className='!px-6 !py-2 !bg-blue-600/80 !text-white'>Add Product</Button>
             </div>
 
-            <div className='border border-gray-600/30  bg-white shadow shadow-gray-600/90 rounded-md overflow-hidden'>
+            <div className='relative border border-gray-600/30  bg-white shadow-md shadow-gray-600/90 rounded-md overflow-hidden'>
                 <div className='flex px-4 py-6'>
                     <div className='flex gap-10 '>
                         <div className='flex flex-col gap-2'>
                             <p className='!text-xl'>Category By</p>
                             <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
-                               
+
                                 <Select
                                     value={value}
                                     onChange={handleChange}
@@ -44,12 +57,12 @@ const DashboardProducts = () => {
                             </FormControl>
                         </div>
 
-                       <div className='flex flex-col gap-2'>
+                        <div className='flex flex-col gap-2'>
                             <p className='!text-xl'>SubCategory By</p>
                             <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
                                 <Select
                                     value={subcat}
-                                  
+
                                     onChange={subCategory}
                                 >
                                     <MenuItem value={10}>Name, A to Z</MenuItem>
@@ -68,7 +81,7 @@ const DashboardProducts = () => {
 
                 <TableContainer sx={{ overflowX: "auto" }} className='overflow-x-scroll  scroll'>
                     <Table sx={{ minWidth: 1200 }}>
-                        <TableHead>
+                        <TableHead className='sticky top-0 z-99'>
                             <TableRow className='bg-[#f2f2f2]'>
                                 <TableCell><Checkbox /></TableCell>
                                 <TableCell className='!font-semibold !w-fit'>PRODUCT </TableCell>
@@ -117,10 +130,19 @@ const DashboardProducts = () => {
                     </Table>
                 </TableContainer>
 
+
+                <div>
+                    <TablePagination
+                        component="div"
+                        count={100}
+                        page={page}
+                        onPageChange={handleChangePage}
+                        rowsPerPage={rowsPerPage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                    />
+                </div>
+
             </div>
-
-
-
 
         </section>
     )

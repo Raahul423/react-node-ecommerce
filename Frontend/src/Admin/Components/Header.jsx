@@ -7,7 +7,7 @@ import { FaCircleUser } from 'react-icons/fa6';
 
 const Header = () => {
   return (
-    <section className='bg-white h-13 flex justify-between items-center  shadow-md shadow-red-700 z-10'>
+    <section className='bg-white h-13 flex justify-between items-center  shadow-md shadow-gray-700/20 z-10 sticky top-0'>
       <div className='part-1 pl-[20%] bg-red'>
         <Button className='!text-xl !text-gray-700 !rounded-full '>
           <RiMenu2Fill />
