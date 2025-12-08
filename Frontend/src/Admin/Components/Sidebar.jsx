@@ -51,11 +51,11 @@ const Sidebar = () => {
 
                         <Collapse isOpened={isopen === 0}>
                             <div className='pl-6'>
-                                <Link to='/homeslider/list'>
+                               
                                     <Button className='w-full !justify-start hover:!bg-slate-800/10'>
                                         <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill /> Home Banner List</p>
                                     </Button>
-                                </Link>
+                               
 
 
                                 <Button className='w-full !justify-start hover:!bg-slate-800/10'>

@@ -79,8 +79,8 @@ const DashboardProducts = () => {
                     </div>
                 </div>
 
-                <TableContainer sx={{ overflowX: "auto" }} className='overflow-x-scroll  scroll'>
-                    <Table sx={{ minWidth: 1200 }}>
+                <TableContainer sx={{ overflowX: "auto" }} className='scroll'>
+                    <Table >
                         <TableHead className='sticky top-0 z-99'>
                             <TableRow className='bg-[#f2f2f2]'>
                                 <TableCell><Checkbox /></TableCell>
@@ -90,7 +90,6 @@ const DashboardProducts = () => {
                                 <TableCell className='!font-semibold'>PRICE (₹)</TableCell>
                                 <TableCell className='!font-semibold'>SALES</TableCell>
                                 <TableCell className='!font-semibold'>STOCK</TableCell>
-                                <TableCell className='!font-semibold'>RATING</TableCell>
                                 <TableCell className='!font-semibold'>ACTION</TableCell>
                             </TableRow>
                         </TableHead>
@@ -113,15 +112,14 @@ const DashboardProducts = () => {
 
                                     <TableCell>{row.name}</TableCell>
 
-                                    <TableCell align='right'>{row.category}</TableCell>
+                                    <TableCell align='center'>{row.category}</TableCell>
 
-                                    <TableCell className='!text-blue-700/90 !font-semibold' align="right">₹{row.price}</TableCell>
+                                    <TableCell className='!text-blue-700/90 !font-semibold' align="center">₹{row.price}</TableCell>
 
-                                    <TableCell className='!font-semibold' align="right">{row.stock} sale</TableCell>
+                                    <TableCell className='!font-semibold' align="center">{row.stock} sale</TableCell>
 
-                                    <TableCell className='!font-semibold !text-blue-700/90' align="right">{row.stock} stocks</TableCell>
+                                    <TableCell className='!font-semibold !text-blue-700/90' align="center">{row.stock} stocks</TableCell>
 
-                                    <TableCell className='!font-semibold' align="right"><Rating name="half-rating-read" defaultValue={5} precision={0.5} readOnly /></TableCell>
 
                                     <TableCell className='!font-semibold' align="center"><RiDeleteBin6Line className='text-xl' /></TableCell>
                                 </TableRow>

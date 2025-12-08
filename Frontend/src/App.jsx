@@ -17,7 +17,7 @@ import Layout from './Layout'
 import Verifyemail from './Users/Pages/verifyemail'
 import Dashboard from './Admin/Pages/Dashboard'
 import AdminLayout from './AdminLayout'
-import HomeBanner from './Admin/Components/HomeSliderComponents/HomeBanner'
+
 
 
 
