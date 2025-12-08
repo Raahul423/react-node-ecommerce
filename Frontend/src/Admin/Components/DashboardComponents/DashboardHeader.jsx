@@ -3,6 +3,7 @@ import React from 'react'
 import { BiCircleThreeQuarter } from 'react-icons/bi'
 import { FaPlus } from 'react-icons/fa'
 import { GoGift } from 'react-icons/go'
+import { IoStatsChartSharp } from "react-icons/io5";
 import { RiBarChart2Fill, RiChatQuoteLine, RiProductHuntLine } from 'react-icons/ri'
 
 export const DashboardHeader = () => {
@@ -24,54 +25,49 @@ export const DashboardHeader = () => {
                 </div>
             </div>
 
-            <div className='header-2 flex justify-between py-4'>
-                <box className="border border-gray-600/20 rounded-md  items-center flex justify-between py-8 px-6 gap-3 bg-green-700/80 ">
-                    <div className='flex gap-4 items-center'>
-                        <BiCircleThreeQuarter className='text-5sxl text-white' />
-                        <div className='flex flex-col'>
-                            <span className='text-md text-white'>Total User</span>
-                            <span className='text-md font-semibold text-white   '>3932</span>
-                        </div>
+            <div className='header-2 justify-between flex py-4'>
+                <div className="border cursor-pointer hover:bg-green-700/90 h-27 w-65 border-gray-600/20 rounded-md  items-center flex justify-between py-8 px-4 gap-3 bg-green-700/80 ">
+                    <BiCircleThreeQuarter className='text-5xl text-white' />
+                    <div className='flex flex-col'>
+                        <p className='text-md text-white'>Total User</p>
+                        <p className='text-md font-semibold text-white   '>3932</p>
                     </div>
 
-                    <RiBarChart2Fill className='text-5xl text-white' />
-                </box>
+                    <IoStatsChartSharp className='text-5xl text-white' />
+                </div>
 
-                  <box className="py-8  px-6 gap-4 border border-gray-600/20  rounded-md  items-center flex justify-between  bg-blue-500/80">
-                    <div className='flex gap-3 items-center'>
-                        <GoGift  className='text-5xl text-white' />
+                <div className="py-8 h-27 cursor-pointer hover:bg-blue-500/90 w-65 px-4 gap-4 border border-gray-600/20  rounded-md  items-center flex justify-between  bg-blue-500/80">
+                    
+                        <GoGift className='text-5xl text-white' />
                         <div className='flex flex-col'>
                             <p className='text-md text-white whitespace-nowrap'>Total Orders</p>
                             <p className='text-md font-semibold text-white   '>3932</p>
                         </div>
-                    </div>
+                    
 
-                    <RiBarChart2Fill className='text-5xl text-white' />
-                </box>
+                    <IoStatsChartSharp className='text-5xl text-white' />
+                </div>
 
-                  <box className="py-8 px-6  gap-3 border border-gray-600/20 rounded-md  items-center flex justify-between  bg-blue-900">
-                    <div className='flex gap-4 items-center'>
-                        <RiProductHuntLine  className='text-5xl text-white' />
+                <div className="py-8 px-4 h-27 w-65 cursor-pointer hover:bg-blue-900/90 gap-3 border border-gray-600/20 rounded-md  items-center flex justify-between  bg-blue-900">
+                    
+                        <RiProductHuntLine className='text-5xl text-white' />
                         <div className='flex flex-col'>
-                            <span className='text-md text-white whitespace-nowrap'>Total Products</span>
-                            <span className='text-md font-semibold text-white   '>3932</span>
+                            <p className='text-md text-white whitespace-nowrap'>Total Products</p>
+                            <p className='text-md font-semibold text-white   '>3932</p>
                         </div>
-                    </div>
 
-                    <RiBarChart2Fill className='text-5xl text-white' />
-                </box>
+                    <IoStatsChartSharp className='text-5xl text-white' />
+                </div>
 
-                  <box className="py-8 px-6  gap-3 border border-gray-600/20 rounded-md  items-center flex justify-between  bg-[#f22c61]">
-                    <div className='flex gap-4 items-center'>
+                <div className="py-8 px-4 cursor-pointer hover:bg-[#f22c61]/90 h-27 w-65 gap-3 border border-gray-600/20 rounded-md  items-center flex justify-between  bg-[#f22c61]">        
                         <RiChatQuoteLine className='text-5xl text-white' />
                         <div className='flex flex-col'>
-                            <span className='text-md text-white whitespace-nowrap'>Total Categories</span>
-                            <span className='text-md font-semibold text-white   '>3932</span>
+                            <p className='text-md text-white whitespace-nowrap'>Total Categories</p>
+                            <p className='text-md font-semibold text-white   '>3932</p>
                         </div>
-                    </div>
-
-                    <RiBarChart2Fill className='text-5xl text-white' />
-                </box>
+                    
+                    <IoStatsChartSharp  className='text-5xl text-white' />
+                </div>
             </div>
         </section>
     )
