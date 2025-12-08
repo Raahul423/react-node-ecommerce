@@ -15,10 +15,8 @@ const PricelowHigh = () => {
          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
       <InputLabel id="demo-select-small-label">Filter</InputLabel>
       <Select
-        labelId="demo-select-small-label"
-        id="demo-select-small"
         value={value}
-        label="Age"
+        label="Filter"
         onChange={handleChange}
       >
         <MenuItem value={10}>Name, A to Z</MenuItem>

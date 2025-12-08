@@ -1,4 +1,4 @@
-import { Button, Checkbox, Rating, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import { Button, Checkbox, FormControl, InputLabel, MenuItem, Rating, Select, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import React, { useState } from 'react'
 import demoProducts from '../../../assets/Assests'
 import './Dashboard.css'
@@ -6,6 +6,18 @@ import { RiDeleteBin6Line } from 'react-icons/ri'
 
 const DashboardProducts = () => {
     const [rows, setRows] = useState(demoProducts)
+    console.log(setRows);
+    const [value, setValue] = useState('');
+    const [subcat, setSubcat] = useState('');
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+    };
+
+    const subCategory = (event)=>{
+        setSubcat(event.target.value)
+    }
+
     return (
         <section >
             <div className='flex justify-between items-center my-6'>
@@ -14,15 +26,38 @@ const DashboardProducts = () => {
             </div>
 
             <div className='border border-gray-600/30  bg-white shadow shadow-gray-600/90 rounded-md overflow-hidden'>
-
-                <div className='flex'>
-                    <div className='flex gap-2'>
-                        <div>
-                            <p>Category By</p>
+                <div className='flex px-4 py-6'>
+                    <div className='flex gap-10 '>
+                        <div className='flex flex-col gap-2'>
+                            <p className='!text-xl'>Category By</p>
+                            <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
+                               
+                                <Select
+                                    value={value}
+                                    onChange={handleChange}
+                                >
+                                    <MenuItem value={10}>Name, A to Z</MenuItem>
+                                    <MenuItem value={20}>Name, Z to A</MenuItem>
+                                    <MenuItem value={30}>Price, Low to High</MenuItem>
+                                    <MenuItem value={30}>Price, High to Low</MenuItem>
+                                </Select>
+                            </FormControl>
                         </div>
 
-                        <div>
-                            <p>Sub Category By</p>
+                       <div className='flex flex-col gap-2'>
+                            <p className='!text-xl'>SubCategory By</p>
+                            <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
+                                <Select
+                                    value={subcat}
+                                  
+                                    onChange={subCategory}
+                                >
+                                    <MenuItem value={10}>Name, A to Z</MenuItem>
+                                    <MenuItem value={20}>Name, Z to A</MenuItem>
+                                    <MenuItem value={30}>Price, Low to High</MenuItem>
+                                    <MenuItem value={30}>Price, High to Low</MenuItem>
+                                </Select>
+                            </FormControl>
                         </div>
                     </div>
 
