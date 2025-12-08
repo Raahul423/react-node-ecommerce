@@ -17,6 +17,9 @@ import Layout from './Layout'
 import Verifyemail from './Users/Pages/verifyemail'
 import Dashboard from './Admin/Pages/Dashboard'
 import AdminLayout from './AdminLayout'
+import HomeBanner from './Admin/Components/HomeSliderComponents/HomeBanner'
+
+
 
 
 
@@ -28,7 +31,7 @@ function App() {
       {/* {admin route} */}
       <Routes>
          <Route element={<AdminLayout />}>
-          <Route path="/" element={<Dashboard />} />
+          <Route path='/' element={<Dashboard />} />
         </Route>
 
 

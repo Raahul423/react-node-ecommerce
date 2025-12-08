@@ -11,8 +11,6 @@ import DialogComponent from '../Components/Context/DialogComponent'
 
 const Home = () => {
 
-  
-
   return (
     <section className='mb-16'>
       <Popupmessage/>

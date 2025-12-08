@@ -9,14 +9,15 @@ import { BiCategory } from 'react-icons/bi';
 import { FiUsers } from 'react-icons/fi';
 import { RiProductHuntLine } from 'react-icons/ri';
 import { BsCart2 } from "react-icons/bs";
+import { Link } from 'react-router';
 
 
 
 const Sidebar = () => {
 
     const [isopen, setIsopen] = useState(null)
-    
-    const click = (index) =>{
+
+    const click = (index) => {
         setIsopen(isopen === index ? null : index)
     }
 
@@ -37,22 +38,25 @@ const Sidebar = () => {
                         </Button>
                     </li>
 
-                    <li  onClick={()=>click(0)} className=''>
+                    <li onClick={() => click(0)} className=''>
                         <Button className='hover:bg-[#f1f1f1] !text-gray-900 w-full !justify-between flex  !py-3 !rounded-md'>
                             <span className='flex items-center gap-3'>
-                                <FaRegImage  className='!text-xl' />
+                                <FaRegImage className='!text-xl' />
                                 <span className='!text-md normal-case font-semibold'>Home Slides</span>
                             </span>
 
-                            {isopen == true ? <IoIosArrowUp className='text-xl' /> : <IoIosArrowDown className='text-xl' />}
+                            {isopen === 0 ? <IoIosArrowUp className='text-xl' /> : <IoIosArrowDown className='text-xl' />}
 
                         </Button>
 
                         <Collapse isOpened={isopen === 0}>
                             <div className='pl-6'>
-                                <Button className='w-full !justify-start hover:!bg-slate-800/10'>
-                                    <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill /> Home Banner List</p>
-                                </Button>
+                                <Link to='/homeslider/list'>
+                                    <Button className='w-full !justify-start hover:!bg-slate-800/10'>
+                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill /> Home Banner List</p>
+                                    </Button>
+                                </Link>
+
 
                                 <Button className='w-full !justify-start hover:!bg-slate-800/10'>
                                     <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Add Home Banner Slide</p>
@@ -63,14 +67,14 @@ const Sidebar = () => {
                         </Collapse>
                     </li>
 
-                    <li onClick={()=>click(1)} className=''>
+                    <li onClick={() => click(1)} className=''>
                         <Button className='hover:bg-[#f1f1f1] !text-gray-900 w-full !justify-between flex  !py-3 !rounded-md'>
                             <span className='flex items-center gap-3'>
                                 <BiCategory className='!text-xl' />
                                 <span className='!text-md normal-case font-semibold'>Category</span>
                             </span>
 
-                            {isopen == true ? <IoIosArrowUp className='text-xl' /> : <IoIosArrowDown className='text-xl' />}
+                            {isopen === 1 ? <IoIosArrowUp className='text-xl' /> : <IoIosArrowDown className='text-xl' />}
 
                         </Button>
 
@@ -93,14 +97,14 @@ const Sidebar = () => {
                         </Collapse>
                     </li>
 
-                    <li onClick={()=>click(2)} className=''>
+                    <li onClick={() => click(2)} className=''>
                         <Button className='hover:bg-[#f1f1f1] !text-gray-900 w-full !justify-between flex  !py-3 !rounded-md'>
                             <span className='flex items-center gap-3'>
-                                <RiProductHuntLine  className='!text-xl' />
+                                <RiProductHuntLine className='!text-xl' />
                                 <span className='!text-md normal-case font-semibold'>Product</span>
                             </span>
 
-                            {isopen == true ? <IoIosArrowUp className='text-xl' /> : <IoIosArrowDown className='text-xl' />}
+                            {isopen === 2 ? <IoIosArrowUp className='text-xl' /> : <IoIosArrowDown className='text-xl' />}
 
                         </Button>
 
@@ -133,28 +137,28 @@ const Sidebar = () => {
 
                     <li className='hover:bg-[#f1f1f1]'>
                         <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
-                            <FiUsers  className='!text-xl' />
+                            <FiUsers className='!text-xl' />
                             <span className='font-semibold !text-md normal-case'>Users</span>
                         </Button>
                     </li>
 
                     <li className='hover:bg-[#f1f1f1]'>
                         <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
-                            <BsCart2  className='!text-xl' />
+                            <BsCart2 className='!text-xl' />
                             <span className='font-semibold !text-md normal-case'>Orders</span>
                         </Button>
                     </li>
 
                     <li className='hover:bg-[#f1f1f1]'>
                         <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
-                            <IoLogoBuffer  className='!text-xl' />
+                            <IoLogoBuffer className='!text-xl' />
                             <span className='font-semibold !text-md normal-case'>Manage Logo</span>
                         </Button>
                     </li>
 
                     <li className='hover:bg-[#f1f1f1]'>
                         <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
-                            <IoMdLogOut  className='!text-xl' />
+                            <IoMdLogOut className='!text-xl' />
                             <span className='font-semibold !text-md normal-case'>Logout</span>
                         </Button>
                     </li>
