@@ -92,9 +92,11 @@ const Sidebar = () => {
                                     <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Add A Category</p>
                                 </Button>
 
-                                <Button className='w-full !justify-start hover:!bg-slate-800/10'>
-                                    <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Sub Category List</p>
-                                </Button>
+                                <Link to="/subCatergory/list">
+                                    <Button className='w-full !justify-start hover:!bg-slate-800/10'>
+                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Sub Category List</p>
+                                    </Button>
+                                </Link>
 
                             </div>
 

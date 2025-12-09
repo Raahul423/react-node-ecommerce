@@ -19,8 +19,8 @@ const Homebanner = () => {
     };
 
     return (
-        <section>
-            <div className='part-1 flex justify-between items-center my-5'>
+        <section className='pl-75 pr-3 bg-gray-400/10 h-screen'>
+            <div className='part-1 flex justify-between items-center py-5'>
                 <h1 className='!text-xl '>Home Slider Banners</h1>
                 <Button className='!bg-blue-600 !text-white !px-4 py-2' >ADD HOME SLIDE</Button>
             </div>
