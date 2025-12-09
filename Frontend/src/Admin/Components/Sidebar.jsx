@@ -13,8 +13,8 @@ import { Link } from 'react-router';
 
 
 
-const Sidebar = () => {
 
+const Sidebar = () => {
     const [isopen, setIsopen] = useState(null)
 
     const click = (index) => {
@@ -32,10 +32,12 @@ const Sidebar = () => {
             <div className='part-2 flex flex-col gap-2'>
                 <ul className='cursor-pointer gap-1 flex flex-col'>
                     <li className='hover:bg-[#f1f1f1]'>
-                        <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
+                        <Link to='/'>
+                         <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
                             <MdOutlineDashboard className='!text-xl' />
                             <span className='!text-md normal-case font-semibold'>Dashboard</span>
                         </Button>
+                        </Link>
                     </li>
 
                     <li onClick={() => click(0)} className=''>
@@ -51,13 +53,13 @@ const Sidebar = () => {
 
                         <Collapse isOpened={isopen === 0}>
                             <div className='pl-6'>
-                               
-                                    <Button className='w-full !justify-start hover:!bg-slate-800/10'>
+                               <Link to="/homeslide">
+                               <Button  className='w-full !justify-start hover:!bg-slate-800/10'>
                                         <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill /> Home Banner List</p>
                                     </Button>
-                               
-
-
+                               </Link>
+                                    
+        
                                 <Button className='w-full !justify-start hover:!bg-slate-800/10'>
                                     <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Add Home Banner Slide</p>
                                 </Button>

@@ -1,7 +1,6 @@
 import { Button, Checkbox, FormControl, InputLabel, MenuItem, Rating, Select, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material'
 import React, { useState } from 'react'
 import demoProducts from '../../../assets/Assests'
-import './Dashboard.css'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 
 const DashboardProducts = () => {
@@ -81,7 +80,7 @@ const DashboardProducts = () => {
 
                 <TableContainer sx={{ overflowX: "auto" }} className='scroll'>
                     <Table >
-                        <TableHead className='sticky top-0 z-99'>
+                        <TableHead className='sticky top-0'>
                             <TableRow className='bg-[#f2f2f2]'>
                                 <TableCell><Checkbox /></TableCell>
                                 <TableCell className='!font-semibold !w-fit'>PRODUCT </TableCell>
