@@ -33,10 +33,10 @@ const Sidebar = () => {
                 <ul className='cursor-pointer gap-1 flex flex-col'>
                     <li className='hover:bg-[#f1f1f1]'>
                         <Link to='/'>
-                         <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
-                            <MdOutlineDashboard className='!text-xl' />
-                            <span className='!text-md normal-case font-semibold'>Dashboard</span>
-                        </Button>
+                            <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
+                                <MdOutlineDashboard className='!text-xl' />
+                                <span className='!text-md normal-case font-semibold'>Dashboard</span>
+                            </Button>
                         </Link>
                     </li>
 
@@ -53,13 +53,13 @@ const Sidebar = () => {
 
                         <Collapse isOpened={isopen === 0}>
                             <div className='pl-6'>
-                               <Link to="/homeslide">
-                               <Button  className='w-full !justify-start hover:!bg-slate-800/10'>
+                                <Link to="/homeslide">
+                                    <Button className='w-full !justify-start hover:!bg-slate-800/10'>
                                         <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill /> Home Banner List</p>
                                     </Button>
-                               </Link>
-                                    
-        
+                                </Link>
+
+
                                 <Button className='w-full !justify-start hover:!bg-slate-800/10'>
                                     <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Add Home Banner Slide</p>
                                 </Button>
@@ -82,9 +82,11 @@ const Sidebar = () => {
 
                         <Collapse isOpened={isopen === 1}>
                             <div className='pl-6 '>
-                                <Button className='w-full !justify-start hover:!bg-slate-800/10'>
-                                    <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill /> Category List</p>
-                                </Button>
+                                <Link to="/category">
+                                    <Button className='w-full !justify-start hover:!bg-slate-800/10'>
+                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill /> Category List</p>
+                                    </Button>
+                                </Link>
 
                                 <Button className='w-full !justify-start hover:!bg-slate-800/10'>
                                     <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Add A Category</p>

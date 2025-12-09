@@ -18,6 +18,7 @@ import Verifyemail from './Users/Pages/verifyemail'
 import Dashboard from './Admin/Pages/Dashboard'
 import AdminLayout from './AdminLayout'
 import HomeSlide from './Admin/Pages/HomeSlide'
+import CategoryList from './Admin/Pages/CategoryList'
 
 
 
@@ -34,7 +35,8 @@ function App() {
       <Routes>
          <Route element={<AdminLayout />}>
           <Route path='/' element={<Dashboard />} />
-          <Route path='homeslide' element={<HomeSlide/>}/>
+          <Route path='/homeslide' element={<HomeSlide/>}/>
+          <Route path='/category' element={<CategoryList/>}/>
         </Route>
 
 

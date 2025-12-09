@@ -26,9 +26,9 @@ const Homebanner = () => {
             </div>
 
             <div className='part-2 shadow-md shadow-gray-600/30 rounded-md'>
-                <div class="bg-gray-500 rounded-md">
+                <div class="scroll rounded-md">
                     <table class="w-full text-sm text-left rtl:text-right text-body">
-                        <thead>
+                        <thead className='sticky top-0 bg-gray-500 rounded-md'>
                             <tr>
                                 <th scope="col" class="text-black px-6 py-3 font-medium">
                                     IMAGE
@@ -79,10 +79,20 @@ const Homebanner = () => {
                                     <MdDelete />
                                 </td>
                             </tr>
+                            <tr class="bg-white border-b border-gray-500/20 ">
+                                <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
+                                    <img className='h-20 rounded-md hover:scale-102 cursor-pointer transition-all' src="https://serviceapi.spicezgold.com/download/1763051442252_34296.jpg" alt="Banner" />
+                                </th>
+
+                                <td align='left' class="text-2xl">
+                                    <MdDelete />
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
+                </div>
 
-                    <TablePagination
+                 <TablePagination
                         component="div"
                         count={100}
                         page={page}
@@ -90,7 +100,6 @@ const Homebanner = () => {
                         rowsPerPage={rowsPerPage}
                         onRowsPerPageChange={handleChangeRowsPerPage}
                     />
-                </div>
 
             </div>
         </section>
