@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import demoProducts from '../../../assets/Assests';
 import { Button, Checkbox, FormControl, MenuItem, Rating, Select, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material'
 import { RiDeleteBin6Line } from 'react-icons/ri'
+import { MdDeleteOutline } from 'react-icons/md';
 
 const AddProduct = () => {
 
@@ -35,7 +36,7 @@ const AddProduct = () => {
     return (
         <section className='pl-75 pr-3 bg-gray-400/10 h-screen'>
             <div className='flex justify-between items-center py-6'>
-                <h1 className='!text-2xl '>Products</h1>
+                <h1 className='!text-2xl '>Products List</h1>
                 <Button className='!px-6 !py-2 !bg-blue-600/80 !text-white'>Add Product</Button>
             </div>
 
@@ -122,7 +123,7 @@ const AddProduct = () => {
                                     <TableCell className='!font-semibold !text-blue-700/90' align="center">{row.stock} stocks</TableCell>
 
 
-                                    <TableCell className='!font-semibold' align="center"><RiDeleteBin6Line className='text-xl' /></TableCell>
+                                    <TableCell className='cursor-pointer !font-semibold ' align="center"><MdDeleteOutline className="text-2xl" /></TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

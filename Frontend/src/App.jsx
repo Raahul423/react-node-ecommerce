@@ -21,6 +21,7 @@ import Homebanner from './Admin/Components/HomeSlidercomponent/Homebanner'
 import CategoryAdd from './Admin/Components/Category/CategoryAdd'
 import AddSubCategoryList from './Admin/Components/Category/AddSubCategoryList'
 import AddProduct from './Admin/Components/ProductsComponent/AddProduct'
+import ProductRams from './Admin/Components/ProductsComponent/ProductRams'
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route path='/category' element={<CategoryAdd/>}/>
           <Route path='/subCatergory/list' element={<AddSubCategoryList/>}/>
           <Route path='/addProducts' element={<AddProduct/>}/>
+          <Route path='/product/addRams' element={<ProductRams/>}/>
         </Route>
 
 

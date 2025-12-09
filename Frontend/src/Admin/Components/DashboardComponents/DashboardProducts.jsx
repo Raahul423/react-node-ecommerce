@@ -1,7 +1,7 @@
-import { Button, Checkbox, FormControl, InputLabel, MenuItem, Rating, Select, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material'
+import { Button, Checkbox, FormControl, MenuItem, Rating, Select, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material'
 import React, { useState } from 'react'
 import demoProducts from '../../../assets/Assests'
-import { RiDeleteBin6Line } from 'react-icons/ri'
+import { MdDeleteOutline } from "react-icons/md";
 
 const DashboardProducts = () => {
     const [rows, setRows] = useState(demoProducts)
@@ -120,7 +120,7 @@ const DashboardProducts = () => {
                                     <TableCell className='!font-semibold !text-blue-700/90' align="center">{row.stock} stocks</TableCell>
 
 
-                                    <TableCell className='!font-semibold' align="center"><RiDeleteBin6Line className='text-xl' /></TableCell>
+                                    <TableCell className='!font-semibold' align="center"><MdDeleteOutline className="text-2xl" /></TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
