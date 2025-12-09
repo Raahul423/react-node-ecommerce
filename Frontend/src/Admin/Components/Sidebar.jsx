@@ -116,9 +116,12 @@ const Sidebar = () => {
 
                         <Collapse isOpened={isopen === 2}>
                             <div className='pl-6 '>
+                                <Link to="/addProducts">
+                                
                                 <Button className='w-full !justify-start hover:!bg-slate-800/10'>
                                     <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Product List</p>
                                 </Button>
+                                </Link>
 
                                 <Button className='w-full !justify-start hover:!bg-slate-800/10'>
                                     <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Product Upload</p>

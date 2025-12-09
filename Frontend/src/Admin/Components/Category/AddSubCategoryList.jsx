@@ -26,11 +26,11 @@ const AddSubCategoryList = () => {
                 <table class="w-full text-sm text-left scroll text-body">
                     <tbody>
                         <>
-                            <tr onClick={()=>click(0)} class="bg-gray-700 border-b border-gray-400 ">
+                            <tr onClick={() => click(0)} class="bg-gray-700 border-b border-gray-400 ">
                                 <td class="px-6 py-3 text-white text-xl flex justify-between">
                                     <p>Fastion</p>
 
-                                    <RiArrowDownSLine  className='text-2xl' />
+                                    <RiArrowDownSLine className='text-2xl' />
                                 </td>
                             </tr>
 
@@ -43,14 +43,14 @@ const AddSubCategoryList = () => {
                                         </div>
                                     </div>
 
-                                     <div className='!justify-between flex py-3 border-b border-gray-600/30'>
+                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
                                         <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Women</p>
                                         <div className='flex gap-5'>
                                             <MdOutlineDelete className='text-2xl cursor-pointer' />
                                         </div>
                                     </div>
 
-                                     <div className='!justify-between flex py-3 border-b border-gray-600/30'>
+                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
                                         <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Kids</p>
                                         <div className='flex gap-5'>
                                             <MdOutlineDelete className='text-2xl cursor-pointer' />
@@ -59,15 +59,15 @@ const AddSubCategoryList = () => {
                                 </div>
                             </Collapse>
 
-                            
+
                         </>
 
-                         <>
-                            <tr onClick={()=>click(1)} class="bg-gray-700 border-b border-gray-400 ">
+                        <>
+                            <tr onClick={() => click(1)} class="bg-gray-700 border-b border-gray-400 ">
                                 <td class="px-6 py-3 text-white text-xl flex justify-between">
                                     <p>Electronics</p>
 
-                                    <RiArrowDownSLine  className='text-2xl' />
+                                    <RiArrowDownSLine className='text-2xl' />
                                 </td>
                             </tr>
 
@@ -80,14 +80,14 @@ const AddSubCategoryList = () => {
                                         </div>
                                     </div>
 
-                                     <div className='!justify-between flex py-3 border-b border-gray-600/30'>
+                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
                                         <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Women</p>
                                         <div className='flex gap-5'>
                                             <MdOutlineDelete className='text-2xl cursor-pointer' />
                                         </div>
                                     </div>
 
-                                     <div className='!justify-between flex py-3 border-b border-gray-600/30'>
+                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
                                         <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Kids</p>
                                         <div className='flex gap-5'>
                                             <MdOutlineDelete className='text-2xl cursor-pointer' />
@@ -96,15 +96,15 @@ const AddSubCategoryList = () => {
                                 </div>
                             </Collapse>
 
-                            
+
                         </>
 
-                         <>
-                            <tr onClick={()=>click(2)} class="bg-gray-700 border-b border-gray-400 ">
+                        <>
+                            <tr onClick={() => click(2)} class="bg-gray-700 border-b border-gray-400 ">
                                 <td class="px-6 py-3 text-white text-xl flex justify-between">
                                     <p>Bags</p>
 
-                                    <RiArrowDownSLine  className='text-2xl' />
+                                    <RiArrowDownSLine className='text-2xl' />
                                 </td>
                             </tr>
 
@@ -117,14 +117,14 @@ const AddSubCategoryList = () => {
                                         </div>
                                     </div>
 
-                                     <div className='!justify-between flex py-3 border-b border-gray-600/30'>
+                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
                                         <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Women</p>
                                         <div className='flex gap-5'>
                                             <MdOutlineDelete className='text-2xl cursor-pointer' />
                                         </div>
                                     </div>
 
-                                     <div className='!justify-between flex py-3 border-b border-gray-600/30'>
+                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
                                         <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Kids</p>
                                         <div className='flex gap-5'>
                                             <MdOutlineDelete className='text-2xl cursor-pointer' />
@@ -133,15 +133,15 @@ const AddSubCategoryList = () => {
                                 </div>
                             </Collapse>
 
-                            
+
                         </>
 
-                         <>
-                            <tr onClick={()=>click(3)} class="bg-gray-700 border-b border-gray-400 ">
+                        <>
+                            <tr onClick={() => click(3)} class="bg-gray-700 border-b border-gray-400 ">
                                 <td class="px-6 py-3 text-white text-xl flex justify-between">
                                     <p>Footwear</p>
 
-                                    <RiArrowDownSLine  className='text-2xl' />
+                                    <RiArrowDownSLine className='text-2xl' />
                                 </td>
                             </tr>
 
@@ -154,14 +154,14 @@ const AddSubCategoryList = () => {
                                         </div>
                                     </div>
 
-                                     <div className='!justify-between flex py-3 border-b border-gray-600/30'>
+                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
                                         <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Women</p>
                                         <div className='flex gap-5'>
                                             <MdOutlineDelete className='text-2xl cursor-pointer' />
                                         </div>
                                     </div>
 
-                                     <div className='!justify-between flex py-3 border-b border-gray-600/30'>
+                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
                                         <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Kids</p>
                                         <div className='flex gap-5'>
                                             <MdOutlineDelete className='text-2xl cursor-pointer' />
@@ -170,84 +170,44 @@ const AddSubCategoryList = () => {
                                 </div>
                             </Collapse>
 
-                            
+
                         </>
 
-                         <>
-                            <tr onClick={()=>click(4)} class="bg-gray-700 border-b border-gray-400 ">
+                        <>
+                            <tr onClick={() => click(4)} class="bg-gray-700 border-b border-gray-400 ">
                                 <td class="px-6 py-3 text-white text-xl flex justify-between">
-                                    <p>Fastion</p>
+                                    <p>Groceries</p>
 
-                                    <RiArrowDownSLine  className='text-2xl' />
+                                </td>
+                            </tr>
+                        </>
+
+                        <>
+                            <tr onClick={() => click(5)} class="bg-gray-700 border-b border-gray-400 ">
+                                <td class="px-6 py-3 text-white text-xl flex justify-between">
+                                    <p>Beauty</p>                                  
                                 </td>
                             </tr>
 
-                            <Collapse isOpened={isopen === 4}>
-                                <div className='px-6'>
-                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
-                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Mens</p>
-                                        <div className='flex gap-5'>
-                                            <MdOutlineDelete className='text-2xl cursor-pointer' />
-                                        </div>
-                                    </div>
-
-                                     <div className='!justify-between flex py-3 border-b border-gray-600/30'>
-                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Women</p>
-                                        <div className='flex gap-5'>
-                                            <MdOutlineDelete className='text-2xl cursor-pointer' />
-                                        </div>
-                                    </div>
-
-                                     <div className='!justify-between flex py-3 border-b border-gray-600/30'>
-                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Kids</p>
-                                        <div className='flex gap-5'>
-                                            <MdOutlineDelete className='text-2xl cursor-pointer' />
-                                        </div>
-                                    </div>
-                                </div>
-                            </Collapse>
-
-                            
                         </>
 
-                         <>
-                            <tr onClick={()=>click(5)} class="bg-gray-700 border-b border-gray-400 ">
+                        <>
+                            <tr onClick={() => click(5)} class="bg-gray-700 border-b border-gray-400 ">
                                 <td class="px-6 py-3 text-white text-xl flex justify-between">
-                                    <p>Fastion</p>
-
-                                    <RiArrowDownSLine  className='text-2xl' />
+                                    <p>jewellery</p>
                                 </td>
                             </tr>
-
-                            <Collapse isOpened={isopen === 5}>
-                                <div className='px-6'>
-                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
-                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Mens</p>
-                                        <div className='flex gap-5'>
-                                            <MdOutlineDelete className='text-2xl cursor-pointer' />
-                                        </div>
-                                    </div>
-
-                                     <div className='!justify-between flex py-3 border-b border-gray-600/30'>
-                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Women</p>
-                                        <div className='flex gap-5'>
-                                            <MdOutlineDelete className='text-2xl cursor-pointer' />
-                                        </div>
-                                    </div>
-
-                                     <div className='!justify-between flex py-3 border-b border-gray-600/30'>
-                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Kids</p>
-                                        <div className='flex gap-5'>
-                                            <MdOutlineDelete className='text-2xl cursor-pointer' />
-                                        </div>
-                                    </div>
-                                </div>
-                            </Collapse>
-
-                            
                         </>
 
-                        
+                        <>
+                            <tr onClick={() => click(5)} class="bg-gray-700 border-b border-gray-400 ">
+                                <td class="px-6 py-3 text-white text-xl flex justify-between">
+                                    <p>wellness</p>
+                                </td>
+                            </tr>
+                        </>
+
+
 
 
                     </tbody>

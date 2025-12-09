@@ -20,6 +20,7 @@ import AdminLayout from './AdminLayout'
 import Homebanner from './Admin/Components/HomeSlidercomponent/Homebanner'
 import CategoryAdd from './Admin/Components/Category/CategoryAdd'
 import AddSubCategoryList from './Admin/Components/Category/AddSubCategoryList'
+import AddProduct from './Admin/Components/ProductsComponent/AddProduct'
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path='/homeslide' element={<Homebanner/>}/>
           <Route path='/category' element={<CategoryAdd/>}/>
           <Route path='/subCatergory/list' element={<AddSubCategoryList/>}/>
+          <Route path='/addProducts' element={<AddProduct/>}/>
         </Route>
 
 
