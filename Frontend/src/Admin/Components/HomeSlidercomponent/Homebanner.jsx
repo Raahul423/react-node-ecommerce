@@ -1,126 +1,95 @@
-import { Button } from '@mui/material'
-import React from 'react'
+import { Button, TablePagination } from '@mui/material'
+import React, { useState } from 'react'
+import { MdDelete } from 'react-icons/md'
 
 const Homebanner = () => {
+
+    const [page, setPage] = useState(2);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+
+
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
+
     return (
         <section>
-            <div className='part-1 flex justify-between'>
+            <div className='part-1 flex justify-between items-center my-5'>
                 <h1 className='!text-xl '>Home Slider Banners</h1>
                 <Button className='!bg-blue-600 !text-white !px-4 py-2' >ADD HOME SLIDE</Button>
             </div>
 
-            <div className='part-2'>
-
-
-                <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
+            <div className='part-2 border border-gray-500/20 shadow-md shadow-gray-600/30 rounded-md'>
+                <div class="bg-gray-500 rounded-md">
                     <table class="w-full text-sm text-left rtl:text-right text-body">
-                        <thead class="bg-neutral-secondary-soft border-b border-default">
+                        <thead>
                             <tr>
-                                <th scope="col" class="px-6 py-3 font-medium">
-                                    Product name
+                                <th scope="col" class="text-black px-6 py-3 font-medium">
+                                    IMAGE
                                 </th>
-                                <th scope="col" class="px-6 py-3 font-medium">
-                                    Color
+                                <th scope="col" class="text-black px-4 py-3 font-medium">
+                                    ACTION
                                 </th>
-                                <th scope="col" class="px-6 py-3 font-medium">
-                                    Category
-                                </th>
-                                <th scope="col" class="px-6 py-3 font-medium">
-                                    Price
-                                </th>
-                                <th scope="col" class="px-6 py-3 font-medium">
-                                    Action
-                                </th>
+
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
+                            <tr class="bg-white border border-gray-500/20 rounded-md">
                                 <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                                    Apple MacBook Pro 17"
+                                    <img className='h-20 rounded-md hover:scale-102 cursor-pointer transition-all' src="https://serviceapi.spicezgold.com/download/1763051442252_34296.jpg" alt="Banner" />
                                 </th>
-                                <td class="px-6 py-4">
-                                    Silver
-                                </td>
-                                <td class="px-6 py-4">
-                                    Laptop
-                                </td>
-                                <td class="px-6 py-4">
-                                    $2999
-                                </td>
-                                <td class="px-6 py-4">
-                                    <a href="#" class="font-medium text-fg-brand hover:underline">Edit</a>
+
+                                <td align='left' class="text-2xl">
+                                    <MdDelete />
                                 </td>
                             </tr>
-                            <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
+
+                            <tr class="bg-white border border-gray-500/20 rounded-md">
                                 <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                                    Microsoft Surface Pro
+                                    <img className='h-20 rounded-md hover:scale-102 cursor-pointer transition-all' src="https://serviceapi.spicezgold.com/download/1763051442252_34296.jpg" alt="Banner" />
                                 </th>
-                                <td class="px-6 py-4">
-                                    White
-                                </td>
-                                <td class="px-6 py-4">
-                                    Laptop PC
-                                </td>
-                                <td class="px-6 py-4">
-                                    $1999
-                                </td>
-                                <td class="px-6 py-4">
-                                    <a href="#" class="font-medium text-fg-brand hover:underline">Edit</a>
+
+                                <td align='left' class="text-2xl">
+                                    <MdDelete />
                                 </td>
                             </tr>
-                            <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
+
+                            <tr class="bg-white border border-gray-500/20 rounded-md">
                                 <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                                    Magic Mouse 2
+                                    <img className='h-20 rounded-md hover:scale-102 cursor-pointer transition-all' src="https://serviceapi.spicezgold.com/download/1763051442252_34296.jpg" alt="Banner" />
                                 </th>
-                                <td class="px-6 py-4">
-                                    Black
-                                </td>
-                                <td class="px-6 py-4">
-                                    Accessories
-                                </td>
-                                <td class="px-6 py-4">
-                                    $99
-                                </td>
-                                <td class="px-6 py-4">
-                                    <a href="#" class="font-medium text-fg-brand hover:underline">Edit</a>
+
+                                <td align='left' class="text-2xl">
+                                    <MdDelete />
                                 </td>
                             </tr>
-                            <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
+
+                            <tr class="bg-white border border-gray-500/20 rounded-md">
                                 <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                                    Google Pixel Phone
+                                    <img className='h-20 rounded-md hover:scale-102 cursor-pointer transition-all' src="https://serviceapi.spicezgold.com/download/1763051442252_34296.jpg" alt="Banner" />
                                 </th>
-                                <td class="px-6 py-4">
-                                    Gray
-                                </td>
-                                <td class="px-6 py-4">
-                                    Phone
-                                </td>
-                                <td class="px-6 py-4">
-                                    $799
-                                </td>
-                                <td class="px-6 py-4">
-                                    <a href="#" class="font-medium text-fg-brand hover:underline">Edit</a>
-                                </td>
-                            </tr>
-                            <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft">
-                                <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                                    Apple Watch 5
-                                </th>
-                                <td class="px-6 py-4">
-                                    Red
-                                </td>
-                                <td class="px-6 py-4">
-                                    Wearables
-                                </td>
-                                <td class="px-6 py-4">
-                                    $999
-                                </td>
-                                <td class="px-6 py-4">
-                                    <a href="#" class="font-medium text-fg-brand hover:underline">Edit</a>
+
+                                <td align='left' class="text-2xl">
+                                    <MdDelete />
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+
+                    <TablePagination
+                        component="div"
+                        count={100}
+                        page={page}
+                        onPageChange={handleChangePage}
+                        rowsPerPage={rowsPerPage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                    />
                 </div>
 
             </div>

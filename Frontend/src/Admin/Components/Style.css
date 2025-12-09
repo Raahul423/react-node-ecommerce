@@ -3,6 +3,10 @@
   overflow-y: scroll;
 }
 
+::-webkit-scrollbar-thumb{
+  background-color: rgb(160, 160, 160);
+}
+
 .css-1dc80h3-MuiTableCell-root {
   padding: 10px !important;
   text-align: left !important;

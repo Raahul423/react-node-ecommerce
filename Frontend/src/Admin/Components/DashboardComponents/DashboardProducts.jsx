@@ -6,8 +6,8 @@ import { RiDeleteBin6Line } from 'react-icons/ri'
 const DashboardProducts = () => {
     const [rows, setRows] = useState(demoProducts)
     console.log(setRows);
-    const [page, setPage] = React.useState(2);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [page, setPage] = useState(2);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
     const [value, setValue] = useState('');
     const [subcat, setSubcat] = useState('');
 
