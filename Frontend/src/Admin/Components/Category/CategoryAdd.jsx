@@ -27,82 +27,82 @@ const CategoryAdd = () => {
 
 
 
-            <div class="relative overflow-x-auto bg-white border border-gray-600/30 shadow-md shadow-gray-600/60 rounded-md">
-                <table class="w-full text-sm text-left scroll text-body">
-                    <thead class="bg-gray-600/90">
+            <div className="relative overflow-x-auto bg-white border border-gray-600/30 shadow-md shadow-gray-600/60 rounded-md">
+                <table className="w-full text-sm text-left scroll text-body">
+                    <thead className="bg-gray-600/90">
                         <tr>
-                            <th scope="col" class="px-6 py-3 font-medium">
+                            <th scope="col" className="px-6 py-3 font-medium">
                                 IMAGES
                             </th>
-                            <th scope="col" class="px-6 py-3 font-medium">
+                            <th scope="col" className="px-6 py-3 font-medium">
                                 CATEGORY NAME
                             </th>
-                            <th scope="col" class="px-6 py-3 font-medium">
+                            <th scope="col" className="px-6 py-3 font-medium">
                                 ACTION
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-gray-400">
-                            <th scope="row" class="px-6 py-2">
+                        <tr className="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-gray-400">
+                            <th scope="row" className="px-6 py-2">
                                 <img className='h-13 w-13 hover:scale-103 transition-all cursor-pointer' src="https://serviceapi.spicezgold.com/download/1763965324754_4819.png" alt="" />
                             </th>
-                            <td class="px-6 py-4">
+                            <td className="px-6 py-4">
                                 Fastion
                             </td>
 
-                            <td align='left' class="text-2xl px-6">
+                            <td align='left' className="text-2xl px-6">
                                 <MdDelete />
                             </td>
                         </tr>
-                        <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-gray-400">
-                            <th scope="row" class="px-6 py-4">
+                        <tr className="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-gray-400">
+                            <th scope="row" className="px-6 py-4">
                                 <img className='h-13 w-13 hover:scale-103 transition-all cursor-pointer' src="https://serviceapi.spicezgold.com/download/1763965324754_4819.png" alt="" />
                             </th>
-                            <td class="px-6 py-4">
+                            <td className="px-6 py-4">
                                 Fastion
                             </td>
 
-                            <td align='left' class="text-2xl px-6">
-                                <MdDelete />
-                            </td>
-                        </tr>
-
-                        <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-gray-400">
-                            <th scope="row" class="px-6 py-2">
-                                <img className='h-13 w-13 hover:scale-103 transition-all cursor-pointer' src="https://serviceapi.spicezgold.com/download/1763965324754_4819.png" alt="" />
-                            </th>
-                            <td class="px-6 py-4">
-                                Fastion
-                            </td>
-
-                            <td align='left' class="text-2xl px-6">
+                            <td align='left' className="text-2xl px-6">
                                 <MdDelete />
                             </td>
                         </tr>
 
-                        <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-gray-400">
-                            <th scope="row" class="px-6 py-2">
+                        <tr className="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-gray-400">
+                            <th scope="row" className="px-6 py-2">
                                 <img className='h-13 w-13 hover:scale-103 transition-all cursor-pointer' src="https://serviceapi.spicezgold.com/download/1763965324754_4819.png" alt="" />
                             </th>
-                            <td class="px-6 py-4">
+                            <td className="px-6 py-4">
                                 Fastion
                             </td>
 
-                            <td align='left' class="text-2xl px-6">
+                            <td align='left' className="text-2xl px-6">
                                 <MdDelete />
                             </td>
                         </tr>
 
-                        <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-gray-400">
-                            <th scope="row" class="px-6 py-2">
+                        <tr className="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-gray-400">
+                            <th scope="row" className="px-6 py-2">
                                 <img className='h-13 w-13 hover:scale-103 transition-all cursor-pointer' src="https://serviceapi.spicezgold.com/download/1763965324754_4819.png" alt="" />
                             </th>
-                            <td class="px-6 py-4">
+                            <td className="px-6 py-4">
                                 Fastion
                             </td>
 
-                            <td align='left' class="text-2xl px-6">
+                            <td align='left' className="text-2xl px-6">
+                                <MdDelete />
+                            </td>
+                        </tr>
+
+                        <tr className="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-gray-400">
+                            <th scope="row" className="px-6 py-2">
+                                <img className='h-13 w-13 hover:scale-103 transition-all cursor-pointer' src="https://serviceapi.spicezgold.com/download/1763965324754_4819.png" alt="" />
+                            </th>
+                            <td className="px-6 py-4">
+                                Fastion
+                            </td>
+
+                            <td align='left' className="text-2xl px-6">
                                 <MdDelete />
                             </td>
                         </tr>

@@ -117,10 +117,10 @@ const Sidebar = () => {
                         <Collapse isOpened={isopen === 2}>
                             <div className='pl-6 '>
                                 <Link to="/addProducts">
-                                
-                                <Button className='w-full !justify-start hover:!bg-slate-800/10'>
-                                    <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Product List</p>
-                                </Button>
+
+                                    <Button className='w-full !justify-start hover:!bg-slate-800/10'>
+                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Product List</p>
+                                    </Button>
                                 </Link>
 
                                 <Button className='w-full !justify-start hover:!bg-slate-800/10'>
@@ -132,18 +132,21 @@ const Sidebar = () => {
                     </li>
 
                     <li className='hover:bg-[#f1f1f1]'>
-                        <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
-                            <FiUsers className='!text-xl' />
-                            <span className='font-semibold !text-md normal-case'>Users</span>
-                        </Button>
+                        <Link to="/users">
+                            <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
+                                <FiUsers className='!text-xl' />
+                                <span className='font-semibold !text-md normal-case'>Users</span>
+                            </Button>
+                        </Link>
+
                     </li>
 
                     <li className='hover:bg-[#f1f1f1]'>
                         <Link to="orders">
-                        <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
-                            <BsCart2 className='!text-xl' />
-                            <span className='font-semibold !text-md normal-case'>Orders</span>
-                        </Button>
+                            <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
+                                <BsCart2 className='!text-xl' />
+                                <span className='font-semibold !text-md normal-case'>Orders</span>
+                            </Button>
                         </Link>
                     </li>
 
