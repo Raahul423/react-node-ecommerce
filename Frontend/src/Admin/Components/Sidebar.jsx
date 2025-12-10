@@ -151,10 +151,12 @@ const Sidebar = () => {
                     </li>
 
                     <li className='hover:bg-[#f1f1f1]'>
+                        <Link to="/managelogo">
                         <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
                             <IoLogoBuffer className='!text-xl' />
                             <span className='font-semibold !text-md normal-case'>Manage Logo</span>
                         </Button>
+                        </Link>
                     </li>
 
                     <li className='hover:bg-[#f1f1f1]'>

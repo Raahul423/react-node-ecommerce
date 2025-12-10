@@ -23,12 +23,15 @@ import AddSubCategoryList from './Admin/Components/Category/AddSubCategoryList'
 import AddProduct from './Admin/Components/ProductsComponent/AddProduct'
 import Order from './Admin/Components/OrderComponent/Order'
 import Users from './Admin/Components/Users/Users'
+import ManageLogo from './Admin/Components/ManageLogo/ManageLogo'
+
+
 
 
 
 function App() {
 
-  return (
+  return (  
     <Provider>
 
       {/* {admin route} */}
@@ -41,6 +44,7 @@ function App() {
           <Route path='/addProducts' element={<AddProduct/>}/>
           <Route path='/orders' element={<Order/>}/>
           <Route path='/users' element={<Users/>}/>
+          <Route path='/managelogo' element={<ManageLogo/>}/>
         </Route>
 
 
