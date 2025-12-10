@@ -1,12 +1,11 @@
+
 import { Button, Pagination, Stack } from '@mui/material';
 
-const DashboardOrders = () => {
-
-    return (
-        <section className='border border-gray-600/30 shadow-md shadow-gray-600/90 rounded-md my-10'>
-            <div className='flex justify-between items-center my-6 px-5'>
+const Order = () => {
+  return (
+      <section className='pl-75 pr-3 bg-gray-400/10 h-screen'>
+            <div className='flex justify-between items-center py-6 px-5'>
                 <h1 className='!text-2xl '>Recent Orders</h1>
-               
             </div>
 
 
@@ -254,7 +253,7 @@ const DashboardOrders = () => {
             </Stack>
 
         </section>
-    )
+  )
 }
 
-export default DashboardOrders
+export default Order

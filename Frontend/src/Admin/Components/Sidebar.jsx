@@ -24,7 +24,7 @@ const Sidebar = () => {
 
 
     return (
-        <section className='w-[20%] fixed top-0 left-0 bg-white border border-gray-500/50  z-[20] h-full flex flex-col gap-8 p-4'>
+        <section className='w-[20%] fixed top-0 left-0 bg-white border border-gray-500/50  z-[20] h-screen flex flex-col gap-8 p-4'>
             <div className='part-1'>
                 <img src="https://serviceapi.spicezgold.com/download/1750047766437_logo.jpg" alt="Logoo" />
             </div>
@@ -126,23 +126,6 @@ const Sidebar = () => {
                                 <Button className='w-full !justify-start hover:!bg-slate-800/10'>
                                     <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Product Upload</p>
                                 </Button>
-
-                                <Link to="/product/addRams">
-                                
-                                <Button className='w-full !justify-start hover:!bg-slate-800/10'>
-                                    <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Add Product RAMS</p>
-                                </Button>
-
-                                </Link>
-                                <Button className='w-full !justify-start hover:!bg-slate-800/10'>
-                                    <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Add Product WEIGHT</p>
-                                </Button>
-                                <Button className='w-full !justify-start hover:!bg-slate-800/10'>
-                                    <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Add Product SIZE</p>
-                                </Button>
-
-
-
                             </div>
 
                         </Collapse>
@@ -156,10 +139,12 @@ const Sidebar = () => {
                     </li>
 
                     <li className='hover:bg-[#f1f1f1]'>
+                        <Link to="orders">
                         <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
                             <BsCart2 className='!text-xl' />
                             <span className='font-semibold !text-md normal-case'>Orders</span>
                         </Button>
+                        </Link>
                     </li>
 
                     <li className='hover:bg-[#f1f1f1]'>
