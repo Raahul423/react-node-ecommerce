@@ -11,9 +11,6 @@ import { RiProductHuntLine } from 'react-icons/ri';
 import { BsCart2 } from "react-icons/bs";
 import { Link } from 'react-router';
 
-
-
-
 const Sidebar = () => {
     const [isopen, setIsopen] = useState(null)
 
@@ -22,9 +19,8 @@ const Sidebar = () => {
     }
 
 
-
     return (
-        <section className='w-[20%] fixed top-0 left-0 bg-white border border-gray-500/50  z-[20] h-screen flex flex-col gap-8 p-4'>
+        <section className='flex flex-col gap-8 p-4 sticky top-0'>
             <div className='part-1'>
                 <img src="https://serviceapi.spicezgold.com/download/1750047766437_logo.jpg" alt="Logoo" />
             </div>

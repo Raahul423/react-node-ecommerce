@@ -3,7 +3,7 @@ import { Button, Pagination, Stack } from '@mui/material';
 
 const Order = () => {
   return (
-      <section className='pl-75 pr-3 bg-gray-400/10 h-screen'>
+      <section>
             <div className='flex justify-between items-center py-6 px-5'>
                 <h1 className='!text-2xl '>Recent Orders</h1>
             </div>

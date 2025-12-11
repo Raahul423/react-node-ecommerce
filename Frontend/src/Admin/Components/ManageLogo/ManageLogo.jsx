@@ -4,7 +4,7 @@ import { FaCloudUploadAlt } from "react-icons/fa"
 
 const ManageLogo = () => {
     return (
-        <section className='pl-75 pr-3 bg-gray-400/10 h-screen'>
+        <section>
             <div className='flex justify-between items-center py-6'>
                 <h1 className='!text-2xl '>Manage Logo</h1>
             </div>

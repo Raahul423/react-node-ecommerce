@@ -34,7 +34,7 @@ const AddProduct = () => {
 
 
     return (
-        <section className='pl-75 pr-3 bg-gray-400/10 h-screen'>
+        <section>
             <div className='flex justify-between items-center py-6'>
                 <h1 className='!text-2xl '>Products List</h1>
                 <Button className='!px-6 !py-2 !bg-blue-600/80 !text-white'>Add Product</Button>
