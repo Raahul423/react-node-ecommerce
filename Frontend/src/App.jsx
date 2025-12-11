@@ -31,26 +31,28 @@ import Layout from './Users/Layout/Layout'
 
 
 
+
 function App() {
 
-  return (  
+  return (
     <Provider>
       {/* {admin route} */}
       <Routes>
-         <Route element={<AdminLayout />}>
-          <Route path='/' element={<Dashboard />} />
-          <Route path='/homeslide' element={<Homebanner/>}/>
-          <Route path='/category' element={<CategoryAdd/>}/>
-          <Route path='/subCatergory/list' element={<AddSubCategoryList/>}/>
-          <Route path='/addProducts' element={<AddProduct/>}/>
-          <Route path='/orders' element={<Order/>}/>
-          <Route path='/users' element={<Users/>}/>
-          <Route path='/managelogo' element={<ManageLogo/>}/>
-        </Route>
+          <Route element={<AdminLayout />}>
+            <Route path='/' element={<Dashboard />} />
+            <Route path='/homeslide' element={<Homebanner />} />
+            <Route path='/category' element={<CategoryAdd />} />
+            <Route path='/subCatergory/list' element={<AddSubCategoryList />} />
+            <Route path='/addProducts' element={<AddProduct />} />
+            <Route path='/orders' element={<Order />} />
+            <Route path='/users' element={<Users />} />
+            <Route path='/managelogo' element={<ManageLogo />} />
+          </Route>
+       
 
 
         {/* {User Routes} */}
-        <Route element={<Layout/>} >
+        <Route element={<Layout />} >
           <Route path='/admin' element={<Home />} />
           <Route path='/products' element={<Products />} />
           <Route path='/product/:id' element={<ProductsId />} />
@@ -68,6 +70,7 @@ function App() {
         </Route>
         <Route path='/verify-email' element={<Verifyemail />} />
       </Routes>
+      
       {/* <Route path='*' element={<NotFound />} /> */}
     </Provider>
   )

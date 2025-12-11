@@ -54,12 +54,6 @@ const Sidebar = () => {
                                         <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill /> Home Banner List</p>
                                     </Button>
                                 </Link>
-
-
-                                <Button className='w-full !justify-start hover:!bg-slate-800/10'>
-                                    <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Add Home Banner Slide</p>
-                                </Button>
-
                             </div>
 
                         </Collapse>
@@ -84,9 +78,6 @@ const Sidebar = () => {
                                     </Button>
                                 </Link>
 
-                                <Button className='w-full !justify-start hover:!bg-slate-800/10'>
-                                    <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Add A Category</p>
-                                </Button>
 
                                 <Link to="/subCatergory/list">
                                     <Button className='w-full !justify-start hover:!bg-slate-800/10'>
@@ -119,9 +110,7 @@ const Sidebar = () => {
                                     </Button>
                                 </Link>
 
-                                <Button className='w-full !justify-start hover:!bg-slate-800/10'>
-                                    <p className='flex items-center gap-1 text-slate-800/90 normal-case'><GoDotFill />Product Upload</p>
-                                </Button>
+                                
                             </div>
 
                         </Collapse>

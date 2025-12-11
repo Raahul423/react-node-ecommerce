@@ -1,15 +1,13 @@
 import { Button, TablePagination } from '@mui/material'
 import React, { useState } from 'react'
 import { MdDelete } from 'react-icons/md'
-import AddHomebannerSlide from './AddHomebannerSlide';
-
-
+import { DialogContext } from '../../../Users/Components/Context/DialogComponent'
+import AddHomeSlide from './AddHomeSlide'
 
 const Homebanner = () => {
-
+    const [open, setOpen] = React.useState(false);
     const [page, setPage] = useState(2);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-    const [isopen, setIsopen] = useState(false)
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -20,11 +18,12 @@ const Homebanner = () => {
         setPage(0);
     };
 
+
     return (
             <section>
                 <div className='part-1 flex justify-between items-center py-5'>
                     <h1 className='!text-xl '>Home Slider Banners</h1>
-                    <Button onClick={() => setIsopen(true)} className='!bg-blue-600 !text-white !px-4 py-2' >ADD HOME SLIDE</Button>
+                    <Button onClick={()=>setOpen(true)} className='!bg-blue-600 !text-white !px-4 py-2' >ADD HOME SLIDE</Button>
                 </div>
 
                 <div className='part-2 shadow-md shadow-gray-600/30 rounded-md'>
@@ -104,7 +103,7 @@ const Homebanner = () => {
                     />
 
                 </div>
-                <AddHomebannerSlide isOpen={isopen} setIsopen={setIsopen}/>
+                <AddHomeSlide open={open} setOpen={setOpen}/>
             </section>
     )
 }

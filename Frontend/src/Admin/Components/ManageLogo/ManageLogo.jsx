@@ -10,7 +10,7 @@ const ManageLogo = () => {
             </div>
 
             <div className="bg-white shadow-md shadow-gray-600/30 px-10 py-8 rounded-md flex flex-col gap-5">
-                <div className="h-35 w-35 border border-dashed">
+                <div className="h-35 w-35 border border-dashed rounded-md p-1">
                     hello
                 </div>
 
