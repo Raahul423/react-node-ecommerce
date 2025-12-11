@@ -16,58 +16,45 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const AddHomebannerSlide = () => {
-    // return (
-    //         <Dialog
-    //             fullScreen
-    //             open={open}
-    //             // onClose={handleClose}
-    //             slots={{
-    //                 transition: Transition,
-    //             }}
-    //             slotProps={{
-    //                 sx: {
-    //                     width: "100vw",       // force full width
-    //                     maxWidth: "100vw",    // remove default maxWidth
-    //                     margin: 0,            // remove default margin
-    //                     height: "100vh",      // full viewport height
-    //                     maxHeight: "100vh",
-    //                     borderRadius: 0,      // remove rounded corners if any
-    //                 }
-    //             }}
-    //         >
-    //             <AppBar sx={{ position: 'relative' }}>
-    //                 <Toolbar>
-    //                     <IconButton
-    //                         edge="start"
-    //                         color="inherit"
-    //                         // onClick={handleClose}
-    //                         aria-label="close"
-    //                     >
-    //                         <IoCloseSharp />
-    //                     </IconButton>
-    //                     <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-    //                         Sound
-    //                     </Typography>
-    //                     <Button autoFocus color="inherit">
-    //                         save
-    //                     </Button>
-    //                 </Toolbar>
-    //             </AppBar>
-    //             <List>
-    //                 <ListItemButton>
-    //                     <ListItemText primary="Phone ringtone" secondary="Titania" />
-    //                 </ListItemButton>
-    //                 <Divider />
-    //                 <ListItemButton>
-    //                     <ListItemText
-    //                         primary="Default notification ringtone"
-    //                         secondary="Tethys"
-    //                     />
-    //                 </ListItemButton>
-    //             </List>
-    //         </Dialog>
-    // )
+const AddHomebannerSlide = ({isOpen , setIsopen}) => {
+    return (
+            <Dialog
+                fullScreen
+                open={isOpen}
+                onClose={()=>setIsopen(false)}
+                slots={{
+                    transition: Transition,
+                }}
+            >
+                <AppBar sx={{ position: 'relative' }}>
+                    <Toolbar>
+                        <IconButton
+                            edge="start"
+                            color="inherit"
+                            onClick={()=>setIsopen(false)}
+                            aria-label="close"
+                        >
+                            <IoCloseSharp />
+                        </IconButton>
+                        <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+                            Sound
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+                <List>
+                    <ListItemButton>
+                        <ListItemText primary="Phone ringtone" secondary="Titania" />
+                    </ListItemButton>
+                    <Divider />
+                    <ListItemButton>
+                        <ListItemText
+                            primary="Default notification ringtone"
+                            secondary="Tethys"
+                        />
+                    </ListItemButton>
+                </List>
+            </Dialog>
+    )
 }
 
 export default AddHomebannerSlide

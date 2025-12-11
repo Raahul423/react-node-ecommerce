@@ -10,7 +10,6 @@ const Homebanner = () => {
     const [page, setPage] = useState(2);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [isopen, setIsopen] = useState(false)
-    console.log(isopen);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -105,7 +104,7 @@ const Homebanner = () => {
                     />
 
                 </div>
-                <AddHomebannerSlide/>
+                <AddHomebannerSlide isOpen={isopen} setIsopen={setIsopen}/>
             </section>
     )
 }

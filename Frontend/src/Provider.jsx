@@ -28,7 +28,6 @@ const Provider = ({ children }) => {
     }
 
 
-
     const logout = async () => {
         try {
             await api.get("/users/logout")
@@ -79,13 +78,6 @@ const Provider = ({ children }) => {
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-
-
-
-
-
-
 
     const value = {
         isLogin,

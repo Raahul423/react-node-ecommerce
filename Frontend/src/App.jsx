@@ -13,10 +13,10 @@ import Provider from './Provider'
 import YourInfo from './Users/Components/Profile/YourInfo'
 import MyList from './Users/Components/Profile/MyList'
 import Myorder from './Users/Components/Profile/Myorder'
-import Layout from './Layout'
+
 import Verifyemail from './Users/Pages/verifyemail'
 import Dashboard from './Admin/Pages/Dashboard'
-import AdminLayout from './AdminLayout'
+
 import Homebanner from './Admin/Components/HomeSlidercomponent/Homebanner'
 import CategoryAdd from './Admin/Components/Category/CategoryAdd'
 import AddSubCategoryList from './Admin/Components/Category/AddSubCategoryList'
@@ -24,6 +24,8 @@ import AddProduct from './Admin/Components/ProductsComponent/AddProduct'
 import Order from './Admin/Components/OrderComponent/Order'
 import Users from './Admin/Components/Users/Users'
 import ManageLogo from './Admin/Components/ManageLogo/ManageLogo'
+import AdminLayout from './Admin/Layout/AdminLayout'
+import Layout from './Users/Layout/Layout'
 
 
 
@@ -33,7 +35,6 @@ function App() {
 
   return (  
     <Provider>
-
       {/* {admin route} */}
       <Routes>
          <Route element={<AdminLayout />}>
@@ -48,11 +49,8 @@ function App() {
         </Route>
 
 
-
-
-
         {/* {User Routes} */}
-        <Route element={<Layout />} >
+        <Route element={<Layout/>} >
           <Route path='/admin' element={<Home />} />
           <Route path='/products' element={<Products />} />
           <Route path='/product/:id' element={<ProductsId />} />

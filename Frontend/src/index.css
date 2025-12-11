@@ -228,7 +228,11 @@ background-color: #ff5252;
   height: fit-content;
 }
 
-.MuiPaper-root{
+/* .MuiPaper-root{
+  max-width: 90% !important;
+} */
+
+.css-10d30g3-MuiPaper-root-MuiDialog-paper{
   max-width: 90% !important;
 }
 
