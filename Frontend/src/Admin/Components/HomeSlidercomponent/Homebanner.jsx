@@ -6,10 +6,11 @@ import AddHomeSlide from './AddHomeSlide'
 
 const Homebanner = () => {
     const [open, setOpen] = React.useState(false);
+    
     const [page, setPage] = useState(2);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
-    const handleChangePage = (event, newPage) => {
+    const handleChangePage = (newPage) => {
         setPage(newPage);
     };
 

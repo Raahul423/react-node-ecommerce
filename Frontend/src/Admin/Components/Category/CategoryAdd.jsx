@@ -1,9 +1,10 @@
 import { Button, TablePagination } from '@mui/material'
 import React, { useState } from 'react'
 import { MdDelete } from 'react-icons/md'
+import Addcategory from './Addcategory';
 
 const CategoryAdd = () => {
-
+     const [open, setOpen] = React.useState(false);
     const [page, setPage] = useState(2);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -21,7 +22,7 @@ const CategoryAdd = () => {
         <section>
             <div className='part-1 flex justify-between items-center py-5'>
                 <h1 className='!text-xl '>Category List</h1>
-                <Button className='!bg-blue-600 !text-white !px-4 py-2' >ADD Category</Button>
+                <Button onClick={()=>setOpen(true)} className='!bg-blue-600 !text-white !px-4 py-2' >ADD Category</Button>
             </div>
 
 
@@ -110,19 +111,19 @@ const CategoryAdd = () => {
                     </tbody>
                 </table>
 
-                
-            <TablePagination
-                component="div"
-                count={100}
-                page={page}
-                onPageChange={handleChangePage}
-                rowsPerPage={rowsPerPage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-            />
+
+                <TablePagination
+                    component="div"
+                    count={100}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    rowsPerPage={rowsPerPage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                />
             </div>
 
 
-
+            <Addcategory open={open} setOpen={setOpen}/>
         </section>
     )
 }
