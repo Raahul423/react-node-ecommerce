@@ -42,7 +42,7 @@ const Addsubcategory = ({ open, setOpen }) => {
                         <IoMdClose />
                     </IconButton>
                     <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-                        Add New Category
+                        Add New SubCategory
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -52,7 +52,7 @@ const Addsubcategory = ({ open, setOpen }) => {
                     <h1>Add Sub Category</h1>
 
                     <div className='flex flex-col gap-2 w-100 '>
-                        <p className='!text-xl'>Category By</p>
+                        <p className='!text-xl'>Product Category</p>
                         <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
 
                             <Select
