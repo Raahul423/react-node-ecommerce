@@ -5,9 +5,11 @@ import { GoDotFill } from 'react-icons/go'
 import { MdOutlineDelete } from 'react-icons/md';
 
 import { RiArrowDownSLine } from 'react-icons/ri'
-import { TiPencil } from 'react-icons/ti';
+import Addsubcategory from './Addsubcategory';
+
 
 const AddSubCategoryList = () => {
+    const [open, setOpen] = useState(false);
     const [isopen, setIsopen] = useState(null)
 
     const click = (index) => {
@@ -18,7 +20,7 @@ const AddSubCategoryList = () => {
         <section>
             <div className='part-1 flex justify-between items-center py-5'>
                 <h1 className='!text-xl '>Sub Category List</h1>
-                <Button className='!bg-blue-600 !text-white !px-4 py-2' >ADD SUB CATEGORY</Button>
+                <Button onClick={()=>setOpen(true)} className='!bg-blue-600 !text-white !px-4 py-2' >ADD SUB CATEGORY</Button>
             </div>
 
 
@@ -185,7 +187,7 @@ const AddSubCategoryList = () => {
                         <>
                             <tr onClick={() => click(5)} class="bg-gray-700 border-b border-gray-400 ">
                                 <td class="px-6 py-3 text-white text-xl flex justify-between">
-                                    <p>Beauty</p>                                  
+                                    <p>Beauty</p>
                                 </td>
                             </tr>
 
@@ -206,13 +208,10 @@ const AddSubCategoryList = () => {
                                 </td>
                             </tr>
                         </>
-
-
-
-
                     </tbody>
                 </table>
             </div>
+            <Addsubcategory open={open} setOpen={setOpen} />
         </section>
     )
 }
