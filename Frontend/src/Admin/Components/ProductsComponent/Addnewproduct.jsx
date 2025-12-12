@@ -15,11 +15,29 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export const Addnewproduct = ({ open, setOpen }) => {
+    const [value, setValue] = useState({
+        name: "",
+        description: "",
+        category: "",
+        subcategory: "",
+        price: "",
+        oldPrice: "",
+        featured: "", // or boolean
+        stock: "",
+        brand: "",
+        discount: "",
+        rams: "",
+        weight: "",
+        size: "",
+    });
 
-    const [value, setValue] = useState('');
     const handleChange = (event) => {
-        setValue(event.target.value);
+        const { name, value } = event.target
+        setValue((prev) => ({ ...prev, [name]: value }))
     };
+
+
+
 
     return (
         <Dialog
@@ -49,22 +67,23 @@ export const Addnewproduct = ({ open, setOpen }) => {
                 <div className="bg-gray-400/10 px-4 py-8 rounded-md flex flex-col gap-6">
                     <div>
                         <p>Product Name</p>
-                        <input type='text' className='py-2 outline-1 border-gray-600/40 border w-full px-2 rounded-md'></input>
+                        <input type='text' name="name" value={value.name} onChange={handleChange} className='py-2 outline-1 border-gray-600/40 border w-full px-2 rounded-md'></input>
                     </div>
 
                     <div>
                         <p>Product Description</p>
-                        <textarea type='text' className='py-2 h-40 outline-1 border-gray-600/40 border w-full px-2 rounded-md'></textarea>
+                        <textarea type='text' name='description' value={value.description} onChange={handleChange} className='py-2 h-40 outline-1 border-gray-600/40 border w-full px-2 rounded-md'></textarea>
                     </div>
 
                     <div className='grid grid-cols-4 gap-6'>
                         <span>
                             <p>Product Category</p>
                             <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
-
                                 <Select
-                                    value={value}
+                                    value={value.category}
                                     onChange={handleChange}
+                                    className='cursor-pointer'
+                                    name='category'
                                 >
                                     <MenuItem value={10}>Name, A to Z</MenuItem>
                                     <MenuItem value={20}>Name, Z to A</MenuItem>
@@ -79,8 +98,9 @@ export const Addnewproduct = ({ open, setOpen }) => {
                             <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
 
                                 <Select
-                                    value={value}
+                                    value={value.subcategory}
                                     onChange={handleChange}
+                                    name='subcategory'
                                 >
                                     <MenuItem value={10}>Name, A to Z</MenuItem>
                                     <MenuItem value={20}>Name, Z to A</MenuItem>
@@ -90,44 +110,49 @@ export const Addnewproduct = ({ open, setOpen }) => {
                             </FormControl>
                         </span>
 
-                         <span>
+                        <span>
                             <p>Product Price</p>
-                            <input type='text' className='py-2 outline-1 border-gray-600/40 border w-full px-2 rounded-md'></input>
+                            <input type='text' name='price' value={value.price}
+                                onChange={handleChange} className='py-2 outline-1 border-gray-600/40 border w-full px-2 rounded-md'></input>
                         </span>
 
-                         <span>
+                        <span>
                             <p>Product OldPrice</p>
-                            <input type='text' className='py-2 outline-1 border-gray-600/40 border w-full px-2 rounded-md'></input>
+                            <input type='text' value={value.oldPrice} onChange={handleChange} name='oldPrice' className='py-2 outline-1 border-gray-600/40 border w-full px-2 rounded-md'></input>
                         </span>
 
-                         <span>
+                        <span>
                             <p>is Featured?</p>
                             <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
 
                                 <Select
-                                    value={value}
+                                    value={value.featured}
+                                    name='featured'
                                     onChange={handleChange}
                                 >
                                     <MenuItem value={10}>Yes</MenuItem>
                                     <MenuItem value={20}>No</MenuItem>
-                                    
+
                                 </Select>
                             </FormControl>
                         </span>
 
                         <span>
                             <p>Product Stock</p>
-                            <input type='text' className='py-2 outline-1 border-gray-600/40 border w-full px-2 rounded-md'></input>
+                            <input type='text' value={value.stock}
+                                name='stock'
+                                onChange={handleChange}
+                                className='py-2 outline-1 border-gray-600/40 border w-full px-2 rounded-md'></input>
                         </span>
 
                         <span>
                             <p>Product Brand</p>
-                            <input type='text' className='py-2 outline-1 border-gray-600/40 border w-full px-2 rounded-md'></input>
+                            <input type='text' name='brand' value={value.brand} onChange={handleChange} className='py-2 outline-1 border-gray-600/40 border w-full px-2 rounded-md'></input>
                         </span>
 
-                         <span>
+                        <span>
                             <p>Product Discount</p>
-                            <input type='text' className='py-2 outline-1 border-gray-600/40 border w-full px-2 rounded-md'></input>
+                            <input type='text' value={value.discount} onChange={handleChange} name='discount' className='py-2 outline-1 border-gray-600/40 border w-full px-2 rounded-md'></input>
                         </span>
 
                         <span>
@@ -135,12 +160,13 @@ export const Addnewproduct = ({ open, setOpen }) => {
                             <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
 
                                 <Select
-                                    value={value}
+                                    value={value.rams}
                                     onChange={handleChange}
+                                    name='rams'
                                 >
                                     <MenuItem value={10}>Yes</MenuItem>
                                     <MenuItem value={20}>No</MenuItem>
-                                    
+
                                 </Select>
                             </FormControl>
                         </span>
@@ -150,12 +176,13 @@ export const Addnewproduct = ({ open, setOpen }) => {
                             <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
 
                                 <Select
-                                    value={value}
+                                    value={value.weight}
+                                    name='weight'
                                     onChange={handleChange}
                                 >
                                     <MenuItem value={10}>Yes</MenuItem>
                                     <MenuItem value={20}>No</MenuItem>
-                                    
+
                                 </Select>
                             </FormControl>
                         </span>
@@ -165,12 +192,13 @@ export const Addnewproduct = ({ open, setOpen }) => {
                             <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
 
                                 <Select
-                                    value={value}
+                                    value={value.size}
+                                    name='size'
                                     onChange={handleChange}
                                 >
                                     <MenuItem value={10}>Yes</MenuItem>
                                     <MenuItem value={20}>No</MenuItem>
-                                    
+
                                 </Select>
                             </FormControl>
                         </span>

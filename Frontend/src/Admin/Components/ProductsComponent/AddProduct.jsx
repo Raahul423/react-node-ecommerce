@@ -1,19 +1,16 @@
 import React, { useState } from 'react'
 import demoProducts from '../../../assets/Assests';
 import { Button, Checkbox, FormControl, MenuItem, Select, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material'
-import { RiDeleteBin6Line } from 'react-icons/ri'
 import { MdDeleteOutline } from 'react-icons/md';
 import { Addnewproduct } from './Addnewproduct';
 
 const AddProduct = () => {
      const [open, setOpen] = useState(false);
     const [rows, setRows] = useState(demoProducts)
-    console.log(setRows);
     const [page, setPage] = useState(2);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [value, setValue] = useState('');
     const [subcat, setSubcat] = useState('');
-
 
     const handleChange = (event) => {
         setValue(event.target.value);
