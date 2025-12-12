@@ -10,7 +10,6 @@ const Order = () => {
 
 
 
-
             <div className="relative overflow-x-auto bg-white shadow-xs rounded-base border border-default">
                 <table className="w-full text-sm text-left rtl:text-right text-body">
                     <thead className="bg-slate-800/80 border-b border-default">

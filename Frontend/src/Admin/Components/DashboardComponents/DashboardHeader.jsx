@@ -9,7 +9,7 @@ import { RiBarChart2Fill, RiChatQuoteLine, RiProductHuntLine } from 'react-icons
 export const DashboardHeader = () => {
     return (
         <section>
-            <div className='header-1 w-full flex border border-gray-600/20 items-center justify-start bg-[#f2fbff] px-5 rounded-md py-4'>
+            <div className='header-1 w-full flex border border-gray-600/20 items-center justify-between bg-[#f2fbff] px-5 rounded-md py-4'>
                 <div className='flex flex-col gap-4'>
                     <h1 className='!text-5xl font-bold'>Welcome,</h1>
                     <h2 className='text-4xl font-semibold !text-blue-700/80'>Rahul</h2>

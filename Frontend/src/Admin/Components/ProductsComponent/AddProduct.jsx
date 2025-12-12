@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import demoProducts from '../../../assets/Assests';
-import { Button, Checkbox, FormControl, MenuItem, Rating, Select, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material'
+import { Button, Checkbox, FormControl, MenuItem, Select, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import { MdDeleteOutline } from 'react-icons/md';
+import { Addnewproduct } from './Addnewproduct';
 
 const AddProduct = () => {
-
+     const [open, setOpen] = useState(false);
     const [rows, setRows] = useState(demoProducts)
     console.log(setRows);
     const [page, setPage] = useState(2);
@@ -37,7 +38,7 @@ const AddProduct = () => {
         <section>
             <div className='flex justify-between items-center py-6'>
                 <h1 className='!text-2xl '>Products List</h1>
-                <Button className='!px-6 !py-2 !bg-blue-600/80 !text-white'>Add Product</Button>
+                <Button onClick={()=>setOpen(true)} className='!px-6 !py-2 !bg-blue-600/80 !text-white'>Add Product</Button>
             </div>
 
             <div className='relative border border-gray-600/30  bg-white shadow-md shadow-gray-600/90 rounded-md overflow-hidden'>
@@ -143,7 +144,7 @@ const AddProduct = () => {
                 </div>
 
             </div>
-
+            <Addnewproduct open={open} setOpen={setOpen}/>
         </section>
     )
 }
