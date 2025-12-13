@@ -85,8 +85,6 @@ const LoginComponent = () => {
             localStorage.setItem("token", token);
             localStorage.setItem("user", JSON.stringify(createdUser));
 
-
-
             toastMessage("success", message || "Login Successfully")
 
             setTimeout(() => {
@@ -110,9 +108,7 @@ const LoginComponent = () => {
             {loading && (
                 <div className="fixed inset-0 bg-black/85 flex items-center justify-center z-[9999]" >
                     <div className="flex flex-col items-center gap-3">
-
                         <CircularProgress />
-
                         {onclick === "ForgotPassword" ? <p className="text-white text-sm">Please Wait..Verifying your details....</p> : <p className="text-white text-sm">Processing your Login deatils please wait...</p>}
 
                     </div>
