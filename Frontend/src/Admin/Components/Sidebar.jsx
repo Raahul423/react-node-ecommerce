@@ -28,7 +28,7 @@ const Sidebar = () => {
             <div className='part-2 flex flex-col gap-2'>
                 <ul className='cursor-pointer gap-1 flex flex-col'>
                     <li className='hover:bg-[#f1f1f1]'>
-                        <Link to='/'>
+                        <Link to='/admin'>
                             <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
                                 <MdOutlineDashboard className='!text-xl' />
                                 <span className='!text-md normal-case font-semibold'>Dashboard</span>

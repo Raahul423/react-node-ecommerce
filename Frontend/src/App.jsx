@@ -26,6 +26,8 @@ import Users from './Admin/Components/Users/Users'
 import ManageLogo from './Admin/Components/ManageLogo/ManageLogo'
 import AdminLayout from './Admin/Layout/AdminLayout'
 import Layout from './Users/Layout/Layout'
+import { RegisterAdmin } from './Admin/Pages/RegisterAdmin'
+
 
 
 
@@ -48,6 +50,7 @@ function App() {
             <Route path='/users' element={<Users />} />
             <Route path='/managelogo' element={<ManageLogo />} />
           </Route>
+          <Route path='/admin/register' element={<RegisterAdmin/>}/>
        
 
 

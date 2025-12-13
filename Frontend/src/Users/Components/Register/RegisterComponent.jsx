@@ -112,7 +112,6 @@ const RegisterComponent = () => {
                     autoComplete="off"
 
                 >
-
                     <FormControl variant="outlined">
                         <InputLabel>Password</InputLabel>
                         <OutlinedInput

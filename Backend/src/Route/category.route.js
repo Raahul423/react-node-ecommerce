@@ -5,10 +5,6 @@ import { countCategory, createCategory, getCategoryByID, getcategories, countsub
 import { test } from "../Controllers/test.js";
 
 const category = Router();
-//testing route
-// category.route('/:testing').post(test);
-
-
 
 
 //Public Route 
