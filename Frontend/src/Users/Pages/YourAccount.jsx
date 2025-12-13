@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Link, Outlet } from 'react-router'
-import { ListItemIcon, Menu, MenuItem } from '@mui/material';
+import { CircularProgress, ListItemIcon, Menu, MenuItem } from '@mui/material';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
 import { MdOutlineLocationOn } from 'react-icons/md';
 import { LiaShoppingBagSolid } from 'react-icons/lia';
@@ -13,6 +13,7 @@ import api from '../../Utils/api';
 const YourAccount = () => {
   const { user, logout, setUser, toastMessage } = useContext(MyContext)
   const [preview, setPreview] = useState(user?.avatar)
+  const [loading, setLoading] = useState(false)
 
 
   const handleAvatarChange = async (e) => {
@@ -24,6 +25,7 @@ const YourAccount = () => {
 
 
     try {
+      setLoading(true)
       const formData = new FormData();
       formData.append('avatar', file);
 
@@ -47,6 +49,8 @@ const YourAccount = () => {
       } else {
         toastMessage("error", "Server not responding please try again...")
       }
+    } finally {
+      setLoading(false)
     }
 
   }
@@ -57,7 +61,7 @@ const YourAccount = () => {
         <div className='w-[20%] border border-gray-700/40 shadow-gray-700/40 shadow-md rounded-md bg-white h-fit sticky top-60' >
 
           <div className='flex flex-col justify-center items-center gap-1 py-5 '>
-            <label className='relative cursor-pointer'>
+            {loading == true ? <CircularProgress /> : <label className='relative cursor-pointer'>
               <div className='h-30 w-30 bg-gray-400 rounded-full overflow-hidden flex items-center justify-center'>
                 {preview || user?.avatar ? (
                   <img
@@ -78,7 +82,8 @@ const YourAccount = () => {
                 className='hidden'
                 onChange={handleAvatarChange}
               />
-            </label>
+            </label>}
+
 
             <h3>{user?.fullName}</h3>
             <p>{user?.email}</p>

@@ -39,8 +39,6 @@ export const Addnewproduct = ({ open, setOpen }) => {
     };
 
 
-
-
     return (
         <Dialog
             fullScreen

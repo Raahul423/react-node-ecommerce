@@ -4,7 +4,7 @@ import { MdDelete } from 'react-icons/md'
 import Addcategory from './Addcategory';
 
 const CategoryAdd = () => {
-     const [open, setOpen] = React.useState(false);
+     const [open, setOpen] = useState(false);
     const [page, setPage] = useState(2);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 

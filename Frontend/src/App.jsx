@@ -39,7 +39,7 @@ function App() {
       {/* {admin route} */}
       <Routes>
           <Route element={<AdminLayout />}>
-            <Route path='/' element={<Dashboard />} />
+            <Route path='/admin' element={<Dashboard />} />
             <Route path='/homeslide' element={<Homebanner />} />
             <Route path='/category' element={<CategoryAdd />} />
             <Route path='/subCatergory/list' element={<AddSubCategoryList />} />
@@ -53,7 +53,7 @@ function App() {
 
         {/* {User Routes} */}
         <Route element={<Layout />} >
-          <Route path='/admin' element={<Home />} />
+          <Route path='/' element={<Home />} />
           <Route path='/products' element={<Products />} />
           <Route path='/product/:id' element={<ProductsId />} />
           <Route path='/login' element={<Login />} />
