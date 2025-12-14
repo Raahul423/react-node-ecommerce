@@ -42,7 +42,15 @@ export const RegisterAdmin = () => {
         try {
             setLoading(true)
             const response = await api.post("/users/admin/register", field);
+            setField({
+                fullName:"",
+                password:"",
+                email:""
+            })
             toastMessage("success",response?.data?.message)
+            setTimeout(() => {
+                navigate('/admin/login');
+            }, 1000);
 
         } catch (error) {
             if (error?.response) {

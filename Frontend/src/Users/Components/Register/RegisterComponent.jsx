@@ -40,7 +40,6 @@ const RegisterComponent = () => {
             return;
         }
 
-
         try {
             setLoading(true)
             const response = await api.post('/users/register', field)

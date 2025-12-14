@@ -37,7 +37,9 @@ const registerUser = async (req, res) => {
 
     const userExist = await User.findOne({ email: email });
     if (userExist) {
-      res.status(409).json({ success: false, message: "User already exist" });
+      return res
+        .status(409)
+        .json({ success: false, message: "User already exist" });
     }
 
     const user = await User.create({
@@ -72,8 +74,6 @@ const registerUser = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
-
-
 
 // register admin
 const registeradmin = async (req, res) => {
@@ -123,8 +123,6 @@ const registeradmin = async (req, res) => {
   }
 };
 
-
-
 // verify email
 const verifyEmail = async (req, res) => {
   try {
@@ -165,7 +163,7 @@ const verifyEmail = async (req, res) => {
 // verify login
 const loginUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, loginType } = req.body;
 
     if (!email || !password) {
       return res
@@ -182,6 +180,13 @@ const loginUser = async (req, res) => {
     if (user.verify_email === false) {
       return res.status(500).json({ message: "Please verify your email..." });
     }
+
+    if (loginType === "admin" && user.role !== "admin") {
+      return res.status(403).json({
+        success: false,
+        message: "You are not authorized to login as admin",
+      });
+    } // bro yeh login type admin hai or check karega ki admin page pr jo login kr rha hai vo admin hai ya nhi 
 
     const checkPassword = await user.isPasswordCorrect(password);
 
@@ -549,5 +554,5 @@ export {
   verifyforgetPasswordotp,
   resetPassword,
   getUser,
-  registeradmin
+  registeradmin,
 };

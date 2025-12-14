@@ -15,7 +15,8 @@ const LoginComponent = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [verifyaccount, setVerifyaccount] = useState({
         email: '',
-        password: ''
+        password: '',
+        loginType:"user"
     });
 
     const emailRegex = /^\S+@\S+\.\S+$/;
