@@ -4,14 +4,15 @@ import { FaUser } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
 import { FiLogIn } from 'react-icons/fi'
 import { IoEye, IoEyeOff } from 'react-icons/io5'
-import AdminHeader from '../Components/AdminHeader'
+import { TfiLayoutLineSolid } from "react-icons/tfi";
 import { useNavigate } from 'react-router'
+import AdminHeader from '../Components/AdminHeader'
 
-export const RegisterAdmin = () => {
+
+export const LoginAdmin = () => {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(true);
     const [field, setField] = useState({
-        fullName: "",
         email: "",
         password: ""
     });
@@ -21,11 +22,9 @@ export const RegisterAdmin = () => {
         const { name, value } = e.target;
         setField((prev) => ({ ...prev, [name]: value }))
     }
-
-
     return (
         <section>
-            <AdminHeader />
+           <AdminHeader/> 
             <main className='flex justify-center  h-screen'>
                 <form onSubmit={handlechange} className='flex flex-col  gap-5 max-w-md'>
                     <div className='flex justify-center'>
@@ -33,8 +32,8 @@ export const RegisterAdmin = () => {
                     </div>
 
                     <div className='flex flex-col items-center'>
-                        <h1 className='!text-4xl font-semibold tracking-wide'>Join us today! Get special </h1 >
-                        <h1 className='!text-4xl font-semibold whitespace-nowrap tracking-wide'> benefits and stay up-to-date.</h1>
+                        <h1 className='!text-4xl font-semibold tracking-wide'>Welcome Back! </h1 >
+                        <h1 className='!text-4xl font-semibold whitespace-nowrap tracking-wide'> Sign in with your credentials.</h1>
                     </div>
 
                     <Button className='!px-5 !py-2 !border !border-blue-400 flex gap-2 w-fit !mx-auto' >
@@ -43,19 +42,12 @@ export const RegisterAdmin = () => {
                     </Button>
 
 
-                    <p className='flex justify-center gap-4 overflow-hidden'>
-                        <span className='whitespace-nowrap'>Or, Sign Up with your email</span>
+                    <p className='flex justify-center gap-4 items-center'>
+                        <div className="flex-1 h-px bg-gray-300" />
+                        <span className='whitespace-nowrap'>Or, Sign In with your email</span>
+                        <div className="flex-1 h-px bg-gray-300" />
                     </p>
 
-                    <div className='w-full'>
-                        <label>Full Name</label>
-                        <input
-                            type="text"
-                            onChange={handlechange}
-                            value={field.fullName}
-                            name='fullName'
-                            className='py-2  outline-none !w-full border-1 px-2 rounded-md' />
-                    </div>
 
                     <div className='w-full'>
                         <label>E-mail</label>
@@ -64,7 +56,7 @@ export const RegisterAdmin = () => {
                             value={field.email}
                             name='email'
                             onChange={handlechange}
-                            className='py-2  outline-none !w-full border-1 px-2 rounded-md' />
+                            className='py-3  outline-none !w-full border-1 px-2 rounded-md' />
                     </div>
 
                     <div className='w-full'>
@@ -75,7 +67,7 @@ export const RegisterAdmin = () => {
                                 value={field.password}
                                 name='password'
                                 onChange={handlechange}
-                                className='py-2  outline-none !w-full border-1 px-2 rounded-md' />
+                                className='py-3  outline-none !w-full border-1 px-2 rounded-md' />
 
 
                             <Button onClick={() => setShowPassword(!showPassword)} className='!absolute top-1/2 -translate-y-1/2 right-3 hover:!bg-gray-600/20 !rounded-full !p-1'>
@@ -87,12 +79,18 @@ export const RegisterAdmin = () => {
                         </div>
                     </div>
 
-                    <span>
-                        <p onClick={()=>navigate("/admin/login")} className='hover:!text-primary cursor-pointer underline'>Already Have an Account ?</p>
-                    </span>
+                    <div className='flex justify-end'>
+                        <p className='hover:!text-primary cursor-pointer underline'>Forgot Password ?</p>
+                    </div>
+
+
+        <div className='flex justify-between'>
+            <span>Don't have an Account</span>
+            <span onClick={()=>navigate('/admin/register')} className='hover:!text-primary cursor-pointer underline'>Sign Up</span>
+        </div>
 
                     <Button className='!bg-blue-600 !px-6 !py-2 !w-full !text-white'>
-                        SIGN UP
+                        SIGN IN
                     </Button>
                 </form>
             </main>

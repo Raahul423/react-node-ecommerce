@@ -27,6 +27,7 @@ import ManageLogo from './Admin/Components/ManageLogo/ManageLogo'
 import AdminLayout from './Admin/Layout/AdminLayout'
 import Layout from './Users/Layout/Layout'
 import { RegisterAdmin } from './Admin/Pages/RegisterAdmin'
+import { LoginAdmin } from './Admin/Pages/LoginAdmin'
 
 
 
@@ -51,6 +52,7 @@ function App() {
             <Route path='/managelogo' element={<ManageLogo />} />
           </Route>
           <Route path='/admin/register' element={<RegisterAdmin/>}/>
+          <Route path='/admin/login' element={<LoginAdmin/>}/>
        
 
 
