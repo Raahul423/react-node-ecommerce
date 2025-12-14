@@ -2,7 +2,6 @@ import { Router } from "express";
 import { verifyJwt } from "../Middleware/auth.middleware.js";
 import { multerUpload } from "../Middleware/multer.middleware.js";
 import { countCategory, createCategory, getCategoryByID, getcategories, countsubcategoryofCategory, removeImageCloudinary, deleteCategory, updateCategory } from "../Controllers/category.controller.js";
-import { test } from "../Controllers/test.js";
 
 const category = Router();
 

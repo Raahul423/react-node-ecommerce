@@ -16,7 +16,6 @@ export const RegisterAdmin = () => {
         fullName: "",
         email: "",
         password: "",
-        role:""
     });
 
 
@@ -42,15 +41,12 @@ export const RegisterAdmin = () => {
 
         try {
             setLoading(true)
-            const response = await api.post("/users/register", field);
-            setField.role("admin")
-            console.log(response);
-            
-
+            const response = await api.post("/users/admin/register", field);
+            toastMessage("success",response?.data?.message)
 
         } catch (error) {
             if (error?.response) {
-                toastMessage("error","Already user try different mail...")
+                toastMessage("error",error?.response?.data?.message)
             } else {
                 toastMessage("error", "Server not response please try again ....")
             }

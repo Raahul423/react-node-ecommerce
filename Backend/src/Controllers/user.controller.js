@@ -86,7 +86,7 @@ const registeradmin = async (req, res) => {
 
     const existadmin = await User.findOne({ email });
     if (existadmin) {
-      throw new Error("Admin Already Exist ");
+      throw new Error("E-mail already Exist");
     }
 
     const admin = await User.create({
@@ -101,16 +101,16 @@ const registeradmin = async (req, res) => {
     );
 
     const { hashed, token } = generateVerificationToken();
-    createdUser.emailVerificationToken = hashed;
-    createdUser.emailVerificationExpires = Date.now() + 1000 * 60 * 5; // valid 10 min only
+    createdAdmin.emailVerificationToken = hashed;
+    createdAdmin.emailVerificationExpires = Date.now() + 1000 * 60 * 5; // valid 10 min only
 
     await createdAdmin.save({ validateBeforeSave: false });
 
     await sendVerificationEmail({
-      to: createdUser.email,
+      to: createdAdmin.email,
       token,
-      name: createdUser.fullName,
-      userId: createdUser?._id,
+      name: createdAdmin.fullName,
+      userId: createdAdmin?._id,
     });
 
     return res.status(201).json({
