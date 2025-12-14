@@ -7,7 +7,7 @@ import api from '../../../Utils/api'
 import { MyContext } from '../../../Provider';
 
 const LoginComponent = () => {
-    const { toastMessage, setUser, setIsLogin} = useContext(MyContext)
+    const { toastMessage, setUser, setIsAuth} = useContext(MyContext)
     const navigate = useNavigate();
 
     const [onclick, setOnclick] = useState("")
@@ -75,7 +75,7 @@ const LoginComponent = () => {
             const { createdUser, token, message } = response.data
 
             setUser(createdUser)
-            setIsLogin(true)
+            setIsAuth(true)
 
             setVerifyaccount({
                 fullName: "",

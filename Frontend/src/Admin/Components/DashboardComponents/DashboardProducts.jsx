@@ -5,7 +5,6 @@ import { MdDeleteOutline } from "react-icons/md";
 
 const DashboardProducts = () => {
     const [rows, setRows] = useState(demoProducts)
-    console.log(setRows);
     const [page, setPage] = useState(2);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [value, setValue] = useState('');

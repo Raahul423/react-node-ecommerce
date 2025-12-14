@@ -6,7 +6,7 @@ import api from './Utils/api';
 const MyContext = createContext();
 
 const Provider = ({ children }) => {
-    const [isLogin, setIsLogin] = useState(false);
+    const [isAuth, setIsAuth] = useState(false);
     const [user, setUser] = useState(null);
     
 
@@ -30,7 +30,7 @@ const Provider = ({ children }) => {
         try {
             await api.get("/users/logout")
             setUser(null)
-            setIsLogin(false)
+            setIsAuth(false)
 
             localStorage.removeItem("token");
             localStorage.removeItem("user")
@@ -67,7 +67,7 @@ const Provider = ({ children }) => {
                 logout();
             } else {
                 setUser(JSON.parse(saveduser))
-                setIsLogin(true)
+                setIsAuth(true)
             }
 
         } catch (error) {
@@ -77,8 +77,8 @@ const Provider = ({ children }) => {
     }, [])
 
     const value = {
-        isLogin,
-        setIsLogin,
+       isAuth,
+       setIsAuth,
         toastMessage,
         logout,
         user,
