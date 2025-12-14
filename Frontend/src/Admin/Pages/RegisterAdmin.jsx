@@ -1,24 +1,25 @@
-import { Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material'
-import React, { useState } from 'react'
+import { Button, FormControl, IconButton, InputAdornment, InputLabel } from '@mui/material'
+import { useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
 import { FiLogIn } from 'react-icons/fi'
 import { IoEye, IoEyeOff } from 'react-icons/io5'
-import { MdVisibility, MdVisibilityOff } from 'react-icons/md'
 
 export const RegisterAdmin = () => {
     const [showPassword, setShowPassword] = useState(true);
-    // const [field, setField] = useState({
-    //     fullName: "",
-    //     email: "",
-    //     password: ""
-    // });
+    const [field, setField] = useState({
+        fullName: "",
+        email: "",
+        password: ""
+    });
 
 
-    // const handlechange = (e) => {
-    //     const { name, value } = e.target;
-    //     setField((prev) => ({ ...prev, [name]: value }))
-    // }
+    const handlechange = (e) => {
+        const { name, value } = e.target;
+        setField((prev) => ({ ...prev, [name]: value }))
+    }
+
+    
     return (
         <section>
             <div className='h-15  w-full flex justify-between items-center px-6'>
@@ -39,48 +40,66 @@ export const RegisterAdmin = () => {
                 </div>
             </div>
 
-            <div className='flex justify-center  h-screen'>
-                <div className='flex flex-col items-center gap-5'>
-                    <span>
+            <main className='flex justify-center  h-screen'>
+                <form onSubmit={handlechange} className='flex flex-col  gap-5 max-w-md'>
+                    <div className='flex justify-center'>
                         <img className='h-20 w-20' src="https://ecommerce-admin-view.netlify.app/icon.svg" alt="" />
-                    </span>
+                    </div>
 
-                    <span className='text-center'>
-                        <h1 className='!text-4xl font-semibold'>Join us today! Get special </h1 >
-                        <h1 className='!text-4xl font-semibold'> benefits and stay up-to-date.</h1>
-                    </span>
+                    <div className='flex flex-col items-center'>
+                        <h1 className='!text-4xl font-semibold tracking-wide'>Join us today! Get special </h1 >
+                        <h1 className='!text-4xl font-semibold whitespace-nowrap tracking-wide'> benefits and stay up-to-date.</h1>
+                    </div>
 
-                    <span>
-                        <Button className='!px-5 !py-2 !border !border-blue-400 flex gap-2' >
-                            <p className='normal-case text-gray-900/80 font-sans !font-semibold'>SignIn With Google</p>
-                            <FcGoogle className='text-xl' />
-                        </Button>
-                    </span>
+                    <Button className='!px-5 !py-2 !border !border-blue-400 flex gap-2 w-fit !mx-auto' >
+                        <p className='normal-case text-gray-900/80 font-sans !font-semibold'>SignIn With Google</p>
+                        <FcGoogle className='text-xl' />
+                    </Button>
 
-                    <span>
-                        <p>Or, Sign Up with your email</p>
-                    </span>
 
-                    <span className='w-full'>
-                        <p>Full Name</p>
-                        <input type="text" className='py-2  outline-none !w-full border-1 px-2 rounded-md' />
-                    </span>
+                    <p className='flex justify-center gap-4 overflow-hidden'>
+                        <span className='whitespace-nowrap'>Or, Sign Up with your email</span>
+                    </p>
 
-                    <span className='w-full'>
-                        <p>E-mail</p>
-                        <input type="mail" className='py-2  outline-none !w-full border-1 px-2 rounded-md' />
-                    </span>
+                    <div className='w-full'>
+                        <label>Full Name</label>
+                        <input
+                            type="text"
+                            onChange={handlechange}
+                            value={field.fullName}
+                            name='fullName'
+                            className='py-2  outline-none !w-full border-1 px-2 rounded-md' />
+                    </div>
 
-                    <span className='w-full'>
-                        <p>Password</p>
+                    <div className='w-full'>
+                        <label>E-mail</label>
+                        <input
+                            ype="mail"
+                            value={field.email}
+                            name='email'
+                            onChange={handlechange}
+                            className='py-2  outline-none !w-full border-1 px-2 rounded-md' />
+                    </div>
+
+                    <div className='w-full'>
+                        <label>Password</label>
                         <div className='relative'>
-                            <input type={showPassword ? "password" : "text"} className='py-2  outline-none !w-full border-1 px-2 rounded-md' />
+                            <input
+                                type={showPassword ? "password" : "text"}
+                                value={field.password}
+                                name='password'
+                                onChange={handlechange}
+                                className='py-2  outline-none !w-full border-1 px-2 rounded-md' />
 
 
-                            {showPassword ? <IoEye onClick={() => setShowPassword(!showPassword)} className='absolute top-1/2 -translate-y-1/2 right-3 h-10 w-10 rounded-full cursor-pointer p-2 hover:bg-gray-600/30' /> : <IoEyeOff onClick={() => setShowPassword(!showPassword)} className='absolute top-1/2 -translate-y-1/2 right-3 h-10 w-10 rounded-full cursor-pointer p-2 hover:bg-gray-600/30' />}
+                            <Button onClick={() => setShowPassword(!showPassword)} className='!absolute top-1/2 -translate-y-1/2 right-3 hover:!bg-gray-600/20 !rounded-full !p-1'>
+
+                                {showPassword ? <IoEye className='text-2xl text-gray-600' /> : <IoEyeOff className='text-2xl text-gray-600' />}
+
+                            </Button>
 
                         </div>
-                    </span>
+                    </div>
 
                     <span>
                         <p className='hover:!text-primary cursor-pointer'>Already Have an Account ?</p>
@@ -89,8 +108,8 @@ export const RegisterAdmin = () => {
                     <Button className='!bg-blue-600 !px-6 !py-2 !w-full !text-white'>
                         SIGN UP
                     </Button>
-                </div>
-            </div>
+                </form>
+            </main>
         </section>
     )
 }

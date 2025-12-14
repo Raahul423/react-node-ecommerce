@@ -3,11 +3,9 @@ import CartDrawer from './Users/Components/Context/CartDrawer'
 import DialogComponent from './Users/Components/Context/DialogComponent'
 import { toast, ToastContainer } from 'react-toastify'
 import api from './Utils/api';
-import { useNavigate } from 'react-router';
 const MyContext = createContext();
 
 const Provider = ({ children }) => {
-    const navigate = useNavigate();
     const [isLogin, setIsLogin] = useState(false);
     const [user, setUser] = useState(null);
 
@@ -22,7 +20,6 @@ const Provider = ({ children }) => {
             return Date.now() > expiredToken
         } catch (error) {
             console.log(error);
-
             return true;
         }
     }
@@ -67,7 +64,6 @@ const Provider = ({ children }) => {
 
             if (isExpiredToken(token)) {
                 logout();
-                navigate("/")
             } else {
                 setUser(JSON.parse(saveduser))
                 setIsLogin(true)
