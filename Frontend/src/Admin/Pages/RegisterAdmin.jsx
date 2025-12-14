@@ -1,19 +1,22 @@
-import { Button } from '@mui/material'
-import { useState } from 'react'
-import { FaUser } from 'react-icons/fa'
+import { Button, CircularProgress } from '@mui/material'
+import { useContext, useState } from 'react'
 import { FcGoogle } from 'react-icons/fc'
-import { FiLogIn } from 'react-icons/fi'
 import { IoEye, IoEyeOff } from 'react-icons/io5'
 import AdminHeader from '../Components/AdminHeader'
 import { useNavigate } from 'react-router'
+import { MyContext } from '../../Provider'
+import api from '../../Utils/api'
 
 export const RegisterAdmin = () => {
+    const { toastMessage } = useContext(MyContext)
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(true);
+    const [loading, setLoading] = useState(false)
     const [field, setField] = useState({
         fullName: "",
         email: "",
-        password: ""
+        password: "",
+        role:""
     });
 
 
@@ -22,15 +25,58 @@ export const RegisterAdmin = () => {
         setField((prev) => ({ ...prev, [name]: value }))
     }
 
+    const handlesubmit = async (event) => {
+        event.preventDefault();
+
+        const emailRegex = /^\S+@\S+\.\S+$/; // for check Valid emailId
+
+        if (!field.fullName || !field.email || !field.password) {
+            toastMessage("error", "Please Fill All Fields...");
+            return ;
+        }
+
+        if (!emailRegex.test(field.email)) {
+            toastMessage("error", "Please enter valid e-mail....")
+            return;
+        }
+
+        try {
+            setLoading(true)
+            const response = await api.post("/users/register", field);
+            setField.role("admin")
+            console.log(response);
+            
+
+
+        } catch (error) {
+            if (error?.response) {
+                toastMessage("error","Already user try different mail...")
+            } else {
+                toastMessage("error", "Server not response please try again ....")
+            }
+        } finally {
+            setLoading(false)
+        }
+    }
+
 
     return (
         <section className='h-screen overflow-hidden bg-cover bg-center bg-no-repeat' style={{
-            backgroundImage:"url('https://coreui.io/images/ogimages/coreui_1200_600.jpg')"
+            backgroundImage: "url('https://coreui.io/images/ogimages/coreui_1200_600.jpg')"
         }}>
+
+            {loading && (
+                <div className="fixed inset-0 bg-black/85 flex items-center justify-center z-[9999]" >
+                    <div className="flex flex-col items-center gap-3">
+                        <CircularProgress />
+                        <p className="text-white text-sm">Processing your registration...</p>
+                    </div>
+                </div >
+            )}
 
             <AdminHeader />
             <main className='flex justify-center  h-screen'>
-                <form onSubmit={handlechange} className='flex flex-col  gap-5 max-w-md'>
+                <form  className='flex flex-col  gap-5 max-w-md'>
                     <div className='flex justify-center'>
                         <img className='h-20 w-20' src="https://ecommerce-admin-view.netlify.app/icon.svg" alt="" />
                     </div>
@@ -47,9 +93,9 @@ export const RegisterAdmin = () => {
 
 
                     <p className='flex justify-center gap-4 items-center'>
-                         <div className="flex-1 h-px bg-gray-600" />
+                        <div className="flex-1 h-px bg-gray-600" />
                         <span className='whitespace-nowrap'>Or, Sign Up with your email</span>
-                         <div className="flex-1 h-px bg-gray-600" />
+                        <div className="flex-1 h-px bg-gray-600" />
                     </p>
 
                     <div className='w-full'>
@@ -96,7 +142,7 @@ export const RegisterAdmin = () => {
                         <p onClick={() => navigate("/admin/login")} className='hover:!text-primary cursor-pointer underline'>Already Have an Account ?</p>
                     </span>
 
-                    <Button className='!bg-blue-600 !px-6 !py-2 !w-full !text-white'>
+                    <Button onClick={handlesubmit} className='!bg-blue-600 !px-6 !py-2 !w-full !text-white'>
                         SIGN UP
                     </Button>
                 </form>

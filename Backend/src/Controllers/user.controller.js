@@ -73,6 +73,58 @@ const registerUser = async (req, res) => {
   }
 };
 
+
+
+// register admin
+const registeradmin = async (req, res) => {
+  try {
+    const { fullName, email, password } = req.body;
+
+    if (!fullName || !email || !password) {
+      throw new Error("Please Fill All Fields");
+    }
+
+    const existadmin = await User.findOne({ email });
+    if (existadmin) {
+      throw new Error("Admin Already Exist ");
+    }
+
+    const admin = await User.create({
+      email,
+      password,
+      fullName,
+      role: "admin",
+    });
+
+    const createdAdmin = await User.findById(admin?._id).select(
+      "-refreshToken -password"
+    );
+
+    const { hashed, token } = generateVerificationToken();
+    createdUser.emailVerificationToken = hashed;
+    createdUser.emailVerificationExpires = Date.now() + 1000 * 60 * 5; // valid 10 min only
+
+    await createdAdmin.save({ validateBeforeSave: false });
+
+    await sendVerificationEmail({
+      to: createdUser.email,
+      token,
+      name: createdUser.fullName,
+      userId: createdUser?._id,
+    });
+
+    return res.status(201).json({
+      success: true,
+      message: "Please Verify Your e-mail...",
+      createdAdmin,
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+
+
 // verify email
 const verifyEmail = async (req, res) => {
   try {
@@ -403,13 +455,11 @@ const forgetPasswordOtp = async (req, res) => {
       name: user.fullName,
     });
 
-    return res
-      .status(200)
-      .json({
-        success: true,
-        user,
-        message: "OTP Send Successfully to your Mail..",
-      });
+    return res.status(200).json({
+      success: true,
+      user,
+      message: "OTP Send Successfully to your Mail..",
+    });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
@@ -431,7 +481,9 @@ const verifyforgetPasswordotp = async (req, res) => {
     }
 
     if (user.otpExpire < Date.now()) {
-      return res.status(500).json({ message: "Your OTP is Expired Please try again..." });
+      return res
+        .status(500)
+        .json({ message: "Your OTP is Expired Please try again..." });
     }
 
     await User.findByIdAndUpdate(user?._id, {
@@ -497,4 +549,5 @@ export {
   verifyforgetPasswordotp,
   resetPassword,
   getUser,
+  registeradmin
 };

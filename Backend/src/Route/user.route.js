@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { accessandrefreshToken, changePassword, forgetPasswordOtp, getUser, loginUser, logoutUser, registerUser, resetPassword, updateAccountDetails, uploadAvatar, verifyEmail, verifyforgetPasswordotp } from "../Controllers/user.controller.js";
+import { accessandrefreshToken, changePassword, forgetPasswordOtp, getUser, loginUser, logoutUser, registeradmin, registerUser, resetPassword, updateAccountDetails, uploadAvatar, verifyEmail, verifyforgetPasswordotp } from "../Controllers/user.controller.js";
 import { multerUpload } from "../Middleware/multer.middleware.js";
 import { verifyJwt } from "../Middleware/auth.middleware.js";
 
@@ -7,6 +7,7 @@ import { verifyJwt } from "../Middleware/auth.middleware.js";
 const router = Router();
 
 router.route('/register').post(registerUser)
+router.route('/admin/register').post(registeradmin)
 router.route('/verify-email').get(verifyEmail)
 router.route('/login').post(loginUser)
 router.route('/logout').get(verifyJwt,logoutUser)
