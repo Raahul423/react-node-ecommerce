@@ -23,7 +23,9 @@ export const LoginAdmin = () => {
         setField((prev) => ({ ...prev, [name]: value }))
     }
     return (
-        <section>
+        <section className='h-screen overflow-hidden bg-cover bg-center bg-no-repeat' style={{
+            backgroundImage:"url('https://coreui.io/images/ogimages/coreui_1200_600.jpg')"
+        }}>
            <AdminHeader/> 
             <main className='flex justify-center  h-screen'>
                 <form onSubmit={handlechange} className='flex flex-col  gap-5 max-w-md'>
@@ -43,9 +45,9 @@ export const LoginAdmin = () => {
 
 
                     <p className='flex justify-center gap-4 items-center'>
-                        <div className="flex-1 h-px bg-gray-300" />
+                        <div className="flex-1 h-px bg-gray-600" />
                         <span className='whitespace-nowrap'>Or, Sign In with your email</span>
-                        <div className="flex-1 h-px bg-gray-300" />
+                        <div className="flex-1 h-px bg-gray-600" />
                     </p>
 
 

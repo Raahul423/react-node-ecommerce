@@ -24,7 +24,10 @@ export const RegisterAdmin = () => {
 
 
     return (
-        <section>
+        <section className='h-screen overflow-hidden bg-cover bg-center bg-no-repeat' style={{
+            backgroundImage:"url('https://coreui.io/images/ogimages/coreui_1200_600.jpg')"
+        }}>
+
             <AdminHeader />
             <main className='flex justify-center  h-screen'>
                 <form onSubmit={handlechange} className='flex flex-col  gap-5 max-w-md'>
@@ -43,8 +46,10 @@ export const RegisterAdmin = () => {
                     </Button>
 
 
-                    <p className='flex justify-center gap-4 overflow-hidden'>
+                    <p className='flex justify-center gap-4 items-center'>
+                         <div className="flex-1 h-px bg-gray-600" />
                         <span className='whitespace-nowrap'>Or, Sign Up with your email</span>
+                         <div className="flex-1 h-px bg-gray-600" />
                     </p>
 
                     <div className='w-full'>
@@ -54,7 +59,7 @@ export const RegisterAdmin = () => {
                             onChange={handlechange}
                             value={field.fullName}
                             name='fullName'
-                            className='py-2  outline-none !w-full border-1 px-2 rounded-md' />
+                            className='py-3  outline-none !w-full border-1 px-2 rounded-md' />
                     </div>
 
                     <div className='w-full'>
@@ -64,7 +69,7 @@ export const RegisterAdmin = () => {
                             value={field.email}
                             name='email'
                             onChange={handlechange}
-                            className='py-2  outline-none !w-full border-1 px-2 rounded-md' />
+                            className='py-3  outline-none !w-full border-1 px-2 rounded-md' />
                     </div>
 
                     <div className='w-full'>
@@ -75,7 +80,7 @@ export const RegisterAdmin = () => {
                                 value={field.password}
                                 name='password'
                                 onChange={handlechange}
-                                className='py-2  outline-none !w-full border-1 px-2 rounded-md' />
+                                className='py-3  outline-none !w-full border-1 px-2 rounded-md' />
 
 
                             <Button onClick={() => setShowPassword(!showPassword)} className='!absolute top-1/2 -translate-y-1/2 right-3 hover:!bg-gray-600/20 !rounded-full !p-1'>
@@ -88,7 +93,7 @@ export const RegisterAdmin = () => {
                     </div>
 
                     <span>
-                        <p onClick={()=>navigate("/admin/login")} className='hover:!text-primary cursor-pointer underline'>Already Have an Account ?</p>
+                        <p onClick={() => navigate("/admin/login")} className='hover:!text-primary cursor-pointer underline'>Already Have an Account ?</p>
                     </span>
 
                     <Button className='!bg-blue-600 !px-6 !py-2 !w-full !text-white'>
