@@ -7,7 +7,6 @@ import Register from './Users/Pages/Register'
 import Checkout from './Users/Pages/Checkout'
 import YourCart from './Users/Pages/YourCart'
 import YourAccount from './Users/Pages/YourAccount'
-import Newpassword from './Users/Pages/Newpassword'
 import Provider from './Provider'
 import YourInfo from './Users/Components/Profile/YourInfo'
 import MyList from './Users/Components/Profile/MyList'
@@ -26,6 +25,7 @@ import { RegisterAdmin } from './Admin/Pages/RegisterAdmin'
 import { LoginAdmin } from './Admin/Pages/LoginAdmin'
 import Verifyemail from './Common/Verifyemail'
 import OtpComponent from './Common/OtpComponent'
+import Newgeneratepassword from './Common/Newgeneratepassword'
 
 
 
@@ -68,10 +68,10 @@ function App() {
             <Route path='mylist' element={<MyList />} />
             <Route path='myorder' element={<Myorder />} />
           </Route>
-          <Route path='/update-password' element={<Newpassword />} />
         </Route>
 
         {/* {access for both User as well as admin} */}
+         <Route path='/update-password' element={<Newgeneratepassword/>} />
         <Route path='/verify-email' element={<Verifyemail />} />
         <Route path='/forgot-password' element={< OtpComponent/>} />
       </Routes>

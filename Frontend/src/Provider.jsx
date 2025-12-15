@@ -1,8 +1,8 @@
 import React, { createContext, useEffect, useState } from 'react'
-import CartDrawer from './Context/CartDrawer'
-import DialogComponent from './Context/DialogComponent'
 import { toast, ToastContainer } from 'react-toastify'
 import api from './Utils/api';
+import CartDrawer from './Context/CartDrawer';
+import DialogComponent from './Context/DialogComponent';
 const MyContext = createContext();
 
 const Provider = ({ children }) => {

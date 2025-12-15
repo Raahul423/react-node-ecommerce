@@ -12,7 +12,7 @@ const AdminHeader = () => {
     return (
         <section> <div className='h-15  w-full flex justify-between items-center px-6'>
             <div>
-                <img src="https://serviceapi.spicezgold.com/download/1750047766437_logo.jpg" alt="admin header" />
+                <img src="/Logo.jpg" alt="admin header" />
             </div>
 
             <div className='flex'>
