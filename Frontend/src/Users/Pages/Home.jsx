@@ -7,7 +7,7 @@ import FeatureProduct from '../Components/ProductsComponent/FeatureProduct'
 import SecondAdd from '../Components/AddsComponent/SecondAdd'
 import BeautyProducts from '../Components/ProductsComponent/BeautyProducts'
 import Popupmessage from '../Components/Popupmessage'
-import DialogComponent from '../Components/Context/DialogComponent'
+import DialogComponent from '../../Context/DialogComponent'
 
 const Home = () => {
 

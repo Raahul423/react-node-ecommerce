@@ -10,7 +10,7 @@ import Navbar from '../Navigation/Navbar';
 import Navdrawer from '../DrawerComponent/Navdrawer';
 import Search from './Subheader.jsx/Search';
 import LoginCheck from './Subheader.jsx/LoginCheck';
-import { CartContext } from '../Context/CartDrawer';
+import { CartContext } from '../../../Context/CartDrawer';
 import { MyContext } from '../../../Provider';
 
 const Header = () => {

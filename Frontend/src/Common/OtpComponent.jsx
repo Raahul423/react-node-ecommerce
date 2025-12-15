@@ -1,8 +1,8 @@
 import React, { useContext, useRef, useState } from "react";
 import { Box, TextField, Button } from "@mui/material";
 import { Link, useNavigate } from "react-router";
-import api from "./Utils/api";
-import { MyContext } from "./Provider";
+import api from "../Utils/api";
+import { MyContext } from "../Provider";
 
 const OtpComponent = () => {
     const { toastMessage } = useContext(MyContext)

@@ -1,7 +1,7 @@
 import { Button, Dialog, DialogContent } from '@mui/material';
 import React, { createContext, useState } from 'react'
 import { IoClose } from 'react-icons/io5';
-import Productdetails from '../ProductIdDetails/Productdetails';
+import Productdetails from '../Users/Components/ProductIdDetails/Productdetails';
 
 
 const DialogContext = createContext();

@@ -1,7 +1,8 @@
 import Header from "../Components/Header/Header";
 import Footer from "../Components/FooterComponent/Footer";
-import ScrollComponent from "../Components/ScrolltoTop/ScrollComponent";
 import {Outlet } from "react-router-dom";
+import ScrollComponent from "../../Common/ScrollComponent";
+
 
 
 const Layout = () => {

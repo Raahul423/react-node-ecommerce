@@ -1,7 +1,7 @@
 import { Button, TablePagination } from '@mui/material'
 import React, { useState } from 'react'
 import { MdDelete } from 'react-icons/md'
-import { DialogContext } from '../../../Users/Components/Context/DialogComponent'
+import { DialogContext } from '../../../Context/DialogComponent'
 import AddHomeSlide from './AddHomeSlide'
 
 const Homebanner = () => {

@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react'
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import CartDrawerItem from '../DrawerComponent/CartDrawerItem';
+import CartDrawerItem from '../Users/Components/DrawerComponent/CartDrawerItem';
 
 const CartContext = createContext();
 

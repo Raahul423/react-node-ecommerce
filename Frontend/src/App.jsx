@@ -24,8 +24,8 @@ import AdminLayout from './Admin/Layout/AdminLayout'
 import Layout from './Users/Layout/Layout'
 import { RegisterAdmin } from './Admin/Pages/RegisterAdmin'
 import { LoginAdmin } from './Admin/Pages/LoginAdmin'
-import Verifyemail from './Verifyemail'
-import OtpComponent from './OtpComponent'
+import Verifyemail from './Common/Verifyemail'
+import OtpComponent from './Common/OtpComponent'
 
 
 

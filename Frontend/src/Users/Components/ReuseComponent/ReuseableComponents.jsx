@@ -10,7 +10,7 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import { Button } from '@mui/material';
 import { Link } from 'react-router';
-import { DialogContext } from '../Context/DialogComponent';
+import { DialogContext } from '../../../Context/DialogComponent';
 
 const ReuseableComponents = ({ title }) => {
 

@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react'
-import CartDrawer from './Users/Components/Context/CartDrawer'
-import DialogComponent from './Users/Components/Context/DialogComponent'
+import CartDrawer from './Context/CartDrawer'
+import DialogComponent from './Context/DialogComponent'
 import { toast, ToastContainer } from 'react-toastify'
 import api from './Utils/api';
 const MyContext = createContext();

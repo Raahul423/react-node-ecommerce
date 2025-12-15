@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
-import { MyContext } from './Provider'
-import api from './Utils/api'
+import { MyContext } from '../Provider'
+import api from '../Utils/api'
 
 const Verifyemail = () => {
     const { toastMessage } = useContext(MyContext);

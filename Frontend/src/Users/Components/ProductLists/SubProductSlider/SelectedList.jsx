@@ -6,7 +6,7 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import { Button } from '@mui/material';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { DialogContext } from '../../Context/DialogComponent';
+import { DialogContext } from '../../../../Context/DialogComponent';
 
 
 const SelectedItems = () => {
