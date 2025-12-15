@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router';
 
 
 const Header = () => {
-  const {logout,toastMessage} = useContext(MyContext)
+  const {logout} = useContext(MyContext)
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -27,8 +27,7 @@ const Header = () => {
   };
 
   const Logout = () => {
-    logout
-    toastMessage("success","Admin Logout SuccessFully..")
+    logout();
     navigate('/admin/login');
   }
 

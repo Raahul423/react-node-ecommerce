@@ -1,10 +1,22 @@
-import React from 'react'
+import { useContext } from 'react';
 import Header from '../Components/Header'
 import Sidebar from '../Components/Sidebar'
-import { Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
+import { MyContext } from '../../Provider';
 
 
 const AdminLayout = () => {
+    const { isAuth, user } = useContext(MyContext);
+
+  // ❌ login hi nahi hai
+  if (!isAuth) {
+    return <Navigate to="/admin/login" replace />;
+  }
+
+  // ❌ admin nahi hai
+  if (user?.role !== "admin") {
+    return <Navigate to="/admin/login" replace />;
+  }
     return (
             <div className="grid grid-cols-[20%_80%] min-h-screen">
 

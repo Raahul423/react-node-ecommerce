@@ -7,7 +7,7 @@ import api from '../../../Utils/api'
 import { MyContext } from '../../../Provider';
 
 const LoginComponent = () => {
-    const { toastMessage, setUser, setIsAuth} = useContext(MyContext)
+    const { toastMessage, setUser, setIsAuth } = useContext(MyContext)
     const navigate = useNavigate();
 
     const [onclick, setOnclick] = useState("")
@@ -16,7 +16,7 @@ const LoginComponent = () => {
     const [verifyaccount, setVerifyaccount] = useState({
         email: '',
         password: '',
-        loginType:"user"
+        loginType: "user"
     });
 
     const emailRegex = /^\S+@\S+\.\S+$/;
@@ -68,6 +68,7 @@ const LoginComponent = () => {
             return;
         }
 
+
         try {
             setLoding(true);
             const response = await api.post('/users/login', verifyaccount);
@@ -76,9 +77,6 @@ const LoginComponent = () => {
 
             setUser(createdUser)
             setIsAuth(true)
-
-            console.log(createdUser);
-            
 
             setVerifyaccount({
                 fullName: "",
