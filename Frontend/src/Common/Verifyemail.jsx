@@ -41,7 +41,7 @@ const Verifyemail = () => {
                     if (res?.data?.role === "admin") {
                         navigate('/admin/login')
                     } else {
-                        navigate('login')
+                        navigate('/login')
                     }
 
                 }, 2000);

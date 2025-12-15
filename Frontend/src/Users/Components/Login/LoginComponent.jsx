@@ -37,6 +37,7 @@ const LoginComponent = () => {
             const res = await api.post('/users/forget-password', { email: verifyaccount.email })
 
             localStorage.setItem("email", verifyaccount.email);
+            localStorage.setItem("loginType", verifyaccount.loginType);
             toastMessage("success", res?.data.message)
             setTimeout(() => {
                 navigate("/forgot-password")

@@ -52,14 +52,19 @@ const Newgeneratepassword = () => {
                 email: email,
                 newpassword: resetpassword.newpassword
             })
-
-            localStorage.removeItem("email")
-
+            
             toastMessage("success", "Successfully reset your password")
 
             setTimeout(() => {
-                navigate("/login")
+               if (localStorage.getItem("loginType") === "admin") {
+                        navigate('/admin/login')
+                    } else {
+                        navigate('/login')
+                    }
             })
+
+            localStorage.removeItem("email");
+            localStorage.removeItem("loginType");
 
         } catch (error) {
             if (error.response) {
