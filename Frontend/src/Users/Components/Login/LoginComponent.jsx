@@ -77,6 +77,9 @@ const LoginComponent = () => {
             setUser(createdUser)
             setIsAuth(true)
 
+            console.log(createdUser);
+            
+
             setVerifyaccount({
                 fullName: "",
                 email: "",

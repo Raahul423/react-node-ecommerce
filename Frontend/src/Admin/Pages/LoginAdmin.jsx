@@ -10,7 +10,7 @@ import api from '../../Utils/api'
 
 
 export const LoginAdmin = () => {
-    const { toastMessage, setIsAuth, setUser } = useContext(MyContext)
+    const { toastMessage, setIsAuth, setUser} = useContext(MyContext)
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(true);
     const [loading, setLoading] = useState(false)

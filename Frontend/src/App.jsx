@@ -14,7 +14,6 @@ import YourInfo from './Users/Components/Profile/YourInfo'
 import MyList from './Users/Components/Profile/MyList'
 import Myorder from './Users/Components/Profile/Myorder'
 
-import Verifyemail from './Users/Pages/verifyemail'
 import Dashboard from './Admin/Pages/Dashboard'
 
 import Homebanner from './Admin/Components/HomeSlidercomponent/Homebanner'
@@ -28,6 +27,7 @@ import AdminLayout from './Admin/Layout/AdminLayout'
 import Layout from './Users/Layout/Layout'
 import { RegisterAdmin } from './Admin/Pages/RegisterAdmin'
 import { LoginAdmin } from './Admin/Pages/LoginAdmin'
+import Verifyemail from './Verifyemail'
 
 
 
@@ -41,19 +41,19 @@ function App() {
     <Provider>
       {/* {admin route} */}
       <Routes>
-          <Route element={<AdminLayout />}>
-            <Route path='/admin' element={<Dashboard />} />
-            <Route path='/homeslide' element={<Homebanner />} />
-            <Route path='/category' element={<CategoryAdd />} />
-            <Route path='/subCatergory/list' element={<AddSubCategoryList />} />
-            <Route path='/addProducts' element={<AddProduct />} />
-            <Route path='/orders' element={<Order />} />
-            <Route path='/users' element={<Users />} />
-            <Route path='/managelogo' element={<ManageLogo />} />
-          </Route>
-          <Route path='/admin/register' element={<RegisterAdmin/>}/>
-          <Route path='/admin/login' element={<LoginAdmin/>}/>
-       
+        <Route element={<AdminLayout />}>
+          <Route path='/admin' element={<Dashboard />} />
+          <Route path='/homeslide' element={<Homebanner />} />
+          <Route path='/category' element={<CategoryAdd />} />
+          <Route path='/subCatergory/list' element={<AddSubCategoryList />} />
+          <Route path='/addProducts' element={<AddProduct />} />
+          <Route path='/orders' element={<Order />} />
+          <Route path='/users' element={<Users />} />
+          <Route path='/managelogo' element={<ManageLogo />} />
+        </Route>
+        <Route path='/admin/register' element={<RegisterAdmin />} />
+        <Route path='/admin/login' element={<LoginAdmin />} />
+
 
 
         {/* {User Routes} */}
@@ -73,9 +73,11 @@ function App() {
           <Route path='/forgot-password' element={<ForgotPassword />} />
           <Route path='/update-password' element={<Newpassword />} />
         </Route>
+
+        {/* {access for both User as well as admin} */}
         <Route path='/verify-email' element={<Verifyemail />} />
       </Routes>
-      
+
       {/* <Route path='*' element={<NotFound />} /> */}
     </Provider>
   )

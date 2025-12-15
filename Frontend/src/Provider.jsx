@@ -68,7 +68,7 @@ const Provider = ({ children }) => {
             } else {
                 setUser(JSON.parse(saveduser))
                 setIsAuth(true)
-            }
+            } 
 
         } catch (error) {
             toastMessage("error", error)

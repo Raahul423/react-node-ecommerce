@@ -152,9 +152,12 @@ const verifyEmail = async (req, res) => {
 
     await user.save();
 
-    return res
-      .status(200)
-      .json({ success: true, message: "Email verified You can now login" });
+    return res.status(200).json({
+      success: true,
+      message: "Email verified You can now login",
+      role: user.role,
+    });
+    
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
@@ -186,7 +189,7 @@ const loginUser = async (req, res) => {
         success: false,
         message: "You are not authorized to login as admin",
       });
-    } // bro yeh login type admin hai or check karega ki admin page pr jo login kr rha hai vo admin hai ya nhi 
+    } // bro yeh login type admin hai or check karega ki admin page pr jo login kr rha hai vo admin hai ya nhi
 
     const checkPassword = await user.isPasswordCorrect(password);
 

@@ -4,7 +4,7 @@ import Badge from '@mui/material/Badge';
 import { assest } from '../../../assets/Assests'
 import { FaRegHeart } from 'react-icons/fa'
 import { ShoppingCartIcon } from 'lucide-react'
-import {IconButton, Tooltip } from '@mui/material'
+import { IconButton, Tooltip } from '@mui/material'
 import { StyledEngineProvider } from '@mui/material/styles';
 import Navbar from '../Navigation/Navbar';
 import Navdrawer from '../DrawerComponent/Navdrawer';
@@ -14,7 +14,7 @@ import { CartContext } from '../Context/CartDrawer';
 import { MyContext } from '../../../Provider';
 
 const Header = () => {
-    const { isLogin} = useContext(MyContext);
+    const { isAuth } = useContext(MyContext);
     const { toggleDrawer } = useContext(CartContext);
 
     return (
@@ -50,7 +50,7 @@ const Header = () => {
 
                     <div className='col3 w-[30%] flex gap-2 justify-end  items-center'>
 
-                        {isLogin === true ?
+                        {isAuth === true ?
                             <LoginCheck />
                             :
                             <>
