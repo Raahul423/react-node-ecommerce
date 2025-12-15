@@ -6,17 +6,16 @@ import { MyContext } from '../../Provider';
 
 
 const AdminLayout = () => {
-    const { isAuth, user } = useContext(MyContext);
+    const { isAuth,authloading } = useContext(MyContext);
 
-  // ❌ login hi nahi hai
+    if(authloading){
+        return <div>Loading ...</div>
+    }
+
   if (!isAuth) {
     return <Navigate to="/admin/login" replace />;
   }
 
-  // ❌ admin nahi hai
-  if (user?.role !== "admin") {
-    return <Navigate to="/admin/login" replace />;
-  }
     return (
             <div className="grid grid-cols-[20%_80%] min-h-screen">
 

@@ -8,7 +8,8 @@ const MyContext = createContext();
 const Provider = ({ children }) => {
     const [isAuth, setIsAuth] = useState(false);
     const [user, setUser] = useState(null);
-    
+    const [authloading, setAuthloading] = useState(true)
+
 
 
     const isExpiredToken = (token) => {
@@ -68,21 +69,24 @@ const Provider = ({ children }) => {
             } else {
                 setUser(JSON.parse(saveduser))
                 setIsAuth(true)
-            } 
+            }
 
         } catch (error) {
             toastMessage("error", error)
+        }finally{
+            setAuthloading(false)
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const value = {
-       isAuth,
-       setIsAuth,
+        isAuth,
+        setIsAuth,
         toastMessage,
         logout,
         user,
         setUser,
+        authloading
     }
 
 
