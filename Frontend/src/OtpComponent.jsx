@@ -1,8 +1,8 @@
 import React, { useContext, useRef, useState } from "react";
 import { Box, TextField, Button } from "@mui/material";
 import { Link, useNavigate } from "react-router";
-import api from "../../../Utils/api";
-import { MyContext } from "../../../Provider";
+import api from "./Utils/api";
+import { MyContext } from "./Provider";
 
 const OtpComponent = () => {
     const { toastMessage } = useContext(MyContext)
@@ -47,7 +47,7 @@ const OtpComponent = () => {
             toastMessage("success", "Verified your OTP You can reset your Password")
             setTimeout(() => {
                 navigate('/update-password')
-            },1000)
+            }, 1000)
 
         } catch (error) {
             if (error.response) {
@@ -59,8 +59,10 @@ const OtpComponent = () => {
     };
 
     return (
-        <section className="my-container">
-            <div className=" flex flex-col items-center gap-3 m-auto border border-gray-700/40 rounded-md w-fit px-12 py-2 shadow-gray-700/60 shadow-md bg-white">
+        <section className='flex items-center justify-center h-screen overflow-hidden bg-cover bg-center bg-no-repeat' style={{
+            backgroundImage: "url('https://coreui.io/images/ogimages/coreui_1200_600.jpg')"
+        }}>
+            <div className=" flex flex-col items-center gap-3  border border-gray-700/40 rounded-md w-fit px-12 py-2 shadow-gray-700/60 shadow-md bg-white">
                 <img className="h-50 " src="/verify.gif" alt="Error" />
                 <h2 className="text-xl font-semibold">Enter 6-Digit OTP</h2>
 
@@ -95,9 +97,6 @@ const OtpComponent = () => {
                 >
                     Verify OTP
                 </Button>
-
-
-
             </div>
         </section>
     )

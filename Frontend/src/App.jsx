@@ -7,15 +7,12 @@ import Register from './Users/Pages/Register'
 import Checkout from './Users/Pages/Checkout'
 import YourCart from './Users/Pages/YourCart'
 import YourAccount from './Users/Pages/YourAccount'
-import ForgotPassword from './Users/Pages/ForgotPassword'
 import Newpassword from './Users/Pages/Newpassword'
 import Provider from './Provider'
 import YourInfo from './Users/Components/Profile/YourInfo'
 import MyList from './Users/Components/Profile/MyList'
 import Myorder from './Users/Components/Profile/Myorder'
-
 import Dashboard from './Admin/Pages/Dashboard'
-
 import Homebanner from './Admin/Components/HomeSlidercomponent/Homebanner'
 import CategoryAdd from './Admin/Components/Category/CategoryAdd'
 import AddSubCategoryList from './Admin/Components/Category/AddSubCategoryList'
@@ -28,6 +25,7 @@ import Layout from './Users/Layout/Layout'
 import { RegisterAdmin } from './Admin/Pages/RegisterAdmin'
 import { LoginAdmin } from './Admin/Pages/LoginAdmin'
 import Verifyemail from './Verifyemail'
+import OtpComponent from './OtpComponent'
 
 
 
@@ -70,12 +68,12 @@ function App() {
             <Route path='mylist' element={<MyList />} />
             <Route path='myorder' element={<Myorder />} />
           </Route>
-          <Route path='/forgot-password' element={<ForgotPassword />} />
           <Route path='/update-password' element={<Newpassword />} />
         </Route>
 
         {/* {access for both User as well as admin} */}
         <Route path='/verify-email' element={<Verifyemail />} />
+        <Route path='/forgot-password' element={< OtpComponent/>} />
       </Routes>
 
       {/* <Route path='*' element={<NotFound />} /> */}

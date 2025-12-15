@@ -14,6 +14,7 @@ export const LoginAdmin = () => {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(true);
     const [loading, setLoading] = useState(false)
+    const [onclick, setOnclick] = useState("")
     const [field, setField] = useState({
         email: "",
         password: "",
@@ -26,6 +27,37 @@ export const LoginAdmin = () => {
     }
 
     const emailRegex = /^\S+@\S+\.\S+$/;
+
+    const ForgotPassword = async () => {
+        setOnclick("ForgotPassword")
+        if (field.email.trim() === '') {
+            toastMessage("error", "Please Enter E-mail...");
+            return;
+        }
+        if (!emailRegex.test(field.email)) {
+            toastMessage("error", "Please Enter Valid E-mail...");
+            return;
+        }
+
+        try {
+            setLoading(true)
+            const res = await api.post('/users/forget-password', { email: field.email })
+
+            localStorage.setItem("email", field.email);
+            toastMessage("success", res?.data.message)
+            setTimeout(() => {
+                navigate("/forgot-password")
+            }, 2000);
+        } catch (error) {
+            if (error?.response) {
+                toastMessage("error", error?.response?.data?.message)
+            } else {
+                toastMessage("error", "Server not respond please try again...")
+            }
+        } finally {
+            setLoading(false)
+        }
+    }
 
     const adminLogin = async () => {
         
@@ -80,9 +112,7 @@ export const LoginAdmin = () => {
                 <div className="fixed inset-0 bg-black/85 flex items-center justify-center z-[9999]" >
                     <div className="flex flex-col items-center gap-3">
                         <CircularProgress />
-                        <p className="text-white text-sm">Processing your Login deatils please wait...</p>
-
-                        {/* {onclick === "ForgotPassword" ? <p className="text-white text-sm">Please Wait..Verifying your details....</p> : <p className="text-white text-sm">Processing your Login deatils please wait...</p>} */}
+                        {onclick === "ForgotPassword" ? <p className="text-white text-sm">Please Wait..Verifying your details....</p> : <p className="text-white text-sm">Processing your Login deatils please wait...</p>}
 
                     </div>
                 </div >
@@ -146,7 +176,7 @@ export const LoginAdmin = () => {
                             </div>
                         </div>
 
-                        <div className='flex justify-end'>
+                        <div onClick={ForgotPassword} className='flex justify-end'>
                             <p className='hover:!text-primary cursor-pointer underline'>Forgot Password ?</p>
                         </div>
 
