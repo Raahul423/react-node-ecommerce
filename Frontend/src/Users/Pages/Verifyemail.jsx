@@ -33,7 +33,6 @@ const Verifyemail = () => {
             try {
                 const res = await api.get(`/users/verify-email?token=${token}&id=${id}`);
 
-
                 setVerify("Email verify successfully redirect to login...");
 
                 toastMessage("error",res.data.message || "Email verified please login")
