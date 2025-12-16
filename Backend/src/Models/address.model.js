@@ -5,6 +5,10 @@ const addressSchema = new mongoose.Schema({
         type:String,
         default:""
     },
+    name:{
+        type:String,
+        default:""
+    },
     city:{
         type:String,
         default:""
@@ -16,16 +20,17 @@ const addressSchema = new mongoose.Schema({
     pincode:{
         type:Number,
     },
-    country:{
+    locality:{
         type:String
     },
     mobile:{
         type:Number,
         default:null
     },
-    status:{
-        type:Boolean,
-        default:true
+    address_Type:{
+        type:String,
+        enum:["home","work"],
+        default:"home"
     },
     userId:{
         type:mongoose.Schema.Types.ObjectId,

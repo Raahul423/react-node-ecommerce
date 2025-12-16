@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react'
-import { Link, Outlet } from 'react-router'
+import { Link, Navigate, Outlet } from 'react-router'
 import { CircularProgress, ListItemIcon, Menu, MenuItem } from '@mui/material';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
-import { MdOutlineLocationOn } from 'react-icons/md';
 import { LiaShoppingBagSolid } from 'react-icons/lia';
 import { FaRegHeart } from 'react-icons/fa';
 import { LogOut } from 'lucide-react';
@@ -11,9 +10,17 @@ import api from '../../Utils/api';
 
 
 const YourAccount = () => {
-  const { user, logout, setUser, toastMessage } = useContext(MyContext)
+  const { user, logout, setUser, toastMessage, isAuth,authloading } = useContext(MyContext)
   const [preview, setPreview] = useState(user?.avatar)
   const [loading, setLoading] = useState(false)
+
+  if(authloading){
+    return <div> Loading... </div>
+  }
+
+  if(!isAuth){
+    return <Navigate to="/" replace/>
+  }
 
 
   const handleAvatarChange = async (e) => {
@@ -54,6 +61,8 @@ const YourAccount = () => {
     }
 
   }
+
+
   return (
     <section className='bg-[#f5f0f0] py-8'>
       <div className='my-container flex gap-6 '>

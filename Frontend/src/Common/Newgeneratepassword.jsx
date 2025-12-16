@@ -52,19 +52,20 @@ const Newgeneratepassword = () => {
                 email: email,
                 newpassword: resetpassword.newpassword
             })
-            
+
             toastMessage("success", "Successfully reset your password")
 
             setTimeout(() => {
-               if (localStorage.getItem("loginType") === "admin") {
-                        navigate('/admin/login')
-                    } else {
-                        navigate('/login')
-                    }
+                if (localStorage.getItem("loginType") === "admin") {
+                    navigate('/admin/login')
+                    localStorage.removeItem("loginType");
+                } else {
+                    navigate('/login')
+                    localStorage.removeItem("loginType");
+                }
             })
 
             localStorage.removeItem("email");
-            localStorage.removeItem("loginType");
 
         } catch (error) {
             if (error.response) {
@@ -91,7 +92,7 @@ const Newgeneratepassword = () => {
             }}>
                 <div className='w-[30%] py-8 '>
                     <div className='p-8  gap-6 flex flex-col border-1 border-gray-700/30 shadow-md rounded-md  bg-white my-container'>
-                    <img src="/forgot-password.gif" alt="Forgot-password" />
+                        <img src="/forgot-password.gif" alt="Forgot-password" />
                         <h1>Forget Your Password</h1>
                         <Box
                             component="form"
