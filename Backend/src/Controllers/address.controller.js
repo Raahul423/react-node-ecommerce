@@ -100,4 +100,48 @@ const updateAddress = async (req, res) => {
   }
 };
 
-export { addressController,updateAddress };
+//delete address
+const deleteAddress = async (req, res) => {
+  try {
+    const userId = req.user?._id;
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Invalid address id..." });
+    }
+
+    const addressexist = await Address.findById(id);
+    if (!addressexist) {
+      return res
+        .status(403)
+        .json({ success: false, message: "Address not found.." });
+    }
+
+    if (addressexist.userId.toString() !== userId.toString()) {
+      return res.status(403).json({
+        success: false,
+        message: "You are not allowed to update this address",
+      });
+    }
+
+    await Address.findByIdAndDelete(id);
+
+    await User.findByIdAndUpdate(
+      userId,
+      { $pull: { address: id } },
+      { new: true }
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "Address deleted successfully",
+    });
+
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+export { addressController, updateAddress, deleteAddress };
