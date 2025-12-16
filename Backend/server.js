@@ -11,6 +11,7 @@ import { category } from "./src/Route/category.route.js";
 import { product } from "./src/Route/product.route.js";
 import { cartItem } from "./src/Route/cartItem.route.js";
 import { wishlistrouter } from "./src/Route/wishlist.route.js";
+import { addressroute } from "./src/Route/address.route.js";
 
 
 const app = express();
@@ -32,6 +33,7 @@ app.use('/api/categories',category)
 app.use('/api/products',product)
 app.use('/api/cartitems',cartItem)
 app.use('/api/wishlist',wishlistrouter)
+app.use('/api/address',addressroute)
 
 connectDB().then(() => {
   app.listen(process.env.PORT,() => {
