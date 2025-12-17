@@ -6,7 +6,7 @@ import User from "../Models/user.model.js";
 const addressController = async (req, res) => {
   try {
     const user = req.user?._id;
-    const { address_line, name, city, state, pincode, locality, mobile } =
+    const { address_line, name, city, state, pincode, locality, phone } =
       req.body;
 
     if (
@@ -16,7 +16,7 @@ const addressController = async (req, res) => {
       !state ||
       !pincode ||
       !locality ||
-      !mobile
+      !phone
     ) {
       return res
         .status(400)
@@ -30,7 +30,7 @@ const addressController = async (req, res) => {
       state,
       pincode,
       locality,
-      mobile,
+      phone,
       userId: user,
     });
 
@@ -53,7 +53,7 @@ const updateAddress = async (req, res) => {
   try {
     const userId = req.user?._id;
     const { id } = req.params;
-    const { address_line, name, city, state, pincode, locality, mobile } =
+    const { address_line, name, city, state, pincode, locality, phone } =
       req.body;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -85,7 +85,7 @@ const updateAddress = async (req, res) => {
         state,
         pincode,
         locality,
-        mobile,
+        phone,
       },
       { new: true, runValidators: true }
     );

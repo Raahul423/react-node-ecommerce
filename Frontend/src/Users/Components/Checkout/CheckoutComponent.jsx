@@ -2,43 +2,51 @@ import { useContext, useState } from 'react'
 import Paymentsection from './SubCheckout/Paymentsection'
 import { MyContext } from '../../../Provider'
 import { Check } from 'lucide-react'
-import { Link } from 'react-router'
+import { Link, Navigate } from 'react-router'
 import { Box, Button, Radio, TextField } from '@mui/material'
 import { Collapse } from 'react-collapse';
 import { FiMinus, FiPlus } from 'react-icons/fi'
+import api from '../../../Utils/api'
 
 
 const CheckoutComponent = () => {
-    const { logout, user, authloading } = useContext(MyContext);
+    const { logout, user, authloading, isAuth, toastMessage } = useContext(MyContext);
     const [checkValue, setcheckValue] = useState(true);
     const [markValue, setMarkValue] = useState(false);
     const [collapseisopen, setCollapseisopen] = useState(false);
-    const [editIndex, setEditIndex] = useState(null);
-    const [addressType, setAddressType] = useState("Home");
+    const [addressType, setAddressType] = useState("home");
+    const [editIndex, setEditIndex] = useState(null)
     const [address, setAddress] = useState([]);
-
     const [formData, setFormData] = useState({
         name: "",
         phone: "",
-        address: "",
+        address_line: "",
         city: "",
         state: "",
         pincode: "",
-        locality: "",
+        locality: ""
     });
 
 
+    if (authloading) {
+        return <div>Loading...</div>
+    }
+
+
+    if (!isAuth) {
+        return <Navigate to="/" replace />
+    }
+
     const handleEdit = (idx) => {
         const selectedAddress = address[idx];
-
-        setEditIndex(idx);
         setCollapseisopen(true);
         setMarkValue(true);
+        setEditIndex(idx)
 
         setFormData({
             name: selectedAddress.name,
             phone: selectedAddress.phone,
-            address: selectedAddress.address,
+            address_line: selectedAddress.address_line,
             city: selectedAddress.city,
             state: selectedAddress.state,
             pincode: selectedAddress.pincode,
@@ -49,28 +57,37 @@ const CheckoutComponent = () => {
     };
 
 
-    const handleSaveAddress = () => {
+    const handleSaveAddress = async () => {
         const newAddress = {
             ...formData,
-            place: addressType,
+            address_Type: addressType,
         };
 
-        setAddress((prev) => [...prev, newAddress]);
+        try {
+            const response = await api.post("/address/address", newAddress);
 
-        
-        setFormData({
-            name: "",
-            phone: "",
-            address: "",
-            city: "",
-            state: "",
-            pincode: "",
-            locality: "",
-        });
+            setAddress((prev) => [...prev, response?.data?.address]);
 
-        setAddressType("Home");
-        setCollapseisopen(false);
-        setMarkValue(false);
+            setFormData({
+                name: "",
+                phone: "",
+                address_line: "",
+                city: "",
+                state: "",
+                pincode: "",
+                locality: "",
+            });
+
+            setAddressType("Home");
+            setCollapseisopen(false);
+            setMarkValue(false);
+        } catch (error) {
+            if (error.response) {
+                toastMessage("error", error.response?.data?.message)
+            } else {
+                toastMessage("error", "Server not responding Please try again...");
+            }
+        }
     };
 
 
@@ -88,9 +105,6 @@ const CheckoutComponent = () => {
         setMarkValue(!markValue)
     }
 
-    if (authloading) {
-        return <div>Loading...</div>
-    }
 
     return (
         <section className='bg-red my-container flex w-full py-6 gap-6'>
@@ -134,17 +148,14 @@ const CheckoutComponent = () => {
                                         <Radio
                                             checked={checkValue}
                                             onClick={() => setcheckValue(!checkValue)}
-                                            value="a"
-                                            name="radio-buttons"
-                                            inputProps={{ 'aria-label': 'A' }}
                                         />
                                     </div>
 
                                     <div>
-                                        <p className='py-1 px-2 bg-gray-700/20 w-fit !text-[10px] rounded-sm uppercase font-medium'>{data.place}</p>
+                                        <p className='py-1 px-2 bg-gray-700/20 w-fit !text-[10px] rounded-sm uppercase font-medium'>{data.address_Type}</p>
                                         <p>{data.name}</p>
                                         <div className='flex'>
-                                            <p>{data.address}-</p>
+                                            <p>{data.address_line}-</p>
                                             <p>{data.city}-</p>
                                             <p>{data.state}-</p>
                                             <p>{data.pincode}</p>
@@ -207,6 +218,9 @@ const CheckoutComponent = () => {
                                         label="Pincode" />
 
                                     <TextField
+                                        name='locality'
+                                        value={formData.locality}
+                                        onChange={handlechange}
                                         label="Locality" />
                                 </Box>
 
@@ -214,8 +228,8 @@ const CheckoutComponent = () => {
 
                                 <Box>
                                     <TextField className='!w-full'
-                                        name='address'
-                                        value={formData.address}
+                                        name='address_line'
+                                        value={formData.address_line}
                                         onChange={handlechange}
                                         label="Address"
                                         minRows={6}
@@ -248,9 +262,9 @@ const CheckoutComponent = () => {
                                     <div className='flex'>
                                         <Radio
                                             className='!p-0'
-                                            checked={addressType === "Home"}
-                                            onClick={() => setAddressType("Home")}
-                                        // onChange={handleChange}
+                                            checked={addressType === "home"}
+                                            onClick={() => setAddressType("home")}
+
                                         />
 
                                         <p className='px-2'>Home</p>
@@ -259,9 +273,9 @@ const CheckoutComponent = () => {
                                     <div className='flex'>
                                         <Radio
                                             className='!p-0'
-                                            checked={addressType === "Work"}
-                                            onClick={() => setAddressType("Work")}
-                                        // onChange={handleChange}
+                                            checked={addressType === "work"}
+                                            onClick={() => setAddressType("work")}
+
                                         />
 
                                         <p className='!px-2'>Work</p>
