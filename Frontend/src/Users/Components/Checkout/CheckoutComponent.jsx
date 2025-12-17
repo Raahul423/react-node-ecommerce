@@ -11,24 +11,87 @@ import { FiMinus, FiPlus } from 'react-icons/fi'
 const CheckoutComponent = () => {
     const { logout, user, authloading } = useContext(MyContext);
     const [checkValue, setcheckValue] = useState(true);
-    const [markValue, setMarkValue] = useState(true);
+    const [markValue, setMarkValue] = useState(false);
     const [collapseisopen, setCollapseisopen] = useState(false);
-    const [address, setAddress] = useState([
-        {
-            name: "Rahul pal",
-            place: "Home",
-            phone: 7458015120,
-            address: "yiu yrwuiyuiyrw",
-            city: "Kanpur",
-            state: "Uttar pradesh",
-            pincode: 208007
-        }
-    ]);
+    const [editIndex, setEditIndex] = useState(null);
+    const [addressType, setAddressType] = useState("Home");
+    const [address, setAddress] = useState([]);
 
+    const [formData, setFormData] = useState({
+        name: "",
+        phone: "",
+        address: "",
+        city: "",
+        state: "",
+        pincode: "",
+        locality: "",
+    });
+
+
+    const handleEdit = (idx) => {
+        const selectedAddress = address[idx];
+
+        setEditIndex(idx);
+        setCollapseisopen(true);
+        setMarkValue(true);
+
+        setFormData({
+            name: selectedAddress.name,
+            phone: selectedAddress.phone,
+            address: selectedAddress.address,
+            city: selectedAddress.city,
+            state: selectedAddress.state,
+            pincode: selectedAddress.pincode,
+            locality: selectedAddress.locality || "",
+        });
+
+        setAddressType(selectedAddress.place);
+    };
+
+
+    const handleSaveAddress = () => {
+        const newAddress = {
+            ...formData,
+            place: addressType,
+        };
+
+        setAddress((prev) => [...prev, newAddress]);
+
+        
+        setFormData({
+            name: "",
+            phone: "",
+            address: "",
+            city: "",
+            state: "",
+            pincode: "",
+            locality: "",
+        });
+
+        setAddressType("Home");
+        setCollapseisopen(false);
+        setMarkValue(false);
+    };
+
+
+
+    const handlechange = (event) => {
+        const { name, value } = event.target
+        setFormData((prev) => ({
+            ...prev, [name]: value
+        }))
+    }
+
+
+    const handleclick = () => {
+        setCollapseisopen(!collapseisopen);
+        setMarkValue(!markValue)
+    }
 
     if (authloading) {
         return <div>Loading...</div>
     }
+
     return (
         <section className='bg-red my-container flex w-full py-6 gap-6'>
             <div className='col1 w-[75%] flex flex-col gap-6'>
@@ -60,6 +123,8 @@ const CheckoutComponent = () => {
                     </div>
                 </div>
 
+
+
                 <div className='bg-white rounded-md'>
                     {address.map((data, idx) => (
                         <div key={idx} >
@@ -88,7 +153,7 @@ const CheckoutComponent = () => {
                                     </div>
                                 </div>
 
-                                <Button className='h-fit hover:!bg-gray-700/10'>
+                                <Button onClick={() => handleEdit(idx)} className='h-fit hover:!bg-gray-700/10'>
                                     <p>EDIT</p>
                                 </Button>
 
@@ -97,17 +162,20 @@ const CheckoutComponent = () => {
                     ))}
                 </div>
 
+
+
+
                 <div className='flex bg-white rounded-md py-5'>
                     <div>
                         <Radio
-                            onClick={() => setMarkValue(!markValue)}
+                            onClick={handleclick}
                             checked={markValue}
                         />
                     </div>
                     <div className='w-[90%]'>
                         <div className='flex justify-between'>
                             <h1 className='!text-xl text-primary'>ADD A NEW ADDRESS</h1>
-                            {collapseisopen === false ? <FiPlus onClick={()=>setCollapseisopen(true)} className={'text-2xl cursor-pointer'} /> : <FiMinus onClick={()=>setCollapseisopen(false)} className={'text-2xl cursor-pointer'} />}
+                            {collapseisopen === false ? <FiPlus onClick={handleclick} className={'text-2xl cursor-pointer'} /> : <FiMinus onClick={handleclick} className={'text-2xl cursor-pointer'} />}
 
                         </div>
 
@@ -117,12 +185,15 @@ const CheckoutComponent = () => {
                                 <Box className='flex gap-6'>
                                     <TextField
                                         name="name"
-
+                                        value={formData.name}
+                                        onChange={handlechange}
                                         label="Name" />
+
 
                                     <TextField
                                         name='phone'
-
+                                        value={formData.phone}
+                                        onChange={handlechange}
                                         label="10-digit mobile number" type='number' />
                                 </Box>
 
@@ -131,9 +202,9 @@ const CheckoutComponent = () => {
                                 <Box className='flex gap-6'>
                                     <TextField
                                         name='pincode'
-
+                                        value={formData.pincode}
+                                        onChange={handlechange}
                                         label="Pincode" />
-
 
                                     <TextField
                                         label="Locality" />
@@ -144,7 +215,8 @@ const CheckoutComponent = () => {
                                 <Box>
                                     <TextField className='!w-full'
                                         name='address'
-
+                                        value={formData.address}
+                                        onChange={handlechange}
                                         label="Address"
                                         minRows={6}
                                         multiline
@@ -156,13 +228,15 @@ const CheckoutComponent = () => {
                                 <Box className='flex gap-6'>
                                     <TextField
                                         name='city'
-
+                                        value={formData.city}
+                                        onChange={handlechange}
                                         label="City/District/Town" />
 
 
                                     <TextField
                                         name='state'
-
+                                        value={formData.state}
+                                        onChange={handlechange}
                                         label="State" />
                                 </Box>
 
@@ -174,11 +248,9 @@ const CheckoutComponent = () => {
                                     <div className='flex'>
                                         <Radio
                                             className='!p-0'
-                                            checked={true}
-                                            // onChange={handleChange}
-                                            value="a"
-                                            name="radio-buttons"
-                                            inputProps={{ 'aria-label': 'A' }}
+                                            checked={addressType === "Home"}
+                                            onClick={() => setAddressType("Home")}
+                                        // onChange={handleChange}
                                         />
 
                                         <p className='px-2'>Home</p>
@@ -187,26 +259,24 @@ const CheckoutComponent = () => {
                                     <div className='flex'>
                                         <Radio
                                             className='!p-0'
-                                            checked={true}
-                                            // onChange={handleChange}
-                                            value="a"
-                                            name="radio-buttons"
-                                            inputProps={{ 'aria-label': 'A' }}
+                                            checked={addressType === "Work"}
+                                            onClick={() => setAddressType("Work")}
+                                        // onChange={handleChange}
                                         />
 
                                         <p className='!px-2'>Work</p>
                                     </div>
                                 </div>
 
-                                {/* {editIndex !== null ? (
-                                    <Button onClick={handleUpdate} className='flex gap-4 items-center w-full !border-1 !border-primary hover:!border-black !bg-primary hover:!bg-black !px-10 !py-3 !mt-6'>
+                                {editIndex !== null ? (
+                                    <Button className='flex gap-4 items-center w-full !border-1 !border-primary hover:!border-black !bg-primary hover:!bg-black !px-10 !py-3 !mt-6'>
                                         <p className='text-white text-sm'>update Addesss</p>
                                     </Button>
                                 ) : (
-                                    <Button  className='flex gap-4 items-center w-full !border-1 !border-primary hover:!border-black !bg-primary hover:!bg-black !px-10 !py-3 !mt-6'>
+                                    <Button onClick={handleSaveAddress} className='flex gap-4 items-center w-full !border-1 !border-primary hover:!border-black !bg-primary hover:!bg-black !px-10 !py-3 !mt-6'>
                                         <p className='text-white text-sm'>Save Addesss</p>
                                     </Button>
-                                )} */}
+                                )}
                             </div>
                         </Collapse>
                     </div>
