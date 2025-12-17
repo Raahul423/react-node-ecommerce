@@ -191,6 +191,7 @@ const loginUser = async (req, res) => {
       });
     } // bro yeh login type admin hai or check karega ki admin page pr jo login kr rha hai vo admin hai ya nhi
 
+
     const checkPassword = await user.isPasswordCorrect(password);
 
     if (!checkPassword) {

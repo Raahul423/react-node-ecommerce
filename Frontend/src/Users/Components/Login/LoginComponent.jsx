@@ -88,11 +88,9 @@ const LoginComponent = () => {
             localStorage.setItem("token", token);
             localStorage.setItem("user", JSON.stringify(createdUser));
 
-            toastMessage("success", message || "Login Successfully")
+            navigate('/');
 
-            setTimeout(() => {
-                navigate('/')
-            })
+            toastMessage("success", message || "Login Successfully")
 
         } catch (error) {
             if (error.response) {

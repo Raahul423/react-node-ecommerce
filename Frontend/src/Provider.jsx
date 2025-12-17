@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import api from './Utils/api';
 import CartDrawer from './Context/CartDrawer';
@@ -9,7 +9,6 @@ const Provider = ({ children }) => {
     const [isAuth, setIsAuth] = useState(false);
     const [user, setUser] = useState(null);
     const [authloading, setAuthloading] = useState(true)
-
 
 
     const isExpiredToken = (token) => {
@@ -23,6 +22,17 @@ const Provider = ({ children }) => {
         } catch (error) {
             console.log(error);
             return true;
+        }
+    }
+
+    const toastMessage = (type, message) => {
+        switch (type) {
+            case "success":
+                toast.success(message);
+                break;
+            case "error":
+                toast.error(message);
+                break;
         }
     }
 
@@ -43,17 +53,6 @@ const Provider = ({ children }) => {
     }
 
 
-    const toastMessage = (type, message) => {
-        switch (type) {
-            case "success":
-                toast.success(message);
-                break;
-            case "error":
-                toast.error(message);
-                break;
-        }
-    }
-
 
     useEffect(() => {
         try {
@@ -73,7 +72,7 @@ const Provider = ({ children }) => {
 
         } catch (error) {
             toastMessage("error", error)
-        }finally{
+        } finally {
             setAuthloading(false)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

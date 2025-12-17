@@ -7,7 +7,7 @@ import { FiMinus, FiPlus } from "react-icons/fi";
 import { Collapse } from 'react-collapse';
 import { toast, ToastContainer } from 'react-toastify';
 
-const Formaddress = ({ collapseisopen, setCollapseisopen, formdata, setFormdata, address, setaddress, setEditIndex, editIndex,selectedValue,setSelectedValue }) => {
+const Formaddress = ({ collapseisopen, setCollapseisopen, formdata, setFormdata, address, setaddress, setEditIndex, editIndex, selectedValue, setSelectedValue }) => {
     const change = () => {
         setCollapseisopen(!collapseisopen)
         setSelectedValue(!selectedValue)
@@ -25,9 +25,6 @@ const Formaddress = ({ collapseisopen, setCollapseisopen, formdata, setFormdata,
     };
 
     // console.log(changeformvalue);
-
-
-
 
     const handleUpdate = () => {
         const updated = [...address];
@@ -51,7 +48,7 @@ const Formaddress = ({ collapseisopen, setCollapseisopen, formdata, setFormdata,
             <div>
                 <Radio
                     checked={selectedValue === true}
-                    value = {true}
+                    value={true}
                     onClick={change}
                 />
             </div>
@@ -171,7 +168,7 @@ const Formaddress = ({ collapseisopen, setCollapseisopen, formdata, setFormdata,
                 </Collapse>
 
 
-<ToastContainer/>
+                <ToastContainer />
             </div>
         </section>
     )

@@ -1,13 +1,10 @@
 // import React, { useState } from 'react'
 import Radio from '@mui/material/Radio';
 import { Button } from '@mui/material';
+import { useState } from 'react';
 
-const Address = ({ setCollapseisopen, address,setFormdata,setEditIndex,selectedValue,setSelectedValue }) => {
-    // const [selectedValue, setSelectedValue] = useState('b');
-
-    const handleChange = (event) => {
-        setSelectedValue(event.target.value);
-    };
+const Address = ({ setCollapseisopen, address,setFormdata,setEditIndex,setSelectedValue }) => {
+    const [checkValue, setcheckValue] = useState(true);    
 
     const handleedit = (index) => {
         setFormdata(address[index]);
@@ -29,8 +26,8 @@ const Address = ({ setCollapseisopen, address,setFormdata,setEditIndex,selectedV
                         <div className='flex gap-4'>
                             <div>
                                 <Radio
-                                    checked={selectedValue === 'a'}
-                                    onChange={handleChange}
+                                    checked={checkValue}
+                                    onClick={()=>setcheckValue(!checkValue)}
                                     value="a"
                                     name="radio-buttons"
                                     inputProps={{ 'aria-label': 'A' }}
