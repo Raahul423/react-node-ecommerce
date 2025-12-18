@@ -5,12 +5,12 @@ import { FcGoogle } from 'react-icons/fc'
 import { IoEye, IoEyeOff } from 'react-icons/io5'
 import { useNavigate } from 'react-router'
 import AdminHeader from '../Components/AdminHeader'
-import { MyContext } from '../../Provider'
 import api from '../../Utils/api'
+import { AdminContext } from '../../AdminAuthProvider'
 
 
 export const LoginAdmin = () => {
-    const { toastMessage, setIsAuth, setUser} = useContext(MyContext)
+    const { toastMessage, setAdminIsAuth, setAdmin} = useContext(AdminContext)
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(true);
     const [loading, setLoading] = useState(false)
@@ -44,7 +44,6 @@ export const LoginAdmin = () => {
             const res = await api.post('/users/forget-password', { email: field.email })
 
             localStorage.setItem("email", field.email);
-            localStorage.setItem("loginType", field.loginType);
             toastMessage("success", res?.data.message)
             setTimeout(() => {
                 navigate("/forgot-password")
@@ -80,15 +79,13 @@ export const LoginAdmin = () => {
         try {
             setLoading(true);
             const response = await api.post('/users/login', field);
-            console.log(response);
-
             const { token, createdUser} = response.data;
 
-            setIsAuth(true)
-            setUser(createdUser)
+            setAdminIsAuth(true)
+            setAdmin(createdUser)
 
-            localStorage.setItem("token", token);
-            localStorage.setItem("user", JSON.stringify(createdUser));
+            localStorage.setItem("admintoken", token);
+            localStorage.setItem("admin", JSON.stringify(createdUser));
 
             toastMessage("success"," Admin Login successfully");
 
@@ -120,7 +117,7 @@ export const LoginAdmin = () => {
             )}
 
             <section className='h-screen overflow-hidden bg-cover bg-center bg-no-repeat' style={{
-                backgroundImage: "url('https://coreui.io/images/ogimages/coreui_1200_600.jpg')"
+                backgroundImage: "url('/admin_bg_image.jpg')"
             }}>
                 <AdminHeader />
                 <main className='flex justify-center  h-screen'>

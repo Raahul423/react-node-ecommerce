@@ -26,6 +26,7 @@ import { LoginAdmin } from './Admin/Pages/LoginAdmin'
 import Verifyemail from './Common/Verifyemail'
 import OtpComponent from './Common/OtpComponent'
 import Newgeneratepassword from './Common/Newgeneratepassword'
+import AdminAuthProvider from './AdminAuthProvider'
 
 
 
@@ -34,50 +35,60 @@ import Newgeneratepassword from './Common/Newgeneratepassword'
 
 
 function App() {
-
   return (
-    <Provider>
-      {/* {admin route} */}
-      <Routes>
-        <Route element={<AdminLayout />}>
-          <Route path='/admin' element={<Dashboard />} />
-          <Route path='/homeslide' element={<Homebanner />} />
-          <Route path='/category' element={<CategoryAdd />} />
-          <Route path='/subCatergory/list' element={<AddSubCategoryList />} />
-          <Route path='/addProducts' element={<AddProduct />} />
-          <Route path='/orders' element={<Order />} />
-          <Route path='/users' element={<Users />} />
-          <Route path='/managelogo' element={<ManageLogo />} />
-        </Route>
-        <Route path='/admin/register' element={<RegisterAdmin />} />
-        <Route path='/admin/login' element={<LoginAdmin />} />
-
-
-
-        {/* {User Routes} */}
-        <Route element={<Layout />} >
-          <Route path='/' element={<Home />} />
-          <Route path='/products' element={<Products />} />
-          <Route path='/product/:id' element={<ProductsId />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/checkout' element={<Checkout />} />
-          <Route path='/cart' element={<YourCart />} />
-          <Route path='/myaccount' element={<YourAccount />}>
-            <Route path='info' element={<YourInfo />} />
-            <Route path='mylist' element={<MyList />} />
-            <Route path='myorder' element={<Myorder />} />
+    <>
+      <AdminAuthProvider>
+        {/* {admin route} */}
+        <Routes>
+          <Route element={<AdminLayout />}>
+            <Route path='/admin' element={<Dashboard />} />
+            <Route path='/homeslide' element={<Homebanner />} />
+            <Route path='/category' element={<CategoryAdd />} />
+            <Route path='/subCatergory/list' element={<AddSubCategoryList />} />
+            <Route path='/addProducts' element={<AddProduct />} />
+            <Route path='/orders' element={<Order />} />
+            <Route path='/users' element={<Users />} />
+            <Route path='/managelogo' element={<ManageLogo />} />
           </Route>
-        </Route>
+          <Route path='/admin/register' element={<RegisterAdmin />} />
+          <Route path='/admin/login' element={<LoginAdmin />} />
+          <Route path='/update-password' element={<Newgeneratepassword />} />
+          <Route path='/verify-email' element={<Verifyemail />} />
+          <Route path='/forgot-password' element={< OtpComponent />} />
+        </Routes>
+      </AdminAuthProvider>
 
-        {/* {access for both User as well as admin} */}
-         <Route path='/update-password' element={<Newgeneratepassword/>} />
-        <Route path='/verify-email' element={<Verifyemail />} />
-        <Route path='/forgot-password' element={< OtpComponent/>} />
-      </Routes>
 
-      {/* <Route path='*' element={<NotFound />} /> */}
-    </Provider>
+
+
+
+
+      <Provider>
+        <Routes>
+          {/* {User Routes} */}
+          <Route element={<Layout />} >
+            <Route path='/' element={<Home />} />
+            <Route path='/products' element={<Products />} />
+            <Route path='/product/:id' element={<ProductsId />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/checkout' element={<Checkout />} />
+            <Route path='/cart' element={<YourCart />} />
+            <Route path='/myaccount' element={<YourAccount />}>
+              <Route path='info' element={<YourInfo />} />
+              <Route path='mylist' element={<MyList />} />
+              <Route path='myorder' element={<Myorder />} />
+            </Route>
+          </Route>
+          <Route path='/update-password' element={<Newgeneratepassword />} />
+          <Route path='/verify-email' element={<Verifyemail />} />
+          <Route path='/forgot-password' element={< OtpComponent />} />
+        </Routes>
+        {/* <Route path='*' element={<NotFound />} /> */}
+      </Provider>
+
+    </>
+
   )
 }
 export default App;

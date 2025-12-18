@@ -60,8 +60,6 @@ const AddSubCategoryList = () => {
                                     </div>
                                 </div>
                             </Collapse>
-
-
                         </>
 
                         <>

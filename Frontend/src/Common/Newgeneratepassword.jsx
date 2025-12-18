@@ -1,12 +1,13 @@
 import { Box, Button, CircularProgress, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { useNavigate } from 'react-router';
 import api from '../Utils/api';
 import { MyContext } from '../Provider';
+import { toast } from 'react-toastify';
 
 const Newgeneratepassword = () => {
-    const { toastMessage } = useContext(MyContext)
+    
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState("");
     const [ShowConfirmPassword, setShowConfirmPassword] = useState("");
@@ -30,18 +31,18 @@ const Newgeneratepassword = () => {
 
     const check = async () => {
         if (!resetpassword.newpassword || !resetpassword.confirmpassword) {
-            toastMessage("error", "Please Fill Both Of Them.")
+            toast.error("Please Fill Both Of Them.")
             return;
         }
 
 
         if (resetpassword.newpassword.length < 8) {
-            toastMessage("error", "password Should be 8 Character")
+            toast.error("password Should be 8 Character")
             return;
         }
 
         if (resetpassword.newpassword !== resetpassword.confirmpassword) {
-            toastMessage("error", "confirm password not matched.")
+            toast.error("confirm password not matched.")
             return;
         }
 
@@ -53,7 +54,7 @@ const Newgeneratepassword = () => {
                 newpassword: resetpassword.newpassword
             })
 
-            toastMessage("success", "Successfully reset your password")
+            toast.success("Successfully reset your password")
 
             setTimeout(() => {
                 if (localStorage.getItem("loginType") === "admin") {
@@ -69,9 +70,9 @@ const Newgeneratepassword = () => {
 
         } catch (error) {
             if (error.response) {
-                toastMessage("error", error.response?.data?.message)
+                toast.error(error.response?.data?.message)
             } else {
-                toastMessage("erroe", "Server not response please try again ...")
+                toast.error("Server not response please try again ...")
             }
         }
 

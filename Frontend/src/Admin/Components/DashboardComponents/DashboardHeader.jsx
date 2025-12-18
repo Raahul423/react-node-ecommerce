@@ -5,16 +5,16 @@ import { FaPlus } from 'react-icons/fa'
 import { GoGift } from 'react-icons/go'
 import { IoStatsChartSharp } from "react-icons/io5";
 import { RiBarChart2Fill, RiChatQuoteLine, RiProductHuntLine } from 'react-icons/ri'
-import { MyContext } from '../../../Provider'
+import { AdminContext } from '../../../AdminAuthProvider'
 
 export const DashboardHeader = () => {
-    const {user} = useContext(MyContext)
+    const {admin} = useContext(AdminContext)
     return (
         <section>
             <div className='header-1 w-full flex border border-gray-600/20 items-center justify-between bg-[#f2fbff] px-5 rounded-md py-4'>
                 <div className='flex flex-col gap-4'>
                     <h1 className='!text-5xl font-bold'>Welcome,</h1>
-                    <h2 className='text-4xl font-semibold !text-blue-700/80'>{user?.fullName}</h2>
+                    <h2 className='text-4xl font-semibold !text-blue-700/80'>{admin?.fullName}</h2>
                     <p className='!text-xl '>Here’s What happening on your store today. See the statistics at once.</p>
                     <Button className='w-35 !bg-blue-700/80 hover:!bg-blue-700 flex gap-2'>
                         <FaPlus className='text-white' />

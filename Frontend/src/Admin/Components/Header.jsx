@@ -4,16 +4,15 @@ import { RiMenu2Fill } from "react-icons/ri";
 import { Avatar, Badge, Divider, IconButton, ListItemIcon, Menu, MenuItem, StyledEngineProvider, Tooltip } from '@mui/material';
 import { IoNotifications } from 'react-icons/io5';
 import { FaCircleUser } from 'react-icons/fa6';
-import { Settings } from 'lucide-react';
 import { FiLogOut } from 'react-icons/fi';
-import { MyContext } from '../../Provider';
 import { useNavigate } from 'react-router';
+import { AdminContext } from '../../AdminAuthProvider';
 
 
 
 
 const Header = () => {
-  const { logout, user } = useContext(MyContext)
+  const { logout, admin } = useContext(AdminContext)
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -95,8 +94,8 @@ const Header = () => {
           <MenuItem onClick={handleClose}>
             <Avatar />
             <span className='flex flex-col'>
-              <p>{user?.fullName}</p>
-              <p>{user?.email}</p>
+              <p>{admin?.fullName}</p>
+              <p>{admin?.email}</p>
             </span>
 
           </MenuItem>

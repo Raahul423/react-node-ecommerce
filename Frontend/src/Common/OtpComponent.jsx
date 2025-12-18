@@ -1,11 +1,10 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Box, TextField, Button } from "@mui/material";
 import { Link, useNavigate } from "react-router";
 import api from "../Utils/api";
-import { MyContext } from "../Provider";
+import { toast, ToastContainer } from "react-toastify";
 
 const OtpComponent = () => {
-    const { toastMessage } = useContext(MyContext)
     const navigate = useNavigate();
 
     const [otp, setOtp] = useState(new Array(6).fill(""));
@@ -35,7 +34,7 @@ const OtpComponent = () => {
     const handleSubmit = async () => {
         const enteredOtp = otp.join("");
         if (enteredOtp.length < 6) {
-            toastMessage("error", "Please enter full 6-digit OTP")
+            toast.error("Please enter full 6-digit OTP")
             return;
         }
         try {
@@ -44,16 +43,16 @@ const OtpComponent = () => {
                     code: enteredOtp,
                     email: email
                 })
-            toastMessage("success", "Verified your OTP You can reset your Password")
+            toast.success("Verified your OTP You can reset your Password")
             setTimeout(() => {
                 navigate('/update-password')
             }, 1000)
 
         } catch (error) {
             if (error.response) {
-                toastMessage("error", error.response?.data?.message)
+                toast.error(error.response?.data?.message)
             } else {
-                toastMessage("error", "Server not respond please try again...")
+                toast.error("Server not respond please try again...")
             }
         }
     };
@@ -98,6 +97,7 @@ const OtpComponent = () => {
                     Verify OTP
                 </Button>
             </div>
+            <ToastContainer/>
         </section>
     )
 }

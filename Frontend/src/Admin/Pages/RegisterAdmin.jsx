@@ -4,11 +4,11 @@ import { FcGoogle } from 'react-icons/fc'
 import { IoEye, IoEyeOff } from 'react-icons/io5'
 import AdminHeader from '../Components/AdminHeader'
 import { useNavigate } from 'react-router'
-import { MyContext } from '../../Provider'
 import api from '../../Utils/api'
+import { AdminContext } from '../../AdminAuthProvider'
 
 export const RegisterAdmin = () => {
-    const { toastMessage } = useContext(MyContext)
+    const { toastMessage } = useContext(AdminContext)
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(true);
     const [loading, setLoading] = useState(false)
@@ -66,7 +66,7 @@ export const RegisterAdmin = () => {
 
     return (
         <section className='h-screen overflow-hidden bg-cover bg-center bg-no-repeat' style={{
-            backgroundImage: "url('https://coreui.io/images/ogimages/coreui_1200_600.jpg')"
+            backgroundImage: "url('/admin_bg_image.jpg')"
         }}>
 
             {loading && (

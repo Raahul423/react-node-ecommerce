@@ -2,17 +2,17 @@ import { useContext } from 'react';
 import Header from '../Components/Header'
 import Sidebar from '../Components/Sidebar'
 import { Navigate, Outlet } from 'react-router-dom'
-import { MyContext } from '../../Provider';
+import { AdminContext } from '../../AdminAuthProvider';
 
 
 const AdminLayout = () => {
-    const { isAuth,authloading } = useContext(MyContext);
+    const { adminIsAuth,authloading } = useContext(AdminContext);
 
     if(authloading){
         return <div>Loading ...</div>
     }
 
-  if (!isAuth) {
+  if (!adminIsAuth) {
     return <Navigate to="/admin/login" replace />;
   }
 

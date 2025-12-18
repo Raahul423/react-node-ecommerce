@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import { MyContext } from '../Provider'
 import api from '../Utils/api'
+import { toast, ToastContainer } from 'react-toastify'
 
 const Verifyemail = () => {
-    const { toastMessage } = useContext(MyContext);
     const location = useLocation()
     const navigate = useNavigate()
     const [verify, setVerify] = useState("Verifying your email please wait ....")
@@ -21,13 +21,9 @@ const Verifyemail = () => {
 
             if (!token || !id) {
                 setVerify("Invalid verification link")
-                toastMessage("error", "Invalid verification link")
+                toast.error("Invalid verification link")
                 return;
             }
-
-            console.log(token);
-            console.log(id);
-
 
 
             try {
@@ -35,7 +31,7 @@ const Verifyemail = () => {
 
                 setVerify("Email verify successfully redirect to login...");
 
-                toastMessage("success", res.data.message || "Email verified please login...")
+                toast.success(res.data.message || "Email verified please login...")
 
                 setTimeout(() => {
                     if (res?.data?.role === "admin") {
@@ -49,7 +45,7 @@ const Verifyemail = () => {
                 const msg = error.response?.data?.message || "verification failed please try again..."
 
                 setVerify(msg)
-                toastMessage(error, msg);
+                toast.error(error.msg);
             }
         };
         verify();
@@ -60,6 +56,7 @@ const Verifyemail = () => {
             <div className='my-container flex justify-center items-center'>
                 <p className='!text-xl'>{verify}</p>
             </div>
+            <ToastContainer/>
         </section>
     )
 }
