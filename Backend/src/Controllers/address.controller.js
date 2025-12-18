@@ -100,6 +100,23 @@ const updateAddress = async (req, res) => {
   }
 };
 
+
+// get addresses from user 
+const getAddress = async (req,res)=>{
+  try {
+    const user = req.user?._id;
+
+    const alladdress = await Address.find({userId:user});
+    if(!alladdress){
+      return res.status(404).json({success:false,message:"Address not found..."})
+    }
+
+    return res.status(200).json({success:true,message:"Address fetch successfully ",alladdress})
+  } catch (error) {
+    return res.status(500).json({success:false,json:error.message});
+  }
+}
+
 //delete address
 const deleteAddress = async (req, res) => {
   try {
@@ -144,4 +161,4 @@ const deleteAddress = async (req, res) => {
   }
 };
 
-export { addressController, updateAddress, deleteAddress };
+export { addressController, updateAddress, deleteAddress, getAddress };
