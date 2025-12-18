@@ -12,7 +12,7 @@ import { MdAutoDelete } from 'react-icons/md'
 
 const CheckoutComponent = () => {
     const { logout, user, authloading, isAuth, toastMessage } = useContext(MyContext);
-    const [checkValue, setcheckValue] = useState(true);
+    const [checkValue, setcheckValue] = useState(null);
     const [markValue, setMarkValue] = useState(false);
     const [collapseisopen, setCollapseisopen] = useState(false);
     const [addressType, setAddressType] = useState("home");
@@ -59,7 +59,7 @@ const CheckoutComponent = () => {
         return <Navigate to="/" replace />
     }
 
-// add address API
+    // add address API
     const handleSaveAddress = async () => {
         const newAddress = {
             ...formData
@@ -80,6 +80,8 @@ const CheckoutComponent = () => {
                 locality: "",
                 address_Type: "home"
             });
+
+            toastMessage("success", response?.data?.message)
 
             setAddressType("Home");
             setCollapseisopen(false);
@@ -145,7 +147,7 @@ const CheckoutComponent = () => {
                 address_Type: "home"
             });
 
-            toastMessage("success",response?.data?.message)
+            toastMessage("success", response?.data?.message)
 
         } catch (error) {
             if (error.response) {
@@ -157,8 +159,32 @@ const CheckoutComponent = () => {
     }
 
 
-    // // delete address API
-    // const deleteAddress
+    // delete address API
+    const deleteAddress = async (idx) => {
+        try {
+
+            const addressId = address[idx]._id;
+            console.log(addressId);
+
+            const response = await api.delete(`/address/${addressId}`);
+
+            setAddress(prev =>
+                prev.filter(item => item._id !== addressId)
+            );
+
+            toastMessage("success", response?.data?.message);
+
+            // reset edit state
+            setEditIndex(null);
+
+        } catch (error) {
+            if (error.response) {
+                toastMessage("error", error.response?.data?.message)
+            } else {
+                toastMessage("error", "Server not responding please try again ...")
+            }
+        }
+    }
 
 
     const handlechange = (event) => {
@@ -207,46 +233,54 @@ const CheckoutComponent = () => {
 
 
                 <div className='bg-white rounded-md'>
-                    {address.map((data, idx) => (
-                        <div key={idx} >
-                            <div className='py-4 border-b border-gray-700/50 flex justify-between'>
-                                <div className='flex gap-4'>
-                                    <div>
-
-                                        <Radio
-                                            checked={checkValue === idx}
-                                            onClick={() => setcheckValue(idx)}
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <p className='py-1 px-2 bg-gray-700/20 w-fit !text-[10px] rounded-sm uppercase font-medium'>{data.address_Type}</p>
-                                        <p>{data.name}</p>
-                                        <div className='flex'>
-                                            <p>{data.address_line}-</p>
-                                            <p>{data.city}-</p>
-                                            <p>{data.state}-</p>
-                                            <p>{data.pincode}</p>
-                                        </div>
-                                        <p>{data.phone}</p>
-                                    </div>
-                                </div>
-
-                                <div className='flex'>
-                                    <Button className='h-fit !text-gray-800/80'>
-                                        <MdAutoDelete className='text-2xl' />
-                                    </Button>
-
-                                    <Button onClick={() => handleEdit(idx)} className='h-fit hover:!bg-gray-700/10'>
-                                        <p>EDIT</p>
-                                    </Button>
-                                </div>
-
-
-
-                            </div>
+                    {address.length === 0 ?
+                        <div className='flex items-center'>
+                            <p className='px-4 py-4'>Please Add Address...</p>
+                            <img className='h-20 w-20 object-cover' src="/address.gif" alt="" />
                         </div>
-                    ))}
+                        :
+                        <div>
+                            {address.map((data, idx) => (
+                                <div key={idx} >
+                                    <div className='py-4 border-b border-gray-700/50 flex justify-between'>
+                                        <div className='flex gap-4'>
+                                            <div>
+
+                                                <Radio
+                                                    checked={checkValue === idx}
+                                                    onClick={() => setcheckValue(idx)}
+                                                />
+                                            </div>
+
+                                            <div>
+                                                <p className='py-1 px-2 bg-gray-700/20 w-fit !text-[10px] rounded-sm uppercase font-medium'>{data.address_Type}</p>
+                                                <p>{data.name}</p>
+                                                <div className='flex'>
+                                                    <p>{data.address_line}-</p>
+                                                    <p>{data.city}-</p>
+                                                    <p>{data.state}-</p>
+                                                    <p>{data.pincode}</p>
+                                                </div>
+                                                <p>{data.phone}</p>
+                                            </div>
+                                        </div>
+
+                                        <div className='flex'>
+                                            <Button onClick={() => deleteAddress(idx)} className='h-fit !text-gray-800/80'>
+                                                <MdAutoDelete className='text-2xl' />
+                                            </Button>
+
+                                            <Button onClick={() => handleEdit(idx)} className='h-fit hover:!bg-gray-700/10'>
+                                                <p>EDIT</p>
+                                            </Button>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            ))}
+                        </div>}
                 </div>
 
 
@@ -279,6 +313,11 @@ const CheckoutComponent = () => {
 
                                     <TextField
                                         name='phone'
+                                        slotProps={{
+                                            input: {
+                                                maxLength: 10,
+                                            },
+                                        }}
                                         value={formData.phone}
                                         onChange={handlechange}
                                         label="10-digit mobile number" type='number' />
