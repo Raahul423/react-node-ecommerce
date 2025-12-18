@@ -1,13 +1,11 @@
 import { Box, Button, CircularProgress, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { useNavigate } from 'react-router';
 import api from '../Utils/api';
-import { MyContext } from '../Provider';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Newgeneratepassword = () => {
-    
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState("");
     const [ShowConfirmPassword, setShowConfirmPassword] = useState("");
@@ -80,6 +78,7 @@ const Newgeneratepassword = () => {
 
     return (
         <>
+        <ToastContainer />
             {loading && (
                 <div className="fixed inset-0 bg-black/85 flex items-center justify-center z-[9999]" >
                     <div className="flex flex-col items-center gap-3">
@@ -168,7 +167,6 @@ const Newgeneratepassword = () => {
                         </Button>
                     </div>
                 </div>
-
             </section>
         </>
     )

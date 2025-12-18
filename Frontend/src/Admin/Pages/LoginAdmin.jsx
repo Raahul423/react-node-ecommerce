@@ -44,6 +44,7 @@ export const LoginAdmin = () => {
             const res = await api.post('/users/forget-password', { email: field.email })
 
             localStorage.setItem("email", field.email);
+            localStorage.setItem("loginType",field.loginType);
             toastMessage("success", res?.data.message)
             setTimeout(() => {
                 navigate("/forgot-password")

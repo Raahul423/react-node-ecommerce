@@ -21,7 +21,6 @@ const Verifyemail = () => {
 
             if (!token || !id) {
                 setVerify("Invalid verification link")
-                toast.error("Invalid verification link")
                 return;
             }
 

@@ -48,9 +48,6 @@ export const RegisterAdmin = () => {
                 email:""
             })
             toastMessage("success",response?.data?.message)
-            setTimeout(() => {
-                navigate('/admin/login');
-            }, 1000);
 
         } catch (error) {
             if (error?.response) {
