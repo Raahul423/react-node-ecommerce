@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Paymentsection from './SubCheckout/Paymentsection'
 import { MyContext } from '../../../Provider'
 import { Check } from 'lucide-react'
@@ -7,6 +7,7 @@ import { Box, Button, Radio, TextField } from '@mui/material'
 import { Collapse } from 'react-collapse';
 import { FiMinus, FiPlus } from 'react-icons/fi'
 import api from '../../../Utils/api'
+import { MdAutoDelete } from 'react-icons/md'
 
 
 const CheckoutComponent = () => {
@@ -24,8 +25,29 @@ const CheckoutComponent = () => {
         city: "",
         state: "",
         pincode: "",
-        locality: ""
+        locality: "",
+        address_Type: "home"
     });
+
+    useEffect(() => {
+
+        if (!isAuth) return;
+
+        const fetchaddress = async () => {
+            try {
+                const response = await api.get("/address/user-address")
+                console.log(response);
+
+                setAddress(response.data.alladdress);
+            } catch (error) {
+                toastMessage("error", error.message)
+            }
+        }
+
+        if (isAuth) {
+            fetchaddress();
+        };
+    }, [isAuth, toastMessage])
 
 
     if (authloading) {
@@ -37,30 +59,10 @@ const CheckoutComponent = () => {
         return <Navigate to="/" replace />
     }
 
-    const handleEdit = (idx) => {
-        const selectedAddress = address[idx];
-        setCollapseisopen(true);
-        setMarkValue(true);
-        setEditIndex(idx)
-
-        setFormData({
-            name: selectedAddress.name,
-            phone: selectedAddress.phone,
-            address_line: selectedAddress.address_line,
-            city: selectedAddress.city,
-            state: selectedAddress.state,
-            pincode: selectedAddress.pincode,
-            locality: selectedAddress.locality || "",
-        });
-
-        setAddressType(selectedAddress.place);
-    };
-
-
+// add address API
     const handleSaveAddress = async () => {
         const newAddress = {
-            ...formData,
-            address_Type: addressType,
+            ...formData
         };
 
         try {
@@ -76,6 +78,7 @@ const CheckoutComponent = () => {
                 state: "",
                 pincode: "",
                 locality: "",
+                address_Type: "home"
             });
 
             setAddressType("Home");
@@ -91,6 +94,72 @@ const CheckoutComponent = () => {
     };
 
 
+    const handleEdit = async (idx) => {
+        const selectedAddress = address[idx];
+        setCollapseisopen(true);
+        setMarkValue(true);
+        setEditIndex(idx)
+
+        setFormData({
+            name: selectedAddress.name,
+            phone: selectedAddress.phone,
+            address_line: selectedAddress.address_line,
+            city: selectedAddress.city,
+            state: selectedAddress.state,
+            pincode: selectedAddress.pincode,
+            locality: selectedAddress.locality || "",
+            address_Type: "home"
+        });
+
+        setAddressType(selectedAddress.address_Type);
+    };
+
+
+    //update address API
+    const handleUpdateAddress = async () => {
+        const addressId = address[editIndex]._id;
+        try {
+            const response = await api.put(`/address/update-address/${addressId}`, {
+                ...formData,
+                address_Type: addressType
+            })
+
+            console.log(response);
+
+            setAddress((prev) => prev.map((item, idx) => (
+                idx === editIndex ? response?.data?.address : item
+            )));
+
+            setEditIndex(null);
+            setCollapseisopen(false);
+            setMarkValue(false);
+
+            setFormData({
+                name: "",
+                phone: "",
+                address_line: "",
+                city: "",
+                state: "",
+                pincode: "",
+                locality: "",
+                address_Type: "home"
+            });
+
+            toastMessage("success",response?.data?.message)
+
+        } catch (error) {
+            if (error.response) {
+                toastMessage("error", error.response?.data?.message)
+            } else {
+                toastMessage("error", "Server not responding please try again ...")
+            }
+        }
+    }
+
+
+    // // delete address API
+    // const deleteAddress
+
 
     const handlechange = (event) => {
         const { name, value } = event.target
@@ -99,12 +168,10 @@ const CheckoutComponent = () => {
         }))
     }
 
-
     const handleclick = () => {
         setCollapseisopen(!collapseisopen);
         setMarkValue(!markValue)
     }
-
 
     return (
         <section className='bg-red my-container flex w-full py-6 gap-6'>
@@ -145,9 +212,10 @@ const CheckoutComponent = () => {
                             <div className='py-4 border-b border-gray-700/50 flex justify-between'>
                                 <div className='flex gap-4'>
                                     <div>
+
                                         <Radio
-                                            checked={checkValue}
-                                            onClick={() => setcheckValue(!checkValue)}
+                                            checked={checkValue === idx}
+                                            onClick={() => setcheckValue(idx)}
                                         />
                                     </div>
 
@@ -164,9 +232,17 @@ const CheckoutComponent = () => {
                                     </div>
                                 </div>
 
-                                <Button onClick={() => handleEdit(idx)} className='h-fit hover:!bg-gray-700/10'>
-                                    <p>EDIT</p>
-                                </Button>
+                                <div className='flex'>
+                                    <Button className='h-fit !text-gray-800/80'>
+                                        <MdAutoDelete className='text-2xl' />
+                                    </Button>
+
+                                    <Button onClick={() => handleEdit(idx)} className='h-fit hover:!bg-gray-700/10'>
+                                        <p>EDIT</p>
+                                    </Button>
+                                </div>
+
+
 
                             </div>
                         </div>
@@ -283,7 +359,7 @@ const CheckoutComponent = () => {
                                 </div>
 
                                 {editIndex !== null ? (
-                                    <Button className='flex gap-4 items-center w-full !border-1 !border-primary hover:!border-black !bg-primary hover:!bg-black !px-10 !py-3 !mt-6'>
+                                    <Button onClick={handleUpdateAddress} className='flex gap-4 items-center w-full !border-1 !border-primary hover:!border-black !bg-primary hover:!bg-black !px-10 !py-3 !mt-6'>
                                         <p className='text-white text-sm'>update Addesss</p>
                                     </Button>
                                 ) : (

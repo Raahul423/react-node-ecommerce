@@ -6,7 +6,7 @@ import User from "../Models/user.model.js";
 const addressController = async (req, res) => {
   try {
     const user = req.user?._id;
-    const { address_line, name, city, state, pincode, locality, phone } =
+    const { address_line, name, city, state, pincode, locality, phone,address_Type } =
       req.body;
 
     if (
@@ -32,6 +32,7 @@ const addressController = async (req, res) => {
       locality,
       phone,
       userId: user,
+      address_Type
     });
 
     await User.findByIdAndUpdate(
@@ -53,7 +54,7 @@ const updateAddress = async (req, res) => {
   try {
     const userId = req.user?._id;
     const { id } = req.params;
-    const { address_line, name, city, state, pincode, locality, phone } =
+    const { address_line, name, city, state, pincode, locality, phone,address_Type } =
       req.body;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -86,6 +87,7 @@ const updateAddress = async (req, res) => {
         pincode,
         locality,
         phone,
+        address_Type
       },
       { new: true, runValidators: true }
     );
