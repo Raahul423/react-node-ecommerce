@@ -8,9 +8,6 @@ import { FiLogOut } from 'react-icons/fi';
 import { useNavigate } from 'react-router';
 import { AdminContext } from '../../AdminAuthProvider';
 
-
-
-
 const Header = () => {
   const { logout, admin } = useContext(AdminContext)
   const navigate = useNavigate();

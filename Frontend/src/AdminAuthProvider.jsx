@@ -3,10 +3,11 @@ import { toast, ToastContainer } from 'react-toastify'
 import CartDrawer from './Context/CartDrawer';
 import DialogComponent from './Context/DialogComponent';
 import api from './Utils/api';
+import { Navigate } from 'react-router';
 
 const AdminContext = createContext();
 
-const AdminAuthProvider = ({children}) => {
+const AdminAuthProvider = ({ children }) => {
 
     const [adminIsAuth, setAdminIsAuth] = useState(false);
     const [admin, setAdmin] = useState(null);
@@ -41,44 +42,49 @@ const AdminAuthProvider = ({children}) => {
 
     const logout = async () => {
         try {
-            await api.get("/admins/logout")
-            setAdmin(null)
-            setAdminIsAuth(false)
+            await api.get("/users/logout");
 
-            localStorage.removeItem("admintoken");
-            localStorage.removeItem("admin")
-
-            toastMessage("success", "Logout Successfully")
         } catch (error) {
-            toastMessage("error", error)
+            toastMessage("error", error.message);
+        } finally {
+            // 🔥 FORCE CLEANUP
+            localStorage.removeItem("admintoken");
+            localStorage.removeItem("admin");
+
+            delete api.defaults.headers.common["Authorization"];
+
+            setAdmin(null);
+            setAdminIsAuth(false);
+
+            toastMessage("success", "Logout Successfully");
         }
-    }
+    };
+
 
 
 
     useEffect(() => {
-        try {
-            const token = localStorage.getItem("admintoken")
-            const savedadmin = localStorage.getItem("admin")
+        const token = localStorage.getItem("admintoken");
+        const savedadmin = localStorage.getItem("admin");
 
-            if (!token || !savedadmin) {
-                return;
-            }
-
-            if (isExpiredToken(token)) {
-                logout();
-            } else {
-                setAdmin(JSON.parse(savedadmin))
-                setAdminIsAuth(true)
-            }
-
-        } catch (error) {
-            toastMessage("error", error)
-        } finally {
-            setAuthloading(false)
+        if (!token || !savedadmin) {
+            setAuthloading(false);
+            return;
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+
+        if (isExpiredToken(token)) {
+            localStorage.removeItem("admintoken");
+            localStorage.removeItem("admin");
+            setAuthloading(false);
+            return <Navigate to="/admin/login"/> ;
+        }
+
+        setAdmin(JSON.parse(savedadmin));
+        setAdminIsAuth(true);
+        setAuthloading(false);
+
+    }, []);
+
 
     const value = {
         adminIsAuth,
@@ -91,17 +97,19 @@ const AdminAuthProvider = ({children}) => {
     }
 
     return (
-         <AdminContext.Provider value={value}>
+        <>
             <ToastContainer position="bottom-center" toastStyle={{ background: "#1e1e1e", color: "#fff" }} autoClose={2000} />
-            <CartDrawer>
-                <DialogComponent>
-                    {children}
-                </DialogComponent>
-            </CartDrawer>
-        </AdminContext.Provider>
+            <AdminContext.Provider value={value}>
+                <CartDrawer>
+                    <DialogComponent>
+                        {children}
+                    </DialogComponent>
+                </CartDrawer>
+            </AdminContext.Provider>
+        </>
     )
 }
 
 
 export default AdminAuthProvider
-export {AdminContext}
+export { AdminContext }

@@ -80,14 +80,14 @@ export const LoginAdmin = () => {
             setLoading(true);
             const response = await api.post('/users/login', field);
             const { token, createdUser} = response.data;
-
+        
             setAdminIsAuth(true)
             setAdmin(createdUser)
 
             localStorage.setItem("admintoken", token);
             localStorage.setItem("admin", JSON.stringify(createdUser));
 
-            toastMessage("success"," Admin Login successfully");
+            toastMessage("success","Admin Login successfull");
 
             setTimeout(() => {
                 navigate('/admin')

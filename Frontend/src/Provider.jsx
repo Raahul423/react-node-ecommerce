@@ -55,27 +55,24 @@ const Provider = ({ children }) => {
 
 
     useEffect(() => {
-        try {
-            const token = localStorage.getItem("token")
-            const saveduser = localStorage.getItem("user")
+        const token = localStorage.getItem("token")
+        const saveduser = localStorage.getItem("user")
 
-            if (!token || !saveduser) {
-                return;
-            }
-
-            if (isExpiredToken(token)) {
-                logout();
-            } else {
-                setUser(JSON.parse(saveduser))
-                setIsAuth(true)
-            }
-
-        } catch (error) {
-            toastMessage("error", error)
-        } finally {
+        if (!token || !saveduser) {
             setAuthloading(false)
+            return;
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+
+        if (isExpiredToken(token)) {
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            setAuthloading(false);
+            return <Navigate to="/" />;
+        }
+
+        setUser(JSON.parse(saveduser));
+        setIsAuth(true);
+        setAuthloading(false);
     }, [])
 
     const value = {
@@ -90,14 +87,16 @@ const Provider = ({ children }) => {
 
 
     return (
-        <MyContext.Provider value={value}>
+        <>
             <ToastContainer position="bottom-center" toastStyle={{ background: "#1e1e1e", color: "#fff" }} autoClose={2000} />
-            <CartDrawer>
-                <DialogComponent>
-                    {children}
-                </DialogComponent>
-            </CartDrawer>
-        </MyContext.Provider>
+            <MyContext.Provider value={value}>
+                <CartDrawer>
+                    <DialogComponent>
+                        {children}
+                    </DialogComponent>
+                </CartDrawer>
+            </MyContext.Provider>
+        </>
 
     )
 }
