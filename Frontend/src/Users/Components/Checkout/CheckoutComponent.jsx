@@ -313,11 +313,6 @@ const CheckoutComponent = () => {
 
                                     <TextField
                                         name='phone'
-                                        slotProps={{
-                                            input: {
-                                                maxLength: 10,
-                                            },
-                                        }}
                                         value={formData.phone}
                                         onChange={handlechange}
                                         label="10-digit mobile number" type='number' />

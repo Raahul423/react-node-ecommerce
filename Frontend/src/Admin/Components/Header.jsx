@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import Button from '@mui/material/Button';
 import { RiMenu2Fill } from "react-icons/ri";
-import { Avatar, Badge, IconButton, ListItemIcon, Menu, MenuItem, StyledEngineProvider, Tooltip } from '@mui/material';
+import { Avatar, Badge, Divider, IconButton, ListItemIcon, Menu, MenuItem, StyledEngineProvider, Tooltip } from '@mui/material';
 import { IoNotifications } from 'react-icons/io5';
 import { FaCircleUser } from 'react-icons/fa6';
 import { Settings } from 'lucide-react';
@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router';
 
 
 const Header = () => {
-  const {logout} = useContext(MyContext)
+  const { logout, user } = useContext(MyContext)
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -60,7 +60,6 @@ const Header = () => {
 
         <Menu
           anchorEl={anchorEl}
-          id="account-menu"
           open={open}
           onClose={handleClose}
           onClick={handleClose}
@@ -72,8 +71,6 @@ const Header = () => {
                 filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
                 mt: 1.5,
                 '& .MuiAvatar-root': {
-                  width: 32,
-                  height: 32,
                   ml: -0.5,
                   mr: 1,
                 },
@@ -96,11 +93,14 @@ const Header = () => {
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
           <MenuItem onClick={handleClose}>
-            <Avatar /> Profile
+            <Avatar />
+            <span className='flex flex-col'>
+              <p>{user?.fullName}</p>
+              <p>{user?.email}</p>
+            </span>
+
           </MenuItem>
-          <MenuItem onClick={handleClose}>
-            <Avatar /> My account
-          </MenuItem>
+          <Divider />
           <MenuItem onClick={Logout}>
             <ListItemIcon>
               <FiLogOut fontSize="large" />
