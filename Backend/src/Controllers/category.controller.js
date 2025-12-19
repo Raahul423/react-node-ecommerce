@@ -344,6 +344,24 @@ const updateCategory = async (req, res) => {
   }
 };
 
+
+// get root category All Category
+const allRootCategory = async(req,res) => {
+  try {
+    const allcategory = await Category.find();
+    const rootcategory = allcategory.filter((cat)=>cat.parentId == null);
+
+    if(rootcategory.length === 0){
+      return res.status(404).json({success:false,message:"Not Found any Category...."});
+    }
+
+
+    return res.status(200).json({success:true,message:"Category founded...",rootcategory})
+  } catch (error) {
+    res.status(500).json({success:false,message:error.message})
+  }
+}
+
 export {
   createCategory,
   getcategories,
@@ -353,4 +371,5 @@ export {
   removeImageCloudinary,
   deleteCategory,
   updateCategory,
+  allRootCategory
 };

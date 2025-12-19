@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { verifyJwt } from "../Middleware/auth.middleware.js";
 import { multerUpload } from "../Middleware/multer.middleware.js";
-import { countCategory, createCategory, getCategoryByID, getcategories, countsubcategoryofCategory, removeImageCloudinary, deleteCategory, updateCategory } from "../Controllers/category.controller.js";
+import { countCategory, createCategory, getCategoryByID, getcategories, countsubcategoryofCategory, removeImageCloudinary, deleteCategory, updateCategory, allRootCategory } from "../Controllers/category.controller.js";
 
 const category = Router();
 
@@ -11,6 +11,7 @@ category.route('/').get(getcategories)// show all categories with children
 category.route('/count').get(countCategory) // count Root category 
 category.route('/children/count/:id').get(countsubcategoryofCategory) // specific root category ka children count 
 category.route('/:id').get(getCategoryByID) // get one category by ID
+category.route('/category/root').get(allRootCategory); // all root category
 
 
 
