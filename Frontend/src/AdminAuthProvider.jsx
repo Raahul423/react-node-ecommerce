@@ -1,14 +1,15 @@
 import { createContext, useEffect, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
-import CartDrawer from './Context/CartDrawer';
-import DialogComponent from './Context/DialogComponent';
 import api from './Utils/api';
-import { Navigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
+
 
 const AdminContext = createContext();
 
+
 const AdminAuthProvider = ({ children }) => {
 
+    const navigate = useNavigate();
     const [adminIsAuth, setAdminIsAuth] = useState(false);
     const [admin, setAdmin] = useState(null);
     const [authloading, setAuthloading] = useState(true)
@@ -76,14 +77,15 @@ const AdminAuthProvider = ({ children }) => {
             localStorage.removeItem("admintoken");
             localStorage.removeItem("admin");
             setAuthloading(false);
-            return <Navigate to="/admin/login"/> ;
+            navigate("/admin/login");
+            return;
         }
 
         setAdmin(JSON.parse(savedadmin));
         setAdminIsAuth(true);
         setAuthloading(false);
 
-    }, []);
+    }, [navigate]);
 
 
     const value = {
@@ -100,11 +102,7 @@ const AdminAuthProvider = ({ children }) => {
         <>
             <ToastContainer position="bottom-center" toastStyle={{ background: "#1e1e1e", color: "#fff" }} autoClose={2000} />
             <AdminContext.Provider value={value}>
-                <CartDrawer>
-                    <DialogComponent>
-                        {children}
-                    </DialogComponent>
-                </CartDrawer>
+                {children}
             </AdminContext.Provider>
         </>
     )

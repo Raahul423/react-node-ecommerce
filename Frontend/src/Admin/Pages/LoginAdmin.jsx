@@ -88,7 +88,7 @@ export const LoginAdmin = () => {
             localStorage.setItem("admintoken", token);
             localStorage.setItem("admin", JSON.stringify(createdUser));
 
-            toastMessage("success","Admin Login successfull");
+            toastMessage("success","Admin Login successfully..");
 
             setTimeout(() => {
                 navigate('/admin')

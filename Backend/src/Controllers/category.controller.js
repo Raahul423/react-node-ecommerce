@@ -39,6 +39,8 @@ const allsubCategories = async (categoryId) => {
   }
 };
 
+
+
 // create Category // Admin Work
 const createCategory = async (req, res) => {
   let localfile = req.files || [];
@@ -70,8 +72,8 @@ const createCategory = async (req, res) => {
           .json({ success: false, message: "Invalid ProductId" });
       }
 
-      const product = await Category.findById(parentId);
-      if (!product) {
+      const parentCategory = await Category.findById(parentId);
+      if (!parentCategory) {
         await safeUnlink(localfile.path);
         return res
           .status(500)
@@ -84,14 +86,16 @@ const createCategory = async (req, res) => {
     if (localfile.length > 0) {
       for (const file of localfile) {
         if (!file?.path) {
-          throw new Error(
-            `Expected file.path for diskStorage ${file.originalname}`
-          );
+          return res
+          .status(500)
+          .json({ success: false, message:  `Expected file.path for diskStorage ${file.originalname}` });
         }
 
         const uploadImage = await uploadOncloudinary(file.path);
         if (!uploadImage.secure_url || !uploadImage.public_id) {
-          throw new Error("File not Found");
+          return res
+          .status(500)
+          .json({ success: false, message:"File not found.."});
         }
 
         imageObj.push({

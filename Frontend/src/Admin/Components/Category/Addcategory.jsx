@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import Dialog from '@mui/material/Dialog';
 import List from '@mui/material/List';
 import AppBar from '@mui/material/AppBar';
@@ -11,12 +11,64 @@ import { IoMdClose } from 'react-icons/io';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 import { Button } from '@mui/material';
 import { IoImagesSharp } from 'react-icons/io5';
+import { AdminContext } from '../../../AdminAuthProvider';
+import api from '../../../Utils/api';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
 const Addcategory = ({ open, setOpen }) => {
+    const { toastMessage } = useContext(AdminContext)
+    const [name, setName] = useState("")
+    const [images, setImages] = useState([]);
+    const [loading, setLoading] = useState(false)
+
+    const handleImageChange = (e) => {
+        const Files = Array.from(e.target.files);
+        setImages(Files);
+    }
+
+    const handleSubmit = async () => {
+        if (!name.trim()) {
+            toastMessage("error", "Category Name is Required");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("name", name);
+
+        images.forEach((img) => {
+            formData.append("images", img);
+        })
+
+        console.log(images);
+
+
+        try {
+            setLoading(true)
+            const res = await api.post("/categories/create", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                }
+            })
+
+            toastMessage("success", res?.data?.message);
+
+            setName("");
+            setImages([]);
+            setOpen(false)
+        } catch (error) {
+            if (error?.response) {
+                toastMessage("error", error?.response?.data?.message)
+            } else {
+                toastMessage("error", "Server not responding...")
+            }
+        } finally {
+            setLoading(false)
+        }
+
+    }
     return (
         <Dialog
             fullScreen
@@ -46,18 +98,36 @@ const Addcategory = ({ open, setOpen }) => {
 
                     <div className='flex flex-col gap-2'>
                         <p>Category Name</p>
-                        <input type="text" className='px-2 py-1 w-100 border border-gray-600/60 outline-none' />
+                        <input
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className='px-2 py-1 w-100 border border-gray-600/60 outline-none' />
                     </div>
 
 
-                    <div className="h-45 w-45 border border-dashed rounded-md p-1 flex flex-col hover:bg-gray-600/20 cursor-pointer items-center justify-center">
-                        <IoImagesSharp className='h-25 w-25' />
-                        <p>Image Upload</p>
-                    </div>
+                    <label className="h-45 w-45 border border-dashed rounded-md p-1 flex flex-col hover:bg-gray-600/20 cursor-pointer items-center justify-center">
+                        {images.map((img, i) => (
+                            <img
+                                key={i}
+                                src={URL.createObjectURL(img)}
+                                alt="preview"
+                                className="h-20 w-20 object-cover rounded"
+                            />
+                        ))}
+                        <input
+                            type="file"
+                            multiple
+                            hidden
+                            accept='image/*'
+                            onChange={handleImageChange}
+                        />
+                    </label>
 
-                    <Button className="!bg-blue-600 !px-8 !py-2 !text-white flex gap-3 cursor-pointer">
-                        <FaCloudUploadAlt className="text-2xl" />
-                        PUBLISH AND VIEW
+                    <Button onClick={handleSubmit} className="!bg-blue-600 !px-8 !py-2 !text-white flex gap-3 cursor-pointer">
+                        {loading ? <div>Uploading...</div> : <>  <FaCloudUploadAlt className="text-2xl" />
+                            <p>PUBLISH AND VIEW</p></>}
+
                     </Button>
                 </div>
             </List>
