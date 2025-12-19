@@ -5,12 +5,11 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-
+import { RxCross2 } from "react-icons/rx";
 import Slide from '@mui/material/Slide';
 import { IoMdClose } from 'react-icons/io';
-import { FaCloudUploadAlt } from 'react-icons/fa';
-import { Button } from '@mui/material';
-import { IoImagesSharp } from 'react-icons/io5';
+import { FaCloudUploadAlt, FaImage } from 'react-icons/fa';
+import { Button, CircularProgress } from '@mui/material';
 import { AdminContext } from '../../../AdminAuthProvider';
 import api from '../../../Utils/api';
 
@@ -69,6 +68,7 @@ const Addcategory = ({ open, setOpen }) => {
         }
 
     }
+
     return (
         <Dialog
             fullScreen
@@ -106,27 +106,51 @@ const Addcategory = ({ open, setOpen }) => {
                     </div>
 
 
-                    <label className="h-45 w-45 border border-dashed rounded-md p-1 flex flex-col hover:bg-gray-600/20 cursor-pointer items-center justify-center">
-                        {images.map((img, i) => (
-                            <img
-                                key={i}
-                                src={URL.createObjectURL(img)}
-                                alt="preview"
-                                className="h-20 w-20 object-cover rounded"
-                            />
-                        ))}
+                    <label className="relative h-45 w-45 border border-dashed rounded-md p-2 flex flex-col hover:bg-gray-600/20 cursor-pointer items-center justify-center">
+
+                        {/* <span onClick={onclick} className='absolute -top-2 -right-2 text-md bg-red-500 p-1 rounded-full z-99'>
+                            <RxCross2 className='!text-white' />
+                        </span> */}
+
+                        {images.length == 0 ?
+                            <span className=''>
+                                <img className='object-cover' src='/imageUpload.gif' alt="Error" />
+                                <p>Click to Upload Image...</p>
+                            </span>
+
+                            :
+                            <>
+                                {images.map((img, i) => (
+                                    <img
+                                        key={i}
+                                        src={URL.createObjectURL(img)}
+                                        alt="preview"
+                                        className="object-cover rounded"
+                                    />
+                                ))}
+                            </>
+                        }
+
                         <input
-                            type="file"
-                            multiple
-                            hidden
-                            accept='image/*'
-                            onChange={handleImageChange}
-                        />
+                                    type="file"
+                                    multiple
+                                    hidden
+                                    accept='image/*'
+                                    onChange={handleImageChange}
+                                />
                     </label>
 
                     <Button onClick={handleSubmit} className="!bg-blue-600 !px-8 !py-2 !text-white flex gap-3 cursor-pointer">
-                        {loading ? <div>Uploading...</div> : <>  <FaCloudUploadAlt className="text-2xl" />
-                            <p>PUBLISH AND VIEW</p></>}
+                        {loading ?
+                            <div className='flex gap-3 items-center '>
+                                <CircularProgress className='!h-6 !w-6 !text-white' />
+                                Uploading.......
+                            </div>
+                            :
+                            <>
+                                <FaCloudUploadAlt className="text-2xl" />
+                                <p>PUBLISH AND VIEW</p>
+                            </>}
 
                     </Button>
                 </div>

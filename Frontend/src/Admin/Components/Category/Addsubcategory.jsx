@@ -52,7 +52,7 @@ const Addsubcategory = ({ open, setOpen }) => {
                     <h1>Add Sub Category</h1>
 
                     <div className='flex flex-col gap-2 w-100 '>
-                        <p className='!text-xl'>Product Category</p>
+                        <p className='!text-xl'>Parent Category</p>
                         <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
 
                             <Select
