@@ -6,8 +6,9 @@ import { AdminContext } from '../../../AdminAuthProvider';
 import api from '../../../Utils/api';
 
 const CategoryAdd = () => {
-    const {toastMessage} = useContext(AdminContext)
-     const [open, setOpen] = useState(false);
+    const { toastMessage } = useContext(AdminContext)
+    const [showcategory, setShowcategory] = useState([])
+    const [open, setOpen] = useState(false);
     const [page, setPage] = useState(2);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -20,26 +21,52 @@ const CategoryAdd = () => {
         setPage(0);
     };
 
-
-    useEffect(()=>{
-        try {
-            const response = api.get("/categories/category/root");
-            console.log(response);
-        } catch (error) {
-            if(error?.response){
-                toastMessage("error",error?.response?.data?.message)
-            }else{
-                toastMessage("error","Server not responding....")
+    useEffect(() => {
+        const handlecategory = async () => {
+            try {
+                const response = await api.get("/categories/category/root");
+                console.log(response);
+                setShowcategory(response?.data?.rootcategory);
+            } catch (error) {
+                if (error?.response) {
+                    toastMessage("error", error?.response?.data?.message)
+                } else {
+                    toastMessage("error", "Server not responding....")
+                }
             }
         }
-    },[toastMessage]);
 
-    
+        handlecategory();
+    }, [toastMessage]);
+
+
+
+    const DeleteCategory = async (idx) => {
+        try {
+            const CategoryId = showcategory[idx]._id
+            const response = await api.delete(`/categories/delete/${CategoryId}`);
+
+            setShowcategory(prev =>
+                prev.filter(cat => cat._id !== CategoryId)
+            );
+
+            toastMessage("success", response?.data?.message);
+        } catch (error) {
+            if (error?.response) {
+                toastMessage("error", error?.response?.data?.message);
+            } else {
+                toastMessage("error", "Server not responding.....")
+            }
+        }
+    }
+
+
+
     return (
         <section>
             <div className='part-1 flex justify-between items-center py-5'>
                 <h1 className='!text-xl '>Category List</h1>
-                <Button onClick={()=>setOpen(true)} className='!bg-blue-600 !text-white !px-4 py-2' >ADD Category</Button>
+                <Button onClick={() => setOpen(true)} className='!bg-blue-600 !text-white !px-4 py-2' >ADD Category</Button>
             </div>
 
             <div className="relative overflow-x-auto bg-white border border-gray-600/30 shadow-md shadow-gray-600/60 rounded-md">
@@ -58,21 +85,35 @@ const CategoryAdd = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        
-                        <tr className="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-gray-400">
-                            <th scope="row" className="px-6 py-2">
-                                <img className='h-13 w-13 hover:scale-103 transition-all cursor-pointer' src="https://serviceapi.spicezgold.com/download/1763965324754_4819.png" alt="" />
-                            </th>
-                            <td className="px-6 py-4">
-                                Fastion
-                            </td>
+                        {showcategory.length > 0 ? (
+                            showcategory.map((cat, idx) => (
+                                <tr key={idx} className="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-gray-400">
+                                    <th scope="row" className="px-6 py-2">
+                                        <img className='h-18 w-18 hover:scale-103 transition-all cursor-pointer object-cover' src={cat.images[0].url} alt="Error" />
+                                    </th>
 
-                            <td align='left' className="text-2xl px-6">
-                                <MdDelete />
-                            </td>
-                        </tr>
+                                    <td className="px-6 py-4 text-[1.2em]">
+                                        {cat.name}
+                                    </td>
 
 
+                                    <td align='left'>
+                                        <Button onClick={()=>DeleteCategory(idx)} className='!px-4 !py-2 !bg-primary !text-white'>
+                                            <p>DELETE</p>
+                                        </Button>
+                                    </td>
+
+                                </tr>
+                            ))
+                        ) :
+                            (
+                                <tr>
+                                    <td colSpan={3} className="text-center py-4">
+                                        No Categories Found
+                                    </td>
+                                </tr>
+                            )
+                        }
                     </tbody>
                 </table>
 
@@ -88,7 +129,7 @@ const CategoryAdd = () => {
             </div>
 
 
-            <Addcategory open={open} setOpen={setOpen}/>
+            <Addcategory open={open} setOpen={setOpen} />
         </section>
     )
 }

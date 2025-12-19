@@ -102,15 +102,11 @@ const Addcategory = ({ open, setOpen }) => {
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className='px-2 py-1 w-100 border border-gray-600/60 outline-none' />
+                            className='px-2 py-1 w-100 border border-gray-600/60 outline-none uppercase' />
                     </div>
 
 
-                    <label className="relative h-45 w-45 border border-dashed rounded-md p-2 flex flex-col hover:bg-gray-600/20 cursor-pointer items-center justify-center">
-
-                        {/* <span onClick={onclick} className='absolute -top-2 -right-2 text-md bg-red-500 p-1 rounded-full z-99'>
-                            <RxCross2 className='!text-white' />
-                        </span> */}
+                    <label className="relative h-45 w-45 border border-dashed rounded-md p-2 flex flex-col hover:bg-gray-600/20 cursor-pointer items-center justify-center overflow-hidden">
 
                         {images.length == 0 ?
                             <span className=''>

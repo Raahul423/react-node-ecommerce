@@ -162,9 +162,7 @@ const CheckoutComponent = () => {
     // delete address API
     const deleteAddress = async (idx) => {
         try {
-
             const addressId = address[idx]._id;
-            console.log(addressId);
 
             const response = await api.delete(`/address/${addressId}`);
 

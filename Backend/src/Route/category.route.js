@@ -20,7 +20,7 @@ category.route('/category/root').get(allRootCategory); // all root category
 //Admin Protected route
 category.route('/create').post(verifyJwt,multerUpload.array('images'),createCategory);// create Category
 category.route('/:categoryId/image/:imageId').delete(verifyJwt,removeImageCloudinary)// delete any image
-category.route('/:categoryId').delete(verifyJwt,deleteCategory)// delete Category with all subcategories
+category.route('/delete/:categoryId').delete(verifyJwt,deleteCategory)// delete Category with all subcategories
 category.route('/:id/update').put(verifyJwt,multerUpload.array('images'),updateCategory)// update category
 
 export {category}

@@ -277,7 +277,7 @@ const deleteCategory = async (req, res) => {
       success: true,
       deletedCategoriesCount: allCategoryIds.length,
       deletedImagesCount: imagepublicId.length,
-      message: "Category, subcategories & images deleted successfully",
+      message: "Category with SubCategories Deleted....",
     });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
