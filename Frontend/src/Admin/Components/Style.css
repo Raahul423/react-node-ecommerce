@@ -20,4 +20,7 @@
     margin: 0px !important;
 }
 
-
+.css-trm6af-MuiNativeSelect-root-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+  display: flex !important;
+  justify-content: start !important;
+}

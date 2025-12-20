@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Dialog from '@mui/material/Dialog';
 import List from '@mui/material/List';
 import AppBar from '@mui/material/AppBar';
@@ -8,8 +8,10 @@ import Typography from '@mui/material/Typography';
 
 import Slide from '@mui/material/Slide';
 import { IoMdClose } from 'react-icons/io';
-import { Button, FormControl, MenuItem, Select } from '@mui/material';
+import { Button, CircularProgress, FormControl, MenuItem, Select } from '@mui/material';
 import { FaCloudUploadAlt } from 'react-icons/fa';
+import { AdminContext } from '../../../AdminAuthProvider';
+import api from '../../../Utils/api';
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -17,9 +19,66 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const Addsubcategory = ({ open, setOpen }) => {
-    const [value, setValue] = useState('');
+    const { toastMessage } = useContext(AdminContext);
+    const [parentCategory, setParentCategory] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [formdata, setFormdata] = useState({
+        name: "",
+        parentId: ""
+    })
+
+    useEffect(() => {
+        const ParentCategory = async () => {
+            try {
+                const response = await api.get("/categories/category/root");
+                setParentCategory(response?.data?.rootcategory)
+            } catch (error) {
+                if (error?.response) {
+                    toastMessage("error", error?.response?.data?.message);
+                } else {
+                    toastMessage("error", "Server not responding.....")
+                }
+            }
+        }
+
+        ParentCategory();
+    }, [toastMessage]);
+
+    const handlesubCategory = async () => {
+        if (!formdata.name.trim() === "") {
+            toastMessage("error", "SubCategory name is required...");
+            return;
+        }
+
+        if (!formdata.parentId) {
+            toastMessage("error", "Please Select a Parent Category")
+            return;
+        }
+        try {
+            setLoading(true)
+            await api.post("/categories/create", formdata);
+            toastMessage("success", "SubCategory Created Successfully...");
+
+            setFormdata({ name: "", parentId: "" });
+            setOpen(false);
+        } catch (error) {
+            if (error?.response) {
+                toastMessage("error", error?.response?.data?.message);
+            } else {
+                toastMessage("error", "Server not responding.....")
+            }
+        }finally{
+            setLoading(false)
+        }
+    }
+
+
     const handleChange = (event) => {
-        setValue(event.target.value);
+        const { name, value } = event.target
+        setFormdata((prev) => ({
+            ...prev,
+            [name]: value
+        }));
     };
 
     return (
@@ -56,25 +115,38 @@ const Addsubcategory = ({ open, setOpen }) => {
                         <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
 
                             <Select
-                                value={value}
+                                name='parentId'
+                                value={formdata.parentId}
                                 onChange={handleChange}
                             >
-                                <MenuItem value={10}>Name, A to Z</MenuItem>
-                                <MenuItem value={20}>Name, Z to A</MenuItem>
-                                <MenuItem value={30}>Price, Low to High</MenuItem>
-                                <MenuItem value={30}>Price, High to Low</MenuItem>
+                                {parentCategory.map((cat, idx) => (
+                                    <MenuItem key={idx} value={cat?._id}>{cat?.name}</MenuItem>
+                                ))}
                             </Select>
                         </FormControl>
                     </div>
 
-                     <div className='flex flex-col gap-2 w-100'>
-                            <p>Sub Category Name</p>
-                            <input type="text" className='px-2 py-2 border border-gray-600/40 outline-none rounded-md' />
-                        </div>
+                    <div className='flex flex-col gap-2 w-100'>
+                        <p>Sub Category Name</p>
+                        <input
+                            type="text"
+                            name='name'
+                            value={formdata.name}
+                            onChange={handleChange}
+                            className='px-2 py-2 border border-gray-600/40 outline-none rounded-md uppercase' />
+                    </div>
 
-                         <Button className="!bg-blue-600 !px-8 !py-2 !text-white flex gap-3 cursor-pointer">
-                        <FaCloudUploadAlt className="text-2xl" />
-                        PUBLISH AND VIEW
+                    <Button onClick={handlesubCategory} className="!bg-blue-600 !px-8 !py-2 !text-white flex gap-3 cursor-pointer">
+                        {loading ?
+                            <div className='flex gap-3 items-center '>
+                                <CircularProgress className='!h-6 !w-6 !text-white' />
+                                Uploading.......
+                            </div>
+                            :
+                            <>
+                                <FaCloudUploadAlt className="text-2xl" />
+                                <p>PUBLISH AND VIEW</p>
+                            </>}
                     </Button>
 
                 </div>

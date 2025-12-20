@@ -3,6 +3,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import api from './Utils/api';
 import CartDrawer from './Context/CartDrawer';
 import DialogComponent from './Context/DialogComponent';
+import { Navigate } from 'react-router-dom';
 const MyContext = createContext();
 
 const Provider = ({ children }) => {

@@ -40,10 +40,6 @@ const Addcategory = ({ open, setOpen }) => {
         images.forEach((img) => {
             formData.append("images", img);
         })
-
-        console.log(images);
-
-
         try {
             setLoading(true)
             const res = await api.post("/categories/create", formData, {
