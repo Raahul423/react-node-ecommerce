@@ -39,8 +39,6 @@ const allsubCategories = async (categoryId) => {
   }
 };
 
-
-
 // create Category // Admin Work
 const createCategory = async (req, res) => {
   let localfile = req.files || [];

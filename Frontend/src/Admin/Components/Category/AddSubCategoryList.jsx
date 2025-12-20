@@ -1,211 +1,89 @@
 import { Button } from '@mui/material'
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Collapse } from 'react-collapse';
 import { GoDotFill } from 'react-icons/go'
-import { MdOutlineDelete } from 'react-icons/md';
+import { MdKeyboardArrowUp, MdOutlineDelete } from 'react-icons/md';
 
 import { RiArrowDownSLine } from 'react-icons/ri'
 import Addsubcategory from './Addsubcategory';
+import { AdminContext } from '../../../AdminAuthProvider';
+import api from '../../../Utils/api';
 
 
 const AddSubCategoryList = () => {
+    const { toastMessage } = useContext(AdminContext)
     const [open, setOpen] = useState(false);
     const [isopen, setIsopen] = useState(null)
+    const [categorydata, setCategorydata] = useState([]);
 
     const click = (index) => {
         setIsopen(isopen == index ? null : index)
     }
 
+    useEffect(() => {
+        const categoryDetails = async () => {
+            try {
+                const response = await api.get("/categories/allcategories");
+                // console.log(response);
+
+                setCategorydata(response?.data?.rootcategories)
+            } catch (error) {
+                if (error?.response) {
+                    toastMessage("error", error?.response?.data?.message);
+                } else {
+                    toastMessage("error", "Server not responding....")
+                }
+            }
+        }
+        categoryDetails();
+    }, [toastMessage])
+
+
+
     return (
         <section>
             <div className='part-1 flex justify-between items-center py-5'>
                 <h1 className='!text-xl '>Sub Category List</h1>
-                <Button onClick={()=>setOpen(true)} className='!bg-blue-600 !text-white !px-4 py-2' >ADD SUB CATEGORY</Button>
+                <Button onClick={() => setOpen(true)} className='!bg-blue-600 !text-white !px-4 py-2' >ADD SUB CATEGORY</Button>
             </div>
 
 
             <div class="relative overflow-x-auto bg-white border border-gray-600/30 shadow-md shadow-gray-600/60 rounded-md">
                 <table class="w-full text-sm text-left scroll text-body">
                     <tbody>
-                        <>
-                            <tr onClick={() => click(0)} class="bg-gray-700 border-b border-gray-400 ">
-                                <td class="px-6 py-3 text-white text-xl flex justify-between">
-                                    <p>Fastion</p>
+                        {categorydata.map((cat, idx) => (
+                            <>
+                                <tr onClick={() => click(idx)} class="bg-gray-700 border-b border-gray-400 ">
+                                    <td class="px-6 py-3 text-white text-xl flex justify-between">
+                                        <p>{cat.name}</p>
+                                        {categorydata[idx]?.children.length == 0 ? null : (
+                                            <>
+                                                {isopen === idx ? <MdKeyboardArrowUp className='text-2xl cursor-pointer'/> : <RiArrowDownSLine className='text-2xl cursor-pointer' />}
+                                            </>
+                                        )}
 
-                                    <RiArrowDownSLine className='text-2xl' />
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
 
-                            <Collapse isOpened={isopen === 0}>
-                                <div className='px-6'>
-                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
-                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Mens</p>
-                                        <div className='flex gap-5'>
-                                            <MdOutlineDelete className='text-2xl cursor-pointer' />
+                                <Collapse isOpened={isopen === idx}>
+                                    {categorydata[idx].children.map((subcat, idx) => (
+                                        <div key={idx} className='px-6'>
+                                            <div className='!justify-between flex py-3 border-b border-gray-600/30'>
+
+                                                <p className='flex items-center gap-1 text-slate-800/90 normal-case'>{subcat.name}</p>
+
+                                                <Button className='!bg-primary !text-white !px-4 !py-1'>
+                                                    Delete
+                                                </Button>
+
+                                            </div>
                                         </div>
-                                    </div>
+                                    ))}
 
-                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
-                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Women</p>
-                                        <div className='flex gap-5'>
-                                            <MdOutlineDelete className='text-2xl cursor-pointer' />
-                                        </div>
-                                    </div>
+                                </Collapse>
+                            </>
+                        ))}
 
-                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
-                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Kids</p>
-                                        <div className='flex gap-5'>
-                                            <MdOutlineDelete className='text-2xl cursor-pointer' />
-                                        </div>
-                                    </div>
-                                </div>
-                            </Collapse>
-                        </>
-
-                        <>
-                            <tr onClick={() => click(1)} class="bg-gray-700 border-b border-gray-400 ">
-                                <td class="px-6 py-3 text-white text-xl flex justify-between">
-                                    <p>Electronics</p>
-
-                                    <RiArrowDownSLine className='text-2xl' />
-                                </td>
-                            </tr>
-
-                            <Collapse isOpened={isopen === 1}>
-                                <div className='px-6'>
-                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
-                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Mens</p>
-                                        <div className='flex gap-5'>
-                                            <MdOutlineDelete className='text-2xl cursor-pointer' />
-                                        </div>
-                                    </div>
-
-                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
-                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Women</p>
-                                        <div className='flex gap-5'>
-                                            <MdOutlineDelete className='text-2xl cursor-pointer' />
-                                        </div>
-                                    </div>
-
-                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
-                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Kids</p>
-                                        <div className='flex gap-5'>
-                                            <MdOutlineDelete className='text-2xl cursor-pointer' />
-                                        </div>
-                                    </div>
-                                </div>
-                            </Collapse>
-
-
-                        </>
-
-                        <>
-                            <tr onClick={() => click(2)} class="bg-gray-700 border-b border-gray-400 ">
-                                <td class="px-6 py-3 text-white text-xl flex justify-between">
-                                    <p>Bags</p>
-
-                                    <RiArrowDownSLine className='text-2xl' />
-                                </td>
-                            </tr>
-
-                            <Collapse isOpened={isopen === 2}>
-                                <div className='px-6'>
-                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
-                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Mens</p>
-                                        <div className='flex gap-5'>
-                                            <MdOutlineDelete className='text-2xl cursor-pointer' />
-                                        </div>
-                                    </div>
-
-                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
-                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Women</p>
-                                        <div className='flex gap-5'>
-                                            <MdOutlineDelete className='text-2xl cursor-pointer' />
-                                        </div>
-                                    </div>
-
-                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
-                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Kids</p>
-                                        <div className='flex gap-5'>
-                                            <MdOutlineDelete className='text-2xl cursor-pointer' />
-                                        </div>
-                                    </div>
-                                </div>
-                            </Collapse>
-
-
-                        </>
-
-                        <>
-                            <tr onClick={() => click(3)} class="bg-gray-700 border-b border-gray-400 ">
-                                <td class="px-6 py-3 text-white text-xl flex justify-between">
-                                    <p>Footwear</p>
-
-                                    <RiArrowDownSLine className='text-2xl' />
-                                </td>
-                            </tr>
-
-                            <Collapse isOpened={isopen === 3}>
-                                <div className='px-6'>
-                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
-                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Mens</p>
-                                        <div className='flex gap-5'>
-                                            <MdOutlineDelete className='text-2xl cursor-pointer' />
-                                        </div>
-                                    </div>
-
-                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
-                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Women</p>
-                                        <div className='flex gap-5'>
-                                            <MdOutlineDelete className='text-2xl cursor-pointer' />
-                                        </div>
-                                    </div>
-
-                                    <div className='!justify-between flex py-3 border-b border-gray-600/30'>
-                                        <p className='flex items-center gap-1 text-slate-800/90 normal-case'>Kids</p>
-                                        <div className='flex gap-5'>
-                                            <MdOutlineDelete className='text-2xl cursor-pointer' />
-                                        </div>
-                                    </div>
-                                </div>
-                            </Collapse>
-
-
-                        </>
-
-                        <>
-                            <tr onClick={() => click(4)} class="bg-gray-700 border-b border-gray-400 ">
-                                <td class="px-6 py-3 text-white text-xl flex justify-between">
-                                    <p>Groceries</p>
-
-                                </td>
-                            </tr>
-                        </>
-
-                        <>
-                            <tr onClick={() => click(5)} class="bg-gray-700 border-b border-gray-400 ">
-                                <td class="px-6 py-3 text-white text-xl flex justify-between">
-                                    <p>Beauty</p>
-                                </td>
-                            </tr>
-
-                        </>
-
-                        <>
-                            <tr onClick={() => click(5)} class="bg-gray-700 border-b border-gray-400 ">
-                                <td class="px-6 py-3 text-white text-xl flex justify-between">
-                                    <p>jewellery</p>
-                                </td>
-                            </tr>
-                        </>
-
-                        <>
-                            <tr onClick={() => click(5)} class="bg-gray-700 border-b border-gray-400 ">
-                                <td class="px-6 py-3 text-white text-xl flex justify-between">
-                                    <p>wellness</p>
-                                </td>
-                            </tr>
-                        </>
                     </tbody>
                 </table>
             </div>
