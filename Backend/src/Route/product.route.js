@@ -20,7 +20,7 @@ product.route('/:productId').get(singleProduct)
 
 
 // Admin Route
-product.route('/create').post(verifyJwt,multerUpload.array('images'),createProduct);
+product.route('/product-create').post(verifyJwt,multerUpload.array('images'),createProduct);
 product.route('/delete-product/:id').delete(verifyJwt,deleteProduct)
 product.route('/update-product/:id').put(verifyJwt,multerUpload.array('images'),updateProduct)
 

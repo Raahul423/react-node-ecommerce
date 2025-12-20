@@ -39,7 +39,6 @@ const AddSubCategoryList = () => {
     }, [toastMessage])
 
 
-
     return (
         <section>
             <div className='part-1 flex justify-between items-center py-5'>
@@ -58,7 +57,7 @@ const AddSubCategoryList = () => {
                                         <p>{cat.name}</p>
                                         {categorydata[idx]?.children.length == 0 ? null : (
                                             <>
-                                                {isopen === idx ? <MdKeyboardArrowUp className='text-2xl cursor-pointer'/> : <RiArrowDownSLine className='text-2xl cursor-pointer' />}
+                                                {isopen === idx ? <MdKeyboardArrowUp className='text-2xl cursor-pointer' /> : <RiArrowDownSLine className='text-2xl cursor-pointer' />}
                                             </>
                                         )}
 

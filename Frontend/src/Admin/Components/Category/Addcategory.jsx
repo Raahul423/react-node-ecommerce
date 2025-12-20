@@ -105,7 +105,7 @@ const Addcategory = ({ open, setOpen }) => {
                     <label className="relative h-45 w-45 border border-dashed rounded-md p-2 flex flex-col hover:bg-gray-600/20 cursor-pointer items-center justify-center overflow-hidden">
 
                         {images.length == 0 ?
-                            <span className=''>
+                            <span>
                                 <img className='object-cover' src='/imageUpload.gif' alt="Error" />
                                 <p>Click to Upload Image...</p>
                             </span>
