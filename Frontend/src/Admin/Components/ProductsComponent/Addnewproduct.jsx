@@ -146,7 +146,7 @@ export const Addnewproduct = ({ open, setOpen }) => {
 
             toastMessage("success", response?.data?.message);
             setImages([]);
-            setOpen(false); 
+            setOpen(false);
             setProductdetails({
                 name: "",
                 desc: "",
@@ -239,6 +239,9 @@ export const Addnewproduct = ({ open, setOpen }) => {
                                     name="subcategory"
                                     disabled={!selectedCategory}
                                 >
+                                    <MenuItem value="">
+                                        None
+                                    </MenuItem>
                                     {selectedCategory?.children?.length > 0 ? (
                                         selectedCategory.children.map((subcat) => (
                                             <MenuItem key={subcat._id} value={subcat._id}>

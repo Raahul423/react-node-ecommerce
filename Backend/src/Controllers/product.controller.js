@@ -15,6 +15,10 @@ const createProduct = async (req, res) => {
   const localfiles = req.files || [];
   const allImages = [];
   try {
+    if (req.body.subcategory === "") {
+      req.body.subcategory = null;
+    }
+    
     const {
       name,
       desc,

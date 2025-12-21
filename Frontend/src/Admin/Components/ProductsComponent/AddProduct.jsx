@@ -116,7 +116,7 @@ const AddProduct = () => {
 
                                             <TableCell>{row.category.name}</TableCell>
 
-                                            <TableCell align='center'>{row.subcategory.name}</TableCell>
+                                            <TableCell align='center'>{row.subcategory?.name}</TableCell>
 
                                             <TableCell className='!text-primary !font-semibold' align="center">₹{row.price}</TableCell>
 
