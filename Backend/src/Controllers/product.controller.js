@@ -102,22 +102,32 @@ const createProduct = async (req, res) => {
 const allProducts = async (req, res) => {
   try {
     const page = parseInt(req.query.page || 1);
-    const perPageItem = parseInt(req.query.perpageitem || 2);
+    const limit = parseInt(req.query.limit || 1);
     const totalProducts = await Product.countDocuments();
-    const totalpages = Math.ceil(totalProducts / perPageItem);
+    const totalpages = Math.ceil(totalProducts / limit);
 
     if (page > totalpages) {
-      throw new Error("Page not found....");
+      return res.status(404).json({
+        success: false,
+        message: "Page not found",
+      });
     }
 
     const product = await Product.find()
       .populate("category", "name _id")
       .populate("subcategory", "name _id")
-      .skip((page - 1) * perPageItem)
-      .limit(perPageItem)
+      .skip((page - 1) * limit)
+      .limit(limit)
       .exec();
-    if (!product) {
-      throw new Error("Products not found...");
+    if (product.length === 0) {
+      return res.status(200).json({
+        success: true,
+        product: [],
+        page,
+        totalpages,
+        totalProducts,
+        message: "No products found",
+      });
     }
 
     return res.status(200).json({
@@ -125,6 +135,7 @@ const allProducts = async (req, res) => {
       product,
       page,
       totalpages,
+      totalProducts,
       message: "Successfully Get All Products",
     });
   } catch (error) {
@@ -417,13 +428,11 @@ const singleProduct = async (req, res) => {
     if (!product) {
       throw new Error("Product not Found...");
     }
-    return res
-      .status(200)
-      .json({
-        success: true,
-        product,
-        message: "Product fetched Successfully",
-      });
+    return res.status(200).json({
+      success: true,
+      product,
+      message: "Product fetched Successfully",
+    });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
