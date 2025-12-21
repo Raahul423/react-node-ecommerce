@@ -241,7 +241,7 @@ const demoProducts = [
     desc:"Men Layerr Regular Fit Spread Collar Cotton Shirt..."
   },
   {
-    _id: "p1",
+    _id: "p2",
     img:"https://serviceapi.spicezgold.com/download/1742439142762_gespo-peach-solid-mandarin-collar-half-sleeve-casual-t-shirt-product-images-rvrtzhyumb-0-202304080900.webp",
     name: "RARE RABBIT",
     price: 79999,
@@ -250,7 +250,7 @@ const demoProducts = [
     desc:"Men Layerr Regular Fit Spread Collar Cotton Shirt..."
   },
   {
-    _id: "p1",
+    _id: "p3",
     img:"https://serviceapi.spicezgold.com/download/1742439142762_gespo-peach-solid-mandarin-collar-half-sleeve-casual-t-shirt-product-images-rvrtzhyumb-0-202304080900.webp",
     name: "RARE RABBIT",
     price: 79999,
@@ -259,7 +259,7 @@ const demoProducts = [
     desc:"Men Layerr Regular Fit Spread Collar Cotton Shirt..."
   },
   {
-    _id: "p1",
+    _id: "p4",
     img:"https://serviceapi.spicezgold.com/download/1742439142762_gespo-peach-solid-mandarin-collar-half-sleeve-casual-t-shirt-product-images-rvrtzhyumb-0-202304080900.webp",
     name: "RARE RABBIT",
     price: 79999,
@@ -268,7 +268,7 @@ const demoProducts = [
     desc:"Men Layerr Regular Fit Spread Collar Cotton Shirt..."
   },
   {
-    _id: "p1",
+    _id: "p5",
     img:"https://serviceapi.spicezgold.com/download/1742439142762_gespo-peach-solid-mandarin-collar-half-sleeve-casual-t-shirt-product-images-rvrtzhyumb-0-202304080900.webp",
     name: "RARE RABBIT",
     price: 79999,
