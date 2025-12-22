@@ -9,8 +9,6 @@ const DashboardProducts = () => {
     const [products, setProducts] = useState([])
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-    const [value, setValue] = useState('');
-    const [subcat, setSubcat] = useState('');
     const [totalProduct, setTotalProduct] = useState(0);
 
 
@@ -33,17 +31,6 @@ const DashboardProducts = () => {
         productsdata();
     }, [page, rowsPerPage, toastMessage])
 
-
-
-    const handleChange = (event) => {
-        setValue(event.target.value);
-    };
-
-    const subCategory = (event) => {
-        setSubcat(event.target.value)
-    }
-
-
     const handleChangePage = (event,newPage) => {
         setPage(newPage);
     };
@@ -61,45 +48,6 @@ const DashboardProducts = () => {
             </div>
 
             <div className='relative border border-gray-600/30  bg-white shadow-md shadow-gray-600/90 rounded-md overflow-hidden'>
-                <div className='flex px-4 py-6'>
-                    <div className='flex gap-10 '>
-                        <div className='flex flex-col gap-2'>
-                            <p className='!text-xl'>Category By</p>
-                            <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
-
-                                <Select
-                                    value={value}
-                                    onChange={handleChange}
-                                >
-                                    <MenuItem value={10}>Name, A to Z</MenuItem>
-                                    <MenuItem value={20}>Name, Z to A</MenuItem>
-                                    <MenuItem value={30}>Price, Low to High</MenuItem>
-                                    <MenuItem value={30}>Price, High to Low</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </div>
-
-                        <div className='flex flex-col gap-2'>
-                            <p className='!text-xl'>SubCategory By</p>
-                            <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
-                                <Select
-                                    value={subcat}
-
-                                    onChange={subCategory}
-                                >
-                                    <MenuItem value={10}>Name, A to Z</MenuItem>
-                                    <MenuItem value={20}>Name, Z to A</MenuItem>
-                                    <MenuItem value={30}>Price, Low to High</MenuItem>
-                                    <MenuItem value={30}>Price, High to Low</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </div>
-                    </div>
-
-                    <div>
-
-                    </div>
-                </div>
 
                 <TableContainer sx={{ overflowX: "auto" }} className='scroll'>
                     <Table >

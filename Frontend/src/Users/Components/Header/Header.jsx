@@ -34,7 +34,6 @@ const Header = () => {
                             </ul>
                         </div>
                     </div>
-
                 </div>
             </div>
 

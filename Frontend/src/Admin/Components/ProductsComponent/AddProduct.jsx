@@ -23,7 +23,7 @@ const AddProduct = () => {
                 setProducts(res.data.product);
                 setTotalproduct(res.data.totalProducts);
 
-                setProducts((prev)=>[...prev].sort(()=>Math.random()-0.5));
+                setProducts((prev) => [...prev].sort(() => Math.random() - 0.5));
             } catch (error) {
                 if (error?.response) {
                     toastMessage("error", error?.response?.data?.messge);
@@ -37,7 +37,7 @@ const AddProduct = () => {
         fetchPrdoucts()
     }, [page, rowsPerPage, toastMessage])
 
-    const handleChangePage = (event,newPage) => {
+    const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
 
@@ -73,6 +73,10 @@ const AddProduct = () => {
             </div>
 
             <div className='relative border border-gray-600/30  bg-white shadow-md shadow-gray-600/90 rounded-md overflow-x-auto'>
+
+                <div className='p-4'>
+                   <h1 className='text-gray-700/90'>Total Products = {totalproduct}</h1>
+                </div>
 
 
                 <TableContainer sx={{ overflowX: "auto" }} className='scroll'>

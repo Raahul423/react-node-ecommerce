@@ -1,18 +1,39 @@
 import { Button } from '@mui/material'
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { AiOutlineMenuUnfold } from 'react-icons/ai'
 import { IoIosArrowDown } from 'react-icons/io'
 import { Link } from 'react-router'
 import Navdrawer from '../DrawerComponent/Navdrawer'
+import { MyContext } from '../../../Provider'
+import api from '../../../Utils/api'
 
 
 const Navbar = () => {
-
+    const { toastMessage } = useContext(MyContext)
     const [isOpen, setIsOpen] = useState(false)
+    const [categorydata, setCategorydata] = useState([])
 
     const togglebutton = () => {
         setIsOpen(!isOpen);
     }
+
+    useEffect(() => {
+        const Category = async () => {
+            try {
+                const res = await api.get("/categories/allcategories");
+                console.log(res);
+                console.log(res?.data?.rootcategories?.children);
+                setCategorydata(res?.data?.rootcategories)
+            } catch (error) {
+                if (error?.response) {
+                    toastMessage("error", error?.response?.data?.message);
+                } else {
+                    toastMessage("error", "server not responding... please try again")
+                }
+            }
+        }
+        Category();
+    }, [toastMessage]);
 
 
 
@@ -26,178 +47,31 @@ const Navbar = () => {
 
             <div className='col1 w-[75%] flex items-center'>
                 <ul className='flex gap-5 items-center w-[120%] justify-between'>
-                    <li className='relative'>
+                    {categorydata.map((data) => (    
+                        <li className='relative nav'>
+                            <Link to={'/products'} className='hover:text-primary '>
+                                <Button className='!text-black button '>{data.name}</Button>
+                            </Link>
 
-                        <Link to={'/'} className='hover:text-primary '>
-
-                            <Button className='!text-black  '>Home</Button>
-                        </Link>
-
-                    </li>
-
-                    <li className='relative nav'>
-
-                        <Link to={'/products'} className='hover:text-primary '>
-                            <Button className='!text-black button '>Fation</Button>
-                        </Link>
-
-
-                        <div className='submenunav absolute top-[120%] left-0 bg-white shadow-md'>
-                            <ul className='min-w-[200px]'>
-                                <li>
-                                    <Link>
-                                        <Button className='w-full !text-black !justify-start !normal-case' >
-                                            Mens
-                                        </Button>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link>
-                                        <Button className='w-full !text-black !justify-start !normal-case' >
-                                            Women
-                                        </Button>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link>
-                                        <Button className='w-full !text-black !justify-start !normal-case' >
-                                            Kids
-                                        </Button>
-                                    </Link>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li className='relative nav'>
-
-                        <Link to={'/products'} className='hover:text-primary '>
-                            <Button className='!text-black  '>Electronics</Button>
-                        </Link>
+                            <div className='submenunav absolute top-[120%] left-0 bg-white shadow-md'>
+                                <ul className='min-w-[200px]'>
+                                    {data.children?.map((child) => (
+                                        <li>
+                                            <Link>
+                                                <Button className='w-full !text-black !justify-start !normal-case' >
+                                                    {child.name}
+                                                </Button>
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </li>
+                    ))}
 
 
-                        <div className='submenunav absolute top-[120%] left-0 bg-white shadow-md '>
-                            <ul className='min-w-[200px]'>
-                                <li>
-                                    <Link>
-                                        <Button className='w-full !text-black !justify-start !normal-case' >
-                                            Mobile
-                                        </Button>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link>
-                                        <Button className='w-full !text-black !justify-start !normal-case' >
-                                            Laptops
-                                        </Button>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link>
-                                        <Button className='w-full !text-black !justify-start !normal-case' >
-                                            Smart-Watch
-                                        </Button>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link>
-                                        <Button className='w-full !text-black !justify-start !normal-case' >
-                                            Chargers
-                                        </Button>
-                                    </Link>
-                                </li>
-
-                            </ul>
-
-                        </div>
-                    </li>
-
-                    <li className='relative nav'>
-
-                        <Link to={'/products'} className='hover:text-primary '>
-                            <Button className='!text-black  '>Bags</Button></Link>
 
 
-                        <div className='submenunav absolute top-[120%] left-0 bg-white shadow-md 
-                        '>
-
-                            <ul className='min-w-[200px]'>
-                                <li>
-                                    <Link>
-                                        <Button className='w-full !text-black !justify-start !normal-case' >
-                                            Mens-Bages
-                                        </Button>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link>
-                                        <Button className='w-full !text-black !justify-start !normal-case' >
-                                            Women-Bages
-                                        </Button>
-                                    </Link>
-                                </li>
-
-
-                            </ul>
-
-                        </div>
-                    </li>
-
-                    <li className='relative nav'>
-
-                        <Link to={'/products'} className='hover:text-primary '>
-                            <Button className='!text-black  '>Footwear</Button></Link>
-
-
-                        <div className='submenunav absolute top-[120%] left-0 bg-white shadow-md 
-                        '>
-
-                            <ul className='min-w-[200px]'>
-                                <li>
-                                    <Link>
-                                        <Button className='w-full !text-black !justify-start !normal-case' >
-                                            Mens-Footwear
-                                        </Button>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link>
-                                        <Button className='w-full !text-black !justify-start !normal-case' >
-                                            Women-Footwear
-                                        </Button>
-                                    </Link>
-                                </li>
-
-
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li className='relative'>
-
-                        <Link to={'/products'} className='hover:text-primary '>
-                            <Button className='!text-black  '>Beauty</Button></Link>
-
-
-                    </li>
-
-                    <li className='relative'>
-
-                        <Link to={'/products'} className='hover:text-primary '>
-                            <Button className='!text-black  '>WELLNESS</Button>
-                        </Link>
-
-
-                    </li>
-
-                    <li className='relative'>
-
-                        <Link to={'/products'} className='hover:text-primary '>
-                            <Button className='!text-black  '>JEWELLERY</Button>
-                        </Link>
-
-                    </li>
 
                 </ul>
             </div>
