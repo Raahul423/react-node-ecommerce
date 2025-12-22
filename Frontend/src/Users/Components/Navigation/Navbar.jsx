@@ -21,8 +21,6 @@ const Navbar = () => {
         const Category = async () => {
             try {
                 const res = await api.get("/categories/allcategories");
-                console.log(res);
-                console.log(res?.data?.rootcategories?.children);
                 setCategorydata(res?.data?.rootcategories)
             } catch (error) {
                 if (error?.response) {
@@ -36,7 +34,6 @@ const Navbar = () => {
     }, [toastMessage]);
 
 
-
     return (
         <div className='my-container py-3  flex justify-end gap-20 '>
             <div className='col1 w-[25%]  rounded-md'>
@@ -48,7 +45,7 @@ const Navbar = () => {
             <div className='col1 w-[75%] flex items-center'>
                 <ul className='flex gap-5 items-center w-[120%] justify-between'>
                     {categorydata.map((data) => (    
-                        <li className='relative nav'>
+                        <li key={data?._id} className='relative nav'>
                             <Link to={'/products'} className='hover:text-primary '>
                                 <Button className='!text-black button '>{data.name}</Button>
                             </Link>
@@ -56,7 +53,7 @@ const Navbar = () => {
                             <div className='submenunav absolute top-[120%] left-0 bg-white shadow-md'>
                                 <ul className='min-w-[200px]'>
                                     {data.children?.map((child) => (
-                                        <li>
+                                        <li key={child?._id}>
                                             <Link>
                                                 <Button className='w-full !text-black !justify-start !normal-case' >
                                                     {child.name}
@@ -76,7 +73,7 @@ const Navbar = () => {
                 </ul>
             </div>
 
-            <Navdrawer IsOpen={isOpen} setIsOpen={setIsOpen} />
+            <Navdrawer IsOpen={isOpen} setIsOpen={setIsOpen}/>
         </div>
     )
 }
