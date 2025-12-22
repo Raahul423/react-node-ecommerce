@@ -7,19 +7,21 @@ import api from '../../../Utils/api';
 const DashboardProducts = () => {
     const { toastMessage } = useContext(AdminContext)
     const [products, setProducts] = useState([])
-    const [page, setPage] = useState(2);
+    const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [value, setValue] = useState('');
     const [subcat, setSubcat] = useState('');
+    const [totalProduct, setTotalProduct] = useState(0);
 
 
     useEffect(() => {
         const productsdata = async () => {
             try {
-                const res = await api.get("/products/allproducts");
+                const res = await api.get(`/products/allproducts?page=${page + 1}&limit=${rowsPerPage}`);
+
                 setProducts(res?.data?.product)
                 console.log(res);
-
+                setTotalProduct(res?.data?.totalProducts)
             } catch (error) {
                 if (error?.response) {
                     toastMessage("error", error?.response?.data?.message);
@@ -28,9 +30,8 @@ const DashboardProducts = () => {
                 }
             }
         }
-
         productsdata();
-    }, [toastMessage])
+    }, [page, rowsPerPage, toastMessage])
 
 
 
@@ -43,7 +44,7 @@ const DashboardProducts = () => {
     }
 
 
-    const handleChangePage = (event, newPage) => {
+    const handleChangePage = (event,newPage) => {
         setPage(newPage);
     };
 
@@ -102,7 +103,7 @@ const DashboardProducts = () => {
 
                 <TableContainer sx={{ overflowX: "auto" }} className='scroll'>
                     <Table >
-                        <TableHead className='sticky top-0'>
+                        <TableHead className='sticky top-0 z-99'>
                             <TableRow className='bg-[#f2f2f2]'>
                                 <TableCell><Checkbox /></TableCell>
                                 <TableCell className='!font-semibold !w-fit'>PRODUCT </TableCell>
@@ -160,10 +161,10 @@ const DashboardProducts = () => {
                 <div>
                     <TablePagination
                         component="div"
-                        count={100}
+                        count={totalProduct}
                         page={page}
-                        onPageChange={handleChangePage}
                         rowsPerPage={rowsPerPage}
+                        onPageChange={handleChangePage}
                         onRowsPerPageChange={handleChangeRowsPerPage}
                     />
                 </div>

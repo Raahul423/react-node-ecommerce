@@ -23,6 +23,7 @@ const AddProduct = () => {
                 setProducts(res.data.product);
                 setTotalproduct(res.data.totalProducts);
 
+                setProducts((prev)=>[...prev].sort(()=>Math.random()-0.5));
             } catch (error) {
                 if (error?.response) {
                     toastMessage("error", error?.response?.data?.messge);
@@ -35,7 +36,8 @@ const AddProduct = () => {
 
         fetchPrdoucts()
     }, [page, rowsPerPage, toastMessage])
-    const handleChangePage = (event, newPage) => {
+
+    const handleChangePage = (event,newPage) => {
         setPage(newPage);
     };
 
