@@ -13,7 +13,6 @@ import { Link } from 'react-router';
 import { DialogContext } from '../../../Context/DialogComponent';
 
 const ReuseableComponents = ({ title }) => {
-
     const { setIsopendialogbox } = useContext(DialogContext)
 
     return (

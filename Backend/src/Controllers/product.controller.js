@@ -183,8 +183,6 @@ const allProducts = async (req, res) => {
 //   }
 // };   // for learning Purpose
 
-// get product by Category Name
-
 // get products by subcategory ID
 // const getProductbysubcatId = async (req, res) => {
 //   try {
@@ -226,7 +224,6 @@ const allProducts = async (req, res) => {
 //   }
 // }; // for learning Purpose
 
-//get products by subcategory Name
 
 // filter products by price
 const filterProducts = async (req, res) => {
@@ -313,7 +310,7 @@ const getallisFeaturedProduct = async (req, res) => {
       .populate("category", "name _id")
       .populate("subcategory", "name _id");
     if (!isFeatureProduct) {
-      throw new Error("Product not found");
+      return res.status(404).json({success:false,message:"Product not found"})
     }
 
     return res.status(200).json({

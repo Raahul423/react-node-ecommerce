@@ -3,7 +3,6 @@ import { Button, Rating, Stack, Tab, Tabs } from '@mui/material'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -17,14 +16,15 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 
 const ProductItem = () => {
-
-     const { setIsopendialogbox } = useContext(DialogContext)
-
+    const { setIsopendialogbox } = useContext(DialogContext)
     const [value, setValue] = useState(0);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+
+
     return (
         <section className='my-container !mb-25'>
             <div className='flex w-full py-10 items-center'>
