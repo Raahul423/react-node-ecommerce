@@ -1,14 +1,37 @@
 import { Button, Checkbox, FormControl, MenuItem, Rating, Select, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material'
-import React, { useState } from 'react'
-import demoProducts from '../../../assets/Assests'
+import React, { useContext, useEffect, useState } from 'react'
 import { MdDeleteOutline } from "react-icons/md";
+import { AdminContext } from '../../../AdminAuthProvider';
+import api from '../../../Utils/api';
 
 const DashboardProducts = () => {
-    const [rows, setRows] = useState(demoProducts)
+    const { toastMessage } = useContext(AdminContext)
+    const [products, setProducts] = useState([])
     const [page, setPage] = useState(2);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [value, setValue] = useState('');
     const [subcat, setSubcat] = useState('');
+
+
+    useEffect(() => {
+        const productsdata = async () => {
+            try {
+                const res = await api.get("/products/allproducts");
+                setProducts(res?.data?.product)
+                console.log(res);
+
+            } catch (error) {
+                if (error?.response) {
+                    toastMessage("error", error?.response?.data?.message);
+                } else {
+                    toastMessage("error", "server not responding.....");
+                }
+            }
+        }
+
+        productsdata();
+    }, [toastMessage])
+
 
 
     const handleChange = (event) => {
@@ -84,42 +107,49 @@ const DashboardProducts = () => {
                                 <TableCell><Checkbox /></TableCell>
                                 <TableCell className='!font-semibold !w-fit'>PRODUCT </TableCell>
                                 <TableCell className='!font-semibold'>CATEGORY</TableCell>
-                                <TableCell className='!font-semibold'>SUB CATEGORY</TableCell>
-                                <TableCell className='!font-semibold'>PRICE (₹)</TableCell>
+                                <TableCell className='!font-semibold whitespace-nowrap'>SUB CATEGORY</TableCell>
+                                <TableCell className='!font-semibold whitespace-nowrap'>PRICE (₹)</TableCell>
                                 <TableCell className='!font-semibold'>SALES</TableCell>
                                 <TableCell className='!font-semibold'>STOCK</TableCell>
                                 <TableCell className='!font-semibold'>ACTION</TableCell>
                             </TableRow>
                         </TableHead>
+
+
+
                         <TableBody>
-                            {rows.map((row) => (
+                            {products.map((row) => (
                                 <TableRow key={row._id}>
                                     <TableCell>
                                         <Checkbox />
                                     </TableCell>
                                     <TableCell className='!flex gap-4 '>
                                         <div>
-                                            <img className='h-15 w-15 rounded-md object-cover' src={row.img} alt="" />
+                                            <img className='h-15 w-15 rounded-md object-cover' src={row.images[0].url} alt="Error" />
                                         </div>
 
                                         <div className='flex flex-col gap-1'>
-                                            <p className='!text-xs font-semibold w-60'>{row.desc}</p>
+                                            <p className='!text-xs font-semibold w-60'>{row.brand}</p>
                                             <p>{row.name} </p>
                                         </div>
                                     </TableCell>
 
-                                    <TableCell>{row.name}</TableCell>
+                                    <TableCell align='center'>{row.category?.name}</TableCell>
 
-                                    <TableCell align='center'>{row.category}</TableCell>
+                                    <TableCell align='center'>{row.subcategory?.name}</TableCell>
 
                                     <TableCell className='!text-blue-700/90 !font-semibold' align="center">₹{row.price}</TableCell>
 
-                                    <TableCell className='!font-semibold' align="center">{row.stock} sale</TableCell>
+                                    <TableCell className='!font-semibold whitespace-nowrap' align="center">{row.countInstock} Stock</TableCell>
 
                                     <TableCell className='!font-semibold !text-blue-700/90' align="center">{row.stock} stocks</TableCell>
 
 
-                                    <TableCell className='!font-semibold' align="center"><MdDeleteOutline className="text-2xl" /></TableCell>
+                                    <TableCell className='!font-semibold' align="center">
+                                        <Button className='!bg-primary !px-4 !py-1'>
+                                            <p className='!text-white'>DELETE</p>
+                                        </Button>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

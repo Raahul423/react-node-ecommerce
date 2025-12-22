@@ -1,5 +1,5 @@
 import { Button, Checkbox, FormControlLabel, FormGroup } from '@mui/material';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { GoDotFill } from "react-icons/go";
 import { MdOutlineDashboard } from "react-icons/md";
 import { IoIosArrowDown, IoIosArrowUp, IoLogoBuffer, IoMdLogOut } from "react-icons/io";
@@ -10,10 +10,11 @@ import { FiUsers } from 'react-icons/fi';
 import { RiProductHuntLine } from 'react-icons/ri';
 import { BsCart2 } from "react-icons/bs";
 import { Link } from 'react-router';
+import { AdminContext } from '../../AdminAuthProvider';
 
 const Sidebar = () => {
+    const {logout} = useContext(AdminContext)
     const [isopen, setIsopen] = useState(null)
-
     const click = (index) => {
         setIsopen(isopen === index ? null : index)
     }
@@ -145,7 +146,7 @@ const Sidebar = () => {
                     </li>
 
                     <li className='hover:bg-[#f1f1f1]'>
-                        <Button className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
+                        <Button onClick={logout} className='!text-gray-900 w-full !justify-start flex gap-3 !py-3 !rounded-md'>
                             <IoMdLogOut className='!text-xl' />
                             <span className='font-semibold !text-md normal-case'>Logout</span>
                         </Button>

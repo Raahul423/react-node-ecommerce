@@ -125,11 +125,7 @@ const allProducts = async (req, res) => {
       .exec();
     if (product.length === 0) {
       return res.status(200).json({
-        success: true,
-        product: [],
-        page,
-        totalpages,
-        totalProducts,
+        success: false,
         message: "No products found",
       });
     }

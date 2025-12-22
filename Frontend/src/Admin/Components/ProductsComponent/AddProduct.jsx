@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Button, Checkbox, FormControl, MenuItem, Rating, Select, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material'
-import { MdDeleteOutline } from 'react-icons/md';
 import { Addnewproduct } from './Addnewproduct';
 import { AdminContext } from '../../../AdminAuthProvider';
 import api from '../../../Utils/api';
@@ -36,7 +35,6 @@ const AddProduct = () => {
 
         fetchPrdoucts()
     }, [page, rowsPerPage, toastMessage])
-
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
