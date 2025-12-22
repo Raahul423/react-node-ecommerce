@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button, Rating, Stack, Tab, Tabs } from '@mui/material'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -8,22 +8,52 @@ import 'swiper/css/navigation';
 
 import { Navigation } from 'swiper/modules';
 import { Link } from 'react-router';
-import { data } from '../../../assets/Assests';
 import { DialogContext } from '../../../Context/DialogComponent';
 import { MdOutlineZoomOutMap } from 'react-icons/md';
 import { FaRegHeart } from 'react-icons/fa';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { MyContext } from '../../../Provider';
+import api from '../../../Utils/api';
 
 
 const ProductItem = () => {
+    const {toastMessage} = useContext(MyContext)
     const { setIsopendialogbox } = useContext(DialogContext)
     const [value, setValue] = useState(0);
+    const [catname, setCatname] = useState([]);
+    const [featureProducts, setFeatureProducts] = useState([]);
+
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
+    useEffect(()=>{
+        const Productshowdata = async()=>{
+            try {
+                const [categoryname, isfeature] = await Promise.all([
+                    api.get("/categories/category/root"),
+                    api.get("/products/featured-product")
+                ]);
 
+                setCatname(categoryname?.data?.rootcategory);
+                console.log(categoryname);
+                
+                setFeatureProducts(isfeature?.data?.isFeatureProduct);
+                console.log(isfeature);
+                
+
+            } catch (error) {
+                if(error?.response){
+                    toastMessage("error",error?.response?.data?.message);
+                }else{
+                    toastMessage("error","Server Error");
+                }
+            }
+        }
+
+        Productshowdata();
+    },[toastMessage])
 
     return (
         <section className='my-container !mb-25'>
@@ -41,8 +71,8 @@ const ProductItem = () => {
                         scrollButtons
                         allowScrollButtonsMobile
                     >
-                        {data.map((items, idx) => (
-                            <Tab key={idx} label={items} />
+                        {catname.map((cat,idx) => (
+                            <Tab key={idx} label={cat?.name} />
                         ))}
                     </Tabs>
                 </div>
@@ -59,18 +89,17 @@ const ProductItem = () => {
                     className="mySwiper"
                 >
                     <div className=''>
-                        {Array.from({ length: 15 }).map((_, i) => (
-                            <SwiperSlide key={i} className='!gap-4'>
-                                <div className='min-h-80 w-52 rounded-md  shadow shadow-gray-500'>
+                        {featureProducts.map((product,idx) => (
+                            <SwiperSlide key={idx} className='!gap-4'>
+                                <div className='h-full w-52 rounded-md  shadow shadow-gray-500'>
                                     <div className='relative overflow-hidden group h-60'>
 
                                         <Link to={'/product/786987'}>
-                                            <img className='h-60 w-full object-cover rounded-md' src="https://serviceapi.spicezgold.com/download/1742463096955_hbhb1.jpg" alt="error" />
+                                            <img className='h-60 w-full object-cover object-top rounded-md' src={product.images[0]?.url} alt="error" />
 
-                                            <img className='h-60 w-full rounded-md group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover' src="https://serviceapi.spicezgold.com/download/1742463096956_hbhb2.jpg" alt="error" />
+                                            <img className='h-60 w-full rounded-md group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover object-top' src={product.images[1]?.url} alt="error" />
 
                                         </Link>
-
                                         <div className='flex flex-col  justify-center items-center gap-1 absolute -top-50 transition-all duration-500 opacity-0 group-hover:opacity-100 right-3 group-hover:top-3'>
                                             <div onClick={() => setIsopendialogbox(true)} className='info'>
                                                 <MdOutlineZoomOutMap className='text-xl hover:!stroke-white hover:!fill-white' />
@@ -84,15 +113,15 @@ const ProductItem = () => {
                                     </div>
 
                                     <div className='p-4 flex flex-col gap-1'>
-                                        <p className='!text-md text-gray-900/80'>Flying Machine</p>
-                                        <p className='!text-[1.1em] font-medium'>women-wide leg high-rise...</p>
-                                        <Stack spacing={1}>
-                                            <Rating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly />
+                                        <p className='!text-md text-gray-900/80'>{product?.brand}</p>
+                                        <p className='!text-[1.1em] font-medium two-line-ellipsis'>{product?.name}</p>
+                                        <Stack>
+                                            <Rating name="half-rating-read"  precision={product?.rating} readOnly />
                                         </Stack>
 
                                         <div className='flex justify-between'>
-                                            <p className='text-gray-900/80 line-through'>₹1,299</p>
-                                            <p className='text-primary'>₹999</p>
+                                            <p className='text-gray-900/80 line-through'>₹{product?.oldprice}</p>
+                                            <p className='text-primary'>₹{product?.price}</p>
                                         </div>
 
                                         <Button className='flex gap-4 items-center w-full !border-1 !border-primary group hover:!border-black hover:!bg-black'>

@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Rubik+Maze&display=swap");
 @import "tailwindcss";
 
-body{
+body {
   font-family: "Outfit", sans-serif;
   font-optical-sizing: auto;
   margin: 0px;
@@ -11,50 +11,48 @@ body{
   overflow-x: hidden;
 }
 
-.boxactive{
+.boxactive {
   background-color: #ff5252;
   color: white;
   border: 1px solid #ff5252;
 }
 
-.boxhover:hover{
+.boxhover:hover {
   background-color: #ffd1d1;
   border: 1px solid #ffd1d1;
 }
 
-
-.my-container{
+.my-container {
   width: 90%;
   margin: auto;
   overflow: visible;
 }
 
-h1{
+h1 {
   font-size: 1.5em;
 }
 
-p{
+p {
   font-size: 1em;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 8px;
   height: 10px;
 }
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background-color: #ff5252;
 }
-::-webkit-scrollbar-track{
+::-webkit-scrollbar-track {
   background-color: #fff;
 }
 
-.horizontal-line{
+.horizontal-line {
   display: inline-block;
   width: 100%;
   height: 1px;
   background-color: #c4c3c3;
 }
-
 
 @theme {
   --color-primary: #ff5252;
@@ -73,22 +71,30 @@ p{
   color: rgb(49, 49, 49);
 }
 
-.submenu{
+.submenu {
   display: none;
   overflow: hidden;
   transition: all;
   opacity: 0;
 }
 
-.open{
+.open {
   opacity: 1;
 }
 
-.nav .submenunav{
+.nav .submenunav {
   visibility: hidden !important;
 }
 
-.nav:hover .submenunav{
+.two-line-ellipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 👈 kitni line */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.nav:hover .submenunav {
   opacity: 1 !important;
   z-index: 10 !important;
   visibility: inherit !important;
@@ -96,11 +102,14 @@ p{
   transition: all 0.3s ease;
 }
 
-.mySwiper,.swiper-wrapper,.swiper-slide{
+.mySwiper,
+.swiper-wrapper,
+.swiper-slide {
   overflow: visible !important;
 }
 
-.swiper-button-prev, .swiper-button-next{
+.swiper-button-prev,
+.swiper-button-next {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -111,120 +120,118 @@ p{
   box-shadow: 0px 2px 8px black;
 }
 
-
-.swiper-button-prev::after, .swiper-button-next::after {
-    font-size: 22px !important;
-    color: rgb(0, 0, 0);
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 22px !important;
+  color: rgb(0, 0, 0);
 }
 
 .swiper-button-next svg,
-.swiper-button-prev svg{
+.swiper-button-prev svg {
   width: 12px !important;
   color: rgb(0, 0, 0.6);
 }
 
-.swiper-button-prev:hover, .swiper-button-next:hover {
-    background-color: #ff5252;
-    transition: all 0.1s ease-in-out ;
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: #ff5252;
+  transition: all 0.1s ease-in-out;
 }
 
-
-
-.email{
+.email {
   width: 100%;
   padding: 6px;
   outline: none;
   border: 1px solid slategray;
 }
 
-.swiper-slide-active .move{
+.swiper-slide-active .move {
   right: 0px !important;
   opacity: 1;
 }
 
-.info{
+.info {
   transition: all;
   padding: 8px;
   border-radius: 100%;
   background-color: #fff;
   cursor: pointer;
-
 }
 
-.info:hover{
-background-color: #ff5252;
+.info:hover {
+  background-color: #ff5252;
 }
 
-.MuiButtonBase-root{
+.MuiButtonBase-root {
   padding: 7px !important;
 }
 
-.scroll{
+.scroll {
   max-height: 220px;
   overflow-y: scroll;
 }
 
-.itemlist ::-webkit-scrollbar{
+.itemlist ::-webkit-scrollbar {
   width: 5px;
   height: 10px;
 }
-.itemlist ::-webkit-scrollbar-thumb{
+.itemlist ::-webkit-scrollbar-thumb {
   background-color: gray;
 }
-.itemlist ::-webkit-scrollbar-track{
+.itemlist ::-webkit-scrollbar-track {
   background-color: #fff;
 }
 
-.MuiFormGroup-root{
+.MuiFormGroup-root {
   padding: 2px 0px;
 }
 
 .ReactCollapse--collapse {
   transition: height 500ms;
 }
-.range-slider__thumb{
+.range-slider__thumb {
   height: 15px !important;
   width: 15px !important;
   background-color: #ff5252 !important;
 }
-.range-slider__range{
+.range-slider__range {
   height: 5px !important;
   background-color: #ff5252 !important;
 }
-.range-slider{
+.range-slider {
   width: 100% !important;
   height: 5px !important;
 }
 
-.itemveiw button.active svg{
+.itemveiw button.active svg {
   color: #ff5252 !important;
 }
 
-.itemveiw button.active{
+.itemveiw button.active {
   background-color: rgb(201, 201, 201);
 }
 
-.MuiSelect-outlined{
+.MuiSelect-outlined {
   padding: 8px !important;
   text-align: center !important;
 }
 
-.css-1l5xwdx-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected{
+.css-1l5xwdx-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
   background-color: #ff5252 !important;
   color: #fff !important;
 }
 
-.MuiFormControl-root{
+.MuiFormControl-root {
   width: 90% !important;
 }
 
-.count .btn{
+.count .btn {
   padding: 1px !important;
   min-width: 0 !important;
   color: gray !important;
 }
 
-.MuiDialog-container{
+.MuiDialog-container {
   height: fit-content;
 }
 
@@ -232,15 +239,15 @@ background-color: #ff5252;
   max-width: 90% !important;
 } */
 
-.css-10d30g3-MuiPaper-root-MuiDialog-paper{
+.css-10d30g3-MuiPaper-root-MuiDialog-paper {
   max-width: 90% !important;
 }
 
-.css-1iw3t7y-MuiFormControl-root{
+.css-1iw3t7y-MuiFormControl-root {
   width: 100% !important;
 }
 
-.pop-up{
+.pop-up {
   background-color: rgb(55, 55, 55);
   padding: 32px 4rem;
   z-index: 999;
@@ -249,45 +256,26 @@ background-color: #ff5252;
   border-radius: 10px;
   gap: 16px;
 }
-.css-113d811-MuiFormLabel-root-MuiInputLabel-root,.css-113d811-MuiFormLabel-root-MuiInputLabel-root.Mui-focused{
+.css-113d811-MuiFormLabel-root-MuiInputLabel-root,
+.css-113d811-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
   background-color: white !important;
   padding: 0px 5px 0 0 !important;
 }
 
-.css-1q72ply-MuiButtonBase-root-MuiSwitchBase-root-MuiRadio-root{
+.css-1q72ply-MuiButtonBase-root-MuiSwitchBase-root-MuiRadio-root {
   padding: 0 10px !important;
   color: #ff5252 !important;
 }
-.MuiList-padding{
+.MuiList-padding {
   padding: 10px !important;
 }
 
-.css-x6cj71-MuiPaper-root-MuiPopover-paper-MuiMenu-paper{
+.css-x6cj71-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
   width: 15vw !important;
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
