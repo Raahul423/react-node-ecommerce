@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { verifyJwt } from "../Middleware/auth.middleware.js";
 import { multerUpload } from "../Middleware/multer.middleware.js";
-import { allProducts, createProduct, deleteProduct, filterProducts, getallisFeaturedProduct, singleProduct, totalProduct, updateProduct } from "../Controllers/product.controller.js";
+import { allProducts, createProduct, deleteProduct, featureproducts, filterProducts, getallisFeaturedProduct, singleProduct, totalProduct, updateProduct } from "../Controllers/product.controller.js";
 
 
 const product = Router();
@@ -15,6 +15,7 @@ product.route('/filter-products').get(filterProducts)
 product.route('/total-product').get(totalProduct)
 product.route('/featured-product').get(getallisFeaturedProduct)
 product.route('/singlepro/:productId').get(singleProduct)
+product.route('/featured').get(featureproducts);
 
 
 

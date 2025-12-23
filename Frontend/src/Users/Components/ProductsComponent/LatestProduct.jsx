@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import ReuseableComponents from '../ReuseComponent/ReuseableComponents';
 import api from '../../../Utils/api';
 
@@ -9,8 +9,8 @@ const LatestProduct = () => {
   useEffect(() => {
     const fetchlatestProduct = async () => {
       const res = await api.get("/products/allproducts");
-      console.log(res);
       setLatestproduct(res?.data?.product);
+      setLatestproduct((prev) => [...prev].sort(() => Math.random() - 0.5));
     }
     fetchlatestProduct();
   }, []);

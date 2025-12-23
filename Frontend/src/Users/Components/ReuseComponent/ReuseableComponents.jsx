@@ -40,7 +40,7 @@ const ReuseableComponents = ({ title, products = [] }) => {
                                     <Link to={'/product/786987'}>
                                         <img className='h-60 w-60 object-cover rounded-md' src={items.images[0].url} alt="error" />
 
-                                        <img className='h-60 w-60 rounded-md group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover' src={items.images[1].url} alt="error" />
+                                        <img className='h-60 w-60 rounded-md group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover' src={items.images[1]?.url} alt="error" />
 
                                     </Link>
 
@@ -60,7 +60,7 @@ const ReuseableComponents = ({ title, products = [] }) => {
                                     <p className='!text-md text-gray-900/80'>{items.brand}</p>
                                     <p className='!text-[1.1em] font-medium two-line-ellipsis'>{items.name}</p>
                                     <Stack spacing={1}>
-                                        <Rating name="half-rating-read" defaultValue={items.rating} precision={items.rating} readOnly />
+                                        <Rating name="half-rating-read" defaultValue={items?.rating} precision={items?.rating} readOnly />
                                     </Stack>
 
                                     <div className='flex justify-between'>

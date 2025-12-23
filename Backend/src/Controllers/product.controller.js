@@ -1,14 +1,9 @@
-import mongoose from "mongoose";
 import { Product } from "../Models/product.model.js";
 import {
   removeFromcloudinary,
   uploadOncloudinary,
 } from "../Utils/cloudinary.js";
-import fs from "fs";
-import { raw } from "express";
-import Category from "../Models/category.model.js";
-import { log } from "console";
-import { url } from "inspector";
+
 
 // create products //admin work
 const createProduct = async (req, res) => {
@@ -303,7 +298,7 @@ const totalProduct = async (req, res) => {
   }
 };
 
-// get all featured Products
+// get featured products with category wise
 const getallisFeaturedProduct = async (req, res) => {
   try {
     const isFeatureProduct = await Product.find({ isfeatured: true, category: req.query.category }).populate("category", "name _id").populate("subcategory", "name _id");
@@ -322,6 +317,22 @@ const getallisFeaturedProduct = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
+
+
+// all feature products
+const featureproducts = async(req,res)=>{
+  try {
+    const featured = await Product.find({isfeatured:true});
+
+    if(!featureproducts){
+      return res.status(403).json({success:false,message:"Product not found"});
+    }
+
+    return res.status(201).json({success:true,message:"product fetched",featured});
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+}
 
 // delete Product
 const deleteProduct = async (req, res) => {
@@ -443,4 +454,5 @@ export {
   deleteProduct,
   updateProduct,
   singleProduct,
+  featureproducts
 };

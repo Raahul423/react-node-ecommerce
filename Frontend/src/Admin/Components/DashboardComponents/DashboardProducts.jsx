@@ -18,7 +18,6 @@ const DashboardProducts = () => {
                 const res = await api.get(`/products/allproducts?page=${page + 1}&limit=${rowsPerPage}`);
 
                 setProducts(res?.data?.product)
-                console.log(res);
                 setTotalProduct(res?.data?.totalProducts)
             } catch (error) {
                 if (error?.response) {
