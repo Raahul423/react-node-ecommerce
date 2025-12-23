@@ -26,8 +26,8 @@ const ProductItem = () => {
 
 
     // fetch for all root category
-    useEffect(()=>{
-        const loadcategories = async()=>{
+    useEffect(() => {
+        const loadcategories = async () => {
             try {
                 const res = await api.get("/categories/category/root");
                 console.log(res);
@@ -35,35 +35,36 @@ const ProductItem = () => {
 
                 setActiveCategory(res?.data?.rootcategory[0]?._id)
             } catch (error) {
-                if(error?.response){
-                    toastMessage("error",error?.response?.message);
-                }else{
-                    toastMessage("error","Server not respond...");
+                if (error?.response) {
+                    toastMessage("error", error?.response?.message);
+                } else {
+                    toastMessage("error", "Server not respond...");
                 }
             }
         }
         loadcategories();
-    },[toastMessage]);
+    }, [toastMessage]);
 
 
-    useEffect(()=>{
-        if(!activeCategory){
+    useEffect(() => {
+        if (!activeCategory) {
             return;
         }
 
-        const loadFeatureProducts = async() => {
+        const loadFeatureProducts = async () => {
             const res = await api.get(`products/featured-product?category=${activeCategory}`);
             console.log(res);
-            
+
             setProducts(res?.data?.isFeatureProduct);
         }
         loadFeatureProducts();
-    },[activeCategory])
+    }, [activeCategory])
 
 
     // when I click to category tab then its response
-     const handleChange = (event, newValue) => {
+    const handleChange = (event, newValue) => {
         setTabs(newValue);
+        setActiveCategory(categories[newValue]._id)
     };
 
 
@@ -94,8 +95,8 @@ const ProductItem = () => {
             <div>
                 <Swiper
                     navigation={true}
-                    slidesPerGroup={3}
-                    slidesPerView={6}
+                    slidesPerGroup={2}
+                    slidesPerView={5}
                     spaceBetween={20}
                     modules={[Navigation]}
                     className="mySwiper"
@@ -107,11 +108,12 @@ const ProductItem = () => {
                                     <div className='relative overflow-hidden group h-70'>
 
                                         <Link to={'/product/786987'}>
-                                            <img className='h-70 w-full object-cover object-top rounded-md' src={product.images[0]?.url} alt="error" />
+                                            <img className='h-70 w-70 object-cover object-top rounded-md p-2' src={product.images[0]?.url} alt="error" />
 
-                                            <img className='h-70 w-full rounded-md group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover object-top' src={product.images[1]?.url} alt="error" />
+                                            <img className='h-70 w-70 p-2 group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover object-top rounded-md' src={product.images[1]?.url} alt="error" />
 
                                         </Link>
+
                                         <div className='flex flex-col  justify-center items-center gap-1 absolute -top-50 transition-all duration-500 opacity-0 group-hover:opacity-100 right-3 group-hover:top-3'>
                                             <div onClick={() => setIsopendialogbox(true)} className='info'>
                                                 <MdOutlineZoomOutMap className='text-xl hover:!stroke-white hover:!fill-white' />
