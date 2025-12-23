@@ -56,8 +56,7 @@ const ProductItem = () => {
 
         const loadFeatureProducts = async () => {
             const res = await api.get(`products/featured-product?category=${activeCategory}`);
-            console.log(res);
-
+            // console.log(res);
             setProducts(res?.data?.isFeatureProduct);
         }
 

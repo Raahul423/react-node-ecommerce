@@ -1,3 +1,4 @@
+import Category from "../Models/category.model.js";
 import { Product } from "../Models/product.model.js";
 import {
   removeFromcloudinary,
@@ -101,7 +102,7 @@ const createProduct = async (req, res) => {
 const allProducts = async (req, res) => {
   try {
     const page = parseInt(req.query.page || 1);
-    const limit = parseInt(req.query.limit || 10);
+    const limit = parseInt(req.query.limit || 15);
     const totalProducts = await Product.countDocuments();
     const totalpages = Math.ceil(totalProducts / limit);
 
@@ -224,11 +225,16 @@ const allProducts = async (req, res) => {
 const filterProducts = async (req, res) => {
   try {
     const filter = {};
+    const { cat, subcatId, minprice, maxprice, rating } = req.query;
 
-    const { catId, subcatId, minprice, maxprice, rating } = req.query;
+     if (cat) {
+      const categoryDoc = await Category.findOne({
+        name: new RegExp(`^${cat}$`, "i"),
+      });
 
-    if (catId) {
-      filter.category = catId;
+      if (categoryDoc) {
+        filter.category = categoryDoc._id;
+      }
     }
 
     if (subcatId) {
@@ -248,34 +254,19 @@ const filterProducts = async (req, res) => {
       filter.rating = { $gte: ratingval };
     }
 
-    const page = parseInt(req.query.page || 1);
-    const perPageItem = parseInt(req.query.perPageItem || 5);
-    const totalProducts = await Product.countDocuments(filter);
-    const totalPages =
-      totalProducts === 0 ? 1 : Math.ceil(totalProducts / perPageItem);
-
-    if (page > totalPages) {
-      throw new Error("Page Not Found ....");
-    }
 
     const filterProduct = await Product.find(filter)
       .populate("category", "name _id")
       .populate("subcategory", "name _id")
-      .skip((page - 1) * perPageItem)
-      .limit(perPageItem)
-      .lean();
+      
 
     return res.status(200).json({
       success: true,
       filterProduct,
-      page,
-      perPageItem,
-      totalProducts,
-      totalPages,
       message: "all filter product fetched sucessfully",
     });
   } catch (error) {
-    return res.status(500).jaon({ success: true, message: error.message });
+    return res.status(500).json({ success: true, message: error.message });
   }
 };
 

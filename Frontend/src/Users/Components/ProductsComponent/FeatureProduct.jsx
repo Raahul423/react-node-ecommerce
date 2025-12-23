@@ -10,10 +10,10 @@ const FeatureProduct = () => {
         const featureproducts = async () => {
             const res = await api.get("/products/featured");
             setFeature(res?.data?.featured);
-            // setFeature((prev) => [...prev].sort(() => Math.random() - 0.5));
+            setFeature((prev) => [...prev].sort(() => Math.random() - 0.5));
         }
         featureproducts();
-    })
+    },[])
 
     return (
         <section className='my-container'>
