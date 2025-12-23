@@ -23,16 +23,16 @@ const ProductItem = () => {
     const [categories, setCategories] = useState([]);
     const [activeCategory, setActiveCategory] = useState(null);
     const [products, setProducts] = useState([]);
+    const [loading, setloading] = useState(false)
 
 
     // fetch for all root category
     useEffect(() => {
+        setloading(true)
         const loadcategories = async () => {
             try {
                 const res = await api.get("/categories/category/root");
-                console.log(res);
                 setCategories(res?.data?.rootcategory);
-
                 setActiveCategory(res?.data?.rootcategory[0]?._id)
             } catch (error) {
                 if (error?.response) {
@@ -40,6 +40,8 @@ const ProductItem = () => {
                 } else {
                     toastMessage("error", "Server not respond...");
                 }
+            } finally {
+                setloading(false)
             }
         }
         loadcategories();
@@ -47,6 +49,7 @@ const ProductItem = () => {
 
 
     useEffect(() => {
+        setloading(true);
         if (!activeCategory) {
             return;
         }
@@ -57,7 +60,9 @@ const ProductItem = () => {
 
             setProducts(res?.data?.isFeatureProduct);
         }
+
         loadFeatureProducts();
+        setloading(false)
     }, [activeCategory])
 
 
@@ -92,66 +97,83 @@ const ProductItem = () => {
 
             </div>
 
-            <div>
-                <Swiper
-                    navigation={true}
-                    slidesPerGroup={2}
-                    slidesPerView={5}
-                    spaceBetween={20}
-                    modules={[Navigation]}
-                    className="mySwiper"
-                >
+
+            <Swiper
+                navigation={true}
+                slidesPerGroup={2}
+                slidesPerView={5}
+                spaceBetween={20}
+                modules={[Navigation]}
+                className="mySwiper"
+            >
+                {loading ?
                     <div>
-                        {products.map((product, idx) => (
-                            <SwiperSlide key={idx}>
-                                <div className='w-60 rounded-md shadow shadow-gray-500'>
-                                    <div className='relative overflow-hidden group h-70'>
-
-                                        <Link to={'/product/786987'}>
-                                            <img className='h-70 w-70 object-cover object-top rounded-md p-2' src={product.images[0]?.url} alt="error" />
-
-                                            <img className='h-70 w-70 p-2 group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover object-top rounded-md' src={product.images[1]?.url} alt="error" />
-
-                                        </Link>
-
-                                        <div className='flex flex-col  justify-center items-center gap-1 absolute -top-50 transition-all duration-500 opacity-0 group-hover:opacity-100 right-3 group-hover:top-3'>
-                                            <div onClick={() => setIsopendialogbox(true)} className='info'>
-                                                <MdOutlineZoomOutMap className='text-xl hover:!stroke-white hover:!fill-white' />
-                                            </div>
-
-
-                                            <div className='info'>
-                                                <FaRegHeart className='text-xl hover:!stroke-white hover:!fill-white' />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className='p-4 flex flex-col gap-1'>
-                                        <p className='!text-md text-gray-900/80'>{product?.brand}</p>
-                                        <p className='!text-[1.1em] font-medium two-line-ellipsis'>{product?.name}</p>
-                                        <Stack>
-                                            <Rating name="half-rating-read" precision={product?.rating}
-                                                defaultValue={product?.rating}
-                                                readOnly />
-                                        </Stack>
-
-                                        <div className='flex justify-between'>
-                                            <p className='text-gray-900/80 line-through'>₹{product?.oldprice}</p>
-                                            <p className='text-primary'>₹{product?.price}</p>
-                                        </div>
-
-                                        <Button className='flex gap-4 items-center w-full !border-1 !border-primary group hover:!border-black hover:!bg-black'>
-                                            <AiOutlineShoppingCart className='text-primary text-xl group-hover:text-white ' />
-                                            <p className='text-primary group-hover:text-white text-sm'>Add to Cart</p>
-                                        </Button>
-
-                                    </div>
-                                </div>
-                            </SwiperSlide>
-                        ))}
+                        loading....
                     </div>
-                </Swiper>
-            </div>
+                    :
+                    <div>
+                        {products.length > 0 ?
+                            <>
+                                {products.map((product, idx) => (
+                                    <SwiperSlide key={idx}>
+                                        <div className='w-60 rounded-md shadow shadow-gray-500'>
+                                            <div className='relative overflow-hidden group h-70'>
+
+                                                <Link to={'/product/786987'}>
+                                                    <img className='h-70 w-70 object-cover object-top rounded-md p-2' src={product.images[0]?.url} alt="error" />
+
+                                                    <img className='h-70 w-70 p-2 group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover object-top rounded-md' src={product.images[1]?.url} alt="error" />
+
+                                                </Link>
+
+                                                <div className='flex flex-col  justify-center items-center gap-1 absolute -top-50 transition-all duration-500 opacity-0 group-hover:opacity-100 right-3 group-hover:top-3'>
+                                                    <div onClick={() => setIsopendialogbox(true)} className='info'>
+                                                        <MdOutlineZoomOutMap className='text-xl hover:!stroke-white hover:!fill-white' />
+                                                    </div>
+
+
+                                                    <div className='info'>
+                                                        <FaRegHeart className='text-xl hover:!stroke-white hover:!fill-white' />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className='p-4 flex flex-col gap-1'>
+                                                <p className='!text-md text-gray-900/80'>{product?.brand}</p>
+                                                <p className='!text-[1.1em] font-medium two-line-ellipsis'>{product?.name}</p>
+                                                <Stack>
+                                                    <Rating name="half-rating-read" precision={product?.rating}
+                                                        defaultValue={product?.rating}
+                                                        readOnly />
+                                                </Stack>
+
+                                                <div className='flex justify-between'>
+                                                    <p className='text-gray-900/80 line-through'>₹{product?.oldprice}</p>
+                                                    <p className='text-primary'>₹{product?.price}</p>
+                                                </div>
+
+                                                <Button className='flex gap-4 items-center w-full !border-1 !border-primary group hover:!border-black hover:!bg-black'>
+                                                    <AiOutlineShoppingCart className='text-primary text-xl group-hover:text-white ' />
+                                                    <p className='text-primary group-hover:text-white text-sm'>Add to Cart</p>
+                                                </Button>
+
+                                            </div>
+                                        </div>
+                                    </SwiperSlide>
+                                ))}
+                            </>
+                            :
+                            <div className='flex items-center'>
+                                <img src="/noproduct.png" alt="error" />
+                                <h1>No product found....</h1>
+                            </div>
+                        }
+
+                    </div>
+                }
+
+            </Swiper>
+
         </section>
     )
 }
