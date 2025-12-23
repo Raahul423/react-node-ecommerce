@@ -306,9 +306,9 @@ const totalProduct = async (req, res) => {
 // get all featured Products
 const getallisFeaturedProduct = async (req, res) => {
   try {
-    const isFeatureProduct = await Product.find({ isfeatured: true })
-      .populate("category", "name _id")
-      .populate("subcategory", "name _id");
+    const isFeatureProduct = await Product.find({ isfeatured: true, category: req.query.category }).populate("category", "name _id").populate("subcategory", "name _id");
+
+
     if (!isFeatureProduct) {
       return res.status(404).json({success:false,message:"Product not found"})
     }

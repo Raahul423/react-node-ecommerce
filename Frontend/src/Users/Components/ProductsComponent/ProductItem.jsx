@@ -17,43 +17,55 @@ import api from '../../../Utils/api';
 
 
 const ProductItem = () => {
-    const {toastMessage} = useContext(MyContext)
+    const { toastMessage } = useContext(MyContext)
     const { setIsopendialogbox } = useContext(DialogContext)
-    const [value, setValue] = useState(0);
-    const [catname, setCatname] = useState([]);
-    const [featureProducts, setFeatureProducts] = useState([]);
+    const [tabs, setTabs] = useState(0);
+    const [categories, setCategories] = useState([]);
+    const [activeCategory, setActiveCategory] = useState(null);
+    const [products, setProducts] = useState([]);
 
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
-
+    // fetch for all root category
     useEffect(()=>{
-        const Productshowdata = async()=>{
+        const loadcategories = async()=>{
             try {
-                const [categoryname, isfeature] = await Promise.all([
-                    api.get("/categories/category/root"),
-                    api.get("/products/featured-product")
-                ]);
+                const res = await api.get("/categories/category/root");
+                console.log(res);
+                setCategories(res?.data?.rootcategory);
 
-                setCatname(categoryname?.data?.rootcategory);
-                console.log(categoryname);
-                
-                setFeatureProducts(isfeature?.data?.isFeatureProduct);
-                console.log(isfeature);
-                
-
+                setActiveCategory(res?.data?.rootcategory[0]?._id)
             } catch (error) {
                 if(error?.response){
-                    toastMessage("error",error?.response?.data?.message);
+                    toastMessage("error",error?.response?.message);
                 }else{
-                    toastMessage("error","Server Error");
+                    toastMessage("error","Server not respond...");
                 }
             }
         }
+        loadcategories();
+    },[toastMessage]);
 
-        Productshowdata();
-    },[toastMessage])
+
+    useEffect(()=>{
+        if(!activeCategory){
+            return;
+        }
+
+        const loadFeatureProducts = async() => {
+            const res = await api.get(`products/featured-product?category=${activeCategory}`);
+            console.log(res);
+            
+            setProducts(res?.data?.isFeatureProduct);
+        }
+        loadFeatureProducts();
+    },[activeCategory])
+
+
+    // when I click to category tab then its response
+     const handleChange = (event, newValue) => {
+        setTabs(newValue);
+    };
+
 
     return (
         <section className='my-container !mb-25'>
@@ -65,13 +77,13 @@ const ProductItem = () => {
 
                 <div className='col2 w-[60%]  flex items-center px-4 overflow-hidden'>
                     <Tabs
-                        value={value}
+                        value={tabs}
                         onChange={handleChange}
                         variant="scrollable"
                         scrollButtons
                         allowScrollButtonsMobile
                     >
-                        {catname.map((cat,idx) => (
+                        {categories.map((cat, idx) => (
                             <Tab key={idx} label={cat?.name} />
                         ))}
                     </Tabs>
@@ -88,16 +100,16 @@ const ProductItem = () => {
                     modules={[Navigation]}
                     className="mySwiper"
                 >
-                    <div className=''>
-                        {featureProducts.map((product,idx) => (
-                            <SwiperSlide key={idx} className='!gap-4'>
-                                <div className='h-full w-52 rounded-md  shadow shadow-gray-500'>
-                                    <div className='relative overflow-hidden group h-60'>
+                    <div>
+                        {products.map((product, idx) => (
+                            <SwiperSlide key={idx}>
+                                <div className='w-60 rounded-md shadow shadow-gray-500'>
+                                    <div className='relative overflow-hidden group h-70'>
 
                                         <Link to={'/product/786987'}>
-                                            <img className='h-60 w-full object-cover object-top rounded-md' src={product.images[0]?.url} alt="error" />
+                                            <img className='h-70 w-full object-cover object-top rounded-md' src={product.images[0]?.url} alt="error" />
 
-                                            <img className='h-60 w-full rounded-md group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover object-top' src={product.images[1]?.url} alt="error" />
+                                            <img className='h-70 w-full rounded-md group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover object-top' src={product.images[1]?.url} alt="error" />
 
                                         </Link>
                                         <div className='flex flex-col  justify-center items-center gap-1 absolute -top-50 transition-all duration-500 opacity-0 group-hover:opacity-100 right-3 group-hover:top-3'>
@@ -116,7 +128,9 @@ const ProductItem = () => {
                                         <p className='!text-md text-gray-900/80'>{product?.brand}</p>
                                         <p className='!text-[1.1em] font-medium two-line-ellipsis'>{product?.name}</p>
                                         <Stack>
-                                            <Rating name="half-rating-read"  precision={product?.rating} readOnly />
+                                            <Rating name="half-rating-read" precision={product?.rating}
+                                                defaultValue={product?.rating}
+                                                readOnly />
                                         </Stack>
 
                                         <div className='flex justify-between'>

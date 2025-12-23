@@ -14,7 +14,7 @@ product.route('/allproducts').get(allProducts)
 product.route('/filter-products').get(filterProducts)
 product.route('/total-product').get(totalProduct)
 product.route('/featured-product').get(getallisFeaturedProduct)
-product.route('/:productId').get(singleProduct)
+product.route('/singlepro/:productId').get(singleProduct)
 
 
 

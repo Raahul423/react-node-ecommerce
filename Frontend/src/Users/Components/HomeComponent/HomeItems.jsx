@@ -13,8 +13,6 @@ const HomeItems = () => {
     const Category = async () => {
       try {
         const res = await api.get("/categories/category/root");
-        console.log(res);
-        
         setRootcategory(res?.data?.rootcategory)
       } catch (error) {
         if (error?.response) {
