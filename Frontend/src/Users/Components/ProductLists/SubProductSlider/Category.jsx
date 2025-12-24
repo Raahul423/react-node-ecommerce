@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -10,7 +10,11 @@ import { data } from '../../../../assets/Assests';
 
 
 const Category = ({ isopen, collapseisopen }) => {
+const [tick, setTick] = useState(null);
 
+const handlechange =(idx)=>{
+    setTick((prev)=>prev === idx ? null : idx)
+}
     return (
         <section>
             <div className='flex justify-between items-center py-3'>
@@ -24,7 +28,11 @@ const Category = ({ isopen, collapseisopen }) => {
                 <div className='scroll inset-shadow-xs px-4'>
                     {data.map((items, idx) => (
                         <FormGroup key={idx}>
-                            <FormControlLabel className='text-gray-900/90' control={<Checkbox size='small' sx={{
+                            <FormControlLabel className='text-gray-900/90' control={
+                                <Checkbox
+                                checked={tick == idx}
+                                onChange={()=>handlechange(idx)}
+                                 size='small' sx={{
                                 color: '#101828/90',
                                 '&.Mui-checked': {
                                     color: '#ff5252',
