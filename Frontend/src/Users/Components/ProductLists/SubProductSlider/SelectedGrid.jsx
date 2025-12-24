@@ -24,7 +24,7 @@ const SelectedItems = ({fetchProducts}) => {
                             <Link  to={'/product/7686'}>
                                 <img className='p-2 h-60 w-full rounded-md object-cover' src={products?.images[0]?.url} alt="error" />
 
-                                <img className=' p-2 h-60 w-full group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover' src={products?.images[1].url}/>
+                                <img className=' p-2 h-60 w-full group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover' src={products?.images[1]?.url} alt='error'/>
 
                             </Link>
 

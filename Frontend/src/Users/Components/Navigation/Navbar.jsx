@@ -11,7 +11,7 @@ import api from '../../../Utils/api'
 const Navbar = () => {
     const { toastMessage } = useContext(MyContext)
     const [isOpen, setIsOpen] = useState(false)
-    const [categorydata, setCategorydata] = useState([])
+    const [categorydata, setCategorydata] = useState([]);
 
     const togglebutton = () => {
         setIsOpen(!isOpen);
@@ -33,6 +33,7 @@ const Navbar = () => {
         Category();
     }, [toastMessage]);
 
+  
 
     return (
         <div className='my-container py-3  flex justify-end gap-20 '>
@@ -44,10 +45,11 @@ const Navbar = () => {
 
             <div className='col1 w-[75%] flex items-center'>
                 <ul className='flex gap-5 items-center w-[120%] justify-between'>
-                    {categorydata.map((data) => (    
+                    {categorydata.map((data) => (
                         <li key={data?._id} className='relative nav'>
-                            <Link to={'/products'} className='hover:text-primary '>
-                                <Button className='!text-black button '>{data.name}</Button>
+                            <Link to={`/category/${data?.name}`} className='hover:text-primary '>
+                                <Button
+                                    className='!text-black button '>{data.name}</Button>
                             </Link>
 
                             <div className='submenunav absolute top-[120%] left-0 bg-white shadow-md'>
@@ -73,7 +75,7 @@ const Navbar = () => {
                 </ul>
             </div>
 
-            <Navdrawer IsOpen={isOpen} setIsOpen={setIsOpen}/>
+            <Navdrawer IsOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
     )
 }

@@ -8,23 +8,25 @@ import PricelowHigh from './SubProductSlider/PricelowHigh';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import api from '../../../Utils/api';
+import { useParams } from 'react-router';
 
 
 
 const ProductItem = () => {
+  const {category} = useParams();
   const [itemveiw, setItemveiw] = useState('grid');
   const [fetchProducts, setFetchProducts] = useState([]);
   useEffect(()=>{
     const fetchProducts = async()=>{
       try {
-        const res = await api.get(`/products/filter-products?cat=${"fastion"}`);
+        const res = await api.get(`/products/filter-products?cat=${category}`);
         setFetchProducts(res?.data?.filterProduct);
       } catch (error) {
         console.log(error.message);
       }
     }
     fetchProducts();
-  },[])
+  },[category])
 
   return (
     <section className='col1 w-[80%]'>
