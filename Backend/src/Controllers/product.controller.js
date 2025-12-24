@@ -225,7 +225,7 @@ const allProducts = async (req, res) => {
 const filterProducts = async (req, res) => {
   try {
     const filter = {};
-    const { cat, subcatId, minprice, maxprice, rating } = req.query;
+    const {cat, subcatId, minprice, maxprice, rating } = req.query;
 
      if (cat) {
       const categoryDoc = await Category.findOne({

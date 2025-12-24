@@ -10,21 +10,21 @@ import { DialogContext } from '../../../../Context/DialogComponent';
 
 
 
-const SelectedItems = () => {
+const SelectedItems = ({fetchProducts}) => {
     const {setIsopendialogbox} = useContext(DialogContext)
 
 
     return (
         <section className='grid'>
-            <div className='flex flex-wrap items-center gap-4'>
-                {Array.from({ length: 20 }).map((_, i) => (
-                    <div key={i} className='rounded-md shadow shadow-gray-500 w-47 mx-auto'>
+            <div className='grid grid-cols-5 gap-4'>
+                {fetchProducts.map((products,idx) => (
+                    <div key={idx} className='rounded-md shadow shadow-gray-500 w-47 mx-auto'>
                         <div className='relative overflow-hidden group '>
 
                             <Link  to={'/product/7686'}>
-                                <img className='h-50 w-full rounded-md object-cover' src="https://serviceapi.spicezgold.com/download/1742463096955_hbhb1.jpg" alt="error" />
+                                <img className='p-2 h-60 w-full rounded-md object-cover' src={products?.images[0]?.url} alt="error" />
 
-                                <img className='h-50 w-full group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover' src="https://serviceapi.spicezgold.com/download/1742463096956_hbhb2.jpg" alt="error" />
+                                <img className=' p-2 h-60 w-full group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover' src={products?.images[1].url}/>
 
                             </Link>
 
@@ -40,15 +40,15 @@ const SelectedItems = () => {
                         </div>
 
                         <div className='p-4 flex flex-col gap-1'>
-                            <p className='!text-md text-gray-900/80'>Flying Machine</p>
-                            <p className='!text-[1.1em] font-medium'>women-wide leg high-rise...</p>
+                            <p className='!text-md text-gray-900/80'>{products.brand}</p>
+                            <p className='!text-[1.1em] font-medium two-line-ellipsis '>{products.name}</p>
                             <Stack spacing={1}>
-                                <Rating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly />
+                                <Rating name="half-rating-read" defaultValue={products.rating} precision={products.rating} readOnly />
                             </Stack>
 
                             <div className='flex justify-between'>
-                                <p className='text-gray-900/80 line-through'>₹1,299</p>
-                                <p className='text-primary'>₹999</p>
+                                <p className='text-gray-900/80 line-through'>₹{products.price}</p>
+                                <p className='text-primary'>₹{products.oldprice}</p>
                             </div>
 
                             <Button className='flex gap-4 items-center w-full !border-1 !border-primary group hover:!border-black hover:!bg-black'>

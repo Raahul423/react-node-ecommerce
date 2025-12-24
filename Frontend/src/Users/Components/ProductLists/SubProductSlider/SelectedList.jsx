@@ -9,20 +9,20 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { DialogContext } from '../../../../Context/DialogComponent';
 
 
-const SelectedItems = () => {
+const SelectedItems = ({fetchProducts}) => {
     const {setIsopendialogbox} = useContext(DialogContext)
    
     return (
         <section className='grid'>
             <div className='flex flex-col items-center gap-8 '>
-                {Array.from({ length: 20 }).map((_, i) => (
-                    <div key={i} className='rounded-md shadow shadow-gray-500 w-full mx-auto flex gap-2 p-6 bg-gray-200/30'>
+                {fetchProducts.map((products,idx) => (
+                    <div key={idx} className='rounded-md shadow shadow-gray-500 w-full mx-auto flex gap-2 p-6 bg-gray-200/30'>
                         <div className='relative overflow-hidden group w-[25%]'>
 
                             <Link  to={'/product/6437'}>
-                                <img className='h-80 rounded-md object-cover' src="https://serviceapi.spicezgold.com/download/1742463096955_hbhb1.jpg" alt="error" />
+                                <img className='h-80 rounded-md object-cover' src={products.images[0]?.url} alt="error" />
 
-                                <img className='h-80 rounded-md group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover' src="https://serviceapi.spicezgold.com/download/1742463096956_hbhb2.jpg" alt="error" />
+                                <img className='h-80 rounded-md group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover' src={products.images[1].url} alt="error" />
 
                             </Link>
 
@@ -38,16 +38,19 @@ const SelectedItems = () => {
                         </div>
 
                         <div className='p-4 flex flex-col gap-4 w-[75%]'>
-                            <p className='!text-md text-gray-900/80'>Flying Machine</p>
-                            <p className='!text-[1.1em] font-medium'>women-wide leg high-rise...</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta maiores, obcaecati in, magni delectus quis ipsum ad nulla aliquam cupiditate tempora esse nam odio dolore similique, placeat eos? Laboriosam, sequi.</p>
+                            <p className='!text-md text-gray-900/80'>{products.brand}</p>
+
+                            <p className='!text-[1.1em] font-medium'>{products.name}</p>
+
+                            <p>{products.desc}</p>
+
                             <Stack spacing={1}>
-                                <Rating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly />
+                                <Rating name="half-rating-read" defaultValue={products.rating} precision={products.rating} readOnly />
                             </Stack>
 
                             <div className='flex justify-between w-fit gap-10'>
-                                <p className='text-gray-900/80 line-through'>₹1,299</p>
-                                <p className='text-primary'>₹999</p>
+                                <p className='text-gray-900/80 line-through'>₹{products?.price}</p>
+                                <p className='text-primary'>₹{products?.oldprice}</p>
                             </div>
 
                             <Button className='flex gap-4 items-center w-fit !p-2 !border-1 !border-primary group hover:!border-black hover:!bg-black'>

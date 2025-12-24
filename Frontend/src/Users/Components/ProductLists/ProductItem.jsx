@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { HiOutlineBars3 } from "react-icons/hi2";
 import { IoGrid } from "react-icons/io5";
 import { Button } from '@mui/material';
@@ -7,12 +7,24 @@ import SelectedList from './SubProductSlider/SelectedList';
 import PricelowHigh from './SubProductSlider/PricelowHigh';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import api from '../../../Utils/api';
 
 
 
 const ProductItem = () => {
-
   const [itemveiw, setItemveiw] = useState('grid');
+  const [fetchProducts, setFetchProducts] = useState([]);
+  useEffect(()=>{
+    const fetchProducts = async()=>{
+      try {
+        const res = await api.get(`/products/filter-products?cat=${"fastion"}`);
+        setFetchProducts(res?.data?.filterProduct);
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+    fetchProducts();
+  },[])
 
   return (
     <section className='col1 w-[80%]'>
@@ -38,7 +50,7 @@ const ProductItem = () => {
       </div>
 
       <div className='2/2 w-full'>
-        {itemveiw === 'grid' ? <SelectedGrid/> : <SelectedList/>}
+        {itemveiw === 'grid' ? <SelectedGrid fetchProducts={fetchProducts}/> : <SelectedList fetchProducts={fetchProducts}/>}
       </div>
 
      <Stack className='py-6 !items-center ' spacing={2}>
