@@ -21,6 +21,7 @@ const ProductItem = () => {
       try {
         const res = await api.get(`/products/filter-products?cat=${category}`);
         setFetchProducts(res?.data?.filterProduct);
+        setFetchProducts((prev)=>[...prev].sort(()=>Math.random()- 0.56));
       } catch (error) {
         console.log(error.message);
       }

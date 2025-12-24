@@ -19,10 +19,10 @@ const SelectedItems = ({fetchProducts}) => {
                     <div key={idx} className='rounded-md shadow shadow-gray-500 w-full mx-auto flex gap-2 p-6 bg-gray-200/30'>
                         <div className='relative overflow-hidden group w-[25%]'>
 
-                            <Link  to={'/product/6437'}>
-                                <img className='h-80 rounded-md object-cover' src={products.images[0]?.url} alt="error" />
+                            <Link   to={'/product/6437'}>
+                                <img className='p-2 h-80 rounded-md object-cover' src={products.images[0]?.url} alt="error" />
 
-                                <img className='h-80 rounded-md group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover' src={products.images[1].url} alt="error" />
+                                <img className=' p-2 h-80 rounded-md group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover' src={products.images[1]?.url} alt="error" />
 
                             </Link>
 
