@@ -16,14 +16,19 @@ const ProductItem = () => {
   const {category} = useParams();
   const [itemveiw, setItemveiw] = useState('grid');
   const [fetchProducts, setFetchProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   useEffect(()=>{
     const fetchProducts = async()=>{
       try {
+        setLoading(true)
         const res = await api.get(`/products/filter-products?cat=${category}`);
         setFetchProducts(res?.data?.filterProduct);
         setFetchProducts((prev)=>[...prev].sort(()=>Math.random()- 0.56));
       } catch (error) {
-        console.log(error.message);
+        console.error(error.message);
+      }finally{
+        setLoading(false)
       }
     }
     fetchProducts();
@@ -53,7 +58,7 @@ const ProductItem = () => {
       </div>
 
       <div className='2/2 w-full'>
-        {itemveiw === 'grid' ? <SelectedGrid fetchProducts={fetchProducts}/> : <SelectedList fetchProducts={fetchProducts}/>}
+        {itemveiw === 'grid' ? <SelectedGrid fetchProducts={fetchProducts} loading={loading}/> : <SelectedList fetchProducts={fetchProducts} loading={loading}/>}
       </div>
 
      <Stack className='py-6 !items-center ' spacing={2}>

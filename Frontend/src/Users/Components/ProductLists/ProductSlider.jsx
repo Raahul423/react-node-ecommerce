@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Category from './SubProductSlider/Category'
-import Avalibilty from './SubProductSlider/Avalibilty';
 import RangeSlider from 'react-range-slider-input';
 import 'react-range-slider-input/dist/style.css';
 import FormGroup from '@mui/material/FormGroup';
@@ -11,16 +10,10 @@ import Stack from '@mui/material/Stack';
 
 const ProductSlider = () => {
   const [collapseisopen, setCollapseisopen] = useState(true);
-  const [availableisopen, setavailableisopen] = useState(true);
 
   const isopen = () => {
     setCollapseisopen(!collapseisopen);
   }
-
-  const availableopen = () => {
-    setavailableisopen(!availableisopen);
-  }
-
 
   return (
     <section className='col2 w-[20%] flex flex-col gap-5 sticky top-53.5'>
@@ -28,7 +21,6 @@ const ProductSlider = () => {
 
         <div className='itemlist 1/3 '>
           <Category isopen={isopen} collapseisopen={collapseisopen} />
-          <Avalibilty isopen={availableopen} availableisopen={availableisopen} />
         </div>
         <span className='horizontal-line'></span>
 

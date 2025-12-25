@@ -17,7 +17,6 @@ import api from '../../../Utils/api';
 
 
 const ProductItem = () => {
-    const { toastMessage } = useContext(MyContext)
     const { setIsopendialogbox } = useContext(DialogContext)
     const [tabs, setTabs] = useState(0);
     const [categories, setCategories] = useState([]);
@@ -35,17 +34,13 @@ const ProductItem = () => {
                 setCategories(res?.data?.rootcategory);
                 setActiveCategory(res?.data?.rootcategory[0]?._id)
             } catch (error) {
-                if (error?.response) {
-                    toastMessage("error", error?.response?.message);
-                } else {
-                    toastMessage("error", "Server not respond...");
-                }
+                console.error(error?.message);
             } finally {
                 setloading(false)
             }
         }
         loadcategories();
-    }, [toastMessage]);
+    }, []);
 
 
     useEffect(() => {
