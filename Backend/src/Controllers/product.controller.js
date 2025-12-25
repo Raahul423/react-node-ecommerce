@@ -5,7 +5,6 @@ import {
   uploadOncloudinary,
 } from "../Utils/cloudinary.js";
 
-
 // create products //admin work
 const createProduct = async (req, res) => {
   const localfiles = req.files || [];
@@ -14,7 +13,7 @@ const createProduct = async (req, res) => {
     if (req.body.subcategory === "") {
       req.body.subcategory = null;
     }
-    
+
     const {
       name,
       desc,
@@ -117,7 +116,7 @@ const allProducts = async (req, res) => {
       .populate("category", "name _id")
       .populate("subcategory", "name _id")
       .skip((page - 1) * limit)
-      .limit(limit)
+      .limit(limit);
     if (product.length === 0) {
       return res.status(200).json({
         success: false,
@@ -220,14 +219,13 @@ const allProducts = async (req, res) => {
 //   }
 // }; // for learning Purpose
 
-
 // filter products by price
 const filterProducts = async (req, res) => {
   try {
     const filter = {};
-    const {cat, subcatId, minprice, maxprice, rating } = req.query;
+    const { cat, subcatname, minprice, maxprice, rating } = req.query;
 
-     if (cat) {
+    if (cat) {
       const categoryDoc = await Category.findOne({
         name: new RegExp(`^${cat}$`, "i"),
       });
@@ -237,8 +235,14 @@ const filterProducts = async (req, res) => {
       }
     }
 
-    if (subcatId) {
-      filter.subcategory = subcatId;
+    if (subcatname) {
+      const subcategoryDoc = await Category.findOne({
+        name: new RegExp(`^${subcatname}$`, "i"),
+      });
+
+      if (subcategoryDoc) {
+        filter.subcategory = subcategoryDoc._id;
+      }
     }
 
     const price = {};
@@ -254,11 +258,9 @@ const filterProducts = async (req, res) => {
       filter.rating = { $eq: ratingval };
     }
 
-
     const filterProduct = await Product.find(filter)
       .populate("category", "name _id")
-      .populate("subcategory", "name _id")
-      
+      .populate("subcategory", "name _id");
 
     return res.status(200).json({
       success: true,
@@ -292,11 +294,17 @@ const totalProduct = async (req, res) => {
 // get featured products with category wise
 const getallisFeaturedProduct = async (req, res) => {
   try {
-    const isFeatureProduct = await Product.find({ isfeatured: true, category: req.query.category }).populate("category", "name _id").populate("subcategory", "name _id");
-
+    const isFeatureProduct = await Product.find({
+      isfeatured: true,
+      category: req.query.category,
+    })
+      .populate("category", "name _id")
+      .populate("subcategory", "name _id");
 
     if (!isFeatureProduct) {
-      return res.status(404).json({success:false,message:"Product not found"})
+      return res
+        .status(404)
+        .json({ success: false, message: "Product not found" });
     }
 
     return res.status(200).json({
@@ -309,21 +317,24 @@ const getallisFeaturedProduct = async (req, res) => {
   }
 };
 
-
 // all feature products
-const featureproducts = async(req,res)=>{
+const featureproducts = async (req, res) => {
   try {
-    const featured = await Product.find({isfeatured:true});
+    const featured = await Product.find({ isfeatured: true });
 
-    if(!featureproducts){
-      return res.status(403).json({success:false,message:"Product not found"});
+    if (!featureproducts) {
+      return res
+        .status(403)
+        .json({ success: false, message: "Product not found" });
     }
 
-    return res.status(201).json({success:true,message:"product fetched",featured});
+    return res
+      .status(201)
+      .json({ success: true, message: "product fetched", featured });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
-}
+};
 
 // delete Product
 const deleteProduct = async (req, res) => {
@@ -445,5 +456,5 @@ export {
   deleteProduct,
   updateProduct,
   singleProduct,
-  featureproducts
+  featureproducts,
 };

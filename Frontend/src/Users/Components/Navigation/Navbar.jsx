@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import { useContext, useEffect, useState } from 'react'
 import { AiOutlineMenuUnfold } from 'react-icons/ai'
 import { IoIosArrowDown } from 'react-icons/io'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import Navdrawer from '../DrawerComponent/Navdrawer'
 import { MyContext } from '../../../Provider'
 import api from '../../../Utils/api'
@@ -23,11 +23,7 @@ const Navbar = () => {
                 const res = await api.get("/categories/allcategories");
                 setCategorydata(res?.data?.rootcategories)
             } catch (error) {
-                if (error?.response) {
-                    toastMessage("error", error?.response?.data?.message);
-                } else {
-                    toastMessage("error", "server not responding... please try again")
-                }
+               console.error(error?.message)
             }
         }
         Category();
@@ -56,7 +52,7 @@ const Navbar = () => {
                                 <ul className='min-w-[200px]'>
                                     {data.children?.map((child) => (
                                         <li key={child?._id}>
-                                            <Link>
+                                            <Link to={`/category/${data?.name}/${child?.name}`}>
                                                 <Button className='w-full !text-black !justify-start !normal-case' >
                                                     {child.name}
                                                 </Button>
