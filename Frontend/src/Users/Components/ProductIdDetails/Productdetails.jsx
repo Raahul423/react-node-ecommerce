@@ -31,7 +31,7 @@ const Productdetails = () => {
   return (
     <section className='grid grid-cols-[40%_60%] gap-12 items-center my-8'>
 
-      
+
       <div className='grid grid-cols-[20%_80%]  gap-2'>
         <div className='part-1 h-full flex flex-col gap-4 items-center '>
           {Productidimage.map((img, idx) => (
@@ -104,7 +104,8 @@ const Productdetails = () => {
             <p>Size:</p>
           </div>
 
-          <div className='flex gap-2'>
+          <div
+           className='flex gap-2 cursor-pointer'>
             {["S", "M", "L", "XL"].map((size, idx) => (
               <div onClick={() => setIsactive(idx)} className={`px-2 border border-black rounded-sm ${isactive === idx ? 'boxactive' : 'boxhover'}`} key={idx}>{size}</div>
             ))}

@@ -29,7 +29,7 @@ const ReviewSection = () => {
                                     <div className='flex justify-between items-center'>
                                         <div className='flex gap-4 items-center'>
                                             <div className=' h-20 w-20 bg-gray-700/80  rounded-full flex items-center justify-center overflow-hidden'>
-                                                <img className='h-20 w-20' src="https://ecommerce-frontend-view.netlify.app/user.jpg" alt="" />
+                                                <img className='h-20 w-20' src="https://ecommerce-frontend-view.netlify.app/user.jpg" alt="error" />
                                             </div>
                                             <div>
                                                 <p>Nina</p>
