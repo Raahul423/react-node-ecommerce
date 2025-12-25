@@ -251,7 +251,7 @@ const filterProducts = async (req, res) => {
 
     if (rating != undefined) {
       const ratingval = Number(rating);
-      filter.rating = { $gte: ratingval };
+      filter.rating = { $eq: ratingval };
     }
 
 

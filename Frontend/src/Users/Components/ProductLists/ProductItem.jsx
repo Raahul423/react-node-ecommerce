@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { HiOutlineBars3 } from "react-icons/hi2";
 import { IoGrid } from "react-icons/io5";
 import { Button } from '@mui/material';
@@ -7,43 +7,23 @@ import SelectedList from './SubProductSlider/SelectedList';
 import PricelowHigh from './SubProductSlider/PricelowHigh';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import api from '../../../Utils/api';
-import { useParams } from 'react-router';
 
 
 
-const ProductItem = () => {
-  const {category} = useParams();
+const ProductItem = ({ loading, fetchProducts }) => {
+
   const [itemveiw, setItemveiw] = useState('grid');
-  const [fetchProducts, setFetchProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(()=>{
-    const fetchProducts = async()=>{
-      try {
-        setLoading(true)
-        const res = await api.get(`/products/filter-products?cat=${category}`);
-        setFetchProducts(res?.data?.filterProduct);
-        setFetchProducts((prev)=>[...prev].sort(()=>Math.random()- 0.56));
-      } catch (error) {
-        console.error(error.message);
-      }finally{
-        setLoading(false)
-      }
-    }
-    fetchProducts();
-  },[category])
 
   return (
     <section className='col1 w-[80%]'>
       <div className='1/2 bg-[#e6e6e6] p-1 flex justify-between rounded-md sticky z-50 top-53.5 mb-4 shadow-gray-500 shadow'>
         <div className='flex items-center gap-2 itemveiw '>
           <Button onClick={() => setItemveiw('list')} className={`!rounded-full !min-w-[35px] h-[35px] ${itemveiw === 'list' && 'active'}`}>
-            <HiOutlineBars3  className='text-xl text-gray-900/80 active'/>
+            <HiOutlineBars3 className='text-xl text-gray-900/80 active' />
           </Button >
 
           <Button onClick={() => setItemveiw('grid')} className={`!rounded-full !min-w-[35px] h-[35px] ${itemveiw === 'grid' && 'active'}`}>
-            <IoGrid  className='text-xl text-gray-900/80' />
+            <IoGrid className='text-xl text-gray-900/80' />
           </Button>
 
           <p className='text-gray-900/80'>Their are 8 products</p>
@@ -52,18 +32,18 @@ const ProductItem = () => {
 
         <div className='flex gap-2 items-center'>
           <p className='w-20'>Sort by</p>
-          <PricelowHigh/>
+          <PricelowHigh />
         </div>
 
       </div>
 
       <div className='2/2 w-full'>
-        {itemveiw === 'grid' ? <SelectedGrid fetchProducts={fetchProducts} loading={loading}/> : <SelectedList fetchProducts={fetchProducts} loading={loading}/>}
+        {itemveiw === 'grid' ? <SelectedGrid fetchProducts={fetchProducts} loading={loading} /> : <SelectedList fetchProducts={fetchProducts} loading={loading} />}
       </div>
 
-     <Stack className='py-6 !items-center ' spacing={2}>
-      <Pagination count={10} />
-    </Stack>
+      <Stack className='py-6 !items-center ' spacing={2}>
+        <Pagination count={10} />
+      </Stack>
 
     </section>
   )

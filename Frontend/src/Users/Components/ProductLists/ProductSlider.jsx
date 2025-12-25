@@ -9,6 +9,7 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 
 const ProductSlider = () => {
+
   const [collapseisopen, setCollapseisopen] = useState(true);
   const [tick, setTick] = useState(null);
 
