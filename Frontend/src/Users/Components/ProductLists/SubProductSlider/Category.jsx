@@ -7,9 +7,11 @@ import { TiArrowSortedDown } from "react-icons/ti";
 import Button from '@mui/material/Button';
 import { FaCaretUp } from "react-icons/fa";
 import api from '../../../../Utils/api';
+import { useNavigate } from 'react-router';
 
 
 const Category = ({ isopen, collapseisopen }) => {
+    const navigate = useNavigate();
     const [tick, setTick] = useState(null);
     const [category, setCategory] = useState([]);
 
@@ -26,8 +28,9 @@ const Category = ({ isopen, collapseisopen }) => {
     }, [])
 
 
-    const handlechange = (idx) => {
-        setTick((prev) => prev === idx ? null : idx)
+    const handlechange = (idx,catname) => {
+        setTick((prev) => prev === idx ? null : idx);
+        navigate(`/category/${catname}`);
     }
 
 
@@ -47,7 +50,7 @@ const Category = ({ isopen, collapseisopen }) => {
                             <FormControlLabel className='text-gray-900/90' control={
                                 <Checkbox
                                     checked={tick == idx}
-                                    onChange={() => handlechange(idx)}
+                                    onChange={() => handlechange(idx,items?.name)}
                                     size='small' sx={{
                                         color: '#101828/90',
                                         '&.Mui-checked': {

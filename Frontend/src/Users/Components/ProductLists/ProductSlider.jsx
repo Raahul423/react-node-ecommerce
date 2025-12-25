@@ -10,6 +10,11 @@ import Stack from '@mui/material/Stack';
 
 const ProductSlider = () => {
   const [collapseisopen, setCollapseisopen] = useState(true);
+  const [tick, setTick] = useState(null);
+
+  const handlechange = (idx)=>{
+    setTick((prev)=>prev === idx ? null : idx);
+  }
 
   const isopen = () => {
     setCollapseisopen(!collapseisopen);
@@ -54,15 +59,18 @@ const ProductSlider = () => {
 
           <div className=''>
             {Array.from({ length: 5 }).map((_, idx) => (
-
               <div key={idx}>
                 <FormGroup >
-                  <FormControlLabel className='text-gray-900/90' control={<Checkbox size='small' sx={{
-                    color: '#101828/90',
-                    '&.Mui-checked': {
-                      color: '#ff5252',
-                    },
-                  }} />}
+                  <FormControlLabel className='text-gray-900/90' control={<Checkbox
+                    size='small'
+                    checked={tick === idx}
+                    onChange={()=>handlechange(idx)}
+                    sx={{
+                      color: '#101828/90',
+                      '&.Mui-checked': {
+                        color: '#ff5252',
+                      },
+                    }} />}
                     label={<Stack spacing={1}>
                       <Rating name="half-rating-read" defaultValue={5 - idx} precision={0.5} readOnly />
                     </Stack>} />
