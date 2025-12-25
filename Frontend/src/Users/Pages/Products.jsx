@@ -15,15 +15,15 @@ const Products = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true)
-        let url = `/products?cat=${category}`;
+        let url = `/products/filter-products?cat=${category}`;
         if (subcategory) {
-          url += `&subcategory=${subcategory}`;
+          url += `&subcatname=${subcategory}`;
         }
 
         const res = await api.get(url);
-         const shuffled = [...res.data.filterProduct].sort(() => Math.random() - 0.56);
+        const shuffled = [...res.data.filterProduct].sort(() => Math.random() - 0.56);
         setFetchProducts(shuffled);
-       
+
       } catch (error) {
         console.error(error.message);
       } finally {
@@ -32,6 +32,8 @@ const Products = () => {
     }
     fetchProducts();
   }, [category, subcategory]);
+
+
 
 
   return (
