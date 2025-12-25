@@ -26,7 +26,7 @@ const ProductItem = ({ loading, fetchProducts }) => {
             <IoGrid className='text-xl text-gray-900/80' />
           </Button>
 
-          <p className='text-gray-900/80'>Their are 8 products</p>
+          <p className='text-gray-900/80'>Their are <span className='text-primary'>{fetchProducts.length}</span> products</p>
 
         </div>
 
