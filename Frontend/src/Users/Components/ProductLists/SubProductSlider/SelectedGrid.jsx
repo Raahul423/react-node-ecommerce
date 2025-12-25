@@ -24,7 +24,7 @@ const SelectedItems = ({ fetchProducts, loading }) => {
                             {fetchProducts.map((products, idx) => (
                                 <div key={idx} className='rounded-md shadow shadow-gray-500 w-47 mx-auto'>
                                     <div className='relative overflow-hidden group '>
-                                        <Link to={'/product/7686'}>
+                                        <Link to={`/product/${products?._id}`}>
                                             <img className='p-2 h-60 w-full rounded-md object-cover' src={products?.images[0]?.url} alt="error" />
 
                                             <img className=' p-2 h-60 w-full group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover' src={products?.images[1]?.url} alt='error' />
