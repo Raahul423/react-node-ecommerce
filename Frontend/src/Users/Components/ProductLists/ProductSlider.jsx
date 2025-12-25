@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Category from './SubProductSlider/Category'
 import RangeSlider from 'react-range-slider-input';
 import 'react-range-slider-input/dist/style.css';
@@ -7,22 +7,50 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
+import { useNavigate, useSearchParams } from 'react-router';
 
 const ProductSlider = () => {
-
+  const navigate = useNavigate();
   const [collapseisopen, setCollapseisopen] = useState(true);
   const [tick, setTick] = useState(null);
 
+  const [searchParams] = useSearchParams();
+  const ratingParam = Number(searchParams.get("rating"));
+
   const handlechange = (idx) => {
-    setTick((prev) => prev === idx ? null : idx);
+    const ratingValue = idx + 1;
+
+    if (tick === idx) {
+      setTick(null);
+      navigate(window.location.pathname); // remove filter
+    } else {
+      setTick(idx);
+      navigate(`${window.location.pathname}?rating=${ratingValue}`);
+    }
+
+    window.scrollTo({
+      top:0,
+      behavior:'smooth'
+    });
+    
+
   }
+
+  useEffect(() => {
+    if (ratingParam) {
+      setTick(ratingParam - 1);
+    } else {
+      setTick(null);
+    }
+  }, [ratingParam]);
+
 
   const isopen = () => {
     setCollapseisopen(!collapseisopen);
   }
 
   return (
-    <section className='col2 w-[20%] flex flex-col gap-5 sticky top-53.5'>
+    <section className='col2 w-[20%] flex flex-col gap-5 '>
       <div className='sticky top-53.5' >
 
         <div className='itemlist 1/3 '>
@@ -74,7 +102,7 @@ const ProductSlider = () => {
                     }} />}
                     label={
                       <Stack>
-                        <Rating defaultValue={idx} readOnly />
+                        <Rating defaultValue={idx + 1} readOnly />
                       </Stack>} />
                 </FormGroup>
               </div>
