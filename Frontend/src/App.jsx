@@ -68,7 +68,7 @@ function App() {
           {/* {User Routes} */}
           <Route element={<Layout />} >
             <Route path='/' element={<Home />} />
-            <Route path='/category/:category' element={<Products />} />
+            <Route path='/category/:cat' element={<Products />} />
             <Route path="/category/:category/:subcategory" element={<Products />} />
             <Route path='/product/:id' element={<ProductsId />} />
             <Route path='/login' element={<Login />} />

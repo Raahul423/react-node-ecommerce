@@ -1,6 +1,5 @@
 import { useRef, useState } from 'react'
 import { Button, Pagination, Rating } from '@mui/material'
-import { Productidimage } from '../../../assets/Assests'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import InnerImageZoom from 'react-inner-image-zoom'
 import 'react-inner-image-zoom/lib/styles.min.css'
@@ -8,7 +7,7 @@ import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icon
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { FaRegHeart } from 'react-icons/fa'
 
-const Productdetails = () => {
+const Productdetails = ({ singleproducts }) => {
 
   const [isclick, setIsclick] = useState(0)
   const [count, setCount] = useState(1)
@@ -29,14 +28,14 @@ const Productdetails = () => {
   }
 
   return (
-    <section className='grid grid-cols-[40%_60%] gap-12 items-center my-8'>
+    <section className='grid grid-cols-[40%_60%] gap-12  my-8 h-[500px] py-4'>
 
 
-      <div className='grid grid-cols-[20%_80%]  gap-2'>
+      <div className='grid grid-cols-[20%_80%] items-center gap-2'>
         <div className='part-1 h-full flex flex-col gap-4 items-center '>
-          {Productidimage.map((img, idx) => (
-            <div key={idx} onClick={() => goto(idx)} className={`cursor-pointer h-23 w-20 overflow-hidden rounded-md opacity-50 ${isclick === idx ? 'opacity-100' : ''} `}>
-              <img className='object-cover' src={img.Image} alt="error" />
+          {singleproducts?.images?.map((img, idx) => (
+            <div key={idx} onClick={() => goto(idx)} className={`cursor-pointer h-20 w-20 p-1 shadow-md shadow-black overflow-hidden rounded-md opacity-50 ${isclick === idx ? 'opacity-100' : ''} `}>
+              <img className='object-cover h-full w-full object-top' src={img?.url} alt="error" />
             </div>
           ))}
         </div>
@@ -56,16 +55,19 @@ const Productdetails = () => {
             spaceBetween={15}
             centeredSlides={true}
             modules={Pagination}
-
+            className='h-full '
           >
-            {Productidimage.map((img, idx) => (
-              <SwiperSlide key={idx} className="w-full rounded-md">
-                <InnerImageZoom className='rounded-md h-[500px]' src={img.Image} zoomType='hover' />
+            {singleproducts?.images?.map((img, idx) => (
+              <SwiperSlide key={idx}>
+                <InnerImageZoom className='rounded-md h-120 w-full' src={img?.url} zoomType='hover' />
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
       </div>
+
+
+
 
       <div className='col-2 grid justify-center gap-5'>
         <h1>Men Opaque Casual Shirt</h1>
@@ -105,7 +107,7 @@ const Productdetails = () => {
           </div>
 
           <div
-           className='flex gap-2 cursor-pointer'>
+            className='flex gap-2 cursor-pointer'>
             {["S", "M", "L", "XL"].map((size, idx) => (
               <div onClick={() => setIsactive(idx)} className={`px-2 border border-black rounded-sm ${isactive === idx ? 'boxactive' : 'boxhover'}`} key={idx}>{size}</div>
             ))}

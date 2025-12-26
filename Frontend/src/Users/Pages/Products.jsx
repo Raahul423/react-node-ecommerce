@@ -7,7 +7,8 @@ import { useParams, useSearchParams } from 'react-router';
 
 
 const Products = () => {
-  const { category, subcategory } = useParams();
+  const { cat, subcategory } = useParams();
+  
   const [fetchProducts, setFetchProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -18,7 +19,7 @@ const Products = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true)
-        let url = `/products/filter-products?cat=${category}`;
+        let url = `/products/filter-products?cat=${cat}`;
         if (subcategory) {
           url += `&subcatname=${subcategory}`;
         }
@@ -37,7 +38,7 @@ const Products = () => {
       }
     }
     fetchProducts();
-  }, [category, subcategory,rating]);
+  }, [cat, subcategory,rating]);
 
 
 
