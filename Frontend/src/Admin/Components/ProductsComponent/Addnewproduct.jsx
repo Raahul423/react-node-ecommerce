@@ -36,9 +36,9 @@ export const Addnewproduct = ({ open, setOpen }) => {
         countInstock: "",
         brand: "",
         discount: "",
-        productRam: "",
-        productWeight: "",
-        size: "",
+        productRam: [],
+        productWeight: [],
+        size: [],
         rating: ""
     });
 
@@ -304,14 +304,19 @@ export const Addnewproduct = ({ open, setOpen }) => {
                         <span>
                             <p>Product RAMS</p>
                             <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
-
                                 <Select
+                                    multiple
                                     value={productdetails.productRam}
-                                    onChange={handleChange}
                                     name='productRam'
+                                    onChange={(e) =>
+                                        setProductdetails(prev => ({ ...prev, productRam: e.target.value }))
+                                    }
                                 >
-                                    <MenuItem value={8}>8GB</MenuItem>
-                                    <MenuItem value={16}>16GB</MenuItem>
+                                    {["100", "200", "500", "1000", "5000"].map((ram) => (
+                                        <MenuItem key={ram} value={ram}>
+                                            {ram}
+                                        </MenuItem>
+                                    ))}
                                 </Select>
                             </FormControl>
                         </span>
@@ -321,13 +326,17 @@ export const Addnewproduct = ({ open, setOpen }) => {
                             <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
 
                                 <Select
+                                    multiple
                                     value={productdetails.productWeight}
                                     name='productWeight'
-                                    onChange={handleChange}
+                                    onChange={(e) =>
+                                        setProductdetails(prev => ({ ...prev, productWeight: e.target.value }))
+                                    }
                                 >
-                                    {["100g", "500g", "1kg", "2kg", "5kg",].map((weight, idx) => (
-                                        <MenuItem value={weight[idx]}>{weight}</MenuItem>
-
+                                    {["100", "200", "500", "1000", "5000"].map((weight) => (
+                                        <MenuItem key={weight} value={weight}>
+                                            {weight}
+                                        </MenuItem>
                                     ))}
                                 </Select>
                             </FormControl>
@@ -336,14 +345,18 @@ export const Addnewproduct = ({ open, setOpen }) => {
                         <span>
                             <p>Product SIZE</p>
                             <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
-
                                 <Select
+                                    multiple
                                     value={productdetails.size}
                                     name='size'
-                                    onChange={handleChange}
+                                    onChange={(e) =>
+                                        setProductdetails(prev => ({ ...prev, size: e.target.value }))
+                                    }
                                 >
                                     {["S", "M", "L", "XL", "XXL"].map((size) => (
-                                        <MenuItem value={size}>{size}</MenuItem>
+                                        <MenuItem key={size} value={size}>
+                                            {size}
+                                        </MenuItem>
                                     ))}
                                 </Select>
                             </FormControl>

@@ -27,6 +27,8 @@ const Productdetails = ({ singleproducts }) => {
     setCount((prev) => prev > 1 ? prev - 1 : 1);
   }
 
+  console.log(singleproducts?.category?.name);
+  
   return (
     <section className='grid grid-cols-[40%_60%] gap-12  my-8 h-[500px] py-4'>
 
@@ -77,7 +79,7 @@ const Productdetails = ({ singleproducts }) => {
             <p>{singleproducts?.brand}</p>
           </div>
 
-          <Rating  defaultValue={parseInt(singleproducts?.rating)} readOnly />
+          <Rating  value={Number(singleproducts?.rating)} readOnly />
 
           <p>Review(23)</p>
         </div>
@@ -106,8 +108,8 @@ const Productdetails = ({ singleproducts }) => {
 
           <div className="flex gap-2 cursor-pointer">
             {/* ELECTRONICS -> RAM */}
-            {singleproducts?.category?.name?.toLowerCase() === "electronics" &&
-              singleproducts?.productRam?.map((ram, idx) => (
+            {singleproducts?.category?.name?.toLowerCase() === "electronic" &&
+              singleproducts?.productRam.map((ram, idx) => (
                 <div
                   key={idx}
                   onClick={() => setIsactive(idx)}
@@ -119,7 +121,7 @@ const Productdetails = ({ singleproducts }) => {
             }
 
             {/* FASHION -> SIZE */}
-            {singleproducts?.category?.name?.toLowerCase() === "fashion" &&
+            {singleproducts?.category?.name?.toLowerCase() === "fastion" &&
               singleproducts?.size?.map((size, idx) => (
                 <div
                   key={idx}
@@ -139,7 +141,7 @@ const Productdetails = ({ singleproducts }) => {
                   onClick={() => setIsactive(idx)}
                   className={`px-2 border border-black rounded-sm ${isactive === idx ? 'boxactive' : 'boxhover'}`}
                 >
-                  {weight} kg
+                  {weight} g
                 </div>
               ))
             }
