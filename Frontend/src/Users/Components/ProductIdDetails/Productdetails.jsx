@@ -70,27 +70,27 @@ const Productdetails = ({ singleproducts }) => {
 
 
       <div className='col-2 grid justify-center gap-5'>
-        <h1>Men Opaque Casual Shirt</h1>
+        <h1>{singleproducts?.name}</h1>
         <div className='flex items-center gap-6'>
           <div className='flex items-center'>
             <p className='text-gray-800/80'>Brands:</p>
-            <p>CLAFOUTIS</p>
+            <p>{singleproducts?.brand}</p>
           </div>
 
-          <Rating name="half-rating-read" defaultValue={5} precision={0.5} readOnly />
+          <Rating  defaultValue={parseInt(singleproducts?.rating)} readOnly />
 
           <p>Review(23)</p>
         </div>
 
-        <div className='flex gap-6'>
-          <div className='flex w-40 justify-between '>
-            <p className='line-through text-gray-800/80 !text-2xl'>₹1450</p>
-            <p className='!text-2xl text-primary'>₹1650</p>
+        <div className='flex gap-8 items-center'>
+          <div className='flex w-40 justify-between gap-4'>
+            <p className='line-through text-gray-800/80 !text-2xl'>₹{singleproducts?.oldprice}</p>
+            <p className='!text-2xl text-primary'>₹{singleproducts?.price}</p>
           </div>
 
           <div className='flex'>
             <p>Available In Stock:</p>
-            <p className='!text-green-700/80'>4641 Items</p>
+            <p className='!text-green-700/80'>{singleproducts?.countInstock} Items</p>
           </div>
 
         </div>
@@ -98,19 +98,51 @@ const Productdetails = ({ singleproducts }) => {
 
 
         <div>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium inventore quos, quis dolorem ex doloremque aspernatur sint distinctio quo at suscipit numquam cum. Doloremque consequatur delectus voluptatem incidunt quibusdam sint.</p>
+          <p>{singleproducts?.desc}</p>
         </div>
 
         <div className='flex items-center gap-2'>
-          <div>
-            <p>Size:</p>
-          </div>
+          <p className="font-semibold">Options:</p>
 
-          <div
-            className='flex gap-2 cursor-pointer'>
-            {["S", "M", "L", "XL"].map((size, idx) => (
-              <div onClick={() => setIsactive(idx)} className={`px-2 border border-black rounded-sm ${isactive === idx ? 'boxactive' : 'boxhover'}`} key={idx}>{size}</div>
-            ))}
+          <div className="flex gap-2 cursor-pointer">
+            {/* ELECTRONICS -> RAM */}
+            {singleproducts?.category?.name?.toLowerCase() === "electronics" &&
+              singleproducts?.productRam?.map((ram, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => setIsactive(idx)}
+                  className={`px-2 border border-black rounded-sm ${isactive === idx ? 'boxactive' : 'boxhover'}`}
+                >
+                  {ram} GB
+                </div>
+              ))
+            }
+
+            {/* FASHION -> SIZE */}
+            {singleproducts?.category?.name?.toLowerCase() === "fashion" &&
+              singleproducts?.size?.map((size, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => setIsactive(idx)}
+                  className={`px-2 border border-black rounded-sm ${isactive === idx ? 'boxactive' : 'boxhover'}`}
+                >
+                  {size}
+                </div>
+              ))
+            }
+
+            {/* GROCERIES -> WEIGHT */}
+            {singleproducts?.category?.name?.toLowerCase() === "groceries" &&
+              singleproducts?.productWeight?.map((weight, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => setIsactive(idx)}
+                  className={`px-2 border border-black rounded-sm ${isactive === idx ? 'boxactive' : 'boxhover'}`}
+                >
+                  {weight} kg
+                </div>
+              ))
+            }
           </div>
         </div>
 

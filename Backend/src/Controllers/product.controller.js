@@ -433,7 +433,9 @@ const updateProduct = async (req, res) => {
 // get single Product by Id
 const singleProduct = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.productId);
+    const product = await Product.findById(req.params.productId)
+      .populate("category", "name _id")
+      .populate("subcategory", "name _id");
     if (!product) {
       throw new Error("Product not Found...");
     }

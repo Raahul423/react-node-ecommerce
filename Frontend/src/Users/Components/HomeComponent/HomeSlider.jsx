@@ -6,7 +6,6 @@ import 'swiper/css/pagination';
 
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Images } from '../../../assets/Assests';
-import HomeItems from './HomeItems';
 
 const HomeSlider = () => {
   return (

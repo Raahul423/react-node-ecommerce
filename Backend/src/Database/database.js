@@ -6,13 +6,14 @@ if(!process.env.MONGO_URI){
     throw new Error("Mongo db .env file error")
 }
 
-const connectDB = async(req,res)=>{
+const connectDB = async()=>{
     try {
         await mongoose.connect(process.env.MONGO_URI);
         console.log("Sucessfully Connected to database");
     } catch (error) {
-        throw new Error("Connection Failed",error.message)
+        console.log("Connection Failed",error.message);
     }
 }
+
 
 export default connectDB;

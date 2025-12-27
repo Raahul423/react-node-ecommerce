@@ -15,11 +15,7 @@ const HomeItems = () => {
         const res = await api.get("/categories/category/root");
         setRootcategory(res?.data?.rootcategory)
       } catch (error) {
-        if (error?.response) {
-          toastMessage("error", error?.response?.data?.message);
-        } else {
-          toastMessage("error", "server not responding... please try again")
-        }
+        console.error(error?.message);
       }
     }
     Category();
