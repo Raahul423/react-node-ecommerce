@@ -1,5 +1,4 @@
 import { Button } from '@mui/material';
-import React from 'react'
 import { MdDelete } from "react-icons/md";
 import { Link } from 'react-router';
 
@@ -7,14 +6,14 @@ const CartDrawerItem = () => {
   return (
     <section className='my-container py-4 relative'>
       <div>
-        <h1>Shopping Cart (0)</h1>
+        <h1>Shopping Cart(0)</h1>
       </div>
 
       <span className='horizontal-line' />
 
 
       <div className='scroll !max-h-[550px] '>
-        {Array.from({ length: 4 }).map((idx) => (
+        {Array.from({ length: 15 }).map((idx) => (
           <div key={idx} className='flex justify-between items-center px-1 py-2  border-b-1 border-gray-600/50'>
             <div className='flex gap-2'>
               <div className="h-20 w-20  overflow-hidden rounded-md">

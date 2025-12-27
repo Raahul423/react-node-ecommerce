@@ -15,7 +15,6 @@ const ProductsId = () => {
     const fetchedProducts = async () => {
       try {
         const res = await api.get(`/products/singlepro/${id}`);
-        console.log(res);
         setSingleproducts(res?.data?.product);
 
       } catch (error) {

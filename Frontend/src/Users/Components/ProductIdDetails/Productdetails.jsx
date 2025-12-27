@@ -6,6 +6,7 @@ import 'react-inner-image-zoom/lib/styles.min.css'
 import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
+import api from '../../../Utils/api'
 
 const Productdetails = ({ singleproducts }) => {
 
@@ -14,6 +15,20 @@ const Productdetails = ({ singleproducts }) => {
   const [isactive, setIsactive] = useState(null)
   const swiperref = useRef(null)
   const [wishlist, setWishlist] = useState(false)
+
+  const Addcart = async () => {
+    try {
+      const productId = singleproducts?._id
+
+      const res = await api.post("/cartitems/add-items",{
+        productId,
+        quantity:count
+      });
+      console.log(res);
+    } catch (error) {
+      console.error(error?.message);
+    }
+  }
 
 
   const goto = (idx) => {
@@ -169,7 +184,7 @@ const Productdetails = ({ singleproducts }) => {
           </div>
 
 
-          <Button className='flex gap-4 items-center w-fit !border-1 !border-primary hover:!border-black !bg-primary hover:!bg-black'>
+          <Button onClick={Addcart} className='flex gap-4 items-center w-fit !border-1 !border-primary hover:!border-black !bg-primary hover:!bg-black !px-4'>
             <AiOutlineShoppingCart className='text-white text-xl' />
             <p className='text-white text-sm'>Add to Cart</p>
           </Button>
@@ -177,7 +192,7 @@ const Productdetails = ({ singleproducts }) => {
 
         <div className='flex items-center gap-2'>
           <div onClick={() => setWishlist(!wishlist)}>
-            {wishlist ?<FaHeart className='text-2xl cursor-pointer text-primary'/> : <FaRegHeart className='text-2xl cursor-pointer'/>}
+            {wishlist ? <FaHeart className='text-2xl cursor-pointer text-primary' /> : <FaRegHeart className='text-2xl cursor-pointer' />}
           </div>
 
           <p className='hover:text-primary'>Add to Wishlist</p>

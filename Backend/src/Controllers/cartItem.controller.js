@@ -9,10 +9,10 @@ const cartItemcontroller = async (req, res) => {
     if (!userId) {
       throw new Error("Invalid User");
     }
-    const { productId } = req.body;
+    const { productId, quantity } = req.body; 
 
-    if (!productId) {
-      throw new Error("Provide ProductId");
+    if (!productId ) {
+      return res.status(401).json("Provide productId")
     }
 
     const ExistProduct = await CartProduct.findOne({
@@ -27,7 +27,7 @@ const cartItemcontroller = async (req, res) => {
     const createCartItem = await CartProduct.create({
       userId,
       productItems: productId,
-      quantity: 1,
+      quantity: quantity || 1,
     });
 
     await User.updateOne(
