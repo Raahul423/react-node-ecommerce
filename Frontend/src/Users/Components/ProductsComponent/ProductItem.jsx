@@ -53,6 +53,7 @@ const ProductItem = () => {
             const res = await api.get(`products/featured-product?category=${activeCategory}`);
             // console.log(res);
             setProducts(res?.data?.isFeatureProduct);
+            setProducts((prev)=>[...prev].sort(()=>Math.random()-0.56))
         }
 
         loadFeatureProducts();
@@ -113,7 +114,7 @@ const ProductItem = () => {
                                         <div className='w-60 rounded-md shadow shadow-gray-500'>
                                             <div className='relative overflow-hidden group h-70'>
 
-                                                <Link to={'/product/786987'}>
+                                                <Link to={`/product/${product?._id}`}>
                                                     <img className='h-70 w-70 object-cover object-top rounded-md p-2' src={product.images[0]?.url} alt="error" />
 
                                                     <img className='h-70 w-70 p-2 group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover object-top rounded-md' src={product.images[1]?.url} alt="error" />

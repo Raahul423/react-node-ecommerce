@@ -37,7 +37,7 @@ const ReuseableComponents = ({ title, products = [] }) => {
                             <div className='rounded-md shadow shadow-gray-500 w-60'>
 
                                 <div className='relative overflow-hidden group h-70'>
-                                    <Link to={'/product/786987'}>
+                                    <Link to={`/product/${items?._id}`}>
                                         <img className='h-70 w-70 object-cover rounded-md p-2 object-top' src={items.images[0].url} alt="error" />
 
                                         <img className='h-70 w-70 rounded-md group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover p-2 object-top' src={items.images[1]?.url} alt="error" />
