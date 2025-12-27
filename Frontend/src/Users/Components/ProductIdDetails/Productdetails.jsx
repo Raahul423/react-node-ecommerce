@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { Button, Pagination, Rating } from '@mui/material'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import InnerImageZoom from 'react-inner-image-zoom'
@@ -7,9 +7,10 @@ import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icon
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
 import api from '../../../Utils/api'
+import { MyContext } from '../../../Provider'
 
 const Productdetails = ({ singleproducts }) => {
-
+  const { toastMessage, isAuth } = useContext(MyContext)
   const [isclick, setIsclick] = useState(0)
   const [count, setCount] = useState(1)
   const [isactive, setIsactive] = useState(null)
@@ -17,16 +18,21 @@ const Productdetails = ({ singleproducts }) => {
   const [wishlist, setWishlist] = useState(false)
 
   const Addcart = async () => {
-    try {
-      const productId = singleproducts?._id
 
-      const res = await api.post("/cartitems/add-items",{
+    try {
+      if (!isAuth) {
+        toastMessage("error", "Login to Proceed..");
+        return; 
+      }
+      const productId = singleproducts?._id
+      const res = await api.post("/cartitems/add-items", {
         productId,
-        quantity:count
+        quantity: count
       });
-      console.log(res);
+      toastMessage("success", res?.data?.message);
     } catch (error) {
       console.error(error?.message);
+      toastMessage("error", error?.response?.data?.message);
     }
   }
 

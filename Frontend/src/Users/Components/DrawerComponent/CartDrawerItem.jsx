@@ -1,30 +1,49 @@
 import { Button } from '@mui/material';
+import { useContext, useEffect, useState } from 'react';
 import { MdDelete } from "react-icons/md";
 import { Link } from 'react-router';
+import api from '../../../Utils/api';
+import { MyContext } from '../../../Provider';
 
 const CartDrawerItem = () => {
+  const {authloading}= useContext(MyContext);
+  const [cartProducts, setCartProducts] = useState([]);
+
+  if(authloading){
+    <div>Loading...</div>
+  }
+
+  useEffect(()=>{
+    const cartItems = async()=>{
+      const res = await api.get("/cartitems/allproducts");
+      console.log(res);
+      
+      setCartProducts(res?.data?.cartItems);
+    }
+    cartItems();
+  },[])
   return (
     <section className='my-container py-4 relative'>
       <div>
-        <h1>Shopping Cart(0)</h1>
+        <h1>Shopping Cart ({cartProducts.length})</h1>
       </div>
 
       <span className='horizontal-line' />
 
 
       <div className='scroll !max-h-[550px] '>
-        {Array.from({ length: 15 }).map((idx) => (
+        {cartProducts.map((items,idx) => (
           <div key={idx} className='flex justify-between items-center px-1 py-2  border-b-1 border-gray-600/50'>
-            <div className='flex gap-2'>
-              <div className="h-20 w-20  overflow-hidden rounded-md">
-                <img className='h-20 w-20 rounded-md object-cover object-top hover:scale-110 transition-all ease-in-out cursor-pointer' src="https://serviceapi.spicezgold.com/download/1753711304615_zoom_0-1677748187.jpg" alt="" />
+            <div className='flex gap-4'>
+              <div className="h-20 w-20 overflow-hidden rounded-md flex items-center justify-center">
+                <img className='h-15 w-15 rounded-md object-cover object-top hover:scale-110 transition-all ease-in-out cursor-pointer' src={items?.productItems?.images[0]?.url} alt="error" />
               </div>
 
               <div className='flex flex-col justify-center '>
-                <p className="text-gray-800/90">mandarin collar prin...</p>
+                <p className="text-gray-800/90 two-line-ellipsis">{items?.productItems?.brand}</p>
                 <div className='flex gap-4 justify-around'>
-                  <p className="text-gray-800/90">Qty : 1</p>
-                  <p className="">₹785.00</p>
+                  <p className="text-gray-800/90">Qty : {items.quantity}</p>
+                  <p className="">₹{items?.productItems?.price}.00</p>
                 </div>
               </div>
             </div>
@@ -41,7 +60,7 @@ const CartDrawerItem = () => {
 
       <div className='fixed bottom-2 flex flex-col'>
         <div className='flex justify-between border-t-1 border-gray-600/50 py-3'>
-          <p className='!font-medium'>2 item</p>
+          <p className='!font-medium'>{cartProducts.length} item</p>
           <p className='!font-medium'>₹1,784.00</p>
         </div>
 

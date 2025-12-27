@@ -29,17 +29,13 @@ import Newgeneratepassword from './Common/Newgeneratepassword'
 import AdminAuthProvider from './AdminAuthProvider'
 
 
-
-
-
-
-
 function App() {
   return (
-    <>
-      <AdminAuthProvider>
-        {/* {admin route} */}
+    <AdminAuthProvider>
+      <Provider>
         <Routes>
+
+          {/* Admin Routes */}
           <Route element={<AdminLayout />}>
             <Route path='/admin' element={<Dashboard />} />
             <Route path='/homeslide' element={<Homebanner />} />
@@ -50,22 +46,11 @@ function App() {
             <Route path='/users' element={<Users />} />
             <Route path='/managelogo' element={<ManageLogo />} />
           </Route>
+
           <Route path='/admin/register' element={<RegisterAdmin />} />
           <Route path='/admin/login' element={<LoginAdmin />} />
-          <Route path='/update-password' element={<Newgeneratepassword />} />
-          <Route path='/verify-email' element={<Verifyemail />} />
-          <Route path='/forgot-password' element={< OtpComponent />} />
-        </Routes>
-      </AdminAuthProvider>
 
-
-
-
-
-
-      <Provider>
-        <Routes>
-          {/* {User Routes} */}
+          {/* User Routes  */}
           <Route element={<Layout />} >
             <Route path='/' element={<Home />} />
             <Route path='/category/:cat' element={<Products />} />
@@ -81,17 +66,15 @@ function App() {
               <Route path='myorder' element={<Myorder />} />
             </Route>
           </Route>
+
+          {/* Common Routes */}
           <Route path='/update-password' element={<Newgeneratepassword />} />
           <Route path='/verify-email' element={<Verifyemail />} />
-          <Route path='/forgot-password' element={< OtpComponent />} />
+          <Route path='/forgot-password' element={<OtpComponent />} />
+
         </Routes>
-        {/* <Route path='*' element={<NotFound />} /> */}
       </Provider>
-
-    </>
-
-  )
+    </AdminAuthProvider>
+  );
 }
 export default App;
-
-
