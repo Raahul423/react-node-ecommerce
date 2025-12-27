@@ -9,6 +9,7 @@ import { useParams } from 'react-router'
 const ProductsId = () => {
   const { id } = useParams();
   const [singleproducts, setSingleproducts] = useState([]);
+  const [relatedProducts, setRelatedProducts] = useState([]);
 
   useEffect(() => {
     const fetchedProducts = async () => {
@@ -16,18 +17,32 @@ const ProductsId = () => {
         const res = await api.get(`/products/singlepro/${id}`);
         console.log(res);
         setSingleproducts(res?.data?.product);
-        
+
       } catch (error) {
         console.error(error?.message)
       }
     }
     fetchedProducts();
   }, [id]);
+
+  useEffect(() => {
+    const categoryId = singleproducts?.category?.name?.toLowerCase();
+    if (!categoryId) return;
+
+    const beautyProducts = async () => {
+      const res = await api.get(`products/filter-products?cat=${categoryId}`);
+      setRelatedProducts(res?.data?.filterProduct);
+      setRelatedProducts((prev)=>[...prev].sort(()=>Math.random()-0.56))
+    }
+    beautyProducts();
+  }, [singleproducts]);
+
+
   return (
     <section className='my-container'>
-      <Productdetails singleproducts={singleproducts}/>
+      <Productdetails singleproducts={singleproducts} />
       <ReviewSection />
-      <ReuseableComponents title={"Related Products"} />
+      <ReuseableComponents title={"Related Products"} products={relatedProducts} />
     </section>
   )
 }

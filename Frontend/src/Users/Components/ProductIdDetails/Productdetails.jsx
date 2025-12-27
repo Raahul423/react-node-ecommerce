@@ -5,7 +5,7 @@ import InnerImageZoom from 'react-inner-image-zoom'
 import 'react-inner-image-zoom/lib/styles.min.css'
 import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
-import { FaRegHeart } from 'react-icons/fa'
+import { FaHeart, FaRegHeart } from 'react-icons/fa'
 
 const Productdetails = ({ singleproducts }) => {
 
@@ -13,6 +13,8 @@ const Productdetails = ({ singleproducts }) => {
   const [count, setCount] = useState(1)
   const [isactive, setIsactive] = useState(null)
   const swiperref = useRef(null)
+  const [wishlist, setWishlist] = useState(false)
+
 
   const goto = (idx) => {
     setIsclick(idx)
@@ -27,8 +29,6 @@ const Productdetails = ({ singleproducts }) => {
     setCount((prev) => prev > 1 ? prev - 1 : 1);
   }
 
-  console.log(singleproducts?.category?.name);
-  
   return (
     <section className='grid grid-cols-[40%_60%] gap-12  my-8 h-[500px] py-4'>
 
@@ -79,13 +79,13 @@ const Productdetails = ({ singleproducts }) => {
             <p>{singleproducts?.brand}</p>
           </div>
 
-          <Rating  value={Number(singleproducts?.rating)} readOnly />
+          <Rating value={Number(singleproducts?.rating)} readOnly />
 
           <p>Review(23)</p>
         </div>
 
-        <div className='flex gap-8 items-center'>
-          <div className='flex w-40 justify-between gap-4'>
+        <div className='flex gap-4 items-center'>
+          <div className='flex gap-4'>
             <p className='line-through text-gray-800/80 !text-2xl'>₹{singleproducts?.oldprice}</p>
             <p className='!text-2xl text-primary'>₹{singleproducts?.price}</p>
           </div>
@@ -176,7 +176,10 @@ const Productdetails = ({ singleproducts }) => {
         </div>
 
         <div className='flex items-center gap-2'>
-          <FaRegHeart className='text-xl' />
+          <div onClick={() => setWishlist(!wishlist)}>
+            {wishlist ?<FaHeart className='text-2xl cursor-pointer text-primary'/> : <FaRegHeart className='text-2xl cursor-pointer'/>}
+          </div>
+
           <p className='hover:text-primary'>Add to Wishlist</p>
         </div>
       </div>
