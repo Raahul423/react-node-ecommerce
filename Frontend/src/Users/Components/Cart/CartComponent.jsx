@@ -114,7 +114,7 @@ const CartComponent = () => {
                     </div>
                 </div>
                 <div className='py-6'>
-                    <Link>
+                    <Link to={"/checkout"}>
                         <Button className='flex gap-4 items-center w-full !border-1 !border-primary hover:!border-black !bg-primary hover:!bg-black !px-10 !py-3'>
                             <p className='text-white text-sm'>Checkout</p>
                         </Button>

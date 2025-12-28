@@ -18,7 +18,7 @@ const Header = () => {
 
     const { isAuth} = useContext(MyContext);
     const { toggleDrawer } = useContext(CartContext);
-    const [cartProducts, setCartProducts] = useState([])
+    const [cartProducts, setCartProducts] = useState([0])
 
     useEffect(()=>{
         const productCount = async()=>{
@@ -85,7 +85,7 @@ const Header = () => {
                         <Tooltip title='Cart'>
                             <IconButton aria-label="cart" onClick={toggleDrawer(true)}>
                                 <StyledEngineProvider>
-                                    <Badge color='secondary' badgeContent={cartProducts}>
+                                    <Badge color='secondary' badgeContent={cartProducts }>
                                         <ShoppingCartIcon />
                                     </Badge>
 

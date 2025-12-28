@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import ReuseableComponents from '../ReuseComponent/ReuseableComponents';
 import api from '../../../Utils/api';
+import { LoadingProduct } from '../../Pages/LoadingProduct';
 
 
 const FeatureProduct = () => {
@@ -17,6 +18,7 @@ const FeatureProduct = () => {
 
     return (
         <section className='my-container'>
+            {/* <LoadingProduct title={"Feature Products"}/> */}
             <ReuseableComponents title={"Feature Products"} products={feature} />
         </section>
     )
