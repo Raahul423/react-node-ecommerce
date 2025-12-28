@@ -66,6 +66,20 @@ const getallProductsinCart = async (req, res) => {
   }
 };
 
+//get total product count
+const productCount = async(req,res)=>{
+  try {
+    const totalproducts = await CartProduct.countDocuments();
+    if(!totalproducts){
+      return res.status(404).json({success:false,message:"Products not found..."})
+    }
+
+    return res.status(200).json({success:true,message:"Total Product Fetched...",totalproducts});
+  } catch (error) {
+    return res.status(500).json({succes:false,message:error?.message})
+  }
+}
+
 // update cart Items Quantity
 const updateItem = async (req, res) => {
   try {
@@ -127,4 +141,4 @@ const deleteItem = async (req, res) => {
   }
 };
 
-export { cartItemcontroller, getallProductsinCart, updateItem, deleteItem };
+export { cartItemcontroller, getallProductsinCart, updateItem, deleteItem, productCount };

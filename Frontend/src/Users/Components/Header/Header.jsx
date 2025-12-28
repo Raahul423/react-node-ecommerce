@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Badge from '@mui/material/Badge';
 import { assest } from '../../../assets/Assests'
@@ -12,12 +12,21 @@ import Search from './Subheader.jsx/Search';
 import LoginCheck from './Subheader.jsx/LoginCheck';
 import { CartContext } from '../../../Context/CartDrawer';
 import { MyContext } from '../../../Provider';
+import api from '../../../Utils/api';
 
 const Header = () => {
 
     const { isAuth} = useContext(MyContext);
     const { toggleDrawer } = useContext(CartContext);
+    const [cartProducts, setCartProducts] = useState([])
 
+    useEffect(()=>{
+        const productCount = async()=>{
+            const res = await api.get("cartitems/countproduct");
+            setCartProducts(res?.data?.totalproducts);
+        }
+        productCount();
+    },[])
 
     return (
         <header className='bg-white shadow-xl sticky top-0 z-100 '>
@@ -76,7 +85,7 @@ const Header = () => {
                         <Tooltip title='Cart'>
                             <IconButton aria-label="cart" onClick={toggleDrawer(true)}>
                                 <StyledEngineProvider>
-                                    <Badge color='secondary' badgeContent={4}>
+                                    <Badge color='secondary' badgeContent={cartProducts}>
                                         <ShoppingCartIcon />
                                     </Badge>
 
