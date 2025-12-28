@@ -27,12 +27,14 @@ import Verifyemail from './Common/Verifyemail'
 import OtpComponent from './Common/OtpComponent'
 import Newgeneratepassword from './Common/Newgeneratepassword'
 import AdminAuthProvider from './AdminAuthProvider'
+import Header from './Users/Components/Header/Header'
 
 
 function App() {
   return (
-    <AdminAuthProvider>
-      <Provider>
+
+    <Provider>
+      <AdminAuthProvider>
         <Routes>
 
           {/* Admin Routes */}
@@ -49,6 +51,7 @@ function App() {
 
           <Route path='/admin/register' element={<RegisterAdmin />} />
           <Route path='/admin/login' element={<LoginAdmin />} />
+
 
           {/* User Routes  */}
           <Route element={<Layout />} >
@@ -73,8 +76,8 @@ function App() {
           <Route path='/forgot-password' element={<OtpComponent />} />
 
         </Routes>
-      </Provider>
-    </AdminAuthProvider>
+      </AdminAuthProvider>
+    </Provider>
   );
 }
 export default App;

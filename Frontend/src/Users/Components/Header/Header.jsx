@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router'
+import { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import Badge from '@mui/material/Badge';
 import { assest } from '../../../assets/Assests'
 import { FaRegHeart } from 'react-icons/fa'
@@ -14,8 +14,10 @@ import { CartContext } from '../../../Context/CartDrawer';
 import { MyContext } from '../../../Provider';
 
 const Header = () => {
-    const { isAuth } = useContext(MyContext);
+
+    const { isAuth} = useContext(MyContext);
     const { toggleDrawer } = useContext(CartContext);
+
 
     return (
         <header className='bg-white shadow-xl sticky top-0 z-100 '>

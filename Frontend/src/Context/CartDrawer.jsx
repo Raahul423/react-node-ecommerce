@@ -5,9 +5,9 @@ import CartDrawerItem from '../Users/Components/DrawerComponent/CartDrawerItem';
 
 const CartContext = createContext();
 
-const CartDrawer = ({children}) => {
+const CartDrawer = ({ children }) => {
 
-   const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -15,12 +15,12 @@ const CartDrawer = ({children}) => {
 
   const DrawerList = (
     <Box sx={{ width: 400 }} role="presentation" onClick={toggleDrawer(false)}>
-      <CartDrawerItem/>
+      <CartDrawerItem />
     </Box>
   );
   return (
-    <CartContext.Provider value={{toggleDrawer}}>
-     {children}
+    <CartContext.Provider value={{ toggleDrawer }}>
+      {children}
       <Drawer open={open} onClose={toggleDrawer(false)} anchor='right'>
         {DrawerList}
       </Drawer>
@@ -30,4 +30,4 @@ const CartDrawer = ({children}) => {
 }
 
 export default CartDrawer
-export {CartContext}
+export { CartContext }

@@ -36,18 +36,16 @@ const CheckoutComponent = () => {
         const fetchaddress = async () => {
             try {
                 const response = await api.get("/address/user-address")
-                console.log(response);
-
                 setAddress(response.data.alladdress);
             } catch (error) {
-                toastMessage("error", error.message)
+               console.error(error)
             }
         }
 
         if (isAuth) {
             fetchaddress();
         };
-    }, [isAuth, toastMessage])
+    }, [isAuth]);
 
 
     if (authloading) {
@@ -163,7 +161,6 @@ const CheckoutComponent = () => {
     const deleteAddress = async (idx) => {
         try {
             const addressId = address[idx]._id;
-
             const response = await api.delete(`/address/${addressId}`);
 
             setAddress(prev =>
@@ -176,11 +173,7 @@ const CheckoutComponent = () => {
             setEditIndex(null);
 
         } catch (error) {
-            if (error.response) {
-                toastMessage("error", error.response?.data?.message)
-            } else {
-                toastMessage("error", "Server not responding please try again ...")
-            }
+          console.error(error)
         }
     }
 
