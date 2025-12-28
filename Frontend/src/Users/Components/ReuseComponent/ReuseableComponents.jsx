@@ -22,7 +22,6 @@ const ReuseableComponents = ({ title, products = [] }) => {
             </div>
 
 
-
             <Swiper
                 navigation={true}
                 slidesPerGroup={2}

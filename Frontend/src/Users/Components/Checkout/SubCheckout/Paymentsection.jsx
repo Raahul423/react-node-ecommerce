@@ -14,8 +14,8 @@ const Paymentsection = () => {
             </div>
 
 
-            <div className='scroll max-h-[250px]'>
-                {Array.from({ length: 6 }).map((idx) => (
+            <div className='scroll'>
+                {Array.from({ length: 20 }).map((idx) => (
                     <div key={idx} className='flex justify-between my-2'>
                         <div className='flex gap-2'>
                             <img className='h-15 w-15 object-cover object-top rounded-md' src="https://serviceapi.spicezgold.com/download/1753711304615_zoom_0-1677748187.jpg" alt="" />
