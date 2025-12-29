@@ -13,7 +13,7 @@ const BeautyProducts = () => {
         const beautyProducts = async () => {
             const res = await api.get(`products/filter-products?cat=beauty`);
             setBeauty(res?.data?.filterProduct);
-            setLoading(true)
+            setLoading(false)
         }
         beautyProducts();
     }, [])

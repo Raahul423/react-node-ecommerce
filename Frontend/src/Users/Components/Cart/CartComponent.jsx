@@ -1,66 +1,49 @@
-import { Button } from '@mui/material'
-import { Link } from 'react-router';
-import SizeComponent from './Size/SizeComponent';
-import { useState } from 'react';
+import { Button, Rating } from '@mui/material'
+import { RxCross2 } from "react-icons/rx";
+import { Link, Navigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import api from '../../../Utils/api';
+import { MyContext } from '../../../Provider';
 
 
 const CartComponent = () => {
-    const [cartItem, setCartItem] = useState([
-        {
-            id: 1,
-            name: "Campus Sutra",
-            title: "Men Comfort Cuban Collar Solid Polycotton Casual Shirt...",
-            price: "₹1350",
-            originalPrice: "₹1450",
-            size: "S",
-            img: "https://serviceapi.spicezgold.com/download/1742462909156_gdgd1.jpg",
-        },
-        {
-            id: 2,
-            name: "Levis",
-            title: "Men Regular Fit Cotton Casual Shirt...",
-            price: "₹1750",
-            originalPrice: "₹1950",
-            size: "M",
-            img: "https://serviceapi.spicezgold.com/download/1742462909156_gdgd1.jpg",
-        },
-         {
-            id: 3,
-            name: "Levis",
-            title: "Men Regular Fit Cotton Casual Shirt...",
-            price: "₹1750",
-            originalPrice: "₹1950",
-            size: "M",
-            img: "https://serviceapi.spicezgold.com/download/1742462909156_gdgd1.jpg",
-        },
-         {
-            id: 4,
-            name: "Levis",
-            title: "Men Regular Fit Cotton Casual Shirt...",
-            price: "₹1750",
-            originalPrice: "₹1950",
-            size: "M",
-            img: "https://serviceapi.spicezgold.com/download/1742462909156_gdgd1.jpg",
-        },
-    ])
+    const { isAuth } = useContext(MyContext);
+    const [cartItem, setCartItem] = useState([]);
+    const [loading, setLoading] = useState(false)
 
-
-    const sizecomponent = (id, setsize) => {
-        setCartItem((prev) => {
-            return prev.map((item) => {
-                return item.id === id ? { ...item, size: setsize } : item
-            })
-        })
+    if (!isAuth) {
+        <Navigate to={"/"} replace />
     }
 
+    useEffect(() => {
+        setLoading(true)
+        const cartItmedata = async () => {
+            const res = await api.get("/cartitems/allproducts");
+            setCartItem(res?.data?.cartItems);
+            console.log(res);
 
-    const removeItem = (id) => {
-        setCartItem((prev) => {
-            return prev.filter((item) => {
-                return item.id !== id
-            })
-        })
-    }
+            setLoading(false)
+        }
+        cartItmedata();
+    }, []);
+
+
+    // const sizecomponent = (id, setsize) => {
+    //     setCartItem((prev) => {
+    //         return prev.map((item) => {
+    //             return item.id === id ? { ...item, size: setsize } : item
+    //         })
+    //     })
+    // }
+
+
+    // const removeItem = (id) => {
+    //     setCartItem((prev) => {
+    //         return prev.filter((item) => {
+    //             return item.id !== id
+    //         })
+    //     })
+    // }
 
     return (
         <section className='my-container flex px-12 py-10 gap-6'>
@@ -77,12 +60,34 @@ const CartComponent = () => {
 
                 <div>
                     {cartItem.map((item) => (
-                        <SizeComponent
-                            key={item.id}
-                            item={item}
-                            onsizeChange={sizecomponent}
-                            onremove={removeItem}
-                        />
+                        <div className='flex justify-between border-t-1 border-gray-700/50 p-4'>
+                            <div className='flex gap-4'>
+                                <div className='w-25 rounded-md overflow-hidden '>
+                                    <img className='rounded-md hover:scale-110 transition-all ease-in-out cursor-pointer' src={item?.productItems?.images[0]?.url} alt="Error" />
+                                </div>
+
+                                <div className='flex flex-col gap-1 justify-center'>
+                                    <p className='!text-sm'>{item?.productItems?.name}</p>
+
+                                    <h1 className='!text-xl'>{item?.productItems.brand}</h1>
+
+                                    <Rating name="half-rating-read" defaultValue={item?.productItems?.rating} readOnly />
+
+
+                                    <div className='flex gap-4'>
+                                        <p>₹{item?.productItems?.price}</p>
+                                        <p className='line-through text-gray-600/70'>₹{item?.productItems?.oldprice}</p>
+                                        <p className='text-red-600'>
+                                            {item?.productItems?.discount}% OFF
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <RxCross2 onClick={""} className='text-2xl cursor-pointer' />
+                            </div>
+                        </div>
                     ))}
                 </div>
 

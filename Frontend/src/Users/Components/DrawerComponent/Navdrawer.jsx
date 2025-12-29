@@ -52,7 +52,7 @@ const Navdrawer = ({setIsOpen, IsOpen}) => {
 
                 <div>
                     {categorydata.map((data,idx) => (
-                        <div key={idx} className=''>
+                        <div key={idx}>
                             <ul className='list-none'>
                                 <Link className='flex relative justify-between text-xl w-full my-2 px-2' to={'/'} >{data.name} <SquarePlus className={`${isopeen === idx ? '!hidden':''}`} onClick={()=>toggle(idx)}/>
                                  <SquareMinus className={`${isopeen === idx ? '':'!hidden'}`} onClick={()=>toggle(idx)} />
