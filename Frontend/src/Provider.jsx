@@ -89,7 +89,6 @@ const Provider = ({ children }) => {
 
     return (
         <>
-            <ToastContainer position="bottom-center" toastStyle={{ background: "#1e1e1e", color: "#fff" }} autoClose={2000} />
             <MyContext.Provider value={value}>
                 <CartDrawer>
                     <DialogComponent>
