@@ -7,43 +7,49 @@ import { MyContext } from '../../../Provider';
 
 
 const CartComponent = () => {
+    const { toastMessage, authloading } = useContext(MyContext);
     const { isAuth } = useContext(MyContext);
     const [cartItem, setCartItem] = useState([]);
-    const [loading, setLoading] = useState(false)
-
-    if (!isAuth) {
-        <Navigate to={"/"} replace />
-    }
 
     useEffect(() => {
-        setLoading(true)
+
         const cartItmedata = async () => {
             const res = await api.get("/cartitems/allproducts");
             setCartItem(res?.data?.cartItems);
             console.log(res);
 
-            setLoading(false)
         }
         cartItmedata();
     }, []);
 
+    if (authloading) {
+        return <div>Loading...</div>;
+    }
 
-    // const sizecomponent = (id, setsize) => {
-    //     setCartItem((prev) => {
-    //         return prev.map((item) => {
-    //             return item.id === id ? { ...item, size: setsize } : item
-    //         })
-    //     })
-    // }
+    if (!isAuth) {
+        toastMessage("error", "Please login first!");
+        return <Navigate to="/login" replace />;
+    }
 
 
-    // const removeItem = (id) => {
-    //     setCartItem((prev) => {
-    //         return prev.filter((item) => {
-    //             return item.id !== id
-    //         })
-    //     })
-    // }
+
+
+    const deleteCartItems = async (productId) => {
+        try {
+            const itemid = productId
+            const res = await api.delete("cartitems/deleteitem", {
+                data: { itemId: itemid }
+            });
+            setCartItem((prev) => {
+                return prev.filter((item) => {
+                    return item?._id !== itemid
+                })
+            })
+            toastMessage("success", res?.data?.message);
+        } catch (error) {
+            console.error(error?.message);
+        }
+    }
 
     return (
         <section className='my-container flex px-12 py-10 gap-6'>
@@ -85,7 +91,7 @@ const CartComponent = () => {
                             </div>
 
                             <div>
-                                <RxCross2 onClick={""} className='text-2xl cursor-pointer' />
+                                <RxCross2 onClick={() => deleteCartItems(item?._id)} className='text-2xl cursor-pointer' />
                             </div>
                         </div>
                     ))}

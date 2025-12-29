@@ -7,13 +7,6 @@ import { MyContext } from '../../Provider'
 
 
 const Dashboard = () => {
-  // const {isAuth,toastMessage} = useContext(MyContext);
-
-  // if(isAuth === false ){
-  //   toastMessage("error","Please Login First....")
-  //   return;
-  // }
-
   return (
      <section>
       <DashboardHeader/>
