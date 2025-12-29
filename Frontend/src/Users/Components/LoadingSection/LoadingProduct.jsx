@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 export const LoadingProduct = ({ title }) => {
     return (
         <section>
-            <div className="flex justify-between py-10">
+            <div>
                 <h1 className="text-gray-900/90 text-2xl font-medium">{title}</h1>
             </div>
 

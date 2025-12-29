@@ -16,8 +16,8 @@ const LatestProduct = () => {
       setLatestproduct(res?.data?.product);
       setLatestproduct((prev) => [...prev].sort(() => Math.random() - 0.5));
     }
-    fetchlatestProduct();
     setLoading(false)
+    fetchlatestProduct();
   }, []);
 
   return (
