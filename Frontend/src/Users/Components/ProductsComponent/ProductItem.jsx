@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Button, Rating, Stack, Tab, Tabs } from '@mui/material'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -64,7 +64,6 @@ const ProductItem = () => {
 
 
 
-    // when I click to category tab then its response
     const handleChange = (event, newValue) => {
         setTabs(newValue);
         setActiveCategory(categories[newValue]._id)

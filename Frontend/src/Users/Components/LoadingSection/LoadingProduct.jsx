@@ -1,4 +1,3 @@
-import React from "react";
 import { Button, Rating, Stack } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -8,7 +7,7 @@ import "swiper/css/navigation";
 export const LoadingProduct = ({ title }) => {
     return (
         <section>
-            <div>
+            <div className="py-4">
                 <h1 className="text-gray-900/90 text-2xl font-medium">{title}</h1>
             </div>
 

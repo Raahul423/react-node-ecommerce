@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import ReuseableComponents from '../ReuseComponent/ReuseableComponents';
 import api from '../../../Utils/api';
-import { LoadingProduct } from '../../Pages/LoadingProduct';
-import { Flashlight } from 'lucide-react';
+import { LoadingProduct } from '../LoadingSection/LoadingProduct';
+
+
 
 
 const LatestProduct = () => {
@@ -15,8 +16,8 @@ const LatestProduct = () => {
       const res = await api.get("/products/allproducts");
       setLatestproduct(res?.data?.product);
       setLatestproduct((prev) => [...prev].sort(() => Math.random() - 0.5));
+      setLoading(false)
     }
-    setLoading(false)
     fetchlatestProduct();
   }, []);
 
