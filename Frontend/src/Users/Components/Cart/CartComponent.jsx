@@ -12,7 +12,6 @@ const CartComponent = () => {
     const [cartItem, setCartItem] = useState([]);
 
     useEffect(() => {
-
         const cartItmedata = async () => {
             const res = await api.get("/cartitems/allproducts");
             setCartItem(res?.data?.cartItems);
@@ -30,7 +29,6 @@ const CartComponent = () => {
         toastMessage("error", "Please login first!");
         return <Navigate to="/login" replace />;
     }
-
 
 
 

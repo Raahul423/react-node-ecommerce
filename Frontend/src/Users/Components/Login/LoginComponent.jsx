@@ -36,6 +36,7 @@ const LoginComponent = () => {
             setLoding(true)
             const res = await api.post('/users/forget-password', { email: verifyaccount.email })
 
+            setLoding(false)
             localStorage.setItem("email", verifyaccount.email);
             localStorage.setItem("loginType", verifyaccount.loginType);
             toastMessage("success", res?.data.message)
@@ -43,13 +44,7 @@ const LoginComponent = () => {
                 navigate("/forgot-password")
             }, 2000);
         } catch (error) {
-            if (error?.response) {
-                toastMessage("error", error?.response?.data?.message)
-            } else {
-                toastMessage("error", "Server not respond please try again...")
-            }
-        } finally {
-            setLoding(false)
+            console.error(error?.message);
         }
     }
 
@@ -69,9 +64,8 @@ const LoginComponent = () => {
             return;
         }
 
-
+        setLoding(true);
         try {
-            setLoding(true);
             const response = await api.post('/users/login', verifyaccount);
 
             const { createdUser, token, message } = response.data
@@ -85,21 +79,15 @@ const LoginComponent = () => {
                 password: ""
             });
 
+            setLoding(false);
+            toastMessage("success", message || "Login Successfully")
+            navigate('/');
             localStorage.setItem("token", token);
             localStorage.setItem("user", JSON.stringify(createdUser));
 
-            navigate('/');
-
-            toastMessage("success", message || "Login Successfully")
-
         } catch (error) {
-            if (error.response) {
-                toastMessage("error", error.response?.data?.message)
-            } else {
-                toastMessage("error", "Server not responding Please try again...");
-            }
-        } finally {
-            setLoding(false)
+            setLoding(false);
+            toastMessage("error", error?.response?.data?.message);
         }
     }
 
@@ -121,7 +109,6 @@ const LoginComponent = () => {
                 </div>
 
                 <Box
-                    onSubmit={login}
                     component="form"
                     noValidate
                     autoComplete="off"
@@ -166,7 +153,7 @@ const LoginComponent = () => {
                         <p className='hover:text-primary cursor-pointer'>Forget Password?</p>
                     </div>
 
-                    <Button type='submit' className='w-full !bg-primary !text-white !py-2.5'>
+                    <Button onClick={login} className='w-full !bg-primary !text-white !py-2.5'>
                         <p className=''>Login</p>
                     </Button>
 

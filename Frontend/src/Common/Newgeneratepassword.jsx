@@ -1,13 +1,13 @@
 import { Box, Button, CircularProgress, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { useNavigate } from 'react-router';
 import api from '../Utils/api';
-import { MyContext } from '../Provider';
-import { AdminContext } from '../AdminAuthProvider';
+import { ToastContainer, toast } from 'react-toastify';
+
+
 
 const Newgeneratepassword = () => {
-    const { toastMessage } = useContext(AdminContext);
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState("");
     const [ShowConfirmPassword, setShowConfirmPassword] = useState("");
@@ -31,30 +31,30 @@ const Newgeneratepassword = () => {
 
     const check = async () => {
         if (!resetpassword.newpassword || !resetpassword.confirmpassword) {
-            toastMessage("error", "Please Fill Both Of Them.")
+            toast.error("Please Fill Both Of Them.")
             return;
         }
 
 
         if (resetpassword.newpassword.length < 8) {
-            toastMessage("error", "password Should be 8 Character")
+            toast.error("password Should be 8 Character")
             return;
         }
 
         if (resetpassword.newpassword !== resetpassword.confirmpassword) {
-            toastMessage("error", "confirm password not matched.")
+            toast.error("confirm password not matched.")
             return;
         }
 
+        setLoading(true)
         try {
-            setLoading(true)
             const email = localStorage.getItem("email")
             await api.post("/users/resetpassword", {
                 email: email,
                 newpassword: resetpassword.newpassword
             })
-
-            toastMessage("success", "Successfully reset your password")
+            setLoading(false);
+            toast.success("Successfully reset your password")
 
             setTimeout(() => {
                 if (localStorage.getItem("loginType") === "admin") {
@@ -69,11 +69,8 @@ const Newgeneratepassword = () => {
             localStorage.removeItem("email");
 
         } catch (error) {
-            if (error.response) {
-                toastMessage("error", error.response?.data?.message)
-            } else {
-                toastMessage("error", "Server not response please try again ...")
-            }
+            setLoading(false)
+            toast.error(error?.reeponse?.data?.message);
         }
 
     }
@@ -168,6 +165,7 @@ const Newgeneratepassword = () => {
                         </Button>
                     </div>
                 </div>
+                <ToastContainer/>
             </section>
         </>
     )
