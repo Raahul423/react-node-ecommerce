@@ -128,7 +128,7 @@ const YourAccount = () => {
 
                   <FaRegHeart className='w-5 h-5' />
                 </ListItemIcon>
-                My-List
+                My-Wishlist
 
               </MenuItem >
             </Link >

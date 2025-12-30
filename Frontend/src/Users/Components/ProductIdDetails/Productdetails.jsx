@@ -8,22 +8,32 @@ import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
 import api from '../../../Utils/api'
 import { MyContext } from '../../../Provider'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const Productdetails = ({ singleproducts }) => {
-  const { toastMessage, isAuth } = useContext(MyContext)
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const { toastMessage, isAuth, authloading } = useContext(MyContext)
   const [isclick, setIsclick] = useState(0)
   const [count, setCount] = useState(1)
   const [isactive, setIsactive] = useState(null)
   const swiperref = useRef(null)
   const [wishlist, setWishlist] = useState(false)
 
-  const Addcart = async () => {
+  if (authloading) {
+    return <div>Loading...</div>
+  }
 
+
+  if (!isAuth) {
+    return (
+      toastMessage("error", "Login to Proceed.."),
+      navigate("/login")
+    )
+  }
+
+  const Addcart = async () => {
     try {
-      if (!isAuth) {
-        toastMessage("error", "Login to Proceed..");
-        return; 
-      }
       const productId = singleproducts?._id
       const res = await api.post("/cartitems/add-items", {
         productId,
@@ -34,6 +44,23 @@ const Productdetails = ({ singleproducts }) => {
       console.error(error?.message);
       toastMessage("error", error?.response?.data?.message);
     }
+  }
+
+
+  const wishList = async () => {
+    try {
+      const productId = id;
+      const response = await api.post("/wishlist/add-items", { productId })
+      toastMessage("success", response?.data?.message || "Added Successfully");
+    } catch (error) {
+      console.error(error?.message);
+    }
+  }
+
+
+  const wishlistclick = () => {
+    setWishlist(!wishlist);
+    wishList();
   }
 
 
@@ -197,7 +224,7 @@ const Productdetails = ({ singleproducts }) => {
         </div>
 
         <div className='flex items-center gap-2'>
-          <div onClick={() => setWishlist(!wishlist)}>
+          <div onClick={wishlistclick}>
             {wishlist ? <FaHeart className='text-2xl cursor-pointer text-primary' /> : <FaRegHeart className='text-2xl cursor-pointer' />}
           </div>
 

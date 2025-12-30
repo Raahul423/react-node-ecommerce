@@ -10,6 +10,7 @@ const CartComponent = () => {
     const { toastMessage, authloading } = useContext(MyContext);
     const { isAuth } = useContext(MyContext);
     const [cartItem, setCartItem] = useState([]);
+    const [totalAmount, setTotalAmount] = useState(0);
 
     useEffect(() => {
         const cartItmedata = async () => {
@@ -21,6 +22,14 @@ const CartComponent = () => {
         cartItmedata();
     }, []);
 
+    useEffect(() => {
+        const totalamount = cartItem.reduce((acc, item) => 
+            acc + (item?.productItems?.price * item?.quantity), 0
+        )
+        setTotalAmount(totalamount);
+    }, [cartItem])
+
+
     if (authloading) {
         return <div>Loading...</div>;
     }
@@ -29,6 +38,7 @@ const CartComponent = () => {
         toastMessage("error", "Please login first!");
         return <Navigate to="/login" replace />;
     }
+
 
 
 
@@ -111,7 +121,7 @@ const CartComponent = () => {
                 <div>
                     <div className='flex justify-between py-3'>
                         <p>Subtotal</p>
-                        <p>₹5,450.00</p>
+                        <p>₹{totalAmount.toLocaleString('en-IN')}.00</p>
                     </div>
                     <div className='flex justify-between py-3'>
                         <p>Shipping</p>
@@ -119,7 +129,7 @@ const CartComponent = () => {
                     </div>
                     <div className='flex justify-between py-3'>
                         <p>Total Amount</p>
-                        <p>₹5,450.00</p>
+                        <p>₹{totalAmount.toLocaleString('en-IN')}.00</p>
                     </div>
                 </div>
                 <div className='py-6'>
