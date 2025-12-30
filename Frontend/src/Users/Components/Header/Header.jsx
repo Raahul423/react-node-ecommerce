@@ -15,8 +15,7 @@ import { MyContext } from '../../../Provider';
 import api from '../../../Utils/api';
 
 const Header = () => {
-
-    const { isAuth} = useContext(MyContext);
+    const { isAuth, authloading} = useContext(MyContext);
     const { toggleDrawer } = useContext(CartContext);
     const [cartProducts, setCartProducts] = useState([0])
 
@@ -28,6 +27,10 @@ const Header = () => {
         productCount();
     },[])
 
+     if(authloading){
+        return <div> Loading ..... </div>
+    }
+    
     return (
         <header className='bg-white shadow-xl sticky top-0 z-100 '>
             <div className='top-strip border-1 border-gray-300'>
