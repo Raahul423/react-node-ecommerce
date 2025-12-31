@@ -24,13 +24,11 @@ const addItemWishlist = async (req, res) => {
       productId,
     });
 
-    return res
-      .status(200)
-      .json({
-        success: true,
-        newItem,
-        message: "Successfully Added in WishList",
-      });
+    return res.status(200).json({
+      success: true,
+      newItem,
+      message: "Successfully Added in WishList",
+    });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
@@ -45,13 +43,11 @@ const getwishListProduct = async (req, res) => {
       throw new Error("Item not found....");
     }
 
-    return res
-      .status(200)
-      .json({
-        success: true,
-        wishlistItems,
-        message: "Successfully fetched all wishList Items",
-      });
+    return res.status(200).json({
+      success: true,
+      wishlistItems,
+      message: "Successfully fetched all wishList Items",
+    });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
@@ -60,15 +56,16 @@ const getwishListProduct = async (req, res) => {
 // delete wishList
 const removeItem = async (req, res) => {
   try {
-    const userId = req.user._id;
+    const userId = req.user?._id;
     const { productId } = req.body;
     if (!productId) {
       throw new Error("please provide productId");
     }
 
     const deleteItem = await Wishlist.findOneAndDelete({
-        userId,
-       _id: productId});
+      userId,
+      productId,
+    });
 
     if (!deleteItem) {
       throw new Error("Item not found....");
@@ -82,4 +79,4 @@ const removeItem = async (req, res) => {
   }
 };
 
-export { addItemWishlist, getwishListProduct ,removeItem};
+export { addItemWishlist, getwishListProduct, removeItem };

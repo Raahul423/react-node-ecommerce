@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { Button, Pagination, Rating } from '@mui/material'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import InnerImageZoom from 'react-inner-image-zoom'
@@ -20,17 +20,46 @@ const Productdetails = ({ singleproducts }) => {
   const swiperref = useRef(null)
   const [wishlist, setWishlist] = useState(false)
 
+  useEffect(() => {
+    if (!isAuth) return;
+    const checkwishliststatus = async () => {
+      try {
+        const res = await api.get("wishlist/wishlist-products");
+        console.log(res);
+        const exists = res?.data?.wishlistItems?.some((item) => item?._id === id);
+        
+        setWishlist(exists);
+      } catch (error) {
+        console.error(error?.message);
+      }
+    }
+    checkwishliststatus();
+  }, [isAuth, id]);
+
   if (authloading) {
     return <div>Loading...</div>
   }
 
 
   if (!isAuth) {
-    return (
-      toastMessage("error", "Login to Proceed.."),
-      navigate("/login")
-    )
+    toastMessage("error", "Login to Proceed..")
+    navigate("/login")
+    return;
   }
+
+  const goto = (idx) => {
+    setIsclick(idx)
+    swiperref.current?.slideToLoop(idx)
+  }
+
+  const increase = () => {
+    setCount(count + 1);
+  }
+
+  const decrease = () => {
+    setCount((prev) => prev > 1 ? prev - 1 : 1);
+  }
+
 
   const Addcart = async () => {
     try {
@@ -47,35 +76,43 @@ const Productdetails = ({ singleproducts }) => {
   }
 
 
-  const wishList = async () => {
+  const addwishlist = async () => {
     try {
-      const productId = id;
-      const response = await api.post("/wishlist/add-items", { productId })
+      const response = await api.post("/wishlist/add-items", { productId: id })
       toastMessage("success", response?.data?.message || "Added Successfully");
     } catch (error) {
       console.error(error?.message);
     }
   }
 
+  const removewishlist = async () => {
+    try {
+      const res = await api.delete("/wishlist/remove-products", {
+        data: { productId: id },
+      });
+      toastMessage("success", res?.data?.message || "Removed from Wishlist!");
+    } catch (error) {
+      toastMessage("error", error?.response?.data?.message || "Failed to Remove!");
+    }
+  };
 
-  const wishlistclick = () => {
-    setWishlist(!wishlist);
-    wishList();
+
+  const handlewishlist = () => {
+    if (!isAuth) {
+      toastMessage("error", "Login to Continue");
+      navigate("/login");
+      return;
+    }
+
+    setWishlist((prev) => !prev);
+
+    if (!wishlist) {
+      addwishlist();
+    } else {
+      removewishlist();
+    }
   }
 
-
-  const goto = (idx) => {
-    setIsclick(idx)
-    swiperref.current?.slideToLoop(idx)
-  }
-
-  const increase = () => {
-    setCount(count + 1);
-  }
-
-  const decrease = () => {
-    setCount((prev) => prev > 1 ? prev - 1 : 1);
-  }
 
   return (
     <section className='grid grid-cols-[40%_60%] gap-12  my-8 h-[500px] py-4'>
@@ -224,7 +261,7 @@ const Productdetails = ({ singleproducts }) => {
         </div>
 
         <div className='flex items-center gap-2'>
-          <div onClick={wishlistclick}>
+          <div onClick={handlewishlist}>
             {wishlist ? <FaHeart className='text-2xl cursor-pointer text-primary' /> : <FaRegHeart className='text-2xl cursor-pointer' />}
           </div>
 
