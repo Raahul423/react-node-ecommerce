@@ -90,7 +90,8 @@ const ProductSlider = () => {
             {Array.from({ length: 5 }).map((_, idx) => (
               <div key={idx}>
                 <FormGroup >
-                  <FormControlLabel className='text-gray-900/90' control={<Checkbox
+                  <FormControlLabel className='text-gray-900/90' control={
+                    <Checkbox
                     size='small'
                     checked={tick === idx}
                     onChange={() => handlechange(idx)}

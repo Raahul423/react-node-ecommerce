@@ -86,13 +86,15 @@ const Header = () => {
 
 
                         <Tooltip title='Wishlist'>
-                            <IconButton>
-                                <StyledEngineProvider>
-                                    <Badge color='secondary' badgeContent={wishlistProduct}>
-                                        <FaRegHeart />
-                                    </Badge>
-                                </StyledEngineProvider>
-                            </IconButton>
+                            <Link to={"/myaccount/mylist"}>
+                                <IconButton>
+                                    <StyledEngineProvider>
+                                        <Badge color='secondary' badgeContent={wishlistProduct}>
+                                            <FaRegHeart />
+                                        </Badge>
+                                    </StyledEngineProvider>
+                                </IconButton>
+                            </Link>
                         </Tooltip>
 
 

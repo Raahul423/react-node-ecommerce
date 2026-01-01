@@ -20,14 +20,10 @@ const Category = ({ isopen, collapseisopen }) => {
         if (!activeCategory) return;
 
         const index = category.findIndex(
-            (item) => item.name.toLowerCase() === activeCategory.toLowerCase()
+            (item) => item.name?.toLowerCase() === activeCategory.toLowerCase()
         );
 
-        if (index !== -1) {
-            setTick(index);
-        } else {
-            setTick(null);
-        }
+        setTick(index !== -1 ? index : null);
     }, [activeCategory, category]);
 
     useEffect(() => {
@@ -44,8 +40,8 @@ const Category = ({ isopen, collapseisopen }) => {
 
 
     const handlechange = (idx, catname) => {
-        setTick((prev) => prev === idx ? null : idx);
-        navigate(`/category/${catname}`);
+        setTick(idx);
+        navigate(`/category/${catname.toLowerCase()}`);
     }
 
 
