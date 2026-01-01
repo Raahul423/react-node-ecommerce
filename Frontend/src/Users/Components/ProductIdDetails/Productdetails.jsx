@@ -25,16 +25,19 @@ const Productdetails = ({ singleproducts }) => {
     const checkwishliststatus = async () => {
       try {
         const res = await api.get("wishlist/wishlist-products");
-        console.log(res);
-        const exists = res?.data?.wishlistItems?.some((item) => item?._id === id);
-        
+
+        const exists = res?.data?.wishlistItems?.some(
+          (item) => item?.productId?._id === id
+        );
+
         setWishlist(exists);
+
       } catch (error) {
         console.error(error?.message);
       }
     }
     checkwishliststatus();
-  }, [isAuth, id]);
+  }, [isAuth, id, wishlist]);
 
   if (authloading) {
     return <div>Loading...</div>
