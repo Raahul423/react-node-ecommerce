@@ -19,14 +19,15 @@ const MyList = () => {
  
 
   const deletewishlist = async(id)=>{
+     const backup = [...cartItem];
     try {
-      console.log(id);
       const res = await api.delete("/wishlist/remove-products",{
         data:{productId : id}
       })
-      setCartItem((item)=>item.filter((wishlist)=>wishlist?._id !== id));
+      setCartItem((prev)=>prev.filter((item)=>item?._id !== id));
       toastMessage("success",res?.data?.message);
     } catch (error) {
+        setCartItem(backup);
       console.error(error?.message);
     }
   }

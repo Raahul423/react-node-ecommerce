@@ -15,22 +15,35 @@ import { MyContext } from '../../../Provider';
 import api from '../../../Utils/api';
 
 const Header = () => {
-    const { isAuth, authloading} = useContext(MyContext);
+    const { isAuth, authloading } = useContext(MyContext);
     const { toggleDrawer } = useContext(CartContext);
     const [cartProducts, setCartProducts] = useState([0])
+    const [wishlistProduct, setWishlistProduct] = useState([0])
 
-    useEffect(()=>{
-        const productCount = async()=>{
+    useEffect(() => {
+        const productCount = async () => {
             const res = await api.get("cartitems/countproduct");
             setCartProducts(res?.data?.totalproducts);
         }
         productCount();
-    },[])
+    }, [])
 
-     if(authloading){
+    useEffect(() => {
+        const wishlistcount = async () => {
+            const res = await api.get("/wishlist/wishlist-products");
+            console.log(res);
+            
+            setWishlistProduct(res?.data?.wishlistItems);
+        }
+        wishlistcount();
+    }, [])
+
+
+
+    if (authloading) {
         return <div> Loading ..... </div>
     }
-    
+
     return (
         <header className='bg-white shadow-xl sticky top-0 z-100 '>
             <div className='top-strip border-1 border-gray-300'>
@@ -77,7 +90,7 @@ const Header = () => {
                         <Tooltip title='Wishlist'>
                             <IconButton>
                                 <StyledEngineProvider>
-                                    <Badge color='secondary' badgeContent={4}>
+                                    <Badge color='secondary' badgeContent={wishlistProduct.length}>
                                         <FaRegHeart />
                                     </Badge>
                                 </StyledEngineProvider>
@@ -88,7 +101,7 @@ const Header = () => {
                         <Tooltip title='Cart'>
                             <IconButton aria-label="cart" onClick={toggleDrawer(true)}>
                                 <StyledEngineProvider>
-                                    <Badge color='secondary' badgeContent={cartProducts }>
+                                    <Badge color='secondary' badgeContent={cartProducts}>
                                         <ShoppingCartIcon />
                                     </Badge>
 
