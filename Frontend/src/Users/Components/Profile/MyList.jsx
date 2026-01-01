@@ -1,35 +1,34 @@
 import { Rating } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { RxCross2 } from 'react-icons/rx'
+import api from '../../../Utils/api';
+import { MyContext } from '../../../Provider';
 
 const MyList = () => {
-  const [cartItem, setCartItem] = useState([
-    {
-      id: 1,
-      name: "Campus Sutra",
-      title: "Men Comfort Cuban Collar Solid Polycotton Casual Shirt...",
-      price: "₹1350",
-      originalPrice: "₹1450",
-      img: "https://serviceapi.spicezgold.com/download/1742462909156_gdgd1.jpg",
-    },
-    {
-      id: 2,
-      name: "Levis",
-      title: "Men Regular Fit Cotton Casual Shirt...",
-      price: "₹1750",
-      originalPrice: "₹1950",
-      img: "https://serviceapi.spicezgold.com/download/1742462909156_gdgd1.jpg",
-    },
-
-  ])
+  const {toastMessage} = useContext(MyContext)
+  const [cartItem, setCartItem] = useState([]);
 
 
-  const removeItem = (id) => {
-    setCartItem((prev) => {
-      return prev.filter((item) => {
-        return item.id !== id
+  useEffect(()=>{
+    const fetchWishlist = async()=>{
+      const res = await api.get("/wishlist/wishlist-products");
+      setCartItem(res?.data?.wishlistItems);
+    }
+    fetchWishlist();
+  },[]);
+ 
+
+  const deletewishlist = async(id)=>{
+    try {
+      console.log(id);
+      const res = await api.delete("/wishlist/remove-products",{
+        data:{productId : id}
       })
-    })
+      setCartItem((item)=>item.filter((wishlist)=>wishlist?._id !== id));
+      toastMessage("success",res?.data?.message);
+    } catch (error) {
+      console.error(error?.message);
+    }
   }
 
 
@@ -48,28 +47,28 @@ const MyList = () => {
         <div key={idx} className='flex justify-between border-t-1 border-gray-700/50 p-4'>
           <div className='flex gap-4'>
             <div className='w-25 rounded-md overflow-hidden '>
-              <img className='rounded-md hover:scale-110 transition-all ease-in-out cursor-pointer' src={item.img} alt="Error" />
+              <img className='rounded-md hover:scale-110 transition-all ease-in-out cursor-pointer' src={item?.productId?.images[0]?.url} alt="Error" />
             </div>
 
             <div className='flex flex-col gap-1 justify-center'>
-              <p className='!text-sm'>{item.name}</p>
+              <p className='!text-sm'>{item?.productId?.name}</p>
 
-              <h1 className='!text-xl'>{item.title}</h1>
+              <h1 className='!text-xl'>{item?.productId?.brand}</h1>
 
-              <Rating readOnly name="half-rating-read" defaultValue={4} precision={1} />
+              <Rating readOnly name="half-rating-read" defaultValue={item?.productId?.rating} />
 
               <div className='flex gap-4'>
-                <p>{item.price}</p>
-                <p className='line-through text-gray-600/70'>{item.originalPrice}</p>
+                <p>₹{item?.productId?.price}</p>
+                <p className='line-through text-gray-600/70'>₹{item?.productId?.oldprice}</p>
                 <p className='text-red-600'>
-                  19% OFF
+                  {item?.productId?.discount}% OFF
                 </p>
               </div>
             </div>
           </div>
 
           <div>
-            <RxCross2 onClick={() => removeItem(item.id)} className='text-2xl cursor-pointer' />
+            <RxCross2 onClick={()=>deletewishlist(item?.productId?._id)} className='text-2xl cursor-pointer' />
           </div>
         </div>
       ))}
