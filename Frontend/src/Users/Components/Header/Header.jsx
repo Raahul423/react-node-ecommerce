@@ -31,8 +31,6 @@ const Header = () => {
     useEffect(() => {
         const wishlistcount = async () => {
             const res = await api.get("/wishlist/wishlist-products");
-            console.log(res);
-            
             setWishlistProduct(res?.data?.wishlistItems);
         }
         wishlistcount();

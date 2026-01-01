@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { Wishlist } from "../Models/wishlist.model.js";
+import { json } from "express";
 
 // AddItem in wishList
 const addItemWishlist = async (req, res) => {
@@ -79,4 +80,19 @@ const removeItem = async (req, res) => {
   }
 };
 
-export { addItemWishlist, getwishListProduct, removeItem };
+
+//count wishlist Product
+const wishlistProducttotal = async(req,res)=>{
+try {
+  const res = await Wishlist.countDocuments();
+  if(!res){
+    return res.status(404).json("producys not find..");
+  }
+
+  return res.status(200).json({success:true,message:"Successfully fetched Products "});
+} catch (error) {
+  return res.status(500).json({success:false,message:"server not responding"});
+}
+}
+
+export { addItemWishlist, getwishListProduct, removeItem, wishlistProducttotal };
