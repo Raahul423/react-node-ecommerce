@@ -84,12 +84,12 @@ const removeItem = async (req, res) => {
 //count wishlist Product
 const wishlistProducttotal = async(req,res)=>{
 try {
-  const res = await Wishlist.countDocuments();
+  const wishlistproducts = await Wishlist.countDocuments();
   if(!res){
     return res.status(404).json("producys not find..");
   }
 
-  return res.status(200).json({success:true,message:"Successfully fetched Products "});
+  return res.status(200).json({success:true,message:"Successfully fetched Products ",wishlistproducts});
 } catch (error) {
   return res.status(500).json({success:false,message:"server not responding"});
 }

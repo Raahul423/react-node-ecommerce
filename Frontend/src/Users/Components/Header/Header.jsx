@@ -30,8 +30,8 @@ const Header = () => {
 
     useEffect(() => {
         const wishlistcount = async () => {
-            const res = await api.get("/wishlist/wishlist-products");
-            setWishlistProduct(res?.data?.wishlistItems);
+            const res = await api.get("/wishlist/countwishlist");
+            setWishlistProduct(res?.data?.wishlistproducts);
         }
         wishlistcount();
     }, [])
@@ -88,7 +88,7 @@ const Header = () => {
                         <Tooltip title='Wishlist'>
                             <IconButton>
                                 <StyledEngineProvider>
-                                    <Badge color='secondary' badgeContent={wishlistProduct.length}>
+                                    <Badge color='secondary' badgeContent={wishlistProduct}>
                                         <FaRegHeart />
                                     </Badge>
                                 </StyledEngineProvider>
