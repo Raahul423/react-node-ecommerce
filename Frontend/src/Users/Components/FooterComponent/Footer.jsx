@@ -17,30 +17,30 @@ const Footer = () => {
                 <div className='col1 md:flex grid grid-cols-2 items-center justify-between md:px-24 py-8'>
                     <div className='p-4 justify-center flex flex-col items-center group gap-3'>
                         <LiaShippingFastSolid className='text-5xl group-hover:-translate-y-1 transition-all group-hover:text-primary' />
-                        <h1 className='text-xl text-md font-medium'>Free Shipping</h1>
-                        <p className='text-sm'>For all Orders Over $100</p>
+                        <h1 className='text-xl text-md font-medium max-md:text-center'>Free Shipping</h1>
+                        <p className='text-sm max-md:text-center'>For all Orders Over $100</p>
                     </div>
 
                     <div className='p-4 justify-center flex flex-col items-center gap-3 group'>
                         <PiKeyReturnLight className='text-5xl group-hover:-translate-y-1 transition-all group-hover:text-primary' />
-                        <h1 className='text-xl font-medium'>30 Days Returns</h1>
-                        <p className='text-sm'>For an Exchange Product</p>
+                        <h1 className='text-xl font-medium max-md:text-center'>30 Days Returns</h1>
+                        <p className='text-sm max-md:text-center' >For an Exchange Product</p>
                     </div>
 
                     <div className='p-4 justify-center flex flex-col items-center gap-3 group'>
                         <IoWalletOutline className='text-5xl group-hover:-translate-y-1 transition-all group-hover:text-primary' />
-                        <h1 className='text-xl font-medium'>Secured Payment</h1>
-                        <p className='text-sm'>Payment Cards Accepted
+                        <h1 className='text-xl font-medium max-md:text-center'>Secured Payment</h1>
+                        <p className='text-sm max-md:text-center'>Payment Cards Accepted
 
                         </p>
                     </div>
 
                     <div className='p-4 justify-center flex flex-col items-center gap-3  group'>
                         <BiSupport className='text-5xl group-hover:-translate-y-1 transition-all group-hover:text-primary' />
-                        <h1 className='text-xl font-medium'>Support 24/7
+                        <h1 className='text-xl font-medium max-md:text-center'>Support 24/7
 
                         </h1>
-                        <p className='text-sm'>Contact us Anytime</p>
+                        <p className='text-sm max-md:text-center'>Contact us Anytime</p>
                     </div>
                 </div>
 
