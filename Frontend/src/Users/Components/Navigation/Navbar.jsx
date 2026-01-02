@@ -32,7 +32,7 @@ const Navbar = () => {
   
 
     return (
-        <div className='my-container py-3  flex justify-end gap-20 '>
+        <section className='my-container py-3  flex justify-end gap-20'>
             <div className='col1 w-[25%]  rounded-md'>
                 <Button onClick={togglebutton} className='!text-black !text-[15px] w-full gap-3 items-center !p-3'><AiOutlineMenuUnfold className='w-6 h-6' />SHOP BY CATOGORIES<IoIosArrowDown className='h-6 w-6 ml-auto' />
                 </Button>
@@ -63,16 +63,11 @@ const Navbar = () => {
                             </div>
                         </li>
                     ))}
-
-
-
-
-
                 </ul>
             </div>
 
             <Navdrawer IsOpen={isOpen} setIsOpen={setIsOpen} />
-        </div>
+        </section>
     )
 }
 

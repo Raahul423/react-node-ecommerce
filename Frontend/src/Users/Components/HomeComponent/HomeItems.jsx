@@ -26,7 +26,7 @@ const HomeItems = () => {
 
 
   return (
-    <div className='my-container flex gap-2 justify-between !my-8'>
+    <div className='my-container flex gap-2 justify-between !my-8 scroll'>
       {loading ?
       (Array.from({length : 7}).map((_,i)=> <LoadingCategory key={i}/>))
         :

@@ -11,14 +11,13 @@ import { FaFacebook,FaGithub, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 const Footer = () => {
     return (
         <section className='bg-[#fafafa]'>
-            <div className='my-container'>
-
+            <div className='my-container scroll'>
                 {/* column 1 footer section */}
 
-                <div className='col1 flex items-center justify-between px-24 py-8'>
+                <div className='col1 flex items-center justify-between md:px-24 py-8'>
                     <div className='p-4 justify-center flex flex-col items-center group gap-3'>
                         <LiaShippingFastSolid className='text-5xl group-hover:-translate-y-1 transition-all group-hover:text-primary' />
-                        <h1 className='text-xl font-medium'>Free Shipping</h1>
+                        <h1 className='text-xl text-md font-medium'>Free Shipping</h1>
                         <p className='text-sm'>For all Orders Over $100</p>
                     </div>
 

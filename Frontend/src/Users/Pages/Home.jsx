@@ -7,13 +7,12 @@ import FeatureProduct from '../Components/ProductsComponent/FeatureProduct'
 import SecondAdd from '../Components/AddsComponent/SecondAdd'
 import BeautyProducts from '../Components/ProductsComponent/BeautyProducts'
 import Popupmessage from '../Components/Popupmessage'
-import DialogComponent from '../../Context/DialogComponent'
 import ElectronicProducts from '../Components/ProductsComponent/ElectronicProducts'
 
 const Home = () => {
 
   return (
-    <section className='mb-16'>
+    <section className='md:mb-16 mb-8'>
       <Popupmessage/>
       <div className='bg-[#f5f0f0] py-6'>
         <HomeSlider />

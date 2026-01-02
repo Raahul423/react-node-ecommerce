@@ -21,7 +21,7 @@ const FeatureProduct = () => {
     }, [])
 
     return (
-        <section className='my-container'>
+        <section className='my-container scroll'>
             {loading ? <LoadingProduct title={"Feature Products"} /> : <ReuseableComponents title={"Feature Products"} products={feature} />}
 
 

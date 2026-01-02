@@ -43,7 +43,7 @@ const Header = () => {
     }
 
     return (
-        <header className='bg-white shadow-xl sticky top-0 z-100 '>
+        <header className='bg-white  shadow-xl sticky top-0 z-100 '>
             <div className='top-strip border-1 border-gray-300'>
                 <div className='my-container p-4'>
                     <div className='flex items-center justify-between '>
@@ -51,7 +51,7 @@ const Header = () => {
                             <p>Get up to 50% off new season styles, limited time only</p>
                         </div>
 
-                        <div className='col2 '>
+                        <div className='col2'>
                             <ul className='flex gap-4'>
                                 <Link className='hover:text-primary transition-all'>Help Center</Link>
                                 <Link className='hover:text-primary transition-all'>Order-Tracking</Link>

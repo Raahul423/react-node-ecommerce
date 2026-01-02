@@ -70,7 +70,7 @@ const ProductItem = () => {
     };
 
     return (
-        <section className='my-container !mb-25'>
+        <section className='my-container !mb-25 scroll'>
             <div className='flex w-full py-10 items-center'>
                 <div className='col1 w-[40%] '>
                     <h1 className='text-2xl font-medium'>Popular Products</h1>
