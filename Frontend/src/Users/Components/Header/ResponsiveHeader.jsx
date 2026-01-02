@@ -6,6 +6,7 @@ import { assest } from '../../../assets/Assests';
 import { Link } from 'react-router-dom';
 import LoginCheck from './Subheader.jsx/LoginCheck';
 import Search from './Subheader.jsx/Search';
+import { MdOutlineAccountCircle } from 'react-icons/md';
 
 const ResponsiveHeader = ({ isAuth }) => {
 
@@ -47,7 +48,7 @@ const ResponsiveHeader = ({ isAuth }) => {
     );
     return (
         <section className='md:hidden my-container !mt-6 sticky top-0'>
-            <div className='flex  items-center justify-between'>
+            <div className='flex items-center justify-between'>
                 <div className='flex items-center gap-2'>
                     <div>
                         <HiOutlineBars3CenterLeft className='text-3xl' onClick={HeaderDrawer(true)} />
@@ -66,11 +67,10 @@ const ResponsiveHeader = ({ isAuth }) => {
                     {isAuth === true ?
                         <LoginCheck />
                         :
-                        <>
-                            <Link to={'/login'} className=' hover:text-primary transition-all cursor-pointer'>Login</Link>
-                            <span> | </span>
-                            <Link to={'/register'} className='hover:text-primary transition-all cursor-pointer'>Register</Link>
-                        </>
+                        <div className='flex items-center gap-2'>
+                            <MdOutlineAccountCircle className='text-2xl'/>
+                            <Link to={'/login'} className=' hover:text-primary transition-all cursor-pointer text-xl'>Login</Link>
+                        </div>
                     }
                 </div>
 

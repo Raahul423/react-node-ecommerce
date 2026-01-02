@@ -13,16 +13,36 @@ export const LoadingProduct = ({ title }) => {
 
             <Swiper
                 navigation
-                slidesPerGroup={2}
-                slidesPerView={6}
                 spaceBetween={12}
                 modules={[Navigation]}
+                breakpoints={{
+                    0: {
+                        slidesPerView: 1,
+                        slidesPerGroup: 1,
+                    },
+                    640: {
+                        slidesPerView: 2,
+                        slidesPerGroup: 2,
+                    },
+                    768: {
+                        slidesPerView: 3,
+                        slidesPerGroup: 3,
+                    },
+                    1024: {
+                        slidesPerView: 4,
+                        slidesPerGroup: 4,
+                    },
+                    1280: {
+                        slidesPerView: 5,
+                        slidesPerGroup: 5,
+                    },
+                }}
                 className="mySwiper"
             >
                 {Array.from({ length: 10 }).map((_, idx) => (
                     <SwiperSlide key={idx}>
-                        <div className="rounded-md shadow shadow-gray-500 w-60">
-                            <div className="h-70 bg-gray-300 rounded-md shimmer" />
+                        <div className="rounded-md shadow shadow-gray-500 md:w-60 w-40">
+                            <div className="md:h-70 h-50 bg-gray-300 rounded-md shimmer" />
 
                             <div className="p-4 flex flex-col gap-2 animate-pulse">
                                 <div className="h-4 bg-gray-300 rounded w-3/4" />

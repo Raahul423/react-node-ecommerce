@@ -12,9 +12,8 @@ import { Button } from '@mui/material';
 
 const Addone = () => {
   return (
-    <div className='w-full flex gap-6 h-111 overflow-hidden'>
-      <div className='col1 w-[70%]'>
-
+    <div className='w-full md:flex gap-6 md:h-111 overflow-hidden'>
+      <div className='w-full md:w-[70%]'>
 
         <Swiper
           spaceBetween={30}
@@ -33,17 +32,17 @@ const Addone = () => {
         >
           <SwiperSlide>
             <div className='relative overflow-hidden'>
-              <img className='rounded-md ' src="https://serviceapi.spicezgold.com/download/1756273096312_1737036773579_sample-1.jpg" />
+              <img className='rounded-md max-md:h-50 w-full object-cover' src="https://serviceapi.spicezgold.com/download/1756273096312_1737036773579_sample-1.jpg" />
 
-              <div className='move absolute top-0 flex flex-col p-20 gap-8 -right-200 opacity-0 duration-700 transition-all '>
-                <p className='!text-xl'>Big Saving Days Sale</p>
-                <h1 className='!text-4xl font-semibold text-gray-900/80'>Buy New Trend <br />Women Black Cloth</h1>
+              <div className='move absolute top-0 flex flex-col md:p-20 md:gap-8 -right-200 opacity-0 duration-700 transition-all '>
+                <p className='md:!text-xl !text-xs'>Big Saving Days Sale</p>
+                <h1 className='md:!text-4xl !text-xl font-semibold text-gray-900/80'>Buy New Trend <br />Women Black Cloth</h1>
                 <div className='flex gap-2 items-center'>
                   <p>Starting At Only</p>
-                  <h2 className='text-3xl text-primary'>₹ 1,550.00</h2>
+                  <h2 className='md:text-3xl !text-md text-primary'>₹ 1,550.00</h2>
                 </div>
 
-                <Button className='!w-30 !bg-primary !text-white !font-medium !p-2'>SHOP NOW</Button>
+                <Button className='md:!w-30 !w-20 !bg-primary !text-white !font-medium !p-2  !text-[10px]'>SHOP NOW</Button>
               </div>
             </div>
           </SwiperSlide>
@@ -66,13 +65,8 @@ const Addone = () => {
 
                 <Button className='!w-30 !bg-primary !text-white !font-medium !p-2'>SHOP NOW</Button>
 
-
               </div>
             </div>
-
-
-
-
           </SwiperSlide>
 
         </Swiper>
@@ -81,7 +75,7 @@ const Addone = () => {
 
 
 
-      <div className='col2 w-[30%] flex flex-col gap-4 overflow-hidden '>
+      <div className='col2 md:w-[30%] md:flex flex-col grid grid-2 gap-4 overflow-hidden '>
 
         <div className=' relative overflow-hidden rounded-xl'>
           <img className='w-full rounded-xl hover:scale-105' src="https://serviceapi.spicezgold.com/download/1741664665391_1741497254110_New_Project_50.jpg" alt="error" />
@@ -91,9 +85,7 @@ const Addone = () => {
               low price</p>
             <p className='text-primary !text-xl'>₹1500</p>
             <Button className='!bg-primary !text-white'>SHOP NOW</Button>
-
           </div>
-
         </div>
 
         <div className='overflow-hidden rounded-xl relative'>

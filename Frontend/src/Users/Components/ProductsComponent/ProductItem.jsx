@@ -71,7 +71,7 @@ const ProductItem = () => {
 
     return (
         <section className='my-container !mb-25 overflow-hidden'>
-            <div className="flex flex-col md:flex-row w-full py-10 gap-4 md:gap-0 items-start md:items-center">
+            <div className="flex flex-col md:flex-row w-full md:py-10 py-4 md:gap-4  items-start md:items-center">
                 <div className="w-full md:w-[40%]">
                     <h1 className="text-xl md:text-2xl font-medium">Popular Products</h1>
                     <p className="text-gray-900 text-sm md:text-base">
@@ -79,17 +79,16 @@ const ProductItem = () => {
                     </p>
                 </div>
 
-                <div className="w-full md:w-[60%] flex items-center md:justify-end overflow-x-auto">
+                <div className="w-full md:w-[60%] flex items-center md:justify-end overflow-x-auto max-md:py-2">
                     <Tabs
                         value={tabs}
                         onChange={handleChange}
                         variant="scrollable"
                         scrollButtons="auto"
-                        allowScrollButtonsMobile
                     >
                         {categories.map((cat, idx) => (
-                            <Tab key={idx} label={cat?.name} />
-                        ))}
+                            <Tab key={idx} label={cat?.name} className="max-md:!normal-case max-md:!min-w-fit "/>
+                        ))} 
                     </Tabs>
                 </div>
 
@@ -102,11 +101,11 @@ const ProductItem = () => {
                 modules={[Navigation]}
                 breakpoints={{
                     0: {
-                        slidesPerView: 1.2,
+                        slidesPerView: 1,
                         slidesPerGroup: 1,
                     },
                     640: {
-                        slidesPerView: 2.2,
+                        slidesPerView: 2,
                         slidesPerGroup: 2,
                     },
                     768: {
