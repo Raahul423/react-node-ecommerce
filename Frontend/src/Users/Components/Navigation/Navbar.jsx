@@ -34,12 +34,12 @@ const Navbar = () => {
     return (
         <section className='my-container py-3  flex justify-end gap-20'>
             <div className='col1 w-[25%]  rounded-md'>
-                <Button onClick={togglebutton} className='!text-black !text-[15px] w-full gap-3 items-center !p-3'><AiOutlineMenuUnfold className='w-6 h-6' />SHOP BY CATOGORIES<IoIosArrowDown className='h-6 w-6 ml-auto' />
+                <Button onClick={togglebutton} className='!text-black !text-[15px] w-full gap-3 items-center !p-3'><AiOutlineMenuUnfold className='w-6  h-6' />SHOP BY CATOGORIES<IoIosArrowDown className='h-6 w-6 ml-auto' />
                 </Button>
             </div>
 
 
-            <div className='col1 w-[75%] flex items-center'>
+            <div className='col1 w-[75%] flex items-center scroll'>
                 <ul className='flex gap-5 items-center w-[120%] justify-between'>
                     {categorydata.map((data) => (
                         <li key={data?._id} className='relative nav'>

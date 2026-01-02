@@ -26,8 +26,8 @@ const LoginCheck = () => {
         <>
             <div className='flex items-center'>
                 <Tooltip title="tap to open">
-                    <Button onClick={handleClick} className='!w-15 !h-15 !rounded-full !min-w-0 !text-black overflow-hidden'>
-                        {user?.avatar ? <img className='h-10 w-10 object-cover rounded-full' src={user.avatar} alt="avatar" /> : <FaCircleUser className='h-10 w-10' />}
+                    <Button onClick={handleClick} className='md:!w-15 md:!h-15  !rounded-full !min-w-0 !text-black overflow-hidden'>
+                        {user?.avatar ? <img className='h-10 w-10 object-cover rounded-full' src={user.avatar} alt="avatar" /> : <FaCircleUser className='md:h-10 md:w-10 h-8 w-8' />}
                     </Button>
                 </Tooltip>
 
@@ -38,6 +38,7 @@ const LoginCheck = () => {
                     open={open}
                     onClose={handleClose}
                     onClick={handleClose}
+                    className='max-md:hidden'
                     slotProps={{
                         paper: {
                             elevation: 0,
@@ -113,7 +114,7 @@ const LoginCheck = () => {
                     </Link>
                 </Menu >
 
-                <div className='flex flex-col'>
+                <div className='flex flex-col max-md:hidden'>
                     <span>{user?.fullName}</span>
                     <span>{user?.email}</span>
                 </div>
