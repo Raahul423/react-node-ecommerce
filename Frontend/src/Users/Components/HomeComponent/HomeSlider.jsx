@@ -9,29 +9,39 @@ import { Images } from '../../../assets/Assests';
 
 const HomeSlider = () => {
   return (
-      <div className="my-container px-2 md:px-0">
-        <Swiper
-          spaceBetween={30}
-          centeredSlides={true}
-          loop={true}
-          slidesPerView={1}
-          pagination={{
-            dynamicBullets: true,
-          }}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          modules={[Pagination,Autoplay]}
-          className="mySwiper overflow-hidden"
-        >
-          {Images.map((img, idx) => (
-              <SwiperSlide key={idx}>
-                <img className='w-full rounded-xl' src={img.Image} alt="error" />
-              </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+    <div>
+      <Swiper
+        centeredSlides={true}
+        loop={true}
+        slidesPerView={1}
+        pagination={{
+          dynamicBullets: true,
+        }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        modules={[Pagination, Autoplay]}
+      >
+        {Images.map((img, idx) => (
+          <SwiperSlide key={idx}>
+            <img
+              src={img.Image}
+              alt="slider"
+              className="
+    w-full
+    h-[180px]
+    sm:h-[240px]
+    md:h-[320px]
+    lg:h-[420px]
+    object-cover
+    rounded-md
+  "
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
 
   )
 }

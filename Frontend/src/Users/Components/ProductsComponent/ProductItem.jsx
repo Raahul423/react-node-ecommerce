@@ -70,19 +70,21 @@ const ProductItem = () => {
     };
 
     return (
-        <section className='my-container !mb-25 '>
-            <div className='flex w-full py-10 items-center'>
-                <div className='col1 w-[40%] '>
-                    <h1 className='text-2xl font-medium'>Popular Products</h1>
-                    <p className='text-gray-900 '>Do not miss the current offers until the end of March.</p>
+        <section className='my-container !mb-25 overflow-hidden'>
+            <div className="flex flex-col md:flex-row w-full py-10 gap-4 md:gap-0 items-start md:items-center">
+                <div className="w-full md:w-[40%]">
+                    <h1 className="text-xl md:text-2xl font-medium">Popular Products</h1>
+                    <p className="text-gray-900 text-sm md:text-base">
+                        Do not miss the current offers until the end of March.
+                    </p>
                 </div>
 
-                <div className='col2 w-[60%]  flex items-center px-4 overflow-hidden'>
+                <div className="w-full md:w-[60%] flex items-center md:justify-end overflow-x-auto">
                     <Tabs
                         value={tabs}
                         onChange={handleChange}
                         variant="scrollable"
-                        scrollButtons
+                        scrollButtons="auto"
                         allowScrollButtonsMobile
                     >
                         {categories.map((cat, idx) => (
@@ -95,11 +97,31 @@ const ProductItem = () => {
 
 
             <Swiper
-                navigation={true}
-                slidesPerGroup={2}
-                slidesPerView={5}
-                spaceBetween={20}
+                navigation
+                spaceBetween={16}
                 modules={[Navigation]}
+                breakpoints={{
+                    0: {
+                        slidesPerView: 1.2,
+                        slidesPerGroup: 1,
+                    },
+                    640: {
+                        slidesPerView: 2.2,
+                        slidesPerGroup: 2,
+                    },
+                    768: {
+                        slidesPerView: 3,
+                        slidesPerGroup: 3,
+                    },
+                    1024: {
+                        slidesPerView: 4,
+                        slidesPerGroup: 4,
+                    },
+                    1280: {
+                        slidesPerView: 5,
+                        slidesPerGroup: 5,
+                    },
+                }}
                 className="mySwiper"
             >
                 {loading ?
@@ -108,13 +130,13 @@ const ProductItem = () => {
                     <>
                         {products.map((product, idx) => (
                             <SwiperSlide key={idx}>
-                                <div className='w-60 rounded-md shadow shadow-gray-500'>
-                                    <div className='relative overflow-hidden group h-70'>
+                                <div className='md:w-60 w-40 rounded-md shadow shadow-gray-500'>
+                                    <div className='relative overflow-hidden group md:h-70 h-40'>
 
                                         <Link to={`/product/${product?._id}`}>
-                                            <img className='h-70 w-70 object-cover object-top rounded-md p-2' src={product.images[0]?.url} alt="error" />
+                                            <img className='md:h-70 md:w-70 object-cover object-top rounded-md p-2' src={product.images[0]?.url} alt="error" />
 
-                                            <img className='h-70 w-70 p-2 group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover object-top rounded-md' src={product.images[1]?.url} alt="error" />
+                                            <img className='max-md:hidden h-70 w-70 p-2 group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover object-top rounded-md' src={product.images[1]?.url} alt="error" />
 
                                         </Link>
 
@@ -144,9 +166,9 @@ const ProductItem = () => {
                                             <p className='text-primary'>₹{product?.price}</p>
                                         </div>
 
-                                        <Button className='flex gap-4 items-center w-full !border-1 !border-primary group hover:!border-black hover:!bg-black'>
-                                            <AiOutlineShoppingCart className='text-primary text-xl group-hover:text-white ' />
-                                            <p className='text-primary group-hover:text-white text-sm'>Add to Cart</p>
+                                        <Button className='flex md:gap-4 gap-2 items-center w-full !border-1 !border-primary group hover:!border-black hover:!bg-black'>
+                                            <AiOutlineShoppingCart className='text-primary md:text-xl group-hover:text-white ' />
+                                            <p className='text-primary group-hover:text-white text-sm max-md:!text-[10px]'>Add to Cart</p>
                                         </Button>
 
                                     </div>

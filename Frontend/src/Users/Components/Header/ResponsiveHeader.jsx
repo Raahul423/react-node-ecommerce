@@ -46,18 +46,18 @@ const ResponsiveHeader = ({ isAuth }) => {
         </Box>
     );
     return (
-        <section className='md:hidden my-container !my-4'>
+        <section className='md:hidden my-container !mt-6 sticky top-0'>
             <div className='flex  items-center justify-between'>
-                <div className='flex items-center gap-4'>
+                <div className='flex items-center gap-2'>
                     <div>
-                        <HiOutlineBars3CenterLeft className='text-2xl' onClick={HeaderDrawer(true)} />
+                        <HiOutlineBars3CenterLeft className='text-3xl' onClick={HeaderDrawer(true)} />
                         <Drawer open={open} onClose={HeaderDrawer(false)}>
                             {DrawerList}
                         </Drawer>
                     </div>
 
                     <Link to={"/"}>
-                        <img className='w-35' src={assest.logo} alt="error" />
+                        <img className='w-40 ' src={assest.logo} alt="error" />
                     </Link>
 
                 </div>

@@ -36,7 +36,7 @@ const Navbar = () => {
             <div className='w-full md:w-[25%]  rounded-md'>
                 <Button onClick={togglebutton} className='!text-black !text-[15px] w-full md:gap-3 items-center md:!p-3'>
                     <AiOutlineMenuUnfold className='w-6 h-6' />
-                    <p className='mx-4'>SHOP BY CATOGORIES</p>
+                    <p className='mx-4 whitespace-nowrap'>SHOP BY CATOGORIES</p>
                     <IoIosArrowDown className='h-6 w-6 ml-auto' />
                 </Button>
             </div>
