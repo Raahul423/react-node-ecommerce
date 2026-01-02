@@ -8,6 +8,7 @@ import SecondAdd from '../Components/AddsComponent/SecondAdd'
 import BeautyProducts from '../Components/ProductsComponent/BeautyProducts'
 import Popupmessage from '../Components/Popupmessage'
 import DialogComponent from '../../Context/DialogComponent'
+import ElectronicProducts from '../Components/ProductsComponent/ElectronicProducts'
 
 const Home = () => {
 
@@ -24,6 +25,7 @@ const Home = () => {
       <FeatureProduct />
       <SecondAdd />
       <BeautyProducts />
+      <ElectronicProducts/>
     </section>
   )
 }
