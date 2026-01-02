@@ -23,24 +23,27 @@ const Navbar = () => {
                 const res = await api.get("/categories/allcategories");
                 setCategorydata(res?.data?.rootcategories)
             } catch (error) {
-               console.error(error?.message)
+                console.error(error?.message)
             }
         }
         Category();
     }, [toastMessage]);
 
-  
+
 
     return (
-        <section className='my-container py-3  flex justify-end gap-20'>
-            <div className='col1 w-[25%]  rounded-md'>
-                <Button onClick={togglebutton} className='!text-black !text-[15px] w-full gap-3 items-center !p-3'><AiOutlineMenuUnfold className='w-6  h-6' />SHOP BY CATOGORIES<IoIosArrowDown className='h-6 w-6 ml-auto' />
+        <section className='my-container py-3 flex md:flex-row items-center gap-4 md:gap-20'>
+            <div className='w-full md:w-[25%]  rounded-md'>
+                <Button onClick={togglebutton} className='!text-black !text-[15px] w-full md:gap-3 items-center md:!p-3'>
+                    <AiOutlineMenuUnfold className='w-6 h-6' />
+                    <p className='mx-4'>SHOP BY CATOGORIES</p>
+                    <IoIosArrowDown className='h-6 w-6 ml-auto' />
                 </Button>
             </div>
 
 
-            <div className='col1 w-[75%] flex items-center scroll'>
-                <ul className='flex gap-5 items-center w-[120%] justify-between'>
+            <div className='hidden md:flex md:w-[75%] items-center'>
+                <ul className='flex gap-5 items-center w-full justify-between'>
                     {categorydata.map((data) => (
                         <li key={data?._id} className='relative nav'>
                             <Link to={`/category/${data?.name}`} className='hover:text-primary '>
@@ -48,7 +51,7 @@ const Navbar = () => {
                                     className='!text-black button '>{data.name}</Button>
                             </Link>
 
-                            <div className='submenunav absolute top-[120%] left-0 bg-white shadow-md'>
+                           <div className='submenunav absolute top-[120%] left-0 bg-white shadow-md '>
                                 <ul className='min-w-[200px]'>
                                     {data.children?.map((child) => (
                                         <li key={child?._id}>

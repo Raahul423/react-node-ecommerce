@@ -46,7 +46,7 @@ const ResponsiveHeader = ({ isAuth }) => {
         </Box>
     );
     return (
-        <section className='md:hidden my-container py-2 '>
+        <section className='md:hidden my-container !my-4'>
             <div className='flex  items-center justify-between'>
                 <div className='flex items-center gap-4'>
                     <div>

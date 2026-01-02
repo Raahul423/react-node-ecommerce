@@ -22,7 +22,7 @@ const LatestProduct = () => {
   }, []);
 
   return (
-    <section className='my-container scroll'>
+    <section className='my-container'>
       {loading ? <LoadingProduct title={"Latest Products"} /> : <ReuseableComponents title={"Latest Products"} products={latestproduct} />}
 
 

@@ -26,25 +26,23 @@ const HomeItems = () => {
 
 
   return (
-    <div className='my-container flex gap-2 justify-between !my-8 scroll'>
+    <div className='my-container md:flex gap-2 justify-between md:!my-8 !my-4 grid grid-cols-4'>
       {loading ?
-      (Array.from({length : 7}).map((_,i)=> <LoadingCategory key={i}/>))
+      (Array.from({length : 8}).map((_,i)=> <LoadingCategory key={i}/>))
         :
         <> {rootcategory.map((data, idx) => (
           <Link key={idx}>
-            <div className='bg-white flex flex-col justify-center items-center gap-2 px-6 py-4 border-1 border-gray-500/20 ' >
-              <div className='overflow-hidden  p-1'>
-                <img className='object-cover hover:scale-105 transition-all h-25 w-25' src={data.images[0].url} alt="Error" />
+            <div className='bg-white flex flex-col justify-center items-center gap-2 md:px-6 md:py-4 border-1 border-gray-500/20 overflow-hidden ' >
+              <div className='h-20 w-20'>
+                <img className='h-full w-full  object-cover hover:scale-105 transition-all ' src={data.images[0].url} alt="Error" />
               </div>
 
               <span>
-                <h2 className='text-md font-mono'>{data.name}</h2>
+                <h2 className='text-md max-md:text-xs  font-mono'>{data.name}</h2>
               </span>
 
             </div>
           </Link>
-
-
         ))}</>}
 
     </div>

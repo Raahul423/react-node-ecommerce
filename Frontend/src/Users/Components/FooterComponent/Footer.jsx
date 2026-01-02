@@ -11,10 +11,10 @@ import { FaFacebook,FaGithub, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 const Footer = () => {
     return (
         <section className='bg-[#fafafa]'>
-            <div className='my-container scroll'>
+            <div className='my-container'>
                 {/* column 1 footer section */}
 
-                <div className='col1 flex items-center justify-between md:px-24 py-8'>
+                <div className='col1 md:flex grid grid-cols-2 items-center justify-between md:px-24 py-8'>
                     <div className='p-4 justify-center flex flex-col items-center group gap-3'>
                         <LiaShippingFastSolid className='text-5xl group-hover:-translate-y-1 transition-all group-hover:text-primary' />
                         <h1 className='text-xl text-md font-medium'>Free Shipping</h1>
@@ -48,7 +48,7 @@ const Footer = () => {
 
                 {/* column 2 for footer section */}
 
-                <div className='col2 w-full flex py-10 gap-8'>
+                <div className='col2 w-full md:!flex py-10 gap-8 grid grid-cols-2'>
                     <div className='w-[30%] px-4'>
                         <h1 className='mb-4'>Contacts Us</h1>
                         <p className='py-6 '>Classyshop - Mega Super Store
@@ -110,7 +110,7 @@ const Footer = () => {
 
                 {/* column 3 footer section */}
 
-                <div className='col3 py-2 justify-between flex cursor-pointer items-center'>
+                <div className='col3 py-2 justify-between md:flex grid-cols-3 cursor-pointer items-center'>
                     <div className='flex gap-4 items-center'>
                         <a href="https://www.linkedin.com/in/raahul423/"><FaLinkedinIn className='text-2xl' /></a>
 

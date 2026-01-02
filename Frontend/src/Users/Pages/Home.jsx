@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <section className='md:mb-16 mb-8'>
       <Popupmessage/>
-      <div className='bg-[#f5f0f0] py-6'>
+      <div className='bg-[#f5f0f0] md:py-6 py-3'>
         <HomeSlider />
         <HomeItems />
       </div>

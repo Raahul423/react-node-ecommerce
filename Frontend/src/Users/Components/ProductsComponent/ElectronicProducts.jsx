@@ -22,7 +22,7 @@ const ElectronicProducts = () => {
     }, [])
 
     return (
-        <section className='my-container scroll'>
+        <section className='my-container'>
             {loading ? <LoadingProduct title={"Electronic Products"} /> : <ReuseableComponents title={"Electronic Products"} products={electronic} />}
         </section>
     )

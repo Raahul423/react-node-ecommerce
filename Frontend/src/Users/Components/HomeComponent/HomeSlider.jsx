@@ -9,7 +9,7 @@ import { Images } from '../../../assets/Assests';
 
 const HomeSlider = () => {
   return (
-      <div className='my-container'>
+      <div className="my-container px-2 md:px-0">
         <Swiper
           spaceBetween={30}
           centeredSlides={true}
@@ -23,11 +23,11 @@ const HomeSlider = () => {
             disableOnInteraction: false,
           }}
           modules={[Pagination,Autoplay]}
-          className="mySwiper"
+          className="mySwiper overflow-hidden"
         >
           {Images.map((img, idx) => (
               <SwiperSlide key={idx}>
-                <img className='w-full rounded-2xl' src={img.Image} alt="" />
+                <img className='w-full rounded-xl' src={img.Image} alt="error" />
               </SwiperSlide>
           ))}
         </Swiper>
