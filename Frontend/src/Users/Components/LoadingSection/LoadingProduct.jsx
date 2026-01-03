@@ -13,7 +13,11 @@ export const LoadingProduct = ({ title }) => {
 
             <Swiper
                 navigation
+                loop={false}
+                freeMode={false}
                 spaceBetween={12}
+                resistanceRatio={0}         
+                watchOverflow={true}
                 modules={[Navigation]}
                 breakpoints={{
                     0: {
@@ -26,18 +30,18 @@ export const LoadingProduct = ({ title }) => {
                     },
                     768: {
                         slidesPerView: 3,
-                        slidesPerGroup: 3,
+                        slidesPerGroup: 2,
                     },
                     1024: {
                         slidesPerView: 4,
-                        slidesPerGroup: 4,
+                        slidesPerGroup: 2,
                     },
                     1280: {
                         slidesPerView: 5,
-                        slidesPerGroup: 5,
+                        slidesPerGroup: 2,
                     },
                 }}
-                className="mySwiper !overflow-hidden"
+                className="mySwiper !overflow-hidden !p-2"
             >
                 {Array.from({ length: 10 }).map((_, idx) => (
                     <SwiperSlide key={idx}>

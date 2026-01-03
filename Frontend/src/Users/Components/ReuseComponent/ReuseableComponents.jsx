@@ -25,6 +25,10 @@ const ReuseableComponents = ({ title, products = [] }) => {
             <Swiper
                 navigation={true}
                 spaceBetween={16}
+                loop={false}
+                freeMode={false}
+                resistanceRatio={0}         
+                watchOverflow={true}
                 modules={[Navigation]}
                  breakpoints={{
                     0: {
@@ -37,18 +41,18 @@ const ReuseableComponents = ({ title, products = [] }) => {
                     },
                     768: {
                         slidesPerView: 3,
-                        slidesPerGroup: 3,
+                        slidesPerGroup: 2,
                     },
                     1024: {
                         slidesPerView: 4,
-                        slidesPerGroup: 4,
+                        slidesPerGroup: 2,
                     },
                     1280: {
                         slidesPerView: 5,
-                        slidesPerGroup: 5,
+                        slidesPerGroup: 2,
                     },
                 }}
-                className="mySwiper"
+                className="mySwiper !overflow-hidden !p-2"
             >
                 <div className='w-fit overflow-hidden'>
                     {products.slice(0, 15).map((items, idx) => (

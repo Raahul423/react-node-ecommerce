@@ -278,6 +278,16 @@ p {
   border-radius: 10px;
   gap: 16px;
 }
+
+
+@media(max-width : 768px){
+  .pop-up{
+    padding: 15px 1.5em;
+    width: 85%;
+    gap: 8px;
+  }
+}
+
 .css-113d811-MuiFormLabel-root-MuiInputLabel-root,
 .css-113d811-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
   background-color: white !important;

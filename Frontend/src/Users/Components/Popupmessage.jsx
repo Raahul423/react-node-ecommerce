@@ -9,10 +9,10 @@ const Popupmessage = () => {
     useEffect(() => {
         const showpop = sessionStorage.getItem("popupshown");
 
-        if(!showpop){
+        if (!showpop) {
             setTimeout(() => {
-                 setPopmessage(true);
-            sessionStorage.setItem("popupshown","true")
+                setPopmessage(true);
+                sessionStorage.setItem("popupshown", "true")
             }, 2000);
         }
     }, [])
@@ -24,13 +24,13 @@ const Popupmessage = () => {
         <section className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[998]">
 
             <motion.div
-            initial={{ y: -500, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, ease: "easeInOut" }}
-            className='pop-up w-fit fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]'>
+                initial={{ y: -500, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1, ease: "easeInOut" }}
+                className='pop-up w-fit fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]'>
 
 
-                <h2 className="text-xl font-semibold text-white mb-2">
+                <h2 className="md:text-xl text-md font-semibold text-white mb-2">
                     👋 Hi Recruiter!
                 </h2>
                 <p className="text-white mb-4 leading-relaxed">
