@@ -347,3 +347,6 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 
+.cursor-grab {
+  transition: transform 0.15s ease;
+}

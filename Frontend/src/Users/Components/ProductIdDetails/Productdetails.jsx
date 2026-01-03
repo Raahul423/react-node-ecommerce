@@ -117,21 +117,19 @@ const Productdetails = ({ singleproducts }) => {
 
 
   return (
-    <section className='grid grid-cols-[40%_60%] gap-12  my-8 h-[500px] py-4'>
+    <section className='md:grid md:grid-cols-[40%_60%] gap-12  my-8 py-4'>
 
 
-      <div className='grid grid-cols-[20%_80%] items-center gap-2'>
-        <div className='part-1 h-full flex flex-col gap-4 items-center '>
+      <div className='grid md:grid-cols-[20%_80%] items-center gap-2'>
+        <div className='part-1 order-2 md:order-1 h-full flex md:flex-col gap-4 items-center '>
           {singleproducts?.images?.map((img, idx) => (
-            <div key={idx} onClick={() => goto(idx)} className={`cursor-pointer h-20 w-20 p-1 shadow-md shadow-black overflow-hidden rounded-md opacity-50 ${isclick === idx ? 'opacity-100' : ''} `}>
+            <div key={idx} onClick={() => goto(idx)} className={`cursor-pointer md:h-20 md:w-20 h-15 w-15 p-1 shadow-md shadow-black overflow-hidden rounded-md opacity-50 ${isclick === idx ? 'opacity-100' : ''} `}>
               <img className='object-cover h-full w-full object-top' src={img?.url} alt="error" />
             </div>
           ))}
         </div>
 
-
-
-        <div className="part-2">
+        <div className="part-2 order-1 md:order-2">
           <Swiper
             onSwiper={(swiper) => (swiperref.current = swiper)}
             onSlideChange={(swiper) => {
@@ -144,7 +142,7 @@ const Productdetails = ({ singleproducts }) => {
             spaceBetween={15}
             centeredSlides={true}
             modules={Pagination}
-            className='h-full '
+            className='h-full'
           >
             {singleproducts?.images?.map((img, idx) => (
               <SwiperSlide key={idx}>
@@ -158,15 +156,18 @@ const Productdetails = ({ singleproducts }) => {
 
 
 
-      <div className='col-2 grid justify-center gap-5'>
+      <div className='col-2 grid justify-center md:gap-5 gap-2'>
         <h1>{singleproducts?.name}</h1>
-        <div className='flex items-center gap-6'>
+        <div className='md:flex items-center md:gap-6 gap-4'>
           <div className='flex items-center'>
             <p className='text-gray-800/80'>Brands:</p>
             <p>{singleproducts?.brand}</p>
           </div>
 
-          <Rating value={Number(singleproducts?.rating)} readOnly />
+          <div className='flex items-center md:gap-2'>
+            <p>Rating</p>
+            <Rating value={Number(singleproducts?.rating)} readOnly />
+          </div>
 
           <p>Review(23)</p>
         </div>
@@ -177,7 +178,7 @@ const Productdetails = ({ singleproducts }) => {
             <p className='!text-2xl text-primary'>₹{singleproducts?.price}</p>
           </div>
 
-          <div className='flex'>
+          <div className='flex gap-1'>
             <p>Available In Stock:</p>
             <p className='!text-green-700/80'>{singleproducts?.countInstock} Items</p>
           </div>

@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
-import { MdOutlineZoomOutMap } from 'react-icons/md'
+import { MdArrowForwardIos, MdOutlineZoomOutMap } from 'react-icons/md'
 import { Link, useNavigate } from 'react-router-dom'
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
-import { Button } from '@mui/material';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { DialogContext } from '../../../../Context/DialogComponent';
 import { MyContext } from '../../../../Provider';
 import api from '../../../../Utils/api';
+import { useSwipeable } from "react-swipeable";
+
 
 
 
@@ -78,6 +78,65 @@ const SelectedItems = ({ fetchProducts, loading }) => {
         <div>Loading...</div>
     }
 
+
+    const SwipeCircle = ({ productId }) => {
+        const navigate = useNavigate();
+        const [deltaX, setDeltaX] = useState(0);
+
+        const handlers = useSwipeable({
+            onSwiping: (e) => {
+                setDeltaX(Math.min(e.deltaX, 120)); // max drag
+            },
+
+            onSwiped: () => {
+                if (deltaX > 70) {
+                    navigate(`/product/${productId}`);
+                }
+                setDeltaX(0); // reset
+            },
+
+            trackMouse: true,
+            preventScrollOnSwipe: true,
+        });
+
+        return (
+            <div className="w-full mt-3">
+                {/* Background strip */}
+                <div className="relative w-full h-12 rounded-full bg-gradient-to-r from-gray-100 to-gray-200 flex items-center px-1  overflow-hidden">
+
+               
+                    <span
+                        className={`absolute left-12 text-sm text-gray-600 transition-opacity duration-200 ${deltaX > 20 ? "opacity-30" : "opacity-100"
+                            }`}
+                    >
+                        Swipe to see..
+                    </span>
+
+                    
+                    <div
+                        {...handlers}
+                        style={{
+                            transform: `translateX(${deltaX}px)`,
+                            transition: deltaX === 0 ? "transform 0.25s ease" : "none",
+                        }}
+                        className="
+            w-10 h-10
+            rounded-full
+            bg-primary
+            flex items-center justify-center
+            cursor-grab active:cursor-grabbing
+            shadow-lg
+            z-10
+          "
+                    >
+                        <MdArrowForwardIos className="text-white text-lg" />
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+
     return (
         <section>
             {loading ?
@@ -87,10 +146,10 @@ const SelectedItems = ({ fetchProducts, loading }) => {
                     {fetchProducts.length > 0 ?
                         <div className='grid md:grid-cols-5 grid-cols-2 md:gap-4 gap-3'>
                             {fetchProducts.map((products, idx) => (
-                                <div key={idx} className='rounded-md shadow shadow-gray-500 md:w-47 md:mx-auto'>
+                                <div key={idx} className='md:rounded-md shadow md:shadow-gray-500 md:w-47 md:mx-auto'>
                                     <div className='relative md:overflow-hidden group'>
                                         <Link to={`/product/${products?._id}`}>
-                                            <img className='p-2 md:h-50 h-50 w-full rounded-md object-cover object-top' src={products?.images[0]?.url} alt="error" />
+                                            <img className='p-2 md:h-50  w-full rounded-md object-cover object-top' src={products?.images[0]?.url} alt="error" />
 
                                             <img className='max-md:hidden p-2 h-60 w-full group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover' src={products?.images[1]?.url} alt='error' />
 
@@ -127,15 +186,13 @@ const SelectedItems = ({ fetchProducts, loading }) => {
                                         </Stack>
 
                                         <div className='flex justify-between'>
+                                            <p className='text-green-600 flex items-center'>{products?.discount}%</p>
                                             <p className='text-gray-900/80 line-through '>₹{products.price}</p>
                                             <p className='text-primary '>₹{products.oldprice}</p>
                                         </div>
 
-                                        <Button className='flex gap-4 items-center w-full !border-1 !border-primary group hover:!border-black hover:!bg-black'>
-                                            <AiOutlineShoppingCart className='text-primary text-xl group-hover:text-white ' />
-                                            <p className='text-primary group-hover:text-white md:!text-sm !text-[10px]'>Add to Cart</p>
-                                        </Button>
 
+                                        <SwipeCircle productId={products._id} />
                                     </div>
                                 </div>
                             ))}
@@ -149,7 +206,7 @@ const SelectedItems = ({ fetchProducts, loading }) => {
                 </>}
 
 
-        </section>
+        </section >
     )
 }
 

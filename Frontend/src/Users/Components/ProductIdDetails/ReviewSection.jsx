@@ -5,7 +5,7 @@ import { Box, Button, Rating, TextField } from '@mui/material'
 const ReviewSection = () => {
     const [section, setSection] = useState("Description")
     return (
-        <section className='my-6'>
+        <section className='md:my-6'>
             <div className='flex gap-10'>
                 <h1 onClick={() => setSection("Description")} className='hover:text-primary cursor-pointer'>Description</h1>
 
