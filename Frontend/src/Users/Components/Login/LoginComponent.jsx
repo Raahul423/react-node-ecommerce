@@ -103,7 +103,7 @@ const LoginComponent = () => {
                     </div>
                 </div >
             )}
-            <section className='w-[28%] px-8 py-8 border border-gray-500/50 rounded-md m-auto gap-4 flex flex-col shadow-gray-950/30 shadow-xl bg-white'>
+            <section className='md:w-[28%] w-[90%] md:px-8 px-6 md:py-8 py-6 border border-gray-500/50 rounded-md m-auto gap-4 flex flex-col shadow-gray-950/30 shadow-xl bg-white'>
                 <div>
                     <h1 className='text-center'>Login to your account</h1>
                 </div>

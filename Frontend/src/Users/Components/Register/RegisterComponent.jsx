@@ -73,7 +73,7 @@ const RegisterComponent = () => {
                     </div>
                 </div >
             )}
-            <section className='w-[32%] px-8 py-10 border border-gray-500/50 rounded-md m-auto gap-4 flex flex-col shadow-gray-950/30 shadow-xl bg-white'>
+            <section className='md:w-[32%] w-full md:px-8 px-6 md:py-10 py-6 border border-gray-500/50 rounded-md m-auto gap-4 flex flex-col shadow-gray-950/30 shadow-xl bg-white'>
                 <h1 className='text-center'>Register To New Account</h1>
                 <Box
                     component="form"

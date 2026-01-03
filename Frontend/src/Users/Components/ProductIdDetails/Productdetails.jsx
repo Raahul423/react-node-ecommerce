@@ -44,12 +44,6 @@ const Productdetails = ({ singleproducts }) => {
   }
 
 
-  if (!isAuth) {
-    toastMessage("error", "Login to Proceed..")
-    navigate("/login")
-    return;
-  }
-
   const goto = (idx) => {
     setIsclick(idx)
     swiperref.current?.slideToLoop(idx)
@@ -65,6 +59,11 @@ const Productdetails = ({ singleproducts }) => {
 
 
   const Addcart = async () => {
+    if (!isAuth) {
+      toastMessage("error", "Login to Proceed..")
+      navigate("/login")
+      return;
+    }
     try {
       const productId = singleproducts?._id
       const res = await api.post("/cartitems/add-items", {

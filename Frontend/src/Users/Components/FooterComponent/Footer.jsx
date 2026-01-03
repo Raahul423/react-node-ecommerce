@@ -10,7 +10,7 @@ import { FaFacebook,FaGithub, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 const Footer = () => {
     return (
-        <section className='bg-gray-800/30'>
+        <section className='md:bg-[#f1f1f1] bg-gray-800/30 md:mt-8'>
             <div className='my-container'>
                 {/* column 1 footer section */}
 
