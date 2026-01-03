@@ -15,32 +15,32 @@ const Footer = () => {
                 {/* column 1 footer section */}
 
                 <div className='col1 md:flex grid grid-cols-2 items-center justify-between md:px-24 md:py-8'>
-                    <div className='p-4 justify-center flex flex-col items-center group gap-3'>
+                    <div className='p-4 justify-center flex flex-col items-center group md:gap-3 gap-1'>
                         <LiaShippingFastSolid className='text-5xl group-hover:-translate-y-1 transition-all group-hover:text-primary' />
-                        <h1 className='text-xl text-md font-medium max-md:text-center'>Free Shipping</h1>
-                        <p className='text-sm max-md:text-center'>For all Orders Over $100</p>
+                        <h1 className='md:text-xl text-[20px] font-medium max-md:text-center'>Free Shipping</h1>
+                        <p className='md:text-sm text-xs max-md:text-center '>For all Orders Over $100</p>
                     </div>
 
-                    <div className='p-4 justify-center flex flex-col items-center gap-3 group'>
-                        <PiKeyReturnLight className='text-5xl group-hover:-translate-y-1 transition-all group-hover:text-primary' />
-                        <h1 className='text-xl font-medium max-md:text-center'>30 Days Returns</h1>
-                        <p className='text-sm max-md:text-center' >For an Exchange Product</p>
+                    <div className='p-4 justify-center flex flex-col items-center md:gap-3 gap-1 group'>
+                        <PiKeyReturnLight className='text-5xl  group-hover:-translate-y-1 transition-all group-hover:text-primary' />
+                        <h1 className='md:text-xl text-[20px] !text-md font-medium max-md:text-center'>30 Days Returns</h1>
+                        <p className='md:text-sm text-xs max-md:text-center ' >For an Exchange Product</p>
                     </div>
 
-                    <div className='p-4 justify-center flex flex-col items-center gap-3 group'>
+                    <div className='p-4 justify-center flex flex-col items-center md:gap-3 gap-1 group'>
                         <IoWalletOutline className='text-5xl group-hover:-translate-y-1 transition-all group-hover:text-primary' />
-                        <h1 className='text-xl font-medium max-md:text-center'>Secured Payment</h1>
-                        <p className='text-sm max-md:text-center'>Payment Cards Accepted
+                        <h1 className='md:text-xl text-[20px] font-medium max-md:text-center '>Secured Payment</h1>
+                        <p className='md:text-sm text-xs max-md:text-center '>Payment Cards Accepted
 
                         </p>
                     </div>
 
-                    <div className='p-4 justify-center flex flex-col items-center gap-3  group'>
+                    <div className='p-4 justify-center flex flex-col items-center md:gap-3 gap-1 group'>
                         <BiSupport className='text-5xl group-hover:-translate-y-1 transition-all group-hover:text-primary' />
-                        <h1 className='text-xl font-medium max-md:text-center'>Support 24/7
+                        <h1 className='md:text-xl text-[20px] font-medium max-md:text-center'>Support 24/7
 
                         </h1>
-                        <p className='text-sm max-md:text-center'>Contact us Anytime</p>
+                        <p className='md:text-sm text-xs max-md:text-center'>Contact us Anytime</p>
                     </div>
                 </div>
 
@@ -50,8 +50,8 @@ const Footer = () => {
 
                 <div className='w-full md:!flex md:py-10 py-2 gap-8 grid grid-cols-1'>
                     <div className='md:w-[30%] md:px-4 max-md:grid gap-2'>
-                        <h1 className='md:mb-4 max-md:!text-[20px] whitespace-nowrap'>Contacts Us</h1>
-                        <p className='md:py-6 max-md:!text-[10px] max-md:whitespace-nowrap'>Classyshop - Mega Super Store
+                        <h1 className='md:mb-4 max-md:!text-[20px] '>Contacts Us</h1>
+                        <p className='md:py-6 max-md:!text-[10px] '>Classyshop - Mega Super Store
                             507-Union Trade Centre France</p>
                         <a href="mailto:rp3976558@gmail.com">rp3976558@gmail.com</a>
                         <p className='text-primary md:py-5 md:!text-2xl'>(91+)74580-15120</p>

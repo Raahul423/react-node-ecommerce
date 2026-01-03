@@ -100,7 +100,7 @@ const AdminAuthProvider = ({ children }) => {
 
     return (
         <>
-            <ToastContainer position="bottom-center" toastStyle={{ background: "#1e1e1e", color: "#fff" }} autoClose={2000} limit={1}/>
+            <ToastContainer position="bottom-center"  toastStyle={{ background: "#1e1e1e", color: "#fff" }} autoClose={2000} limit={1} className="max-md:!text-[15px] max-md:!w-[70%] max-md:!py-4 !ml-15"/>
             <AdminContext.Provider value={value}>
                 {children}
             </AdminContext.Provider>

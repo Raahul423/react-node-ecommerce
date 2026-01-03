@@ -37,7 +37,7 @@ export const LoadingProduct = ({ title }) => {
                         slidesPerGroup: 5,
                     },
                 }}
-                className="mySwiper"
+                className="mySwiper !overflow-hidden"
             >
                 {Array.from({ length: 10 }).map((_, idx) => (
                     <SwiperSlide key={idx}>
