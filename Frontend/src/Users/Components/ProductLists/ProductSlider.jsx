@@ -50,7 +50,7 @@ const ProductSlider = () => {
   }
 
   return (
-    <section className='col2 w-[20%] flex flex-col gap-5 '>
+    <section className='w-[20%] flex flex-col gap-5 max-md:hidden'>
       <div className='sticky top-53.5' >
 
         <div className='itemlist 1/3 '>

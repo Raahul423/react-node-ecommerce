@@ -31,7 +31,7 @@ const HomeItems = () => {
       (Array.from({length : 8}).map((_,i)=> <LoadingCategory key={i}/>))
         :
         <> {rootcategory.map((data, idx) => (
-          <Link key={idx}>
+          <Link key={idx} to={`/category/${data?.name.toLowerCase()}`}>
             <div className='bg-white flex flex-col justify-center items-center gap-2 md:px-6 md:py-4 border-1 border-gray-500/20 overflow-hidden ' >
               <div className='h-20 w-20'>
                 <img className='h-full w-full  object-cover hover:scale-105 transition-all ' src={data.images[0].url} alt="Error" />

@@ -15,9 +15,9 @@ const ProductItem = ({ loading, fetchProducts }) => {
   const [itemveiw, setItemveiw] = useState('grid');
 
   return (
-    <section className='col1 w-[80%]'>
-      <div className='1/2 bg-[#e6e6e6] p-1 flex justify-between rounded-md sticky z-50 top-53.5 mb-4 shadow-gray-500 shadow'>
-        <div className='flex items-center gap-2 itemveiw '>
+    <section className='col1 md:w-[80%]'>
+      <div className=' bg-[#e6e6e6] p-1 flex justify-between rounded-md sticky z-50 md:top-49 top-48 mb-4 shadow-gray-500 shadow '>
+        <div className='flex items-center gap-2 itemveiw'>
           <Button onClick={() => setItemveiw('list')} className={`!rounded-full !min-w-[35px] h-[35px] ${itemveiw === 'list' && 'active'}`}>
             <HiOutlineBars3 className='text-xl text-gray-900/80 active' />
           </Button >
@@ -30,19 +30,26 @@ const ProductItem = ({ loading, fetchProducts }) => {
 
         </div>
 
-        <div className='flex gap-2 items-center'>
+        <div className='flex gap-2 items-center max-md:hidden'>
           <p className='w-20'>Sort by</p>
           <PricelowHigh />
         </div>
 
       </div>
 
-      <div className='2/2 w-full'>
+      <div className='w-full'>
         {itemveiw === 'grid' ? <SelectedGrid fetchProducts={fetchProducts} loading={loading} /> : <SelectedList fetchProducts={fetchProducts} loading={loading} />}
       </div>
 
-      <Stack className='py-6 !items-center ' spacing={2}>
-        <Pagination count={10} />
+      <Stack
+        className="py-4 md:py-6 !items-center"
+        spacing={1}
+      >
+        <Pagination
+          count={10}
+          size="small"
+          className="md:[&_.MuiPaginationItem-root]:!text-base"
+        />
       </Stack>
 
     </section>

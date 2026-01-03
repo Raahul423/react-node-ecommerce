@@ -44,7 +44,7 @@ const Products = () => {
 
 
   return (
-    <div className='my-container flex w-full  gap-6 py-6 pb-0'>
+    <div className='my-container flex w-full  gap-6 md:py-6 py-4 pb-0'>
       <ProductSlider />
       <ProductItem loading={loading} fetchProducts={fetchProducts} />
     </div>
