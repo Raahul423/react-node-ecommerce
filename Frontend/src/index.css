@@ -180,7 +180,6 @@ p {
 }
 
 .info {
-  transition: all;
   padding: 8px;
   border-radius: 100%;
   background-color: #fff;
@@ -192,9 +191,6 @@ p {
     background-color: white;
     padding: 6px;
   }
-}
-.info:hover {
-  background-color: #ff5252;
 }
 
 .MuiButtonBase-root {

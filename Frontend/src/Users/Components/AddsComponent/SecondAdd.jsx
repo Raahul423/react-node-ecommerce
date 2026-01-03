@@ -7,8 +7,8 @@ const SecondAdd = () => {
     <section className='my-container md:!pt-14 md:!pb-10 max-md:py-6'>
       <div className='md:flex grid-cols-2 grid justify-between gap-2'>
                   {addimage.map((data,idx)=>(
-                      <div key={idx} className='overflow-hidden rounded-xl'>
-                      <img className='rounded-xl  transform hover:scale-105  hover:rotate-z-2 transition-all duration-300' src={data.image} alt="error" />
+                      <div key={idx} className='overflow-hidden md:rounded-xl'>
+                      <img className='md:rounded-xl rounded-md  transform hover:scale-105  hover:rotate-z-2 transition-all duration-300' src={data.image} alt="error" />
                   </div>
                   ))}
               </div>
