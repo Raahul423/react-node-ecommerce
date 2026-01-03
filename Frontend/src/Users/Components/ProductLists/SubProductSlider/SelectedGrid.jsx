@@ -37,7 +37,7 @@ const SelectedItems = ({ fetchProducts, loading }) => {
                                                 ' />
                                             </div>
 
-                                            <div className='info '>
+                                            <div className='info'>
                                                 <FaRegHeart className='text-xl md:hover:!stroke-white md:hover:!fill-white
                                                 ' />
                                             </div>

@@ -72,6 +72,7 @@ const ProductItem = () => {
     return (
         <section className='my-container md:!mb-25 overflow-hidden'>
             <div className="flex flex-col md:flex-row w-full md:py-10 py-4 md:gap-4  items-start md:items-center">
+
                 <div className="w-full md:w-[40%]">
                     <h1 className="text-xl md:text-2xl font-medium">Popular Products</h1>
                     <p className="text-gray-900 text-sm md:text-base">
@@ -81,7 +82,10 @@ const ProductItem = () => {
 
                 <div className="w-full md:w-[60%] flex items-center md:justify-end overflow-x-auto max-md:py-2">
                     {loading ?
-                        <div>Loading...</div>
+                        (Array.from({ length: 8 }).map((_, i) =>
+                            <div key={i} className='md:h-10 h-5 md:w-20 w-10 bg-gray-400 rounded-md animate-pulse mx-1'>
+                            </div>
+                        ))
                         :
                         <Tabs
                             value={tabs}
@@ -103,8 +107,8 @@ const ProductItem = () => {
                 navigation
                 spaceBetween={16}
                 loop={false}
-                 freeMode={false}
-                resistanceRatio={0}         
+                freeMode={false}
+                resistanceRatio={0}
                 watchOverflow={true}
                 modules={[Navigation]}
                 breakpoints={{

@@ -80,7 +80,7 @@ const Footer = () => {
                         <h1 className='md:mb-4 max-md:!text-[20px]'>Products</h1>
                         <ul >
                             {footer.slice(6).map((items, idx) => (
-                                <li className='mb-1 cursor-pointer !text-xs'>
+                                <li className='mb-1 cursor-pointer max-md:!text-xs'>
                                     <a className='hover:text-primary' key={idx}>
                                         {items}
                                     </a>
