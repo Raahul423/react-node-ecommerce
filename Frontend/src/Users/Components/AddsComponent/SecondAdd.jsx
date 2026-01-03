@@ -4,7 +4,7 @@ import { addimage } from '../../../assets/Assests'
 
 const SecondAdd = () => {
   return (
-    <section className='my-container md:!pt-14 md:!pb-10'>
+    <section className='my-container md:!pt-14 md:!pb-10 max-md:py-6'>
       <div className='md:flex grid-cols-2 grid justify-between gap-2'>
                   {addimage.map((data,idx)=>(
                       <div key={idx} className='overflow-hidden rounded-xl'>

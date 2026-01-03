@@ -80,16 +80,20 @@ const ProductItem = () => {
                 </div>
 
                 <div className="w-full md:w-[60%] flex items-center md:justify-end overflow-x-auto max-md:py-2">
-                    <Tabs
-                        value={tabs}
-                        onChange={handleChange}
-                        variant="scrollable"
-                        scrollButtons="auto"
-                    >
-                        {categories.map((cat, idx) => (
-                            <Tab key={idx} label={cat?.name} className="max-md:!normal-case max-md:!min-w-fit "/>
-                        ))} 
-                    </Tabs>
+                    {loading ?
+                        <div>Loading...</div>
+                        :
+                        <Tabs
+                            value={tabs}
+                            onChange={handleChange}
+                            variant="scrollable"
+                            scrollButtons="auto"
+                        >
+                            {categories.map((cat, idx) => (
+                                <Tab key={idx} label={cat?.name} className="max-md:!normal-case max-md:!min-w-fit " />
+                            ))}
+                        </Tabs>}
+
                 </div>
 
             </div>

@@ -10,11 +10,11 @@ import { FaFacebook,FaGithub, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 const Footer = () => {
     return (
-        <section className='bg-[#fafafa]'>
+        <section className='bg-gray-800/30'>
             <div className='my-container'>
                 {/* column 1 footer section */}
 
-                <div className='col1 md:flex grid grid-cols-2 items-center justify-between md:px-24 py-8'>
+                <div className='col1 md:flex grid grid-cols-2 items-center justify-between md:px-24 md:py-8'>
                     <div className='p-4 justify-center flex flex-col items-center group gap-3'>
                         <LiaShippingFastSolid className='text-5xl group-hover:-translate-y-1 transition-all group-hover:text-primary' />
                         <h1 className='text-xl text-md font-medium max-md:text-center'>Free Shipping</h1>
@@ -44,30 +44,30 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <span className='horizontal-line'></span>
+                <span className='horizontal-line !bg-primary'></span>
 
                 {/* column 2 for footer section */}
 
-                <div className='col2 w-full md:!flex py-10 gap-8 grid grid-cols-2'>
-                    <div className='w-[30%] px-4'>
-                        <h1 className='mb-4'>Contacts Us</h1>
-                        <p className='py-6 '>Classyshop - Mega Super Store
+                <div className='w-full md:!flex md:py-10 py-2 gap-8 grid grid-cols-1'>
+                    <div className='md:w-[30%] md:px-4 max-md:grid gap-2'>
+                        <h1 className='md:mb-4 max-md:!text-[20px] whitespace-nowrap'>Contacts Us</h1>
+                        <p className='md:py-6 max-md:!text-[10px] max-md:whitespace-nowrap'>Classyshop - Mega Super Store
                             507-Union Trade Centre France</p>
                         <a href="mailto:rp3976558@gmail.com">rp3976558@gmail.com</a>
-                        <p className='text-primary py-5 !text-2xl'>(91+)74580-15120</p>
+                        <p className='text-primary md:py-5 md:!text-2xl'>(91+)74580-15120</p>
                         <div className='flex items-center gap-2'>
-                            <FiMessageSquare className='text-5xl text-primary' />
-                            <p className='!text-md'>Online Chat <br />
+                            <FiMessageSquare className='md:text-5xl text-primary' />
+                            <p className='md:!text-md !text-[15px]'>Online Chat <br />
                                 Get Expert Help</p>
                         </div>
                     </div>
 
-                    <div className='w-[20%] px-4'>
-                        <h1 className='mb-4'>Products</h1>
+                    <div className='md:w-[20%] w-full md:px-4'>
+                        <h1 className='md:mb-4 max-md:!text-[20px]'>Products</h1>
                         <ul>
                             {footer.slice(0, 6).map((items, idx) => (
-                                <li key={idx} className='mb-1 cursor-pointer'>
-                                    <a className='hover:text-primary'>
+                                <li key={idx} className='md:mb-1 cursor-pointer'>
+                                    <a className='hover:text-primary max-md:text-xs'>
                                         {items}
                                     </a>
                                 </li>
@@ -76,11 +76,11 @@ const Footer = () => {
 
                     </div>
 
-                    <div className='w-[20%] px-4'>
-                        <h1 className='mb-4'>Products</h1>
+                    <div className='w-[20%] md:px-4'>
+                        <h1 className='md:mb-4 max-md:!text-[20px]'>Products</h1>
                         <ul >
                             {footer.slice(6).map((items, idx) => (
-                                <li className='mb-1 cursor-pointer'>
+                                <li className='mb-1 cursor-pointer !text-xs'>
                                     <a className='hover:text-primary' key={idx}>
                                         {items}
                                     </a>
@@ -89,10 +89,10 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    <div className='w-[30%] px-4 flex flex-col gap-4'>
+                    <div className='w-[30%] px-4 flex flex-col gap-4 max-md:hidden'>
                         <h1 className='mb-4'>Subscribe to newsletter</h1>
 
-                        <p>Subscribe to our latest newsletter to get news about special discounts.</p>
+                        <p className=''>Subscribe to our latest newsletter to get news about special discounts.</p>
 
                         <input className='email ' type="email" placeholder='Your E-mail Address' />
 
@@ -106,12 +106,12 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <span className='horizontal-line'></span>
+                <span className='horizontal-line !bg-primary'></span>
 
                 {/* column 3 footer section */}
 
-                <div className='col3 py-2 justify-between md:flex grid-cols-3 cursor-pointer items-center'>
-                    <div className='flex gap-4 items-center'>
+                <div className='col3 py-2 justify-between md:flex grid-cols-3 cursor-pointer items-center max-md:text-center'>
+                    <div className='flex gap-4 items-center max-md:justify-center'>
                         <a href="https://www.linkedin.com/in/raahul423/"><FaLinkedinIn className='text-2xl' /></a>
 
                         <a href=""><FaInstagram className='text-2xl' /></a>
@@ -130,7 +130,7 @@ const Footer = () => {
                         <p>Rahul © 2025 - Ecommerce Template</p>
                     </div>
 
-                    <div className='flex gap-1'>
+                    <div className='flex gap-1 max-md:hidden'>
                         {FootertImage.map((data,idx)=>(
                             <img key={idx} src={data.image} alt="error" />
                         ))}
