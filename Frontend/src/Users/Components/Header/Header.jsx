@@ -13,7 +13,6 @@ import LoginCheck from './Subheader.jsx/LoginCheck';
 import { CartContext } from '../../../Context/CartDrawer';
 import { MyContext } from '../../../Provider';
 import api from '../../../Utils/api';
-import { HiOutlineBars3CenterLeft } from 'react-icons/hi2';
 import ResponsiveHeader from './ResponsiveHeader';
 
 const Header = () => {

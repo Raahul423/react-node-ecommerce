@@ -51,12 +51,12 @@ const Navbar = () => {
                                     className='!text-black button '>{data.name}</Button>
                             </Link>
 
-                           <div className='submenunav absolute top-[120%] left-0 bg-white shadow-md '>
-                                <ul className='min-w-[200px]'>
+                            <div className="submenunav absolute top-[120%] left-0 bg-white shadow-md">
+                                <ul className="min-w-[200px]">
                                     {data.children?.map((child) => (
                                         <li key={child?._id}>
                                             <Link to={`/category/${data?.name}/${child?.name}`}>
-                                                <Button className='w-full !text-black !justify-start !normal-case' >
+                                                <Button className="w-full !text-black !justify-start !normal-case">
                                                     {child.name}
                                                 </Button>
                                             </Link>
