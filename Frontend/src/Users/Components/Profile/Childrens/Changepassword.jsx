@@ -69,9 +69,9 @@ const Changepassword = () => {
                     </div>
                 </div >
             )}
-            <section className='md:w-[70%] px-8 border border-gray-700/50 shadow shadow-gray-700/50 rounded-md bg-white py-2'>
-                <div className='border-b border-gray-700/45 py-4'>
-                    <h1>Change Password</h1>
+            <section className='md:w-[70%] md:px-8 px-4 border border-gray-700/50 shadow shadow-gray-700/50 rounded-md bg-white py-2'>
+                <div className='border-b border-gray-700/45 md:py-4 py-2'>
+                    <h1 className='max-md:!text-[20px]'>Change Password</h1>
                 </div>
 
                 <div className='flex flex-col gap-6 py-6'>

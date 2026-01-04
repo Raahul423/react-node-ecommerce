@@ -47,21 +47,21 @@ const MyList = () => {
       {cartItem.map((item, idx) => (
         <div key={idx} className='flex justify-between border-t-1 border-gray-700/50 p-4'>
           <div className='flex gap-4'>
-            <div className='w-25 rounded-md overflow-hidden '>
+            <div className='md:w-25 rounded-md overflow-hidden '>
               <img className='rounded-md hover:scale-110 transition-all ease-in-out cursor-pointer' src={item?.productId?.images[0]?.url} alt="Error" />
             </div>
 
             <div className='flex flex-col gap-1 justify-center'>
-              <p className='!text-sm'>{item?.productId?.name}</p>
+              <p className='!text-sm one-line-ellipsis '>{item?.productId?.name}</p>
 
-              <h1 className='!text-xl'>{item?.productId?.brand}</h1>
+              <h1 className='md:!text-xl !text-xs'>{item?.productId?.brand}</h1>
 
               <Rating readOnly name="half-rating-read" defaultValue={item?.productId?.rating} />
 
               <div className='flex gap-4'>
                 <p>₹{item?.productId?.price}</p>
                 <p className='line-through text-gray-600/70'>₹{item?.productId?.oldprice}</p>
-                <p className='text-red-600'>
+                <p className='text-red-600 whitespace-nowrap'>
                   {item?.productId?.discount}% OFF
                 </p>
               </div>
