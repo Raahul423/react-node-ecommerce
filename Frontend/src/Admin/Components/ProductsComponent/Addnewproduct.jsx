@@ -25,22 +25,24 @@ export const Addnewproduct = ({ open, setOpen }) => {
     const [images, setImages] = useState([]);
     const [categorydata, setCategorydata] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(null);
-    const [productdetails, setProductdetails] = useState({
-        name: "",
-        desc: "",
-        category: "",
-        subcategory: "",
-        price: "",
-        oldprice: "",
-        isfeatured: "", // or boolean
-        countInstock: "",
-        brand: "",
-        discount: "",
-        productRam: [],
-        productWeight: [],
-        size: [],
-        rating: ""
-    });
+    const [productdetails, setProductdetails] = useState(
+        {
+            name: "",
+            desc: "",
+            category: "",
+            subcategory: "",
+            price: "",
+            oldprice: "",
+            isfeatured: "", // or boolean
+            countInstock: "",
+            brand: "",
+            discount: "",
+            productRam: [],
+            productWeight: [],
+            size: [],
+            rating: ""
+        }
+    );
 
     // fetch all categories
     useEffect(() => {
@@ -158,9 +160,9 @@ export const Addnewproduct = ({ open, setOpen }) => {
                 countInstock: "",
                 brand: "",
                 discount: "",
-                productRam: "",
-                productWeight: "",
-                size: "",
+                productRam: [],
+                productWeight: [],
+                size: [],
                 rating: ""
             });
         } catch (error) {

@@ -25,7 +25,6 @@ const ResponsiveHeader = ({ isAuth, user, logout }) => {
         { text: 'My Orders', icon: <RiShoppingBag4Fill />, path: "/myaccount/myorder" },
         { text: 'My Wishlist', icon: <FaHeart />, path: "/myaccount/mylist" },
         { text: 'My Cart', icon: <FaCartShopping />, path: "/veiwcart" },
-        { text: 'All categories', icon: <BiSolidCategory /> },
         { text: 'LogOut', icon: <FiLogOut />, action: "logout" }
     ];
 
@@ -53,18 +52,7 @@ const ResponsiveHeader = ({ isAuth, user, logout }) => {
             </List>
             <Divider />
             <List>
-                {menuItems.slice(4, 5).map((item, index) => (
-                    <ListItem button key={index}>
-                        <ListItemIcon className='!min-w-10 text-2xl'>
-                            {item.icon}
-                        </ListItemIcon>
-                        <ListItemText primary={item.text} />
-                    </ListItem>
-                ))}
-            </List>
-            <Divider />
-            <List>
-                {menuItems.slice(5).map((item, index) => (
+                {menuItems.slice(4).map((item, index) => (
                     <ListItem button key={index}>
                         <ListItemIcon className='!min-w-10 text-2xl'>
                             {item.icon}
