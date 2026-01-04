@@ -76,14 +76,14 @@ const YourInfo = () => {
         </div >
       )}
       <section className='flex flex-col gap-10'>
-        <div className='w-[70%] px-8 border border-gray-700/50 shadow shadow-gray-700/50 rounded-md bg-white py-2 '>
-          <div className='flex justify-between border-b border-gray-700/45 py-4'>
-            <h1>My Profile</h1>
-            <Button onClick={() => setIsOpen(!isOpen)}>CHANGE PASSWORD</Button>
+        <div className='md:w-[70%] md:px-8 px-4 border border-gray-700/50 shadow shadow-gray-700/50 rounded-md bg-white py-2 '>
+          <div className='flex justify-between border-b border-gray-700/45 md:py-4 py-2'>
+            <h1 className='max-md:!text-[20px]'>My Profile</h1>
+            <Button onClick={() => setIsOpen(!isOpen)} className='max-md:!text-[12px]'>CHANGE PASSWORD</Button>
           </div>
 
-          <div className='flex flex-col gap-6 py-6'>
-            <Box className='grid gap-6 grid-cols-2'>
+          <div className='flex flex-col gap-6 py-6 '>
+            <Box className='md:grid gap-6 grid-cols-2 max-md:flex max-md:flex-col gap-'>
               <TextField
                 id="outlined-required"
                 label="Name"
@@ -91,7 +91,6 @@ const YourInfo = () => {
                 defaultValue={user?.fullName}
                 value={updatedetails.fullName}
                 onChange={handlechnage}
-
               />
 
               <TextField
@@ -101,7 +100,7 @@ const YourInfo = () => {
                 defaultValue={user?.email}
 
               />
-              <div className='flex items-center border border-gray-700/50 w-fit'>
+              <div className='items-center border border-gray-700/50 w-fit md:py-3 max-md:w-[90%] max-md:flex'>
                 <span className='p-3 border-r border-gray-700/50'>
                   +91
                 </span>

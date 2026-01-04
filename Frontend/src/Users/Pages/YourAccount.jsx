@@ -10,17 +10,17 @@ import api from '../../Utils/api';
 
 
 const YourAccount = () => {
-  const { user, logout, setUser, toastMessage, isAuth,authloading } = useContext(MyContext)
+  const { user, logout, setUser, toastMessage, isAuth, authloading } = useContext(MyContext)
   const [preview, setPreview] = useState(user?.avatar)
   const [loading, setLoading] = useState(false)
 
-  if(authloading){
+  if (authloading) {
     return <div> Loading... </div>
   }
 
-  if(!isAuth){
-    toastMessage("error","Login to Proceed..")
-    return <Navigate to="/" replace/>
+  if (!isAuth) {
+    toastMessage("error", "Login to Proceed..")
+    return <Navigate to="/" replace />
   }
 
 
@@ -66,9 +66,9 @@ const YourAccount = () => {
 
   return (
     <section className='bg-[#f5f0f0] py-8'>
-      <div className='my-container flex gap-6 '>
+      <div className='my-container flex max-md:flex-col gap-6 '>
 
-        <div className='w-[20%] border border-gray-700/40 shadow-gray-700/40 shadow-md rounded-md bg-white h-fit sticky top-60' >
+        <div className='md:w-[20%] border border-gray-700/40 shadow-gray-700/40 shadow-md rounded-md bg-white h-fit md:sticky md:top-60' >
 
           <div className='flex flex-col justify-center items-center gap-1 py-5 '>
             {loading == true ? <CircularProgress /> : <label className='relative cursor-pointer'>
@@ -99,7 +99,7 @@ const YourAccount = () => {
             <p>{user?.email}</p>
           </div>
 
-          <div className='bg-[#f2f2f2] flex flex-col gap-1 rounded-md py-2'>
+          <div className='max-md:hidden bg-[#f2f2f2] flex flex-col gap-1 rounded-md py-2'>
             <Link to="info">
               <MenuItem>
                 <ListItemIcon>
@@ -147,7 +147,7 @@ const YourAccount = () => {
           </div>
         </div>
 
-        <div className='w-[80%]'>
+        <div className='md:w-[80%]'>
           <Outlet />
         </div>
       </div>

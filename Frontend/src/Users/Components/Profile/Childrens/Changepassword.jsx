@@ -69,13 +69,13 @@ const Changepassword = () => {
                     </div>
                 </div >
             )}
-            <section className='w-[70%] px-8 border border-gray-700/50 shadow shadow-gray-700/50 rounded-md bg-white py-2'>
+            <section className='md:w-[70%] px-8 border border-gray-700/50 shadow shadow-gray-700/50 rounded-md bg-white py-2'>
                 <div className='border-b border-gray-700/45 py-4'>
                     <h1>Change Password</h1>
                 </div>
 
                 <div className='flex flex-col gap-6 py-6'>
-                    <Box className='grid gap-6 grid-cols-2'>
+                    <Box className='md:grid gap-6 grid-cols-2 max-md:flex max-md:flex-col'>
                         <TextField
                             id="outlined-required"
                             label="Old Password"
