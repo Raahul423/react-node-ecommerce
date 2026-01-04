@@ -87,8 +87,8 @@ const ReuseableComponents = ({ title, products = [] }) => {
                                     </Stack>
 
                                     <div className='flex justify-between'>
-                                        <p className='text-gray-900/80 line-through'>₹{items?.price}</p>
-                                        <p className='text-primary'>₹{items?.oldprice}</p>
+                                        <p className='text-gray-900/80 line-through'>₹{items?.oldprice}</p>
+                                        <p className='text-primary'>₹{items?.price}</p>
                                     </div>
 
                                      <Button className='flex md:gap-4 gap-2 items-center w-full !border-1 !border-primary group hover:!border-black hover:!bg-black'>

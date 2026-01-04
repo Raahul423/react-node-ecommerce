@@ -117,14 +117,13 @@ const Productdetails = ({ singleproducts }) => {
 
 
   return (
-    <section className='md:grid md:grid-cols-[40%_60%] gap-12  my-8 py-4'>
-
+    <section className='md:grid md:grid-cols-[40%_60%] gap-12 my-8'>
 
       <div className='grid md:grid-cols-[20%_80%] items-center gap-2'>
         <div className='part-1 order-2 md:order-1 h-full flex md:flex-col gap-4 items-center '>
           {singleproducts?.images?.map((img, idx) => (
             <div key={idx} onClick={() => goto(idx)} className={`cursor-pointer md:h-20 md:w-20 h-15 w-15 p-1 shadow-md shadow-black overflow-hidden rounded-md opacity-50 ${isclick === idx ? 'opacity-100' : ''} `}>
-              <img className='object-cover h-full w-full object-top' src={img?.url} alt="error" />
+              <img className='object-cover h-fit w-full object-top' src={img?.url} alt="error" />
             </div>
           ))}
         </div>
@@ -146,7 +145,7 @@ const Productdetails = ({ singleproducts }) => {
           >
             {singleproducts?.images?.map((img, idx) => (
               <SwiperSlide key={idx}>
-                <InnerImageZoom className='rounded-md h-120 w-full' src={img?.url} zoomType='hover' />
+                <InnerImageZoom className='rounded-md md:h-120 w-full' src={img?.url} zoomType='hover' />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -156,7 +155,7 @@ const Productdetails = ({ singleproducts }) => {
 
 
 
-      <div className='col-2 grid justify-center md:gap-5 gap-2'>
+      <div className='col-2 grid justify-center md:gap-5 gap-2 max-md:mt-4'>
         <h1>{singleproducts?.name}</h1>
         <div className='md:flex items-center md:gap-6 gap-4'>
           <div className='flex items-center'>

@@ -19,6 +19,7 @@ const YourAccount = () => {
   }
 
   if(!isAuth){
+    toastMessage("error","Login to Proceed..")
     return <Navigate to="/" replace/>
   }
 

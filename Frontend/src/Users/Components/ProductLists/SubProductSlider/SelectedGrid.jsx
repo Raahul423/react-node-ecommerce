@@ -187,8 +187,8 @@ const SelectedItems = ({ fetchProducts, loading }) => {
 
                                         <div className='flex justify-between'>
                                             <p className='text-green-600 flex items-center'>{products?.discount}%</p>
-                                            <p className='text-gray-900/80 line-through '>₹{products.price}</p>
-                                            <p className='text-primary '>₹{products.oldprice}</p>
+                                            <p className='text-gray-900/80 line-through '>₹{products.oldprice}</p>
+                                            <p className='text-primary '>₹{products.price}</p>
                                         </div>
 
 

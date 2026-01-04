@@ -49,8 +49,8 @@ const SelectedItems = ({ fetchProducts }) => {
                             </Stack>
 
                             <div className='flex justify-between w-fit gap-10'>
-                                <p className='text-gray-900/80 line-through'>₹{products?.price}</p>
-                                <p className='text-primary'>₹{products?.oldprice}</p>
+                                <p className='text-gray-900/80 line-through'>₹{products?.oldprice}</p>
+                                <p className='text-primary'>₹{products?.price}</p>
                             </div>
 
                             <Button className='flex md:gap-4 gap-2 items-center w-fit !p-2 !border-1 !border-primary group hover:!border-black hover:!bg-black'>

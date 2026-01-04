@@ -1,9 +1,8 @@
-import { Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-import { Divide, InboxIcon, MailIcon } from 'lucide-react';
+import { Box, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { useState } from 'react'
 import { HiOutlineBars3CenterLeft } from 'react-icons/hi2';
 import { assest } from '../../../assets/Assests';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LoginCheck from './Subheader.jsx/LoginCheck';
 import Search from './Subheader.jsx/Search';
 import { MdOutlineAccountCircle } from 'react-icons/md';
@@ -14,7 +13,7 @@ import { BiSolidCategory } from "react-icons/bi";
 import { FiLogOut } from "react-icons/fi";
 
 const ResponsiveHeader = ({ isAuth, user, logout }) => {
-
+    const navigate = useNavigate()
     const [open, setOpen] = useState(false);
 
     const HeaderDrawer = (newOpen) => () => {
@@ -22,24 +21,33 @@ const ResponsiveHeader = ({ isAuth, user, logout }) => {
     };
 
     const menuItems = [
-        { text: 'My Account', icon: <RiAccountCircleFill /> },
-        { text: 'My Orders', icon: <RiShoppingBag4Fill /> },
-        { text: 'My Wishlist', icon: <FaHeart /> },
-        { text: 'My Cart', icon: <FaCartShopping /> },
+        { text: 'My Account', icon: <RiAccountCircleFill />, path: "/myaccount/info" },
+        { text: 'My Orders', icon: <RiShoppingBag4Fill />, path: "/myaccount/myorder" },
+        { text: 'My Wishlist', icon: <FaHeart />, path: "/myaccount/mylist" },
+        { text: 'My Cart', icon: <FaCartShopping />, path: "/veiwcart" },
         { text: 'All categories', icon: <BiSolidCategory /> },
-        { text: 'LogOut', icon: <FiLogOut /> }
+        { text: 'LogOut', icon: <FiLogOut />, action: "logout" }
     ];
+
+    const handlemenu = (item) => {
+        if (item.action === "logout") {
+            logout();
+            return;
+        } else {
+            navigate(item.path)
+        }
+    }
 
 
     const DrawerList = (
         <Box sx={{ width: 250 }} role="presentation" onClick={HeaderDrawer(false)}>
             <List>
                 {menuItems.slice(0, 4).map((item, index) => (
-                    <ListItem button key={index}>
+                    <ListItem key={index}>
                         <ListItemIcon className='!min-w-10 text-2xl'>
                             {item.icon}
                         </ListItemIcon>
-                        <ListItemText primary={item.text} />
+                        <ListItemText onClick={() => handlemenu(item)} primary={item.text} />
                     </ListItem>
                 ))}
             </List>
@@ -58,7 +66,7 @@ const ResponsiveHeader = ({ isAuth, user, logout }) => {
             <List>
                 {menuItems.slice(5).map((item, index) => (
                     <ListItem button key={index}>
-                        <ListItemIcon  className='!min-w-10 text-2xl'>
+                        <ListItemIcon className='!min-w-10 text-2xl'>
                             {item.icon}
                         </ListItemIcon>
                         <ListItemText onClick={logout} primary={item.text} />
