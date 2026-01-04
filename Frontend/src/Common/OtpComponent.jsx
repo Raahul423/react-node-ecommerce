@@ -58,14 +58,14 @@ const OtpComponent = () => {
     };
 
     return (
-        <section className='flex items-center justify-center h-screen overflow-hidden bg-cover bg-center bg-no-repeat' style={{
+        <section className='flex items-center justify-center min-h-screen overflow-hidden bg-cover bg-center bg-no-repeat' style={{
             backgroundImage: "url('https://coreui.io/images/ogimages/coreui_1200_600.jpg')"
         }}>
-            <div className=" flex flex-col items-center gap-3  border border-gray-700/40 rounded-md w-fit px-12 py-2 shadow-gray-700/60 shadow-md bg-white">
+            <div className=" flex flex-col items-center gap-3  border border-gray-700/40 rounded-md md:w-fit w-85 px-12 py-2 shadow-gray-700/60 shadow-md bg-white">
                 <img className="h-50 " src="/verify.gif" alt="Error" />
                 <h2 className="text-xl font-semibold">Enter 6-Digit OTP</h2>
 
-                <Box className="flex gap-3">
+                <Box className="flex gap-2 md:gap-3 justify-center ">
                     {otp.map((digit, index) => (
                         <TextField
                             key={index}
@@ -77,9 +77,9 @@ const OtpComponent = () => {
                                 maxLength: 1,
                                 style: {
                                     textAlign: "center",
-                                    fontSize: "20px",
-                                    width: "25px",
-                                    height: "25px",
+                                    fontSize: "18px",
+                                    width: "20px",
+                                    height: "20px",
                                 },
                             }}
                             variant="outlined"
@@ -97,7 +97,7 @@ const OtpComponent = () => {
                     Verify OTP
                 </Button>
             </div>
-            <ToastContainer/>
+            <ToastContainer />
         </section>
     )
 }

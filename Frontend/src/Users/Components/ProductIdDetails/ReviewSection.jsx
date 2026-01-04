@@ -18,7 +18,7 @@ const ReviewSection = () => {
                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio at provident corporis distinctio assumenda eaque, ducimus officia quam? Nostrum incidunt aliquid aut officia sunt dolorum modi quasi inventore quos. Voluptatum optio quam, dolorum tenetur placeat incidunt vero hic aliquam? Deserunt, at a eligendi consectetur praesentium harum? Incidunt provident odit repellendus animi doloremque eligendi, ipsa, molestias consectetur, aliquam nesciunt assumenda. Obcaecati.</p>
                     </div>
                     :
-                    <div className='w-[80%] px-8 py-4 shadow shadow-gray-700/90 rounded-md'>
+                    <div className='md:w-[80%] px-8 py-4 shadow shadow-gray-700/90 rounded-md'>
                         <div className='py-4'>
                             <h1>Customer questions & answers</h1>
                         </div>

@@ -1,5 +1,5 @@
-import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-import { InboxIcon, MailIcon } from 'lucide-react';
+import { Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { Divide, InboxIcon, MailIcon } from 'lucide-react';
 import { useState } from 'react'
 import { HiOutlineBars3CenterLeft } from 'react-icons/hi2';
 import { assest } from '../../../assets/Assests';
@@ -7,8 +7,13 @@ import { Link } from 'react-router-dom';
 import LoginCheck from './Subheader.jsx/LoginCheck';
 import Search from './Subheader.jsx/Search';
 import { MdOutlineAccountCircle } from 'react-icons/md';
+import { FaHeart, FaUser } from 'react-icons/fa';
+import { RiAccountCircleFill, RiShoppingBag4Fill } from "react-icons/ri";
+import { FaCartShopping } from 'react-icons/fa6';
+import { BiSolidCategory } from "react-icons/bi";
+import { FiLogOut } from "react-icons/fi";
 
-const ResponsiveHeader = ({ isAuth }) => {
+const ResponsiveHeader = ({ isAuth, user, logout }) => {
 
     const [open, setOpen] = useState(false);
 
@@ -16,31 +21,47 @@ const ResponsiveHeader = ({ isAuth }) => {
         setOpen(newOpen);
     };
 
+    const menuItems = [
+        { text: 'My Account', icon: <RiAccountCircleFill /> },
+        { text: 'My Orders', icon: <RiShoppingBag4Fill /> },
+        { text: 'My Wishlist', icon: <FaHeart /> },
+        { text: 'My Cart', icon: <FaCartShopping /> },
+        { text: 'All categories', icon: <BiSolidCategory /> },
+        { text: 'LogOut', icon: <FiLogOut /> }
+    ];
+
 
     const DrawerList = (
         <Box sx={{ width: 250 }} role="presentation" onClick={HeaderDrawer(false)}>
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
+                {menuItems.slice(0, 4).map((item, index) => (
+                    <ListItem button key={index}>
+                        <ListItemIcon className='!min-w-10 text-2xl'>
+                            {item.icon}
+                        </ListItemIcon>
+                        <ListItemText primary={item.text} />
                     </ListItem>
                 ))}
             </List>
-
+            <Divider />
             <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
+                {menuItems.slice(4, 5).map((item, index) => (
+                    <ListItem button key={index}>
+                        <ListItemIcon className='!min-w-10 text-2xl'>
+                            {item.icon}
+                        </ListItemIcon>
+                        <ListItemText primary={item.text} />
+                    </ListItem>
+                ))}
+            </List>
+            <Divider />
+            <List>
+                {menuItems.slice(5).map((item, index) => (
+                    <ListItem button key={index}>
+                        <ListItemIcon  className='!min-w-10 text-2xl'>
+                            {item.icon}
+                        </ListItemIcon>
+                        <ListItemText onClick={logout} primary={item.text} />
                     </ListItem>
                 ))}
             </List>
@@ -53,6 +74,23 @@ const ResponsiveHeader = ({ isAuth }) => {
                     <div>
                         <HiOutlineBars3CenterLeft className='text-3xl' onClick={HeaderDrawer(true)} />
                         <Drawer open={open} onClose={HeaderDrawer(false)}>
+                            <div className='px-4 gap-4 bg-primary h-15 flex items-center'>
+                                {isAuth ?
+                                    <div className='flex items-center gap-2'>
+                                        <img className='h-8 w-8 object-cover rounded-full' src={user?.avatar} alt="error" />
+                                        <p className='flex flex-col '>
+                                            <span className='text-white'>Welcome back,</span>
+                                            <span className='text-white'>{user?.fullName}</span>
+                                        </p>
+                                    </div>
+                                    :
+                                    <>
+                                        <FaUser className='text-2xl text-white' />
+                                        <p className='!text-xl text-white'>Login & Signup</p>
+                                    </>
+                                }
+
+                            </div>
                             {DrawerList}
                         </Drawer>
                     </div>
@@ -68,7 +106,7 @@ const ResponsiveHeader = ({ isAuth }) => {
                         <LoginCheck />
                         :
                         <div className='flex items-center gap-2'>
-                            <MdOutlineAccountCircle className='text-2xl'/>
+                            <MdOutlineAccountCircle className='text-2xl' />
                             <Link to={'/login'} className=' hover:text-primary transition-all cursor-pointer text-xl'>Login</Link>
                         </div>
                     }

@@ -3,7 +3,7 @@ import { FaShippingFast } from "react-icons/fa";
 
 const Shippingadd = () => {
     return (
-        <section className='md:py-15 md:px-25 py-6'>
+        <section className='md:py-10 md:px-25 py-6'>
             <div className='border-2 border-orange-600 rounded-md flex justify-between md:p-4 p-1 items-center'>
                 <div className='flex items-center md:gap-4 gap-2'>
                     <FaShippingFast className='md:text-6xl text-xl text-gray-800/90' />

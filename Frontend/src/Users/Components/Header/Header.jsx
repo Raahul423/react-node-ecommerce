@@ -17,7 +17,7 @@ import { HiOutlineBars3CenterLeft } from 'react-icons/hi2';
 import ResponsiveHeader from './ResponsiveHeader';
 
 const Header = () => {
-    const { isAuth, authloading } = useContext(MyContext);
+    const { isAuth, authloading, user, logout } = useContext(MyContext);
     const { toggleDrawer } = useContext(CartContext);
     const [cartProducts, setCartProducts] = useState([0])
     const [wishlistProduct, setWishlistProduct] = useState([0])
@@ -120,7 +120,7 @@ const Header = () => {
             </div>
 
             {/* for mobile veiw */}
-            <ResponsiveHeader isAuth={isAuth}/>
+            <ResponsiveHeader isAuth={isAuth} user={user} logout={logout}/>
 
 
             <div>
