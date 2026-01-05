@@ -1,4 +1,3 @@
-import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -9,18 +8,16 @@ import { Images } from '../../../assets/Assests';
 
 const HomeSlider = () => {
   return (
-    <div>
       <Swiper
         centeredSlides={true}
-        loop={true}
         slidesPerView={1}
         pagination={{
           dynamicBullets: true,
         }}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
+        // autoplay={{
+        //   delay: 2500,
+        //   disableOnInteraction: false,
+        // }}
         modules={[Pagination, Autoplay]}
       >
         {Images.map((img, idx) => (
@@ -41,8 +38,6 @@ const HomeSlider = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
-
   )
 }
 

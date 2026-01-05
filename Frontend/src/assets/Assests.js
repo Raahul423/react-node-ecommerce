@@ -98,19 +98,23 @@ export const available = ["Available", "Not Stock", "Not Available"];
 export const Images = [
   {
     Image:
-      "https://serviceapi.spicezgold.com/download/1748955932914_NewProject(1).jpg",
+      "/banner1.jpg",
   },
   {
     Image:
-      "https://serviceapi.spicezgold.com/download/1751685144346_NewProject(11).jpg",
+      "/banner2.avif",
   },
   {
     Image:
-      "https://serviceapi.spicezgold.com/download/1755503364377_1721277298204_banner.jpg",
+      "/banner3.jpg",
   },
   {
     Image:
-      "https://serviceapi.spicezgold.com/download/1755503364377_1721277298204_banner.jpg",
+      "/banner4.jpg",
+  },
+  {
+    Image:
+      "/banner5.jpg",
   },
 ];
 

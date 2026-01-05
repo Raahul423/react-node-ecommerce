@@ -10,23 +10,33 @@ import Popupmessage from '../Components/Popupmessage'
 import ElectronicProducts from '../Components/ProductsComponent/ElectronicProducts'
 
 const Home = () => {
-
   return (
-    <section className='md:mb-16 mb-8'>
-      <Popupmessage/>
-      <div className='bg-[#f5f0f0] md:py-6 py-3'>
-        <HomeSlider />
-        <HomeItems />
-      </div>
-      <ProductItem />
-      <FirstAdd />
-      <LatestProduct />
-      <FeatureProduct />
-      <SecondAdd />
-      <BeautyProducts />
-      <ElectronicProducts/>
-    </section>
-  )
-}
+    <section className="md:mb-16 mb-8">
+      <Popupmessage />
 
-export default Home
+      <div className="bg-[#f5f0f0] py-3 md:py-6">
+        <div className="w-full px-4">
+          <HomeSlider />
+        </div>
+
+        
+        <div className="px-4">
+          <HomeItems />
+        </div>
+      </div>
+
+    
+      <div>
+        <ProductItem />
+        <FirstAdd />
+        <LatestProduct />
+        <FeatureProduct />
+        <SecondAdd />
+        <BeautyProducts />
+        <ElectronicProducts />
+      </div>
+    </section>
+  );
+};
+
+export default Home;

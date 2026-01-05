@@ -15,7 +15,6 @@ const Navdrawer = ({ setIsOpen, IsOpen }) => {
     const { toastMessage } = useContext(MyContext)
     const [isopeen, setIsOpeen] = useState(null);
     const [categorydata, setCategorydata] = useState([])
-    console.log(isopeen);
 
 
     useEffect(() => {
