@@ -10,18 +10,20 @@ const HomeSlider = () => {
   return (
       <Swiper
         centeredSlides={true}
+        spaceBetween={25}
         slidesPerView={1}
         pagination={{
-          dynamicBullets: true,
+          dynamicBullets: true, 
         }}
         // autoplay={{
         //   delay: 2500,
         //   disableOnInteraction: false,
         // }}
         modules={[Pagination, Autoplay]}
+        className='!px-2'
       >
         {Images.map((img, idx) => (
-          <SwiperSlide key={idx}>
+          <SwiperSlide key={idx} className='!w-[100%]'>
             <img
               src={img.Image}
               alt="slider"

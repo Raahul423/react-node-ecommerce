@@ -15,7 +15,7 @@ const Home = () => {
       <Popupmessage />
 
       <div className="bg-[#f5f0f0] py-3 md:py-6">
-        <div className="w-full px-4">
+        <div className="w-full">
           <HomeSlider />
         </div>
 

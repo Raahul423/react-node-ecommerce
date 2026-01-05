@@ -102,7 +102,7 @@ export const Images = [
   },
   {
     Image:
-      "/banner2.avif",
+      "/banner2.jpg",
   },
   {
     Image:
@@ -111,10 +111,6 @@ export const Images = [
   {
     Image:
       "/banner4.jpg",
-  },
-  {
-    Image:
-      "/banner5.jpg",
   },
 ];
 
