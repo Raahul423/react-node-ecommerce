@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ProductSlider from '../Components/ProductLists/ProductSlider'
 import ProductItem from '../Components/ProductLists/ProductItem'
 import api from '../../Utils/api';
-import { useParams, useSearchParams } from 'react-router';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 
 

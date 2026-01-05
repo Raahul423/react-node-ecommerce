@@ -3,7 +3,7 @@ import Productdetails from '../Components/ProductIdDetails/Productdetails'
 import ReviewSection from '../Components/ProductIdDetails/ReviewSection'
 import ReuseableComponents from '../Components/ReuseComponent/ReuseableComponents'
 import api from '../../Utils/api'
-import { useParams } from 'react-router'
+import { useParams } from 'react-router-dom'
 
 
 const ProductsId = () => {

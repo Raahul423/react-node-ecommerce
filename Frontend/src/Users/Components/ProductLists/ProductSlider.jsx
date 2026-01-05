@@ -7,7 +7,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
-import { useNavigate, useSearchParams } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const ProductSlider = () => {
   const navigate = useNavigate();

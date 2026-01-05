@@ -7,7 +7,7 @@ import { TiArrowSortedDown } from "react-icons/ti";
 import Button from '@mui/material/Button';
 import { FaCaretUp } from "react-icons/fa";
 import api from '../../../../Utils/api';
-import { useNavigate, useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 const Category = ({ isopen, collapseisopen }) => {
