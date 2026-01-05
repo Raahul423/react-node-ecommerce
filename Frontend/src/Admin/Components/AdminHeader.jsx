@@ -1,6 +1,6 @@
 import { FaUser } from 'react-icons/fa'
 import { FiLogIn } from 'react-icons/fi'
-import { useLocation, useNavigate } from 'react-router'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const AdminHeader = () => {
     const navigate = useNavigate();
