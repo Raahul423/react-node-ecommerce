@@ -1,7 +1,7 @@
 import { Box, Button, CircularProgress, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
 import { useState } from 'react'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import api from '../Utils/api';
 import { ToastContainer, toast } from 'react-toastify';
 

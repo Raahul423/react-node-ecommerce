@@ -136,11 +136,11 @@ export const LoginAdmin = () => {
                         </Button>
 
 
-                        <p className='flex justify-center gap-4 items-center'>
+                        <div className='flex justify-center gap-4 items-center'>
                             <div className="flex-1 h-px bg-gray-600" />
                             <span className='whitespace-nowrap'>Or, Sign In with your email</span>
                             <div className="flex-1 h-px bg-gray-600" />
-                        </p>
+                        </div>
 
 
                         <div className='w-full'>

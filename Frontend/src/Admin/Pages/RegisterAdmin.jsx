@@ -3,7 +3,7 @@ import { useContext, useState } from 'react'
 import { FcGoogle } from 'react-icons/fc'
 import { IoEye, IoEyeOff } from 'react-icons/io5'
 import AdminHeader from '../Components/AdminHeader'
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 import api from '../../Utils/api'
 import { AdminContext } from '../../AdminAuthProvider'
 

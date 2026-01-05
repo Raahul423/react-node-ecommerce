@@ -5,7 +5,7 @@ import { Avatar, Badge, Divider, IconButton, ListItemIcon, Menu, MenuItem, Style
 import { IoNotifications } from 'react-icons/io5';
 import { FaCircleUser } from 'react-icons/fa6';
 import { FiLogOut } from 'react-icons/fi';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { AdminContext } from '../../AdminAuthProvider';
 
 const Header = () => {
