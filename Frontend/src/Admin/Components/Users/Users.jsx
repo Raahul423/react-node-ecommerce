@@ -55,7 +55,7 @@ const Users = () => {
                             </th>
                             <td scope="row"  className="px-6 py-4 font-medium text-heading whitespace-nowrap flex gap-4">
                                 <span>
-                                    <img className='h-10 w-10 object-cover' src="https://serviceapi.spicezgold.com/download/1753722939206_125c18d6-592d-4082-84e5-49707ae9a4fd1749366193911-Flying-Machine-Women-Wide-Leg-High-Rise-Light-Fade-Stretchab-1.jpg" alt="" />
+                                    <img className='h-10 w-10 object-cover' src="https://serviceapi.spicezgold.com/download/1753722939206_125c18d6-592d-4082-84e5-49707ae9a4fd1749366193911-Flying-Machine-Women-Wide-Leg-High-Rise-Light-Fade-Stretchab-1.jpg" alt="error" />
                                 </span>
 
                                 <span className=''>
@@ -91,7 +91,7 @@ const Users = () => {
                             </th>
                             <td scope="row"  className="px-6 py-4 font-medium text-heading whitespace-nowrap flex gap-4">
                                 <span>
-                                    <img className='h-10 w-10 object-cover' src="https://serviceapi.spicezgold.com/download/1753722939206_125c18d6-592d-4082-84e5-49707ae9a4fd1749366193911-Flying-Machine-Women-Wide-Leg-High-Rise-Light-Fade-Stretchab-1.jpg" alt="" />
+                                    <img className='h-10 w-10 object-cover' src="https://serviceapi.spicezgold.com/download/1753722939206_125c18d6-592d-4082-84e5-49707ae9a4fd1749366193911-Flying-Machine-Women-Wide-Leg-High-Rise-Light-Fade-Stretchab-1.jpg" alt="error" />
                                 </span>
 
                                 <span className=''>
@@ -127,7 +127,7 @@ const Users = () => {
                             </th>
                             <td scope="row"  className="px-6 py-4 font-medium text-heading whitespace-nowrap flex gap-4">
                                 <span>
-                                    <img className='h-10 w-10 object-cover' src="https://serviceapi.spicezgold.com/download/1753722939206_125c18d6-592d-4082-84e5-49707ae9a4fd1749366193911-Flying-Machine-Women-Wide-Leg-High-Rise-Light-Fade-Stretchab-1.jpg" alt="" />
+                                    <img className='h-10 w-10 object-cover' src="https://serviceapi.spicezgold.com/download/1753722939206_125c18d6-592d-4082-84e5-49707ae9a4fd1749366193911-Flying-Machine-Women-Wide-Leg-High-Rise-Light-Fade-Stretchab-1.jpg" alt="error" />
                                 </span>
 
                                 <span className=''>
@@ -163,7 +163,7 @@ const Users = () => {
                             </th>
                             <td scope="row"  className="px-6 py-4 font-medium text-heading whitespace-nowrap flex gap-4">
                                 <span>
-                                    <img className='h-10 w-10 object-cover' src="https://serviceapi.spicezgold.com/download/1753722939206_125c18d6-592d-4082-84e5-49707ae9a4fd1749366193911-Flying-Machine-Women-Wide-Leg-High-Rise-Light-Fade-Stretchab-1.jpg" alt="" />
+                                    <img className='h-10 w-10 object-cover' src="https://serviceapi.spicezgold.com/download/1753722939206_125c18d6-592d-4082-84e5-49707ae9a4fd1749366193911-Flying-Machine-Women-Wide-Leg-High-Rise-Light-Fade-Stretchab-1.jpg" alt="error" />
                                 </span>
 
                                 <span className=''>
@@ -199,7 +199,7 @@ const Users = () => {
                             </th>
                             <td scope="row"  className="px-6 py-4 font-medium text-heading whitespace-nowrap flex gap-4">
                                 <span>
-                                    <img className='h-10 w-10 object-cover' src="https://serviceapi.spicezgold.com/download/1753722939206_125c18d6-592d-4082-84e5-49707ae9a4fd1749366193911-Flying-Machine-Women-Wide-Leg-High-Rise-Light-Fade-Stretchab-1.jpg" alt="" />
+                                    <img className='h-10 w-10 object-cover' src="https://serviceapi.spicezgold.com/download/1753722939206_125c18d6-592d-4082-84e5-49707ae9a4fd1749366193911-Flying-Machine-Women-Wide-Leg-High-Rise-Light-Fade-Stretchab-1.jpg" alt="error" />
                                 </span>
 
                                 <span className=''>
