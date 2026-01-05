@@ -26,7 +26,7 @@ const HomeItems = () => {
 
 
   return (
-    <div className='my-container md:flex gap-2 justify-between !my-8 grid grid-cols-4'>
+    <div className='my-container md:flex gap-2 justify-between md:!my-8 !my-4 grid grid-cols-4'>
       {loading ?
       (Array.from({length : 8}).map((_,i)=> <LoadingCategory key={i}/>))
         :

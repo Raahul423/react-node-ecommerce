@@ -138,13 +138,12 @@ const Productdetails = ({ singleproducts }) => {
               dynamicBullets: true,
             }}
             slidesPerView={1}
-            spaceBetween={15}
             centeredSlides={true}
             modules={Pagination}
             className='h-full'
           >
             {singleproducts?.images?.map((img, idx) => (
-              <SwiperSlide key={idx}>
+              <SwiperSlide key={idx} className='!w-[100%]'>
                 <InnerImageZoom className='rounded-md md:h-120 w-full' src={img?.url} zoomType='hover' />
               </SwiperSlide>
             ))}

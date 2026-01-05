@@ -213,6 +213,9 @@ export const addimage = [
   },
 ];
 
+
+// for demo data 
+
 export const Productidimage = [
   {
     Image: "https://serviceapi.spicezgold.com/download/1742463096955_hbhb1.jpg",

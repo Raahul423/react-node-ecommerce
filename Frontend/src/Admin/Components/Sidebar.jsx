@@ -23,7 +23,7 @@ const Sidebar = () => {
     return (
         <section className='flex flex-col gap-8 p-4 sticky top-0'>
             <div className='part-1'>
-                <img src="https://serviceapi.spicezgold.com/download/1750047766437_logo.jpg" alt="Logoo" />
+                <img src="/Logo.jpg" alt="Logoo" />
             </div>
 
             <div className='part-2 flex flex-col gap-2'>

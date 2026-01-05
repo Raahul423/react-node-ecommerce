@@ -44,7 +44,7 @@ const Homebanner = () => {
                             <tbody>
                                 <tr className="bg-white border-b border-gray-500/20">
                                     <th scope="row" className="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                                        <img className='h-20 rounded-md hover:scale-102 cursor-pointer transition-all' src="https://serviceapi.spicezgold.com/download/1763051442252_34296.jpg" alt="Banner" />
+                                        <img className='h-20 rounded-md hover:scale-102 cursor-pointer transition-all' src="/Homebanner.jpg" alt="Banner" />
                                     </th>
 
                                     <td align='left' className="text-2xl">
@@ -54,7 +54,7 @@ const Homebanner = () => {
 
                                 <tr className="bg-white border-b border-gray-500/20">
                                     <th scope="row" className="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                                        <img className='h-20 rounded-md hover:scale-102 cursor-pointer transition-all' src="https://serviceapi.spicezgold.com/download/1763051442252_34296.jpg" alt="Banner" />
+                                        <img className='h-20 rounded-md hover:scale-102 cursor-pointer transition-all' src="/Homebanner.jpg" alt="Banner" />
                                     </th>
 
                                     <td align='left' className="text-2xl">
@@ -64,7 +64,7 @@ const Homebanner = () => {
 
                                 <tr className="bg-white border-b border-gray-500/20 ">
                                     <th scope="row" className="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                                        <img className='h-20 rounded-md hover:scale-102 cursor-pointer transition-all' src="https://serviceapi.spicezgold.com/download/1763051442252_34296.jpg" alt="Banner" />
+                                        <img className='h-20 rounded-md hover:scale-102 cursor-pointer transition-all' src="/Homebanner.jpg" alt="Banner" />
                                     </th>
 
                                     <td align='left' className="text-2xl">
@@ -74,7 +74,7 @@ const Homebanner = () => {
 
                                 <tr className="bg-white border-b border-gray-500/20 ">
                                     <th scope="row" className="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                                        <img className='h-20 rounded-md hover:scale-102 cursor-pointer transition-all' src="https://serviceapi.spicezgold.com/download/1763051442252_34296.jpg" alt="Banner" />
+                                        <img className='h-20 rounded-md hover:scale-102 cursor-pointer transition-all' src="/Homebanner.jpg" alt="Banner" />
                                     </th>
 
                                     <td align='left' className="text-2xl">
@@ -83,7 +83,7 @@ const Homebanner = () => {
                                 </tr>
                                 <tr className="bg-white border-b border-gray-500/20 ">
                                     <th scope="row" className="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                                        <img className='h-20 rounded-md hover:scale-102 cursor-pointer transition-all' src="https://serviceapi.spicezgold.com/download/1763051442252_34296.jpg" alt="Banner" />
+                                        <img className='h-20 rounded-md hover:scale-102 cursor-pointer transition-all' src="/Homebanner.jpg" alt="Banner" />
                                     </th>
 
                                     <td align='left' className="text-2xl">

@@ -23,7 +23,7 @@ export const DashboardHeader = () => {
                 </div>
 
                 <div className=''>
-                    <img className='h-80 w-80' src="https://ecommerce-admin-view.netlify.app/shop-illustration.webp" alt="" />
+                    <img className='h-80 w-80' src="/adminheaderimage.webp" alt="error" />
                 </div>
             </div>
 

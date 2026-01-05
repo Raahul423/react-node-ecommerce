@@ -122,7 +122,7 @@ export const LoginAdmin = () => {
                 <main className='flex justify-center  h-screen'>
                     <form onSubmit={handlechange} className='flex flex-col  gap-5 max-w-md'>
                         <div className='flex justify-center'>
-                            <img className='h-20 w-20' src="https://ecommerce-admin-view.netlify.app/icon.svg" alt="" />
+                            <img className='h-20 w-20' src="/adminlogo.svg" alt="" />
                         </div>
 
                         <div className='flex flex-col items-center'>

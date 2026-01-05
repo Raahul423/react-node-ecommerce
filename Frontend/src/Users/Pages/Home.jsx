@@ -20,7 +20,7 @@ const Home = () => {
         </div>
 
         
-        <div className="px-4">
+        <div>
           <HomeItems />
         </div>
       </div>

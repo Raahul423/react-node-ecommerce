@@ -10,15 +10,16 @@ const HomeSlider = () => {
   return (
       <Swiper
         centeredSlides={true}
+        loop={true}
         spaceBetween={25}
         slidesPerView={1}
         pagination={{
           dynamicBullets: true, 
         }}
-        // autoplay={{
-        //   delay: 2500,
-        //   disableOnInteraction: false,
-        // }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         modules={[Pagination, Autoplay]}
         className='!px-2'
       >
