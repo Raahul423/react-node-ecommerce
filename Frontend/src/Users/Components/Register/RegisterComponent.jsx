@@ -3,7 +3,7 @@ import { Box, Button, CircularProgress, FormControl, IconButton, InputAdornment,
 import { FcGoogle } from "react-icons/fc";
 import { useState } from 'react'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import api from '../../../Utils/api';
 import { MyContext } from '../../../Provider';
 

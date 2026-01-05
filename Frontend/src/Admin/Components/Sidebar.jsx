@@ -9,7 +9,7 @@ import { BiCategory } from 'react-icons/bi';
 import { FiUsers } from 'react-icons/fi';
 import { RiProductHuntLine } from 'react-icons/ri';
 import { BsCart2 } from "react-icons/bs";
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { AdminContext } from '../../AdminAuthProvider';
 
 const Sidebar = () => {

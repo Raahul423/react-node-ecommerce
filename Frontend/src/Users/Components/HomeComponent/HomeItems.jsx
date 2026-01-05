@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { MyContext } from '../../../Provider';
 import api from '../../../Utils/api';
 import LoadingCategory from '../LoadingSection/LoadingCategory';

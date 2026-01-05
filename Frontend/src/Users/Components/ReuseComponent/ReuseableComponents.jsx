@@ -8,7 +8,7 @@ import { FaRegHeart } from "react-icons/fa";
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import { Button } from '@mui/material';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { DialogContext } from '../../../Context/DialogComponent';
 import { useContext } from 'react';
 

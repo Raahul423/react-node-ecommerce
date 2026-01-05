@@ -1,7 +1,7 @@
 import { Box, Button, CircularProgress, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
 import { FcGoogle } from "react-icons/fc";
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
-import { Link, useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import api from '../../../Utils/api'
 import { MyContext } from '../../../Provider';

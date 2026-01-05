@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import Paymentsection from './SubCheckout/Paymentsection'
 import { MyContext } from '../../../Provider'
 import { Check } from 'lucide-react'
-import { Link, Navigate } from 'react-router'
+import { Link, Navigate } from 'react-router-dom'
 import { Box, Button, Radio, TextField } from '@mui/material'
 import { Collapse } from 'react-collapse';
 import { FiMinus, FiPlus } from 'react-icons/fi'

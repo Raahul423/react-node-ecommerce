@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 import { Navigation } from 'swiper/modules';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { DialogContext } from '../../../Context/DialogComponent';
 import { MdOutlineZoomOutMap } from 'react-icons/md';
 import { FaRegHeart } from 'react-icons/fa';

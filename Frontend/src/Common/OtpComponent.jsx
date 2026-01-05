@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Box, TextField, Button } from "@mui/material";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../Utils/api";
 import { toast, ToastContainer } from "react-toastify";
 

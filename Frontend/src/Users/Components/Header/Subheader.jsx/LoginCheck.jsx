@@ -5,7 +5,7 @@ import { FaRegHeart } from 'react-icons/fa';
 import { FaCircleUser } from 'react-icons/fa6'
 import { HiOutlineUserCircle } from 'react-icons/hi2';
 import { LiaShoppingBagSolid } from 'react-icons/lia';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { MyContext } from '../../../../Provider';
 
 const LoginCheck = () => {
