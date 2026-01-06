@@ -26,7 +26,7 @@ const sendVerificationEmail = async ({ to, token, name, userId }) => {
   `;
 
   return resend.emails.send({
-    from: "onboarding@resend.dev", // works without domain setup
+    from: process.env.FROM_EMAIL,
     to,
     subject: "Verify your email",
     html,
