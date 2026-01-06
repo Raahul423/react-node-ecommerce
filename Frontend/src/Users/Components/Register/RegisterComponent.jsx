@@ -45,14 +45,15 @@ const RegisterComponent = () => {
             setLoading(true)
             const response = await api.post('/users/register', field)
             toastMessage("success", response.data.message || "You can Login now...")
+            navigate("/login");
             setField({
                 fullName: "",
                 email: "",
                 password: ""
             });
             setLoading(false)
-            navigate("/login")
-            
+
+
             // console.log("response", response.data);
         } catch (error) {
             if (error.response) {
