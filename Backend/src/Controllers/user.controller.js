@@ -58,16 +58,12 @@ const registerUser = async (req, res) => {
 
     await createdUser.save({ validateBeforeSave: false });
 
-    try {
-      await sendVerificationEmail({
-        to: createdUser.email,
-        token,
-        name: createdUser.fullName,
-        userId: createdUser?._id,
-      });
-    } catch (err) {
-      console.error("Email failed:", err.message);
-    }
+    await sendVerificationEmail({
+      to: createdUser.email,
+      token,
+      name: createdUser.fullName,
+      userId: createdUser._id,
+    });
 
     return res.status(200).json({
       success: true,
