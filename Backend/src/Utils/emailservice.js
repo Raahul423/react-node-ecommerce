@@ -1,9 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import {transporter} from "../Config/mailer"
 
 const sendVerificationEmail = async ({ to, token, name, userId }) => {
   const appUrl = process.env.APP_URL.replace(/\/$/, "");
@@ -13,30 +11,22 @@ const sendVerificationEmail = async ({ to, token, name, userId }) => {
   )}&id=${userId}`;
 
   const html = `
-    <div style="font-family: Arial, sans-serif; line-height:1.6;">
+    <div style="font-family: Arial, sans-serif;">
       <p>Hi ${name || "there"},</p>
-      <p>Please verify your email address:</p>
-      <p>
-        <a href="${verifyUrl}" style="padding:10px 18px;border:1px solid #333;">
-          Verify Email
-        </a>
-      </p>
-      <p style="font-size:13px;color:#555">${verifyUrl}</p>
+      <p>Please verify your email:</p>
+      <a href="${verifyUrl}">Verify Email</a>
     </div>
   `;
 
-  console.log("➡️ Sending email to:", to);
-  console.log("➡️ FROM:", process.env.FROM_EMAIL);
-  console.log("➡️ RESEND KEY exists:", !!process.env.RESEND_API_KEY);
-
-  const response = await resend.emails.send({
+  const info = await transporter.sendMail({
     from: process.env.FROM_EMAIL,
     to,
     subject: "Verify your email",
     html,
   });
 
-  console.log("✅ Resend response:", response);
+  console.log("✅ Email sent:", info.messageId);
 };
 
 export { sendVerificationEmail };
+
