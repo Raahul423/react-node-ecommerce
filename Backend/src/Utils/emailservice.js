@@ -25,12 +25,18 @@ const sendVerificationEmail = async ({ to, token, name, userId }) => {
     </div>
   `;
 
-  return resend.emails.send({
+  console.log("➡️ Sending email to:", to);
+  console.log("➡️ FROM:", process.env.FROM_EMAIL);
+  console.log("➡️ RESEND KEY exists:", !!process.env.RESEND_API_KEY);
+
+  const response = await resend.emails.send({
     from: process.env.FROM_EMAIL,
     to,
     subject: "Verify your email",
     html,
   });
+
+  console.log("✅ Resend response:", response);
 };
 
 export { sendVerificationEmail };
