@@ -58,7 +58,7 @@ const registerUser = async (req, res) => {
 
     await createdUser.save({ validateBeforeSave: false });
 
-    await sendVerificationEmail({
+    sendVerificationEmail({
       to: createdUser.email,
       token,
       name: createdUser.fullName,

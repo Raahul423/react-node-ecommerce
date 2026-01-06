@@ -9,4 +9,4 @@ addressroute.route("/user-address").get(verifyJwt,getAddress);
 addressroute.route("/update-address/:id").put(verifyJwt,updateAddress);
 addressroute.route("/:id").delete(verifyJwt,deleteAddress);
 
-export {addressroute}
+export {addressroute}   
