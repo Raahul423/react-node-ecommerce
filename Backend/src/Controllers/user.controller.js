@@ -115,7 +115,7 @@ const registeradmin = async (req, res) => {
 
     return res.status(201).json({
       success: true,
-      message: "Please Verify Your e-mail...",
+      message: "You can Login now ...",
       createdAdmin,
     });
   } catch (error) {

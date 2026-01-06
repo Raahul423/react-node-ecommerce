@@ -3,11 +3,12 @@ import { Box, Button, CircularProgress, FormControl, IconButton, InputAdornment,
 import { FcGoogle } from "react-icons/fc";
 import { useState } from 'react'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import api from '../../../Utils/api';
 import { MyContext } from '../../../Provider';
 
 const RegisterComponent = () => {
+    const navigate = useNavigate();
     const { toastMessage } = useContext(MyContext);
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false)
@@ -43,14 +44,14 @@ const RegisterComponent = () => {
         try {
             setLoading(true)
             const response = await api.post('/users/register', field)
-            toastMessage("success", response.data.message || "Please verify your mail.")
+            toastMessage("success", response.data.message || "You can Login now...")
             setField({
                 fullName: "",
                 email: "",
                 password: ""
             });
             setLoading(false)
-            console.log("hii");
+            navigate("/login")
             
             // console.log("response", response.data);
         } catch (error) {
