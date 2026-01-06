@@ -1,8 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import { Resend } from "resend";
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { transporter } from "../Config/mailer.js";
 
 const sendresetPasswordemail = async ({ to, otp, name }) => {
   const verifycode = `${otp}`;
@@ -20,12 +19,14 @@ const sendresetPasswordemail = async ({ to, otp, name }) => {
     </div>
   `;
 
-  await resend.emails.send({
+  const info = await transporter.sendMail({
     from: process.env.FROM_EMAIL,
     to,
     subject: "Reset Your Password..",
     html,
   });
+
+  console.log("✅ Email sent:", info.messageId);
 };
 
 export { sendresetPasswordemail };

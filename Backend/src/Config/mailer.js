@@ -1,4 +1,3 @@
-
 import dotenv from "dotenv";
 dotenv.config();
 import nodemailer from "nodemailer";
@@ -7,7 +6,7 @@ import nodemailer from "nodemailer";
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: process.env.SMTP_PORT || 587,
-  secure: "false",
+  secure: false,
   auth: {
     user: process.env.BREVO_USER,
     pass: process.env.BREVO_PASS,

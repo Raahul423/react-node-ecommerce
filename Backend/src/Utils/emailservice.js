@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import {transporter} from "../Config/mailer"
+import {transporter} from "../Config/mailer.js"
 
 const sendVerificationEmail = async ({ to, token, name, userId }) => {
   const appUrl = process.env.APP_URL.replace(/\/$/, "");
