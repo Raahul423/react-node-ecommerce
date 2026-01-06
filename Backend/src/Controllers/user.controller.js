@@ -58,12 +58,16 @@ const registerUser = async (req, res) => {
 
     await createdUser.save({ validateBeforeSave: false });
 
-    await sendVerificationEmail({
-      to: createdUser.email,
-      token,
-      name: createdUser.fullName,
-      userId: createdUser?._id,
-    });
+    try {
+      await sendVerificationEmail({
+        to: createdUser.email,
+        token,
+        name: createdUser.fullName,
+        userId: createdUser?._id,
+      });
+    } catch (err) {
+      console.error("Email failed:", err.message);
+    }
 
     return res.status(200).json({
       success: true,
@@ -156,7 +160,6 @@ const verifyEmail = async (req, res) => {
       message: "Email verified You can now login",
       role: user.role,
     });
-    
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
@@ -189,7 +192,6 @@ const loginUser = async (req, res) => {
         message: "You are not authorized to login as admin",
       });
     } // bro yeh login type admin hai or check karega ki admin page pr jo login kr rha hai vo admin hai ya nhi
-
 
     const checkPassword = await user.isPasswordCorrect(password);
 

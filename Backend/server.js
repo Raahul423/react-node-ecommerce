@@ -37,6 +37,6 @@ app.use('/api/address',addressroute)
 
 connectDB().then(() => {
   app.listen(process.env.PORT,() => {
-    console.log("server is running", process.env.PORT);
+    console.log("server is running", process.env.PORT || 3000);
   });
 });

@@ -49,6 +49,9 @@ const RegisterComponent = () => {
                 email: "",
                 password: ""
             });
+            setLoading(false)
+            console.log("hii");
+            
             // console.log("response", response.data);
         } catch (error) {
             if (error.response) {
@@ -56,8 +59,6 @@ const RegisterComponent = () => {
             } else {
                 toastMessage("error", "Server is currently not responding. Please try again later.")
             }
-        } finally {
-            setLoading(false)
         }
 
     }
