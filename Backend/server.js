@@ -13,7 +13,6 @@ import { cartItem } from "./src/Route/cartItem.route.js";
 import { wishlistrouter } from "./src/Route/wishlist.route.js";
 import { addressroute } from "./src/Route/address.route.js";
 
-
 const app = express();
 app.use(cors("*"));
 
@@ -26,17 +25,18 @@ app.use(
   })
 );
 
-
 //route
-app.use('/api/users',router)
-app.use('/api/categories',category)
-app.use('/api/products',product)
-app.use('/api/cartitems',cartItem)
-app.use('/api/wishlist',wishlistrouter)
-app.use('/api/address',addressroute)
+app.use("/api/users", router);
+app.use("/api/categories", category);
+app.use("/api/products", product);
+app.use("/api/cartitems", cartItem);
+app.use("/api/wishlist", wishlistrouter);
+app.use("/api/address", addressroute);
+
+const PORT = process.env.PORT || 3000;
 
 connectDB().then(() => {
-  app.listen(process.env.PORT,() => {
-    console.log("server is running", process.env.PORT || 3000);
+  app.listen(PORT, () => {
+    console.log("server is running", PORT);
   });
 });
