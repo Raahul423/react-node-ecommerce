@@ -190,7 +190,7 @@ REFRESH_TOKEN_EXPIRY = Your_REFRESH_TOKEN_EXPIRY
 
 ---
 
-## 🔗 📄 License
+## 📄 License
 
 This project is licensed under the [MIT License](./LICENSE).
 
