@@ -7,7 +7,7 @@ As a fresher project, the goal was to move beyond tutorials and build a producti
 
 ---
 
-### ⛓️‍💥 ## 🚀Live Demo
+## 🚀Live Demo
 
 Frontend: https://e-commerce-node-react.vercel.app
 
@@ -18,8 +18,8 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 
 ---
 
-# 🔗✨Features
-## 👤 User Features
+## ✨Features
+### 👤User Features
 
 - User registration, login, and logout
 
@@ -36,7 +36,7 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 - Responsive UI (mobile‑first)
 
 
-## 🧑‍💼 Admin Features
+### 🧑‍💼Admin Features
 
 - Role‑based access control (Admin / User)
 
@@ -51,7 +51,7 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 - Manage orders
 
 
-## 🔐 Security Features
+### 🔐Security Features
 
 - Password hashing using bcrypt
 
@@ -62,93 +62,93 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 - Secure cookies to prevent XSS attacks
 
 
-## 💳 Payments
+### 💳Payments
 
 - Payment integration under deployment and actively being finalized
 
 ---
 
-# 🗂️ ER Diagram (Database Architecture)
+## 🗂️ ER Diagram (Database Architecture)
 
 -The following ER diagram represents the core data models and their relationships used in ClassyShop:
 
-> 📌 ER Diagram image can be added here [/docs/er-diagram.png] for better visualization.
+> 📌 ER Diagram image can be added here [./docs/er-diagram.png] for better visualization.
 
 
 
 
 ---
 
-# 🔗 🛠️ Tech Stack
-### 🔗 Frontend
-   - React (Vite)
-   - Tailwind CSS
-   - Material UI
-   - Custom CSS
-   - Context API (state management)
+## 🔗 🛠️ Tech Stack
+### Frontend
+ - React (Vite)
+ - Tailwind CSS
+ - Material UI
+ - Custom CSS
+ - Context API (state management)
 
 
 ### 🔗 Backend
-   - Node.js
-   - Express.js
-   - RESTful APIs
-   - JWT Authentication (Access & Refresh Tokens)
+ - Node.js
+ - Express.js
+ - RESTful APIs
+ - JWT Authentication (Access & Refresh Tokens)
 
 
 ### 🔗 Database
-   - MongoDB
-   - Mongoose ODM
+ - MongoDB
+ - Mongoose ODM
 
 
 ### 🔗 Media Storage
-   - Cloudinary (image upload & optimization)
+ - Cloudinary (image upload & optimization)
 
 
 ### 🔗 Testing & Tools
-   - Postman (API testing)
-   - Git & GitHub (version control)
+ - Postman (API testing)
+ - Git & GitHub (version control)
 
 
 ### 🔗 Deployment
-   - Frontend: Vercel
-   - Backend: Render
+ - Frontend: Vercel
+ - Backend: Render
 
 
 ---
 
 
-# 🔗 ⚙️ Installation & Setup
+## ⚙️ Installation & Setup
 
-## 🔗Clone the repository
+### Clone the repository
 ```bash
 git clone https://github.com/Raahul423/react-node-ecommerce.git
 cd react-node-ecommerce
 ```
 
-## 🔗Backend
+## Backend
 ```bash 
 npm install
 node server.js
 ```
 
-## 🔗Frontend
+## Frontend
 ```bash
 npm install
 npm run dev
 ```
 
-# 🔗install the dependencies 
+## install the dependencies 
 
-## 🔗 Frontend
+### Frontend
 ```bash
 npm install axios motion react react-collapse react-dom react-icons react-inner-image-zoom react-range-slider-input react-router-dom react-swipeable react-toastify recharts swiper tailwindcss
 ```
-## 🔗 Backend
+### Backend
 ```bash
 npm install bcryptjs cloudinary cookie-parser cors crypto-js express helmet jsonwebtoken mongoose morgan multer slugify @getbrevo/brevo
 ```
 
-## 🔗 Environment Variables
+### Environment Variables
 ```bash 
 MONGO_URI = Your_Mongodb_connection_string
 CLOUDINARY_CLOUD_NAME = Your_CLOUDINARY_CLOUD_NAME
@@ -165,51 +165,42 @@ REFRESH_TOKEN_EXPIRY = Your_REFRESH_TOKEN_EXPIRY
 
 ---
 
-# 🔗 🧠 What I Learned
+## 🧠 What I Learned
 
-Designing secure authentication flows with JWT & cookies
+ - Designing secure authentication flows with JWT & cookies
 
-Building scalable REST APIs
+ - Building scalable REST APIs
 
-Role‑based authorization (Admin vs User)
+ - Role‑based authorization (Admin vs User)
 
-Handling real‑world e‑commerce logic
+ - Handling real‑world e‑commerce logic
 
-Integrating third‑party services like Cloudinary
+ - Integrating third‑party services like Cloudinary
 
-Deploying full‑stack applications
+ - Deploying full‑stack applications
 
 
-
----
-
-# 🔗 📌 Future Improvements
-
-```bash
-Completing Google Authentication for login & Register
-Complete payment gateway integration
-Product reviews & filter by price slider
-```
 
 ---
 
-### 🔗 📄 License
-
-This project is licensed under the MIT License.
-
-You are free to:
-
-Use the project for personal or commercial purposes
-
-Modify and distribute the code
-
-Include it in your own projects
-
-
-See the LICENSE file for more details.
-
+## 📌 Future Improvements
+ - Completing Google Authentication for login & Register
+ - Complete payment gateway integration
+ - Product reviews & filter by price slider
 
 ---
+
+## 🔗 📄 License
+
+This project is licensed under the [MIT License](./LICENSE).
+
+---
+
+## 👨‍💻 Author
+
+Rahul Pal
+
+Github: https://github.com/Raahul423
 
 ### 🔗 🤝 Feedback
 
