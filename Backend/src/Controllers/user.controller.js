@@ -58,16 +58,16 @@ const registerUser = async (req, res) => {
 
     await createdUser.save({ validateBeforeSave: false });
 
-    // sendVerificationEmail({
-    //   to: createdUser.email,
-    //   token,
-    //   name: createdUser.fullName,
-    //   userId: createdUser._id,
-    // });
+    sendVerificationEmail({
+      to: createdUser.email,
+      token,
+      name: createdUser.fullName,
+      userId: createdUser._id,
+    });
 
     return res.status(200).json({
       success: true,
-      message: "Please Login to proceed...",
+      message: "Please Verify Your Mail....",
       createdUser,
     });
   } catch (error) {
@@ -106,12 +106,12 @@ const registeradmin = async (req, res) => {
 
     await createdAdmin.save({ validateBeforeSave: false });
 
-    // await sendVerificationEmail({
-    //   to: createdAdmin.email,
-    //   token,
-    //   name: createdAdmin.fullName,
-    //   userId: createdAdmin?._id,
-    // });
+    await sendVerificationEmail({
+      to: createdAdmin.email,
+      token,
+      name: createdAdmin.fullName,
+      userId: createdAdmin?._id,
+    });
 
     return res.status(201).json({
       success: true,

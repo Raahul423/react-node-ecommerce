@@ -44,15 +44,13 @@ const RegisterComponent = () => {
         try {
             setLoading(true)
             const response = await api.post('/users/register', field)
-            toastMessage("success", response.data.message || "You can Login now...")
+            toastMessage("success", response.data.message || "Please verify Mail....")
             navigate("/login");
             setField({
                 fullName: "",
                 email: "",
                 password: ""
             });
-            setLoading(false)
-
 
             // console.log("response", response.data);
         } catch (error) {
@@ -61,6 +59,8 @@ const RegisterComponent = () => {
             } else {
                 toastMessage("error", "Server is currently not responding. Please try again later.")
             }
+        }finally{
+            setLoading(false)
         }
 
     }
