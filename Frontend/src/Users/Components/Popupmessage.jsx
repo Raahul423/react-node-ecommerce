@@ -34,11 +34,12 @@ const Popupmessage = () => {
                     👋 Hi Recruiter!
                 </h2>
                 <p className="text-white mb-4 leading-relaxed">
-                    The <span className="font-medium text-primary">Frontend</span> part of
-                    this project is <span className="text-green-600 font-semibold">100% complete</span>.
-                    <br />
-                    Currently, the <span className="text-blue-600 font-semibold">Backend</span> integration
-                    is in progress... 🚀
+                    <span>1.</span>
+                    <p>Google authentication is currently under development.<><span className='text-red-700'>Please use email/password login for now.</span></>  I am  actively working on it.</p>
+                    <span>2.</span>
+                    <p><span className='text-blue-600'>Payment Integration</span> is not Working at the moment. I am currently Working on it. (Testing Payments) </p>
+                    <span>3.</span>
+                    <p>Currently Cart section page is under processing on mobile devices. 😅</p>
                 </p>
                 <img className='h-50 rounded-md object-cover' src="/Working Backend.gif" alt="" />
                 <Button
