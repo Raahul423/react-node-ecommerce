@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 import { v2 as cloudinary } from "cloudinary";
-import fs from "fs";;
+// import fs from "fs";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -9,19 +9,35 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET_KEY,
 });
 
-const uploadOncloudinary = async function (localfile) {
-  try {
-    if (!localfile) return null;
-    const cloudinaryUpload = await cloudinary.uploader.upload(localfile, {
-      resource_type: "auto",
-    });
-    fs.unlinkSync(localfile);
-    return cloudinaryUpload;
-  } catch (error) {
-    fs.unlinkSync(localfile);
-    return null;
-  }
+ const uploadOncloudinary = (buffer) => {
+  return new Promise((resolve, reject) => {
+    cloudinary.uploader.upload_stream(
+      {
+        resource_type: "auto",
+        folder: "products",
+      },
+      (error, result) => {
+        if (error) reject(error);
+        else resolve(result);
+      }
+    ).end(buffer);
+  });
 };
+
+// This code for localStorage or local file not work in production best for learning
+// const uploadOncloudinary = async function (localfile) {
+//   try {
+//     if (!localfile) return null;
+//     const cloudinaryUpload = await cloudinary.uploader.upload(localfile, {
+//       resource_type: "auto",
+//     });
+//     fs.unlinkSync(localfile);
+//     return cloudinaryUpload;
+//   } catch (error) {
+//     fs.unlinkSync(localfile);
+//     return null;
+//   }
+// };
 
 const removeFromcloudinary = async (publicId) => {
   try {

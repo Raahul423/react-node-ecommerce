@@ -106,7 +106,7 @@ const registeradmin = async (req, res) => {
 
     await createdAdmin.save({ validateBeforeSave: false });
 
-    await sendVerificationEmail({
+    sendVerificationEmail({
       to: createdAdmin.email,
       token,
       name: createdAdmin.fullName,
@@ -115,7 +115,7 @@ const registeradmin = async (req, res) => {
 
     return res.status(201).json({
       success: true,
-      message: "Login to proceed...",
+      message: "Please Verify Your  Mail...",
       createdAdmin,
     });
   } catch (error) {
