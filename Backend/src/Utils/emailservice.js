@@ -77,7 +77,7 @@ const sendVerificationEmail = async ({ to, token, name, userId }) => {
     htmlContent: html,
   });
 
-  console.log("✅ Demo email sent:", response?.messageId || "OK");
+  // console.log("✅ Demo email sent:", response?.messageId || "OK");
 };
 
 export { sendVerificationEmail };

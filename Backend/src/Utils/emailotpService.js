@@ -49,7 +49,7 @@ const sendresetPasswordemail = async ({ to, otp, name }) => {
     htmlContent: html,
   });
 
-  console.log("✅ OTP email sent to:", to);
+  // console.log("✅ OTP email sent to:", to);
 };
 
 export { sendresetPasswordemail };

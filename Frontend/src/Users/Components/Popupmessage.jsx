@@ -43,7 +43,8 @@ const Popupmessage = () => {
                         <p><span className='text-red-600'>Payment Integration</span> is not Working at the moment. I am currently Working on it. (Testing Payments) </p></p>
 
                     <p className='flex  gap-2'><span>3.</span>
-                        <p>Currently <span className='text-red-600'>Cart section</span> page is under processing on mobile devices. 😅</p></p>
+                        <p>Currently <span className='text-red-600'>Cart section</span> page is under processing on mobile devices. 😅   and also working on search box filter products....</p>
+                    </p>
 
                 </p>
                 <img className='h-50 rounded-md object-cover' src="/Working Backend.gif" alt="" />
