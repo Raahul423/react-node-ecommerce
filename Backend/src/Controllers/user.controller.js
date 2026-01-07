@@ -351,7 +351,7 @@ const uploadAvatar = async (req, res) => {
       }
     }
 
-    const localavatar = req.file?.path;
+    const localavatar = req.file?.buffer;
     if (!localavatar) {
       return res
         .status(409)
