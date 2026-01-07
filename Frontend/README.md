@@ -1,4 +1,4 @@
-### 🛒 ClassyShop – Full Stack E‑Commerce Application
+# 🛒 ClassyShop – Full Stack E‑Commerce Application
 
 ClassyShop is a full‑stack e‑commerce web application built with a strong focus on security, scalability, and real‑world architecture. This project covers the complete flow from user authentication to admin management and order handling.
 
@@ -7,16 +7,18 @@ As a fresher project, the goal was to move beyond tutorials and build a producti
 
 ---
 
-### 🔗🚀 Live Demo
+# 🔗🚀 Live Demo
 
 Frontend: https://e-commerce-node-react.vercel.app
+
 Backend API: https://e-commerce-backend-m7ml.onrender.com
+
 Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?origin=share
 
 
 ---
 
-### 🔗 ✨ Features
+# 🔗 ✨ Features
 ---
 ## 👤 User Features
 
@@ -65,11 +67,9 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 
 - Payment integration under deployment and actively being finalized
 
-
-
 ---
 
-## 🗂️ ER Diagram (Database Architecture)
+# 🗂️ ER Diagram (Database Architecture)
 
 -The following ER diagram represents the core data models and their relationships used in ClassyShop:
 
@@ -80,10 +80,10 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 
 ---
 
-### 🔗 🛠️ Tech Stack
+# 🔗 🛠️ Tech Stack
 ---
 
-##🔗 Frontend
+### 🔗 Frontend
 
 - React (Vite)
 
@@ -96,7 +96,7 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 - Context API (state management)
 
 
-## 🔗 Backend
+### 🔗 Backend
 
 - Node.js
 
@@ -107,51 +107,36 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 - JWT Authentication (Access & Refresh Tokens)
 
 
-## 🔗 Database
+### 🔗 Database
 
 - MongoDB
 
 - Mongoose ODM
 
 
-## 🔗 Media Storage
+### 🔗 Media Storage
 
 - Cloudinary (image upload & optimization)
 
 
-## 🔗 Testing & Tools
+### 🔗 Testing & Tools
 
 - Postman (API testing)
 
 - Git & GitHub (version control)
 
 
-## 🔗 Deployment
+### 🔗 Deployment
 
 - Frontend: Vercel
 
 - Backend: Render
 
 
-
 ---
 
-📂 Project Structure (High Level)
 
-classyshop/
-├── client/        # React frontend
-├── server/        # Node + Express backend
-│   ├── controllers
-│   ├── routes
-│   ├── models
-│   ├── middleware
-│   └── utils
-├── .env
-└── README.md
-
----
-
-### 🔗 ⚙️ Installation & Setup
+# 🔗 ⚙️ Installation & Setup
 
 ## 🔗Clone the repository
 ```bash
@@ -171,7 +156,7 @@ npm install
 npm run dev
 ```
 
-### 🔗install the dependencies 
+# 🔗install the dependencies 
 
 ## 🔗 Frontend
 ```bash
@@ -199,7 +184,7 @@ REFRESH_TOKEN_EXPIRY = Your_REFRESH_TOKEN_EXPIRY
 
 ---
 
-### 🔗 🧠 What I Learned
+# 🔗 🧠 What I Learned
 
 Designing secure authentication flows with JWT & cookies
 
@@ -217,7 +202,7 @@ Deploying full‑stack applications
 
 ---
 
-### 🔗 📌 Future Improvements
+# 🔗 📌 Future Improvements
 
 ```bash
 Completing Google Authentication for login & Register
