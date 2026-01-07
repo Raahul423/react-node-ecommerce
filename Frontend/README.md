@@ -88,28 +88,28 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
  - Context API (state management)
 
 
-### 🔗 Backend
+### Backend
  - Node.js
  - Express.js
  - RESTful APIs
  - JWT Authentication (Access & Refresh Tokens)
 
 
-### 🔗 Database
+### Database
  - MongoDB
  - Mongoose ODM
 
 
-### 🔗 Media Storage
+### Media Storage
  - Cloudinary (image upload & optimization)
 
 
-### 🔗 Testing & Tools
+### Testing & Tools
  - Postman (API testing)
  - Git & GitHub (version control)
 
 
-### 🔗 Deployment
+### Deployment
  - Frontend: Vercel
  - Backend: Render
 
@@ -117,7 +117,7 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 ---
 
 
-## ⚙️ Installation & Setup
+## ⚙️Installation & Setup
 
 ### Clone the repository
 ```bash
@@ -202,7 +202,7 @@ Rahul Pal
 
 Github: https://github.com/Raahul423
 
-### 🔗 🤝 Feedback
+## 🤝 Feedback
 
 Feedback and suggestions are always welcome!
 This project represents my learning journey as a Full‑Stack Developer (Fresher) 🚀
@@ -210,4 +210,4 @@ This project represents my learning journey as a Full‑Stack Developer (Fresher
 
 ---
 
-### 🔗 ⭐ If you like this project, consider giving it a star!
+## ⭐ If you like this project, consider giving it a star!
