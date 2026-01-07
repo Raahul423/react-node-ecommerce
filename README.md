@@ -72,7 +72,7 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 
 -The following ER diagram represents the core data models and their relationships used in ClassyShop:
 
-> 📌 ER Diagram image can be added here [er-diagram.png](../E-commerce/docs/er-diagram.png) for better visualization.
+> 📌 ER Diagram image can be added here [er-diagram.png](/docs/er-diagram.png) for better visualization.
 
 
 
@@ -192,7 +192,7 @@ REFRESH_TOKEN_EXPIRY = Your_REFRESH_TOKEN_EXPIRY
 
 ## 📄 License
 
-This project is licensed under the [MIT License](../E-commerce/Frontend/LICENSE).
+This project is licensed under the [MIT License](/Frontend/LICENSE).
 
 ---
 
