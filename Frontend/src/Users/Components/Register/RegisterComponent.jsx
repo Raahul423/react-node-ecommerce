@@ -133,6 +133,7 @@ const RegisterComponent = () => {
                             name='password'
                             onChange={onChangeInput}
                             value={field.password}
+                            className='!w-full'
                         />
                     </FormControl>
 

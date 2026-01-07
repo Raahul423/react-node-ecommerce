@@ -128,6 +128,7 @@ const LoginComponent = () => {
                     <FormControl variant="outlined">
                         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                         <OutlinedInput
+                            className='!w-full'
                             value={verifyaccount.password}
                             onChange={(e) => setVerifyaccount({ ...verifyaccount, password: e.target.value })}
                             name='password'
