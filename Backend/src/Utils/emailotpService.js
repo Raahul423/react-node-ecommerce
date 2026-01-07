@@ -3,7 +3,7 @@ dotenv.config();
 
 import * as brevo from "@getbrevo/brevo";
 
-const sendResetPasswordEmail = async ({ to, otp, name }) => {
+const sendresetPasswordemail = async ({ to, otp, name }) => {
   const html = `
     <div style="font-family: Arial, sans-serif; line-height:1.6; color:#333;">
       <p>Hi ${name || "there"},</p>
@@ -52,4 +52,4 @@ const sendResetPasswordEmail = async ({ to, otp, name }) => {
   console.log("✅ OTP email sent to:", to);
 };
 
-export { sendResetPasswordEmail };
+export { sendresetPasswordemail };
