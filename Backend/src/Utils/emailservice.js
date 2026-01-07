@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import {transporter} from "../Config/mailer.js"
+import * as brevo from "@getbrevo/brevo";
 
 const sendVerificationEmail = async ({ to, token, name, userId }) => {
   const appUrl = process.env.APP_URL.replace(/\/$/, "");
@@ -18,15 +18,24 @@ const sendVerificationEmail = async ({ to, token, name, userId }) => {
     </div>
   `;
 
-  const info = await transporter.sendMail({
-    from: process.env.FROM_EMAIL,
-    to,
+  const apiInstance = new brevo.TransactionalEmailsApi();
+
+  apiInstance.setApiKey(
+    brevo.TransactionalEmailsApiApiKeys.apiKey,
+    process.env.BREVO_API_KEY
+  );
+
+  const response = await apiInstance.sendTransacEmail({
     subject: "Verify your email",
-    html,
+    sender: {
+      email: process.env.FROM_EMAIL,
+      name: "Demo App e-commerce",
+    },
+    to: [{ email: to }],
+    htmlContent: html,
   });
 
-  console.log("✅ Email sent:", info.messageId);
+  console.log("✅ Demo email sent:", response?.messageId || "OK");
 };
 
 export { sendVerificationEmail };
-
