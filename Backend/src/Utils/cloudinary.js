@@ -9,7 +9,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET_KEY,
 });
 
- const uploadOncloudinary = (buffer) => {
+ const uploadOncloudinary = (files) => {
   return new Promise((resolve, reject) => {
     cloudinary.uploader.upload_stream(
       {
@@ -20,7 +20,7 @@ cloudinary.config({
         if (error) reject(error);
         else resolve(result);
       }
-    ).end(buffer);
+    ).end(files);
   });
 };
 

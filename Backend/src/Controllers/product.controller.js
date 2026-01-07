@@ -7,7 +7,7 @@ import {
 
 // create products //admin work
 const createProduct = async (req, res) => {
-  const localfiles = req.files || [];
+  const files = req.files || [];
   const allImages = [];
   try {
     if (req.body.subcategory === "") {
@@ -40,16 +40,16 @@ const createProduct = async (req, res) => {
       throw new Error("product already Exist");
     }
 
-    if (localfiles.length === 0) {
+    if (files.length === 0) {
       throw new Error("Images should be required");
     }
 
-    for (let file of localfiles) {
-      if (!file.path) {
+    for (let file of files) {
+      if (!file.buffer) {
         throw new Error("Image cant't found ...");
       }
 
-      const upload = await uploadOncloudinary(file.path);
+      const upload = await uploadOncloudinary(file.buffer);
       if (!upload.secure_url || !upload.public_id) {
         throw new Error("Upload image on cloudinary failed...");
       }
