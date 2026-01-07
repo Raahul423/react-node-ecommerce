@@ -1,4 +1,4 @@
-🛒 ClassyShop – Full Stack E‑Commerce Application
+### 🛒 ClassyShop – Full Stack E‑Commerce Application
 
 ClassyShop is a full‑stack e‑commerce web application built with a strong focus on security, scalability, and real‑world architecture. This project covers the complete flow from user authentication to admin management and order handling.
 
@@ -7,7 +7,7 @@ As a fresher project, the goal was to move beyond tutorials and build a producti
 
 ---
 
-## 🔗🚀 Live Demo
+### 🔗🚀 Live Demo
 
 Frontend: https://e-commerce-node-react.vercel.app
 Backend API: https://e-commerce-backend-m7ml.onrender.com
@@ -18,7 +18,7 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 
 ### 🔗 ✨ Features
 ---
-👤 User Features
+## 👤 User Features
 
 - User registration, login, and logout
 
@@ -35,7 +35,7 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 - Responsive UI (mobile‑first)
 
 
-🧑‍💼 Admin Features
+## 🧑‍💼 Admin Features
 
 - Role‑based access control (Admin / User)
 
@@ -50,7 +50,7 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 - Manage orders
 
 
-🔐 Security Features
+## 🔐 Security Features
 
 - Password hashing using bcrypt
 
@@ -61,7 +61,7 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 - Secure cookies to prevent XSS attacks
 
 
-💳 Payments
+## 💳 Payments
 
 - Payment integration under deployment and actively being finalized
 
@@ -69,11 +69,11 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 
 ---
 
-🗂️ ER Diagram (Database Architecture)
+## 🗂️ ER Diagram (Database Architecture)
 
 -The following ER diagram represents the core data models and their relationships used in ClassyShop:
 
-> 📌 ER Diagram image can be added here (./docs/er-diagram.png) for better visualization.
+> 📌 ER Diagram image can be added here [/docs/er-diagram.png] for better visualization.
 
 
 
@@ -83,7 +83,7 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 ### 🔗 🛠️ Tech Stack
 ---
 
-🔗 Frontend
+##🔗 Frontend
 
 - React (Vite)
 
@@ -96,7 +96,7 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 - Context API (state management)
 
 
-🔗 Backend
+## 🔗 Backend
 
 - Node.js
 
@@ -107,26 +107,26 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 - JWT Authentication (Access & Refresh Tokens)
 
 
-🔗 Database
+## 🔗 Database
 
 - MongoDB
 
 - Mongoose ODM
 
 
-🔗 Media Storage
+## 🔗 Media Storage
 
 - Cloudinary (image upload & optimization)
 
 
-🔗 Testing & Tools
+## 🔗 Testing & Tools
 
 - Postman (API testing)
 
 - Git & GitHub (version control)
 
 
-🔗 Deployment
+## 🔗 Deployment
 
 - Frontend: Vercel
 
@@ -148,22 +148,6 @@ classyshop/
 │   └── utils
 ├── .env
 └── README.md
-
-
----
-
-## ⚙️ Environment Variables
-
-Create a .env file in the backend root and add:
-
-PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-JWT_ACCESS_SECRET=your_access_token_secret
-JWT_REFRESH_SECRET=your_refresh_token_secret
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-
 
 ---
 
@@ -213,12 +197,9 @@ REFRESH_TOKEN_SECRET = Your_REFRESH_TOKEN_SECRET
 REFRESH_TOKEN_EXPIRY = Your_REFRESH_TOKEN_EXPIRY
 ```
 
-
-
-
 ---
 
-🧠 What I Learned
+### 🔗 🧠 What I Learned
 
 Designing secure authentication flows with JWT & cookies
 
@@ -236,21 +217,17 @@ Deploying full‑stack applications
 
 ---
 
-📌 Future Improvements
+### 🔗 📌 Future Improvements
 
+```bash
+Completing Google Authentication for login & Register
 Complete payment gateway integration
-
-Product reviews & ratings
-
-Wishlist feature
-
-Advanced admin analytics
-
-
+Product reviews & filter by price slider
+```
 
 ---
 
-📄 License
+### 🔗 📄 License
 
 This project is licensed under the MIT License.
 
@@ -268,7 +245,7 @@ See the LICENSE file for more details.
 
 ---
 
-🤝 Feedback
+### 🔗 🤝 Feedback
 
 Feedback and suggestions are always welcome!
 This project represents my learning journey as a Full‑Stack Developer (Fresher) 🚀
@@ -276,4 +253,4 @@ This project represents my learning journey as a Full‑Stack Developer (Fresher
 
 ---
 
-⭐ If you like this project, consider giving it a star!
+### 🔗 ⭐ If you like this project, consider giving it a star!
