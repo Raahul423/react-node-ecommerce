@@ -1,32 +1,55 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import { transporter } from "../Config/mailer.js";
+import * as brevo from "@getbrevo/brevo";
 
-const sendresetPasswordemail = async ({ to, otp, name }) => {
-  const verifycode = `${otp}`;
-
+const sendResetPasswordEmail = async ({ to, otp, name }) => {
   const html = `
     <div style="font-family: Arial, sans-serif; line-height:1.6; color:#333;">
       <p>Hi ${name || "there"},</p>
-      <p>Reset Your Password....</p>
-      <p style="text-align:center;">
-       <h1>${verifycode}</h1>
+      <p>You requested to reset your password.</p>
+
+      <p style="text-align:center; margin:20px 0;">
+        <span style="
+          display:inline-block;
+          font-size:32px;
+          letter-spacing:6px;
+          font-weight:bold;
+          padding:10px 20px;
+          border:1px dashed #333;
+        ">
+          ${otp}
+        </span>
       </p>
-      <p> Use this OTP to reset your password...</p>
+
+      <p>Use this OTP to reset your password.</p>
+      <p><b>This OTP will expire in 5 minutes.</b></p>
+
       <hr>
-      <p style="font-size:12px;color:#999">If you’ve already reset your password, kindly disregard this email..</p>
+      <p style="font-size:12px;color:#999">
+        If you didn’t request a password reset, please ignore this email.
+      </p>
     </div>
   `;
 
-  const info = await transporter.sendMail({
-    from: process.env.FROM_EMAIL,
-    to,
-    subject: "Reset Your Password..",
-    html,
+  const apiInstance = new brevo.TransactionalEmailsApi();
+
+  apiInstance.setApiKey(
+    brevo.TransactionalEmailsApiApiKeys.apiKey,
+    process.env.BREVO_API_KEY
+  );
+
+  await apiInstance.sendTransacEmail({
+    subject: "Reset your password (OTP)",
+    sender: {
+      email: process.env.FROM_EMAIL,
+      name: "Demo App",
+    },
+    to: [{ email: to }],
+    htmlContent: html,
   });
 
-  console.log("✅ Email sent:", info.messageId);
+  console.log("✅ OTP email sent to:", to);
 };
 
-export { sendresetPasswordemail };
+export { sendResetPasswordEmail };
