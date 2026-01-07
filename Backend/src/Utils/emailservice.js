@@ -22,7 +22,7 @@ const sendVerificationEmail = async ({ to, token, name, userId }) => {
 
   apiInstance.setApiKey(
     brevo.TransactionalEmailsApiApiKeys.apiKey,
-    process.env.BREVO_PASS
+    process.env.BREVO_API_KEY
   );
 
   const response = await apiInstance.sendTransacEmail({
