@@ -7,7 +7,7 @@ As a fresher project, the goal was to move beyond tutorials and build a producti
 
 ---
 
-# 🔗🚀 Live Demo
+### ⛓️‍💥 ## 🚀Live Demo
 
 Frontend: https://e-commerce-node-react.vercel.app
 
@@ -18,7 +18,7 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 
 ---
 
-# 🔗 ✨ Features
+# 🔗✨Features
 ## 👤 User Features
 
 - User registration, login, and logout
