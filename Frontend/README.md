@@ -19,7 +19,6 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 ---
 
 # 🔗 ✨ Features
----
 ## 👤 User Features
 
 - User registration, login, and logout
@@ -81,56 +80,38 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 ---
 
 # 🔗 🛠️ Tech Stack
----
-
 ### 🔗 Frontend
-
-- React (Vite)
-
-- Tailwind CSS
-
-- Material UI
-
-- Custom CSS
-
-- Context API (state management)
+   - React (Vite)
+   - Tailwind CSS
+   - Material UI
+   - Custom CSS
+   - Context API (state management)
 
 
 ### 🔗 Backend
-
-- Node.js
-
-- Express.js
-
-- RESTful APIs
-
-- JWT Authentication (Access & Refresh Tokens)
+   - Node.js
+   - Express.js
+   - RESTful APIs
+   - JWT Authentication (Access & Refresh Tokens)
 
 
 ### 🔗 Database
-
-- MongoDB
-
-- Mongoose ODM
+   - MongoDB
+   - Mongoose ODM
 
 
 ### 🔗 Media Storage
-
-- Cloudinary (image upload & optimization)
+   - Cloudinary (image upload & optimization)
 
 
 ### 🔗 Testing & Tools
-
-- Postman (API testing)
-
-- Git & GitHub (version control)
+   - Postman (API testing)
+   - Git & GitHub (version control)
 
 
 ### 🔗 Deployment
-
-- Frontend: Vercel
-
-- Backend: Render
+   - Frontend: Vercel
+   - Backend: Render
 
 
 ---
