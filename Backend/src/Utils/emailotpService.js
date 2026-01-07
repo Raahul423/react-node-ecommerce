@@ -36,7 +36,7 @@ const sendResetPasswordEmail = async ({ to, otp, name }) => {
 
   apiInstance.setApiKey(
     brevo.TransactionalEmailsApiApiKeys.apiKey,
-    process.env.BREVO_API_KEY
+    process.env.BREVO_PASS
   );
 
   await apiInstance.sendTransacEmail({
