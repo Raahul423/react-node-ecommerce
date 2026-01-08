@@ -55,7 +55,7 @@ const ReuseableComponents = ({ title, products = [] }) => {
                 className="mySwiper !overflow-hidden !p-2"
             >
                 <div className='w-fit overflow-hidden'>
-                    {products.map((items, idx) => (
+                    {products.slice(0,10).map((items, idx) => (
                         <SwiperSlide key={idx} className=''>
                             <div className='rounded-md shadow shadow-gray-500 md:w-60 w-40'>
 

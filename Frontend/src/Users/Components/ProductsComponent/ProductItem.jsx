@@ -139,7 +139,7 @@ const ProductItem = () => {
                     <LoadingProduct />
                     :
                     <>
-                        {products.map((product, idx) => (
+                        {products.slice(0,10).map((product, idx) => (
                             <SwiperSlide key={idx}>
                                 <div className='md:w-60 w-40 rounded-md shadow shadow-gray-500'>
                                     <div className='relative overflow-hidden group md:h-70 h-40'>
