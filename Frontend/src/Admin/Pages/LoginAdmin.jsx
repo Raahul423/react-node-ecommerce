@@ -89,7 +89,6 @@ export const LoginAdmin = () => {
             localStorage.setItem("admin", JSON.stringify(createdUser));
 
             toastMessage("success","Admin Login successfully..");
-            setLoading(false);
             setTimeout(() => {
                 navigate('/admin')
             }, 1000);
@@ -99,6 +98,8 @@ export const LoginAdmin = () => {
             } else {
                 toastMessage("error", "Server not Responding. Please try Again...")
             }
+        }finally{
+            setLoading(false)
         }
     }
 
