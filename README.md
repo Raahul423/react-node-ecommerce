@@ -74,9 +74,6 @@ Backend Architecture : https://app.eraser.io/workspace/xslMXRMKjq8l2iemp2Hz?orig
 
 > 📌 ER Diagram image can be added here [er-diagram.png](/docs/er-diagram.png) for better visualization.
 
-
-
-
 ---
 
 ## 🔗 🛠️ Tech Stack
@@ -137,7 +134,7 @@ npm install
 npm run dev
 ```
 
-## install the dependencies 
+## ⚙️install the dependencies 
 
 ### Frontend
 ```bash
