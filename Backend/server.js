@@ -25,6 +25,16 @@ app.use(
   })
 );
 
+//health
+app.get("/health", (req, res) => {
+  return res.status(200).json({
+    status: "OK",
+    uptime: process.uptime(),
+    timestamp: new Date()
+  });
+});
+
+
 //route
 app.use("/api/users", router);
 app.use("/api/categories", category);
