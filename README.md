@@ -162,6 +162,39 @@ REFRESH_TOKEN_EXPIRY = Your_REFRESH_TOKEN_EXPIRY
 
 ---
 
+## 👀API Overview
+
+### Authentication & Users
+- User/Admin registration & login
+- Email verification & JWT-based authentication
+- Profile management & avatar upload
+- Password reset (OTP based)
+
+### Products
+- Product listing & search
+- Product details
+- Admin product management (CRUD)
+
+### Categories
+- Category listing
+- Admin category management
+
+### Cart & Wishlist
+- Add / remove items
+- Update quantity
+- View user cart & wishlist
+
+### Orders
+- Place order
+- Order history
+- Admin order management
+
+### Address
+- Add / update / delete address
+- Select address during checkout
+
+---
+
 ## 🧠 What I Learned
 
  - Designing secure authentication flows with JWT & cookies
