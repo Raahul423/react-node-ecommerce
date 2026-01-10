@@ -1,12 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Box, TextField, Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../Utils/api";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import { MyContext } from "../Provider";
 
 const OtpComponent = () => {
     const navigate = useNavigate();
-
+    const {toastMessage} = useContext(MyContext)
     const [otp, setOtp] = useState(new Array(6).fill(""));
     const inputRefs = useRef([]);
     const email = localStorage.getItem("email")
@@ -34,7 +35,7 @@ const OtpComponent = () => {
     const handleSubmit = async () => {
         const enteredOtp = otp.join("");
         if (enteredOtp.length < 6) {
-            toast.error("Please enter full 6-digit OTP")
+            toastMessage("error","Please enter full 6-digit OTP")
             return;
         }
         try {
@@ -43,16 +44,16 @@ const OtpComponent = () => {
                     code: enteredOtp,
                     email: email
                 })
-            toast.success("Verified your OTP You can reset your Password")
+            toastMessage("success","Verified your OTP You can reset your Password")
             setTimeout(() => {
                 navigate('/update-password')
             }, 1000)
 
         } catch (error) {
             if (error.response) {
-                toast.error(error.response?.data?.message)
+                toastMessage("error",error.response?.data?.message)
             } else {
-                toast.error("Server not respond please try again...")
+                toastMessage("error","Server not respond please try again...")
             }
         }
     };
@@ -97,7 +98,7 @@ const OtpComponent = () => {
                     Verify OTP
                 </Button>
             </div>
-            <ToastContainer />
+
         </section>
     )
 }

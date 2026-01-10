@@ -66,6 +66,20 @@ const ReuseableComponents = ({ title, products = [] }) => {
         }
     }
 
+    const handlecart = async(productId)=>{
+        if(!isAuth){
+            toastMessage("error","Login to proceed...")
+            navigate("/login");
+            return;
+        }
+        try {
+            const res = await api.post("/cartitems/add-items",{productId,quantity:1});
+            toastMessage("success",res?.data?.message);
+        } catch (error) {
+            console.error(error?.message);
+        }
+    }
+
 
     return (
         <section>
@@ -153,7 +167,7 @@ const ReuseableComponents = ({ title, products = [] }) => {
                                         <p className='text-primary'>₹{items?.price}</p>
                                     </div>
 
-                                    <Button className='flex md:gap-4 gap-2 items-center w-full !border-1 !border-primary group hover:!border-black hover:!bg-black'>
+                                    <Button onClick={()=>handlecart(items?._id)} className='flex md:gap-4 gap-2 items-center w-full !border-1 !border-primary group hover:!border-black hover:!bg-black'>
                                         <AiOutlineShoppingCart className='text-primary md:text-xl group-hover:text-white ' />
                                         <p className='text-primary group-hover:text-white text-sm max-md:!text-[10px]'>Add to Cart</p>
                                     </Button>

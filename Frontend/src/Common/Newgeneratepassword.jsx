@@ -1,13 +1,15 @@
 import { Box, Button, CircularProgress, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import api from '../Utils/api';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer} from 'react-toastify';
+import { MyContext } from '../Provider';
 
 
 
 const Newgeneratepassword = () => {
+    const {toastMessage} = useContext(MyContext)
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState("");
     const [ShowConfirmPassword, setShowConfirmPassword] = useState("");
@@ -31,18 +33,18 @@ const Newgeneratepassword = () => {
 
     const check = async () => {
         if (!resetpassword.newpassword || !resetpassword.confirmpassword) {
-            toast.error("Please Fill Both Of Them.")
+            toastMessage("error","Please Fill Both Of Them.")
             return;
         }
 
 
         if (resetpassword.newpassword.length < 8) {
-            toast.error("password Should be 8 Character")
+            toastMessage("error","password Should be 8 Character")
             return;
         }
 
         if (resetpassword.newpassword !== resetpassword.confirmpassword) {
-            toast.error("confirm password not matched.")
+            toastMessage("error","confirm password not matched.")
             return;
         }
 
@@ -54,7 +56,7 @@ const Newgeneratepassword = () => {
                 newpassword: resetpassword.newpassword
             })
             setLoading(false);
-            toast.success("Successfully reset your password")
+            toastMessage("success","Successfully reset your password")
 
             setTimeout(() => {
                 if (localStorage.getItem("loginType") === "admin") {
@@ -70,7 +72,7 @@ const Newgeneratepassword = () => {
 
         } catch (error) {
             setLoading(false)
-            toast.error(error?.reeponse?.data?.message);
+            toastMessage("error",error?.reeponse?.data?.message);
         }
 
     }
@@ -165,7 +167,6 @@ const Newgeneratepassword = () => {
                         </Button>
                     </div>
                 </div>
-                <ToastContainer/>
             </section>
         </>
     )

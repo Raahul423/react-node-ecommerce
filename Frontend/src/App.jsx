@@ -28,56 +28,62 @@ import OtpComponent from './Common/OtpComponent'
 import Newgeneratepassword from './Common/Newgeneratepassword'
 import AdminAuthProvider from './AdminAuthProvider'
 import Header from './Users/Components/Header/Header'
+import { ToastContainer } from 'react-toastify'
 
 
 function App() {
   return (
+    <>
+      <Provider>
+        <AdminAuthProvider>
+          <Routes>
 
-    <Provider>
-      <AdminAuthProvider>
-        <Routes>
-
-          {/* Admin Routes */}
-          <Route element={<AdminLayout />}>
-            <Route path='/admin' element={<Dashboard />} />
-            <Route path='/homeslide' element={<Homebanner />} />
-            <Route path='/category' element={<CategoryAdd />} />
-            <Route path='/subCatergory/list' element={<AddSubCategoryList />} />
-            <Route path='/addProducts' element={<AddProduct />} />
-            <Route path='/orders' element={<Order />} />
-            <Route path='/users' element={<Users />} />
-            <Route path='/managelogo' element={<ManageLogo />} />
-          </Route>
-
-          <Route path='/admin/register' element={<RegisterAdmin />} />
-          <Route path='/admin/login' element={<LoginAdmin />} />
-
-
-          {/* User Routes  */}
-          <Route element={<Layout />} >
-            <Route path='/' element={<Home />} />
-            <Route path='/category/:cat' element={<Products />} />
-            <Route path="/category/:category/:subcategory" element={<Products />} />
-            <Route path='/product/:id' element={<ProductsId />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/checkout' element={<Checkout />} />
-            <Route path='/cart' element={<YourCart />} />
-            <Route path='/myaccount' element={<YourAccount />}>
-              <Route path='info' element={<YourInfo />} />
-              <Route path='mylist' element={<MyList />} />
-              <Route path='myorder' element={<Myorder />} />
+            {/* Admin Routes */}
+            <Route element={<AdminLayout />}>
+              <Route path='/admin' element={<Dashboard />} />
+              <Route path='/homeslide' element={<Homebanner />} />
+              <Route path='/category' element={<CategoryAdd />} />
+              <Route path='/subCatergory/list' element={<AddSubCategoryList />} />
+              <Route path='/addProducts' element={<AddProduct />} />
+              <Route path='/orders' element={<Order />} />
+              <Route path='/users' element={<Users />} />
+              <Route path='/managelogo' element={<ManageLogo />} />
             </Route>
-          </Route>
 
-          {/* Common Routes */}
-          <Route path='/update-password' element={<Newgeneratepassword />} />
-          <Route path='/verify-email' element={<Verifyemail />} />
-          <Route path='/forgot-password' element={<OtpComponent />} />
+            <Route path='/admin/register' element={<RegisterAdmin />} />
+            <Route path='/admin/login' element={<LoginAdmin />} />
 
-        </Routes>
-      </AdminAuthProvider>
-    </Provider>
+
+            {/* User Routes  */}
+            <Route element={<Layout />} >
+              <Route path='/' element={<Home />} />
+              <Route path='/category/:cat' element={<Products />} />
+              <Route path="/category/:category/:subcategory" element={<Products />} />
+              <Route path='/product/:id' element={<ProductsId />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
+              <Route path='/checkout' element={<Checkout />} />
+              <Route path='/cart' element={<YourCart />} />
+              <Route path='/myaccount' element={<YourAccount />}>
+                <Route path='info' element={<YourInfo />} />
+                <Route path='mylist' element={<MyList />} />
+                <Route path='myorder' element={<Myorder />} />
+              </Route>
+            </Route>
+
+            {/* Common Routes */}
+            <Route path='/update-password' element={<Newgeneratepassword />} />
+            <Route path='/verify-email' element={<Verifyemail />} />
+            <Route path='/forgot-password' element={<OtpComponent />} />
+
+          </Routes>
+        </AdminAuthProvider>
+      </Provider>
+
+      <ToastContainer position="bottom-center" toastStyle={{ background: "#1e1e1e", color: "#fff" }} autoClose={2000} limit={1} className="max-md:!text-[15px] max-md:!w-[70%] max-md:!py-4 !ml-15" />
+    </>
+
+
   );
 }
 export default App;
