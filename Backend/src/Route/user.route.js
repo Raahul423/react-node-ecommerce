@@ -8,7 +8,7 @@ const router = Router();
 
 router.route('/register').post(registerUser)
 router.route('/admin/register').post(registeradmin)
-router.route('/verify-email').get(verifyEmail)
+router.route('/verify-email').get(verifyEmail)  
 router.route('/login').post(loginUser)
 router.route('/logout').get(verifyJwt,logoutUser)
 router.route('/update-account').patch(verifyJwt,updateAccountDetails)

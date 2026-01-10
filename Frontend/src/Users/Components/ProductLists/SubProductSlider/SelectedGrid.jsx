@@ -17,6 +17,7 @@ const SelectedItems = ({ fetchProducts, loading }) => {
     const { isAuth, authloading, toastMessage } = useContext(MyContext);
     const { setIsopendialogbox } = useContext(DialogContext)
     const [wishlistMap, setWishlistMap] = useState({});
+    
 
     useEffect(() => {
         if (!isAuth) return;
@@ -24,13 +25,13 @@ const SelectedItems = ({ fetchProducts, loading }) => {
         const fetchWishlist = async () => {
             try {
                 const res = await api.get("/wishlist/wishlist-products");
-
-                const map = {};
+                
+               const map = {};
                 res.data.wishlistItems.forEach((item) => {
                     map[item.productId._id] = true;
                 });
-
                 setWishlistMap(map);
+
             } catch (error) {
                 console.error(error.message);
             }
@@ -48,6 +49,10 @@ const SelectedItems = ({ fetchProducts, loading }) => {
         }
 
         const isWishlisted = wishlistMap[productId];
+        // console.log(isWishlisted); // true or false
+        // console.log(wishlistMap);
+        
+        
 
         setWishlistMap((prev) => ({
             ...prev,

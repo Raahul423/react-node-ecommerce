@@ -4,16 +4,68 @@ import { SwiperSlide, Swiper } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { MdOutlineZoomOutMap } from "react-icons/md";
-import { FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { DialogContext } from '../../../Context/DialogComponent';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import api from '../../../Utils/api';
+import { MyContext } from '../../../Provider';
 
 const ReuseableComponents = ({ title, products = [] }) => {
+    const { isAuth, toastMessage } = useContext(MyContext);
+    const navigate = useNavigate();
     const { setIsopendialogbox } = useContext(DialogContext);
+    const [wishlist, setWishlist] = useState({});
+
+    useEffect(() => {
+        const exist = async () => {
+            const res = await api.get("/wishlist/wishlist-products");
+
+            const map = {}
+            res?.data?.wishlistItems.forEach(item => {
+                map[item?.productId?._id] = true;
+            });
+            setWishlist(map);
+        }
+        exist();
+    }, []);
+
+    const Handleclick = async (productid) => {
+        console.log(productid);
+        
+        if (!isAuth) {
+            toastMessage("error", "Login to Proceed...")
+            navigate("/login")
+            return;
+        }
+
+        const iswishlisted = wishlist[productid];
+
+        setWishlist((prev) => ({
+            ...prev,
+            [productid]: !iswishlisted
+        }));
+
+        try {
+            if (!iswishlisted) {
+                const res = await api.post("/wishlist/add-items", { productId: productid });
+                toastMessage("success", res?.data?.message);
+            } else {
+                const res = await api.delete("/wishlist/remove-products", { productId: productid });
+                toastMessage("success", res?.data?.message);
+            }
+        } catch (error) {
+            setWishlist((prev) => ({
+                ...prev,
+                [productid]: iswishlisted
+            }));
+            console.error(error?.message);
+        }
+    }
+
 
     return (
         <section>
@@ -27,10 +79,10 @@ const ReuseableComponents = ({ title, products = [] }) => {
                 spaceBetween={16}
                 loop={false}
                 freeMode={false}
-                resistanceRatio={0}         
+                resistanceRatio={0}
                 watchOverflow={true}
                 modules={[Navigation]}
-                 breakpoints={{
+                breakpoints={{
                     0: {
                         slidesPerView: 1,
                         slidesPerGroup: 1,
@@ -55,7 +107,7 @@ const ReuseableComponents = ({ title, products = [] }) => {
                 className="mySwiper !overflow-hidden !p-2"
             >
                 <div className='w-fit overflow-hidden'>
-                    {products.slice(0,10).map((items, idx) => (
+                    {products.slice(0, 10).map((items, idx) => (
                         <SwiperSlide key={idx} className=''>
                             <div className='rounded-md shadow shadow-gray-500 md:w-60 w-40'>
 
@@ -73,8 +125,18 @@ const ReuseableComponents = ({ title, products = [] }) => {
                                         </div>
 
 
-                                        <div className='info'>
-                                            <FaRegHeart className='text-xl hover:!stroke-white hover:!fill-white' />
+                                        <div className="info">
+                                            {wishlist[items?._id] ? (
+                                                <FaHeart
+                                                    onClick={() => Handleclick(items?._id)}
+                                                    className="text-xl text-primary cursor-pointer"
+                                                />
+                                            ) : (
+                                                <FaRegHeart
+                                                    onClick={() => Handleclick(items?._id)}
+                                                    className="text-xl cursor-pointer"
+                                                />
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -91,10 +153,10 @@ const ReuseableComponents = ({ title, products = [] }) => {
                                         <p className='text-primary'>₹{items?.price}</p>
                                     </div>
 
-                                     <Button className='flex md:gap-4 gap-2 items-center w-full !border-1 !border-primary group hover:!border-black hover:!bg-black'>
-                                            <AiOutlineShoppingCart className='text-primary md:text-xl group-hover:text-white ' />
-                                            <p className='text-primary group-hover:text-white text-sm max-md:!text-[10px]'>Add to Cart</p>
-                                        </Button>
+                                    <Button className='flex md:gap-4 gap-2 items-center w-full !border-1 !border-primary group hover:!border-black hover:!bg-black'>
+                                        <AiOutlineShoppingCart className='text-primary md:text-xl group-hover:text-white ' />
+                                        <p className='text-primary group-hover:text-white text-sm max-md:!text-[10px]'>Add to Cart</p>
+                                    </Button>
 
                                 </div>
                             </div>
