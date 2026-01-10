@@ -5,7 +5,7 @@ import Shippingadd from './SubAdd/Shippingadd';
 
 const FirstAdd = () => {
     return (
-        <section className='my-container md:!py-6 max-md:pt-10'>
+        <section className='my-container max-md:pt-10'>
                 <Addone />
                 <Shippingadd/>
         </section>

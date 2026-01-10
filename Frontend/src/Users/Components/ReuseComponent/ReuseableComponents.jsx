@@ -83,7 +83,7 @@ const ReuseableComponents = ({ title, products = [] }) => {
 
     return (
         <section>
-            <div className='flex justify-between md:py-10 py-4'>
+            <div className='flex justify-between md:py-8 py-4'>
                 <h1 className='text-gray-900/90 text-2xl font-medium'>{title}</h1>
             </div>
 
