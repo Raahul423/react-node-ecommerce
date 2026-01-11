@@ -34,8 +34,6 @@ const ReuseableComponents = ({ title, products = [] }) => {
     }, []);
 
     const Handleclick = async (productid) => {
-        console.log(productid);
-        
         if (!isAuth) {
             toastMessage("error", "Login to Proceed...")
             navigate("/login")
@@ -127,7 +125,8 @@ const ReuseableComponents = ({ title, products = [] }) => {
 
                                 <div className='relative overflow-hidden group md:h-70 h-40'>
                                     <Link to={`/product/${items?._id}`}>
-                                        <img className='md:h-70 md:w-70 object-cover rounded-md p-2 object-top' src={items.images[0].url} alt="error" />
+                                        <img className='md:h-70 md:w-70 
+                                        h-50 object-cover rounded-md p-2 object-top' src={items.images[0].url} alt="error" />
 
                                         <img className='max-md:hidden h-70 w-70 rounded-md group-hover:opacity-100 opacity-0 absolute top-0 left-0 transition-all  duration-800 ease-in-out object-cover p-2 object-top' src={items.images[1]?.url} alt="error" />
 
@@ -155,7 +154,7 @@ const ReuseableComponents = ({ title, products = [] }) => {
                                     </div>
                                 </div>
 
-                                <div className='p-4 flex flex-col gap-1'>
+                                <div className='p-4 flex flex-col md:gap-1'>
                                     <p className='!text-md text-gray-900/80'>{items.brand}</p>
                                     <p className='!text-[1.1em] font-medium two-line-ellipsis'>{items.name}</p>
                                     <Stack spacing={1}>

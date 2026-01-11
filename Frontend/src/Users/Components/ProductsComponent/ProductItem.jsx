@@ -7,22 +7,76 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 import { Navigation } from 'swiper/modules';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { DialogContext } from '../../../Context/DialogComponent';
 import { MdOutlineZoomOutMap } from 'react-icons/md';
-import { FaRegHeart } from 'react-icons/fa';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import api from '../../../Utils/api';
 import { LoadingProduct } from '../LoadingSection/LoadingProduct';
+import { MyContext } from '../../../Provider';
 
 
 const ProductItem = () => {
+    const { navigate } = useNavigate();
+    const { isAuth, toastMessage } = useContext(MyContext);
     const { setIsopendialogbox } = useContext(DialogContext)
     const [tabs, setTabs] = useState(0);
     const [categories, setCategories] = useState([]);
     const [activeCategory, setActiveCategory] = useState(null);
     const [products, setProducts] = useState([]);
-    const [loading, setloading] = useState(false)
+    const [loading, setloading] = useState(false);
+    const [wishlist, setWishlist] = useState({});
+
+
+    useEffect(() => {
+        const existwishlistdata = async () => {
+            try {
+                const res = await api.get("/wishlist/wishlist-products");
+                const map = {}
+                res.data.wishlistItems.forEach(item => {
+                    map[item?.productId?._id] = true;
+                });
+
+                setWishlist(map);
+            } catch (error) {
+                console.error(error.message)
+            }
+        }
+        existwishlistdata();
+    }, []);
+
+
+    const handlewishlist = async (productid) => {
+        if (!isAuth) {
+            toastMessage("succes", "Login to Proceed..");
+            navigate("/login")
+            return;
+        }
+
+        const iswishlisted = wishlist[productid];
+
+        setWishlist((prev) => ({
+            ...prev,
+            [productid]: !iswishlisted
+        }));
+
+        try {
+            if (!iswishlisted) {
+                const res = await api.post("/wishlist/add-items", { productId: productid });
+                toastMessage("success", res?.data?.message);
+            } else {
+                const res = await api.delete("/wishlist/remove-products", { productId: productid });
+                toastMessage("success", res?.data?.message);
+            }
+        } catch (error) {
+            setWishlist((prev) => ({
+                ...prev,
+                [productid]: iswishlisted
+            }));
+            console.error(error?.message);
+        }
+    }
 
     // fetch for all root category
     useEffect(() => {
@@ -139,7 +193,7 @@ const ProductItem = () => {
                     <LoadingProduct />
                     :
                     <>
-                        {products.slice(0,10).map((product, idx) => (
+                        {products.slice(0, 10).map((product, idx) => (
                             <SwiperSlide key={idx}>
                                 <div className='md:w-60 w-40 rounded-md shadow shadow-gray-500'>
                                     <div className='relative overflow-hidden group md:h-70 h-40'>
@@ -157,8 +211,18 @@ const ProductItem = () => {
                                             </div>
 
 
-                                            <div className='info'>
-                                                <FaRegHeart className='text-xl hover:!stroke-white hover:!fill-white' />
+                                            <div className="info">
+                                                {wishlist[product?._id] ? (
+                                                    <FaHeart
+                                                        onClick={() => handlewishlist(product?._id)}
+                                                        className="text-xl text-primary cursor-pointer"
+                                                    />
+                                                ) : (
+                                                    <FaRegHeart
+                                                        onClick={() => handlewishlist(product?._id)}
+                                                        className="text-xl cursor-pointer"
+                                                    />
+                                                )}
                                             </div>
                                         </div>
                                     </div>
