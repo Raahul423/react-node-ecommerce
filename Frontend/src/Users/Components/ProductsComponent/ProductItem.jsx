@@ -123,6 +123,20 @@ const ProductItem = () => {
         setActiveCategory(categories[newValue]._id)
     };
 
+    const handlecart = async (productId) => {
+        if (!isAuth) {
+            toastMessage("error", "Login to proceed...")
+            navigate("/login");
+            return;
+        }
+        try {
+            const res = await api.post("/cartitems/add-items", { productId, quantity: 1 });
+            toastMessage("success", res?.data?.message);
+        } catch (error) {
+            console.error(error?.message);
+        }
+    }
+
     return (
         <section className='my-container md:!mb-15 overflow-hidden'>
             <div className="flex flex-col md:flex-row w-full md:py-10 py-4 md:gap-4  items-start md:items-center">
@@ -241,7 +255,7 @@ const ProductItem = () => {
                                             <p className='text-primary'>₹{product?.price}</p>
                                         </div>
 
-                                        <Button className='flex md:gap-4 gap-2 items-center w-full !border-1 !border-primary group hover:!border-black hover:!bg-black'>
+                                        <Button onClick={()=>handlecart(product?._id)} className='flex md:gap-4 gap-2 items-center w-full !border-1 !border-primary group hover:!border-black hover:!bg-black'>
                                             <AiOutlineShoppingCart className='text-primary md:text-xl group-hover:text-white ' />
                                             <p className='text-primary group-hover:text-white text-sm max-md:!text-[10px]'>Add to Cart</p>
                                         </Button>
