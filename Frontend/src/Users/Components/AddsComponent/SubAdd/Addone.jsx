@@ -79,7 +79,7 @@ const Addone = () => {
 
         <div className='max-md:h-30 relative overflow-hidden md:rounded-xl rounded-md'>
           <img className='h-full w-full object-cover hover:scale-105' src="/addimage3.jpg" alt="error" />
-          <div className='md:p-6 absolute top-0 flex flex-col gap-2 right-0'>
+          <div className='md:p-6 p-2 absolute top-0 flex flex-col md:gap-2 gap-1 right-0'>
             <p className='md:!text-xl !text-xs'>Buy Men's <br />
               Footwear with <br />
               low price</p>
@@ -91,7 +91,7 @@ const Addone = () => {
         <div className='overflow-hidden md:rounded-xl rounded-md relative'>
           <img className='h-full w-full object-cover hover:scale-105' src="/addimage4.jpg" alt="error" />
 
-          <div className='md:py-12 md:px-6 py-6 px-1 absolute top-0 flex flex-col gap-2 left-0'>
+          <div className='md:py-12 md:px-6 py-6 px-2 absolute top-0 flex flex-col gap-2 left-0'>
             <p className='md:!text-xl !text-xs'>Buy Apple Iphone
             </p>
             <p className='text-primary md:!text-xl !text-xs'>₹35000</p>

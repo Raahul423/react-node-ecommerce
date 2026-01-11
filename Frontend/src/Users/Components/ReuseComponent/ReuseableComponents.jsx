@@ -98,23 +98,23 @@ const ReuseableComponents = ({ title, products = [] }) => {
                 modules={[Navigation]}
                 breakpoints={{
                     0: {
-                        slidesPerView: 1,
+                        slidesPerView: "auto",
                         slidesPerGroup: 1,
                     },
                     640: {
-                        slidesPerView: 2,
+                        slidesPerView: "auto",
                         slidesPerGroup: 2,
                     },
                     768: {
-                        slidesPerView: 3,
+                        slidesPerView: "auto",
                         slidesPerGroup: 2,
                     },
                     1024: {
-                        slidesPerView: 4,
+                        slidesPerView: "auto",
                         slidesPerGroup: 2,
                     },
                     1280: {
-                        slidesPerView: 5,
+                        slidesPerView: "auto",
                         slidesPerGroup: 2,
                     },
                 }}
