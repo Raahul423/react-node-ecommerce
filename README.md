@@ -162,36 +162,46 @@ REFRESH_TOKEN_EXPIRY = Your_REFRESH_TOKEN_EXPIRY
 
 ---
 
-## 👀API Overview
+## API Integration
 
-### Authentication & Users
-- User/Admin registration & login
-- Email verification & JWT-based authentication
-- Profile management & avatar upload
-- Password reset (OTP based)
+### Base URL
+http://localhost:3000
 
-### Products
-- Product listing & search
-- Product details
-- Admin product management (CRUD)
+### Available APIs
 
-### Categories
-- Category listing
-- Admin category management
+### 1. Health Check
+- **Method:** GET  
+- **Endpoint:** `/health`  
+- **Description:** Server health status
 
-### Cart & Wishlist
-- Add / remove items
-- Update quantity
-- View user cart & wishlist
+### 2. Users API
+- **Base Path:** `/api/users`  
+- **Description:** User related operations
 
-### Orders
-- Place order
-- Order history
-- Admin order management
+### 3. Categories API
+- **Base Path:** `/api/categories`  
+- **Description:** Category management
 
-### Address
-- Add / update / delete address
-- Select address during checkout
+### 4. Products API
+- **Base Path:** `/api/products`  
+- **Description:** Product CRUD APIs
+
+### 5. Cart Items API
+- **Base Path:** `/api/cartitems`  
+- **Description:** Cart related operations
+
+### 6. Wishlist API
+- **Base Path:** `/api/wishlist`  
+- **Description:** Wishlist management
+
+### 7. Address API
+- **Base Path:** `/api/address`  
+- **Description:** User address handling
+
+
+📄 Detailed API documentation:
+- Postman Collection: postman/e-commerce.postman_collection.json
+
 
 ---
 
