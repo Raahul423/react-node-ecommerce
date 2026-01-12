@@ -162,7 +162,7 @@ REFRESH_TOKEN_EXPIRY = Your_REFRESH_TOKEN_EXPIRY
 
 ---
 
-## API Integration
+## ⚙️API Integration
 
 ### Base URL
 http://localhost:3000
@@ -199,8 +199,8 @@ http://localhost:3000
 - **Description:** User address handling
 
 
-📄 Detailed API documentation:
-- Postman Collection: postman/e-commerce.postman_collection.json
+### 📄 Detailed API documentation:
+- Postman Collection: [e-commerce.postman_collection.json](./Backend/postman/e-commerce.postman_collection.json)
 
 
 ---
