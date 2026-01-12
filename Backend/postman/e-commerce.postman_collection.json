@@ -1,0 +1,1430 @@
+{
+	"info": {
+		"_postman_id": "27a778e9-0319-4510-932b-3978e567ff78",
+		"name": "e-commerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46957451",
+		"_collection_link": "https://maintenance-geologist-95922364-6631136.postman.co/workspace/Rahul's-Workspace~9f3136e2-c510-4f04-8bd1-970722cc0b77/collection/46957451-27a778e9-0319-4510-932b-3978e567ff78?action=share&source=collection_link&creator=46957451"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\":\"rahul pal\",\r\n    \"email\":\"u31888404@gmail.com\",\r\n    \"password\":\"rahul1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify-email",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "fullName",
+									"value": "rahul pal",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "u31888404@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "rahul1234",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "postman-cloud:///1f0b645a-830b-4b50-8bcf-2c24f6cf1478"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/verify-email?token=55195435099ce962d06c346f004fdcd1ce6caeb99b7ad26771eff26294c8410a&id=691d7ee663c64f0645b60d3a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"verify-email"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "55195435099ce962d06c346f004fdcd1ce6caeb99b7ad26771eff26294c8410a"
+								},
+								{
+									"key": "id",
+									"value": "691d7ee663c64f0645b60d3a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"unnknow454@gmail.com\",\r\n    \"password\":\"rahul@423\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LogOut",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateAccountDetails",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\":\"rahul\",\r\n    \"mobile\":\"7458015120\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/update-account",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"update-account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change-password",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldpassword\":\"rahul\",\r\n    \"newpassword\":\"rahul1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/change-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload-Avatar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "postman-cloud:///1f0b645a-5be8-42d0-a7e5-55766552e445"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/upload-avatar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"upload-avatar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "generatetoken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/generatetoken",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"generatetoken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forget-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"u31888404@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/forget-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"forget-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verifyforgetpasswordotp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"u31888404@gmail.com\",\r\n    \"code\":\"188582\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/verifyforgetpasswordotp",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"verifyforgetpasswordotp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userinfo",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"u31888404@gmail.com\",\r\n    \"password\":\"rahul1234\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/userinfo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"userinfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resetPassword",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"u31888404@gmail.com\",\r\n    \"newpassword\":\"rahul\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/resetpassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"resetpassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "CreateCategory",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Fastion",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "postman-cloud:///1f0dcc67-bc57-49a0-a4ae-65957aa8fa66"
+								},
+								{
+									"key": "parentId",
+									"value": "69270852d5604ab73d784c9d",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/categories/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ShowAllCategorywithChildren",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "wellness",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "postman-cloud:///1f0c616a-908c-45f0-a1fb-d9afb9228550"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Count-root-category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "wellness",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "postman-cloud:///1f0c616a-908c-45f0-a1fb-d9afb9228550"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/categories/count",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "subcategory-of-category-Count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/categories/children/count/69202dad26b76fa3d301fbaa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories",
+								"children",
+								"count",
+								"69202dad26b76fa3d301fbaa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "categorybyID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/categories/6920c6b0b5a41dee2e2cd41c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories",
+								"6920c6b0b5a41dee2e2cd41c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteImage",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "wellness",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "postman-cloud:///1f0c616a-908c-45f0-a1fb-d9afb9228550"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/categories/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCategory",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "wellness",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "postman-cloud:///1f0c616a-908c-45f0-a1fb-d9afb9228550"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/categories/6920c24f9de73b53249b0b68",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories",
+								"6920c24f9de73b53249b0b68"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCategory",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "beauty",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "postman-cloud:///1f0c875b-3d67-42f0-96ef-7e0873d83d80",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/categories/692312302a8250853168f4f4/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories",
+								"692312302a8250853168f4f4",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "hairdryer",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "postman-cloud:///1f0b645a-830b-4b50-8bcf-2c24f6cf1478"
+								},
+								{
+									"key": "parentId",
+									"value": "692312302a8250853168f4f4",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/categories/category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories",
+								"category"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "create-product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "tops",
+									"type": "text"
+								},
+								{
+									"key": "desc",
+									"value": "hjgdjhsdgkjadsgashgdfjasdgjfasgdjfhasgdkfhasgkjdfhasgkdjfgasdjhgaskjhagdsjh",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": [
+										"postman-cloud:///1f0c95dd-a1a3-4ee0-a16e-21fab4b19e8f",
+										"postman-cloud:///1f0c95dd-067f-4220-8e76-1e41486d9f0b"
+									]
+								},
+								{
+									"key": "category",
+									"value": "6927081cd5604ab73d784c8e",
+									"type": "text"
+								},
+								{
+									"key": "subcategory",
+									"value": "69270923d5604ab73d784cca",
+									"type": "text"
+								},
+								{
+									"key": "size[]",
+									"value": "S",
+									"type": "text"
+								},
+								{
+									"key": "size[]",
+									"value": "M",
+									"type": "text"
+								},
+								{
+									"key": "size[]",
+									"value": "L",
+									"type": "text"
+								},
+								{
+									"key": "size[]",
+									"value": "XL",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "999",
+									"type": "text"
+								},
+								{
+									"key": "isfeatured",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/products/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "highlited bags in safari",
+									"type": "text"
+								},
+								{
+									"key": "desc",
+									"value": "hjgdjhsdgkjadsgashgdfjasdgjfasgdjfhasgdkfhasgkjdfhasgkdjfgasdjhgaskjhagdsjh",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": [
+										"postman-cloud:///1f0c95dd-a1a3-4ee0-a16e-21fab4b19e8f",
+										"postman-cloud:///1f0c95dd-067f-4220-8e76-1e41486d9f0b"
+									]
+								},
+								{
+									"key": "category",
+									"value": "692312302a8250853168f4f4",
+									"type": "text"
+								},
+								{
+									"key": "subcategory",
+									"value": "6923124e2a8250853168f4fd",
+									"type": "text"
+								},
+								{
+									"key": "size[]",
+									"value": "S",
+									"type": "text"
+								},
+								{
+									"key": "size[]",
+									"value": "M",
+									"type": "text"
+								},
+								{
+									"key": "size[]",
+									"value": "L",
+									"type": "text"
+								},
+								{
+									"key": "size[]",
+									"value": "XL",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/products/allproducts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"allproducts"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "perpageitem",
+									"value": "100",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filter Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/products/filter-products?subcatId=69270931d5604ab73d784cd3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"filter-products"
+							],
+							"query": [
+								{
+									"key": "subcatId",
+									"value": "69270931d5604ab73d784cd3"
+								},
+								{
+									"key": "name",
+									"value": "laptop",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "total-product",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "featured-product",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "delete-product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/products/delete-product/69270b6ed5604ab73d784d6b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"delete-product",
+								"69270b6ed5604ab73d784d6b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "women-tops",
+									"type": "text"
+								},
+								{
+									"key": "desc",
+									"value": "kjhflkdfjhfjkhsdkjfhskjsad",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": [
+										"postman-cloud:///1f0cc348-abb9-4400-ad64-0c1cf6d249c5",
+										"postman-cloud:///1f0cc346-8d99-4120-b04a-cc73c31cc49d"
+									]
+								},
+								{
+									"key": "price",
+									"value": "599",
+									"type": "text"
+								},
+								{
+									"key": "isfeatured",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "oldprice",
+									"value": "999",
+									"type": "text"
+								},
+								{
+									"key": "countInstock",
+									"value": "18",
+									"type": "text"
+								},
+								{
+									"key": "rating",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "discount",
+									"value": "10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/products/update-product/69296177b44e8fb6c0f5302e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"update-product",
+								"69296177b44e8fb6c0f5302e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "single-product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/products/69296177b44e8fb6c0f5302e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"69296177b44e8fb6c0f5302e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "isfetureproduct+catId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/products/filter-products?catId=69458a9d32ef58f4309b3807",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"filter-products"
+							],
+							"query": [
+								{
+									"key": "catId",
+									"value": "69458a9d32ef58f4309b3807"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CartItemAdd",
+			"item": [
+				{
+					"name": "add-cart-items",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"u31888404@gmail.com\",\r\n    \"password\":\"rahul1234\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/cartitems/add-items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cartitems",
+								"add-items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all-products in cart",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"u31888404@gmail.com\",\r\n    \"password\":\"rahul1234\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/cartitems/allproducts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cartitems",
+								"allproducts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateItem",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Itemid\":\"692acd4b4d156f164119240e\",\r\n    \"qty\":\"3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/cartitems/updateitem",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cartitems",
+								"updateitem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCart-item",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"itemId\":\"692ad5f42888baebbd54777a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/cartitems/deleteitem",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cartitems",
+								"deleteitem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "total product-count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/cartitems/countproduct",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cartitems",
+								"countproduct"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "wishList",
+			"item": [
+				{
+					"name": "addIteminwishlist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/wishlist/add-items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"wishlist",
+								"add-items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all-items -wishlist",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/wishlist/wishlist-products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"wishlist",
+								"wishlist-products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove-item",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productId\":\"69482b940d48729ae45087c4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/wishlist/remove-products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"wishlist",
+								"remove-products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Address",
+			"item": [
+				{
+					"name": "add-address",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"address_line\":\"07 shivpuri\",\r\n    \"name\":\"aryan pal\",\r\n    \"city\":\"Kanpur-nagar\",\r\n    \"state\":\"Uttar Pradesh\",\r\n    \"pincode\":\"208007\",\r\n    \"locality\":\"Kanpur Nagar\",\r\n    \"phone\":\"7458015120\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/address/address",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"address",
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-address",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"address_line\":\"07 shivpuri\",\r\n    \"name\":\"rahul\",\r\n    \"city\":\"Kanpur-nagar\",\r\n    \"state\":\"Uttar Pradesh\",\r\n    \"pincode\":\"208007\",\r\n    \"locality\":\"Kanpur Nagar\",\r\n    \"mobile\":\"7458015120\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/address/update-address/69419524387c1367b01b6445",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"address",
+								"update-address",
+								"69419524387c1367b01b6445"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-address",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"u31888404@gmail.com\",\r\n    \"password\":\"rahul1234\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/address/69419524387c1367b01b6445",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"address",
+								"69419524387c1367b01b6445"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-address",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"u31888404@gmail.com\",\r\n    \"password\":\"rahul1234\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/address/user-address",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"address",
+								"user-address"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
