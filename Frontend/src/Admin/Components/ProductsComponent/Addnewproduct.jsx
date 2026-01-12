@@ -314,7 +314,7 @@ export const Addnewproduct = ({ open, setOpen }) => {
                                         setProductdetails(prev => ({ ...prev, productRam: e.target.value }))
                                     }
                                 >
-                                    {["100", "200", "500", "1000", "5000"].map((ram) => (
+                                    {["6", "8", "12", "16"].map((ram) => (
                                         <MenuItem key={ram} value={ram}>
                                             {ram}
                                         </MenuItem>
