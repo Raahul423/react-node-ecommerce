@@ -85,6 +85,8 @@ const Header = () => {
                                 <Link to={'/login'} className=' hover:text-primary transition-all cursor-pointer text-xl'>Login</Link>
                                 <span>|</span>
                                 <Link to={'/register'} className='hover:text-primary transition-all cursor-pointer text-xl'>Register</Link>
+                                <span>|</span>
+                                <Link to={'/admin'} className='hover:text-primary transition-all cursor-pointer text-xl'>admin</Link>
                             </>
                         }
 
@@ -119,7 +121,7 @@ const Header = () => {
             </div>
 
             {/* for mobile veiw */}
-            <ResponsiveHeader isAuth={isAuth} user={user} logout={logout}/>
+            <ResponsiveHeader isAuth={isAuth} user={user} logout={logout} />
 
 
             <div>
