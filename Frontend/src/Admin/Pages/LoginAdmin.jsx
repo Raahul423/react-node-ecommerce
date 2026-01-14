@@ -10,7 +10,7 @@ import { AdminContext } from '../../AdminAuthProvider'
 
 
 export const LoginAdmin = () => {
-    const { toastMessage, setAdminIsAuth, setAdmin} = useContext(AdminContext)
+    const { toastMessage, setAdminIsAuth, setAdmin } = useContext(AdminContext)
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(true);
     const [loading, setLoading] = useState(false)
@@ -44,7 +44,7 @@ export const LoginAdmin = () => {
             const res = await api.post('/users/forget-password', { email: field.email })
 
             localStorage.setItem("email", field.email);
-            localStorage.setItem("loginType",field.loginType);
+            localStorage.setItem("loginType", field.loginType);
             toastMessage("success", res?.data.message)
             setTimeout(() => {
                 navigate("/forgot-password")
@@ -61,7 +61,7 @@ export const LoginAdmin = () => {
     }
 
     const adminLogin = async () => {
-        
+
         if (!field.email.trim() === '') {
             toastMessage("error", "Please Provide E-mail");
             return;
@@ -80,15 +80,15 @@ export const LoginAdmin = () => {
         try {
             setLoading(true);
             const response = await api.post('/users/login', field);
-            const { token, createdUser} = response.data;
-        
+            const { token, createdUser } = response.data;
+
             setAdminIsAuth(true)
             setAdmin(createdUser)
 
             localStorage.setItem("admintoken", token);
             localStorage.setItem("admin", JSON.stringify(createdUser));
 
-            toastMessage("success","Admin Login successfully..");
+            toastMessage("success", "Admin Login successfully..");
             setTimeout(() => {
                 navigate('/admin')
             }, 1000);
@@ -98,7 +98,7 @@ export const LoginAdmin = () => {
             } else {
                 toastMessage("error", "Server not Responding. Please try Again...")
             }
-        }finally{
+        } finally {
             setLoading(false)
         }
     }
@@ -106,6 +106,11 @@ export const LoginAdmin = () => {
 
     return (
         <>
+            <section className='md:hidden bg-black flex flex-col justify-center items-center h-screen'>
+                <p className='text-white'>This content is not available on small screens.</p>
+                <p className='text-white'>Please use a <span className='text-red-600'>destop</span> or <span className='text-red-600'>larger screen</span></p>
+
+            </section>
             {loading && (
                 <div className="fixed inset-0 bg-black/85 flex items-center justify-center z-[9999]" >
                     <div className="flex flex-col items-center gap-3">
