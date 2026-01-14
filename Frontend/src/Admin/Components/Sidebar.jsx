@@ -21,7 +21,7 @@ const Sidebar = () => {
 
 
     return (
-        <section className='flex flex-col gap-8 p-4 sticky top-0'>
+        <section className='max-md:hidden flex flex-col gap-8 p-4 sticky top-0'>
             <div className='part-1'>
                 <img src="/Logo.jpg" alt="Logoo" />
             </div>
