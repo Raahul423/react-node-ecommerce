@@ -62,7 +62,6 @@ export const RegisterAdmin = () => {
 
 
     return (
-        
         <section className='h-screen overflow-hidden bg-cover bg-center bg-no-repeat' style={{
             backgroundImage: "url('/admin_bg_image.jpg')"
         }}>

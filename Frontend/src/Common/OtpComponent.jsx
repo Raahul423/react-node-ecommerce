@@ -103,4 +103,4 @@ const OtpComponent = () => {
     )
 }
 
-export default OtpComponent
+export default OtpComponent;
